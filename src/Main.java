@@ -1,7 +1,8 @@
-package GUI;
+import GUI.LogIn;
 
 public class Main {
     public static void main(String[] args) {
-        new LogIn();
+        LogIn loginWindow = new LogIn();
+        loginWindow.setVisible(true);
     }
 }

@@ -9,4 +9,7 @@ public class MenuPrincipal extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JLabel label =
+        JLabel label = new JLabel("Bienvenido al Menú Principal", SwingConstants.CENTER);
+        add(label);
+    }
+}

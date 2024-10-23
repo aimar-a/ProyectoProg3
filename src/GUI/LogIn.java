@@ -6,76 +6,80 @@ import java.awt.event.*;
 import java.io.*;
 import java.nio.file.*;
 import java.util.List;
-import java.util.ArrayList;
 
 public class LogIn extends JFrame {
-    private JTextField userField;
+    private JTextField usuarioField;
     private JPasswordField passwordField;
-    private JButton loginButton, registerButton;
+    private JButton loginButton;
+    private JButton registroButton;
 
-    private final String csvFilePath = "src/CSV/users.csv";
+    private static final String CSV_FILE_PATH = "src/CSV/users.csv";
 
     public LogIn() {
         setTitle("Login");
-        setSize(300, 150);
+        setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        // Paneles para la interfaz gráfica
         JPanel panel = new JPanel(new GridLayout(3, 2));
 
-        // Labels y campos de texto
-        panel.add(new JLabel("Usuario:"));
-        userField = new JTextField();
-        panel.add(userField);
+        // Etiquetas y campos de texto
+        JLabel usuarioLabel = new JLabel("Usuario:");
+        usuarioField = new JTextField();
 
-        panel.add(new JLabel("Contraseña:"));
+        JLabel passwordLabel = new JLabel("Contraseña:");
         passwordField = new JPasswordField();
+
+        loginButton = new JButton("Login");
+        registroButton = new JButton("Registrar");
+
+        // Añadiendo componentes al panel
+        panel.add(usuarioLabel);
+        panel.add(usuarioField);
+        panel.add(passwordLabel);
         panel.add(passwordField);
-
-        // Botones de login y registro
-        loginButton = new JButton("Iniciar Sesión");
-        registerButton = new JButton("Registrarse");
-
         panel.add(loginButton);
-        panel.add(registerButton);
+        panel.add(registroButton);
 
-        add(panel);
+        // Añadir panel al frame
+        add(panel, BorderLayout.CENTER);
 
+        // Acciones de los botones
         loginButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                String usuario = userField.getText();
-                String contraseña = new String(passwordField.getPassword());
-                if (verificarUsuario(usuario, contraseña)) {
-                    JOptionPane.showMessageDialog(null, "Login Exitoso");
-                    new MenuPrincipal();  // Abre la nueva interfaz
-                    dispose();  // Cierra la ventana de login
-                } else {
-                    JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos");
-                }
+                realizarLogin();
             }
         });
 
-        registerButton.addActionListener(new ActionListener() {
+        registroButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                String usuario = userField.getText();
-                String contraseña = new String(passwordField.getPassword());
-                if (registrarUsuario(usuario, contraseña)) {
-                    JOptionPane.showMessageDialog(null, "Usuario registrado con éxito");
-                } else {
-                    JOptionPane.showMessageDialog(null, "El usuario ya existe");
-                }
+                registrarUsuario();
             }
         });
-
-        setVisible(true);
     }
 
-    private boolean verificarUsuario(String usuario, String contraseña) {
+    private void realizarLogin() {
+        String usuario = usuarioField.getText();
+        String password = new String(passwordField.getPassword());
+
+        if (validarCredenciales(usuario, password)) {
+            JOptionPane.showMessageDialog(this, "Login exitoso.");
+            abrirMenuPrincipal();
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private boolean validarCredenciales(String usuario, String password) {
         try {
-            List<String> lines = Files.readAllLines(Paths.get(csvFilePath));
-            for (String line : lines) {
-                String[] data = line.split(",");
-                if (data[0].equals(usuario) && data[1].equals(contraseña)) {
+            List<String> lineas = Files.readAllLines(Paths.get(CSV_FILE_PATH));
+            for (String linea : lineas) {
+                String[] datos = linea.split(",");
+                if (datos[0].equals(usuario) && datos[1].equals(password)) {
                     return true;
                 }
             }
@@ -85,20 +89,27 @@ public class LogIn extends JFrame {
         return false;
     }
 
-    private boolean registrarUsuario(String usuario, String contraseña) {
-        // Verificar si el usuario ya existe
-        if (verificarUsuario(usuario, contraseña)) {
-            return false; // Ya existe
-        }
+    private void registrarUsuario() {
+        String usuario = JOptionPane.showInputDialog(this, "Introduce un nuevo usuario:");
+        String password = JOptionPane.showInputDialog(this, "Introduce una nueva contraseña:");
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath, true))) {
-            writer.write(usuario + "," + contraseña);
-            writer.newLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
+        if (usuario != null && password != null && !usuario.isEmpty() && !password.isEmpty()) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(CSV_FILE_PATH, true))) {
+                writer.write(usuario + "," + password);
+                writer.newLine();
+                JOptionPane.showMessageDialog(this, "Usuario registrado exitosamente.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña no pueden estar vacíos.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
+    }
 
-        return true;
+    private void abrirMenuPrincipal() {
+        MenuPrincipal menuPrincipal = new MenuPrincipal();
+        menuPrincipal.setVisible(true);
+        this.dispose(); // Cierra la ventana de login
     }
 }
