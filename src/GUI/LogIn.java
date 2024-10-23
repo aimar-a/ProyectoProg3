@@ -2,157 +2,103 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.nio.file.*;
+import java.util.List;
+import java.util.ArrayList;
 
-public class LogIn extends JFrame implements ActionListener {
+public class LogIn extends JFrame {
     private JTextField userField;
-    private JPasswordField passField;
+    private JPasswordField passwordField;
     private JButton loginButton, registerButton;
 
-    // Almacenamiento de usuarios (usuario, contraseña)
-    private Map<String, String> users = new HashMap<>();
-    private final String fileName = "users.csv"; // Nombre del archivo CSV
+    private final String csvFilePath = "src/CSV/users.csv";
 
-    // Constructor
     public LogIn() {
-        // Cargar usuarios desde el archivo CSV
-        loadUsersFromCSV();
-    }
-
-    // Método para inicializar y mostrar la ventana de login
-    public void showLoginWindow() {
         setTitle("Login");
-        setSize(350, 150);
+        setSize(300, 150);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        setLayout(new GridLayout(3, 2));
+        JPanel panel = new JPanel(new GridLayout(3, 2));
 
-        JLabel userLabel = new JLabel("Username:");
-        JLabel passLabel = new JLabel("Password:");
+        // Labels y campos de texto
+        panel.add(new JLabel("Usuario:"));
         userField = new JTextField();
-        passField = new JPasswordField();
-        loginButton = new JButton("Log In");
-        registerButton = new JButton("Register");
+        panel.add(userField);
 
-        // Agregar listeners
-        loginButton.addActionListener(this);
-        registerButton.addActionListener(this);
+        panel.add(new JLabel("Contraseña:"));
+        passwordField = new JPasswordField();
+        panel.add(passwordField);
 
-        // Añadir componentes a la ventana
-        add(userLabel);
-        add(userField);
-        add(passLabel);
-        add(passField);
-        add(registerButton); // Botón de registro
-        add(loginButton); // Botón de login
+        // Botones de login y registro
+        loginButton = new JButton("Iniciar Sesión");
+        registerButton = new JButton("Registrarse");
 
-        setVisible(true);
-    }
+        panel.add(loginButton);
+        panel.add(registerButton);
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // Si se presiona el botón de "Login"
-        if (e.getSource() == loginButton) {
-            String username = userField.getText();
-            String password = new String(passField.getPassword());
+        add(panel);
 
-            // Validar si el usuario existe y la contraseña es correcta
-            if (users.containsKey(username) && users.get(username).equals(password)) {
-                JOptionPane.showMessageDialog(this, "Login successful!");
-            } else {
-                JOptionPane.showMessageDialog(this, "Invalid username or password.");
-            }
-        }
-
-        // Si se presiona el botón de "Register"
-        if (e.getSource() == registerButton) {
-            // Abrir la ventana de registro
-            showRegisterWindow();
-        }
-    }
-
-    // Método para mostrar la ventana de registro
-    private void showRegisterWindow() {
-        JFrame registerFrame = new JFrame("Register");
-        registerFrame.setSize(350, 150);
-        registerFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        registerFrame.setLocationRelativeTo(this);
-
-        registerFrame.setLayout(new GridLayout(3, 2));
-
-        JLabel newUserLabel = new JLabel("New Username:");
-        JLabel newPassLabel = new JLabel("New Password:");
-        JTextField newUserField = new JTextField();
-        JPasswordField newPassField = new JPasswordField();
-        JButton createAccountButton = new JButton("Create Account");
-
-        // Agregar listener al botón de creación de cuenta
-        createAccountButton.addActionListener(new ActionListener() {
-            @Override
+        loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String newUsername = newUserField.getText();
-                String newPassword = new String(newPassField.getPassword());
-
-                // Validar si el nombre de usuario ya existe
-                if (users.containsKey(newUsername)) {
-                    JOptionPane.showMessageDialog(registerFrame, "Username already exists.");
+                String usuario = userField.getText();
+                String contraseña = new String(passwordField.getPassword());
+                if (verificarUsuario(usuario, contraseña)) {
+                    JOptionPane.showMessageDialog(null, "Login Exitoso");
+                    new MenuPrincipal();  // Abre la nueva interfaz
+                    dispose();  // Cierra la ventana de login
                 } else {
-                    // Registrar nuevo usuario
-                    users.put(newUsername, newPassword);
-                    saveUserToCSV(newUsername, newPassword); // Guardar en el CSV
-                    JOptionPane.showMessageDialog(registerFrame, "Account created successfully!");
-                    registerFrame.dispose(); // Cerrar ventana de registro
+                    JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos");
                 }
             }
         });
 
-        // Añadir componentes a la ventana de registro
-        registerFrame.add(newUserLabel);
-        registerFrame.add(newUserField);
-        registerFrame.add(newPassLabel);
-        registerFrame.add(newPassField);
-        registerFrame.add(new JLabel()); // Espacio vacío
-        registerFrame.add(createAccountButton);
+        registerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String usuario = userField.getText();
+                String contraseña = new String(passwordField.getPassword());
+                if (registrarUsuario(usuario, contraseña)) {
+                    JOptionPane.showMessageDialog(null, "Usuario registrado con éxito");
+                } else {
+                    JOptionPane.showMessageDialog(null, "El usuario ya existe");
+                }
+            }
+        });
 
-        // Mostrar la ventana de registro
-        registerFrame.setVisible(true);
+        setVisible(true);
     }
 
-    // Método para cargar usuarios desde un archivo CSV
-    private void loadUsersFromCSV() {
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                if (values.length == 2) {
-                    users.put(values[0], values[1]); // Usuario y contraseña
+    private boolean verificarUsuario(String usuario, String contraseña) {
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(csvFilePath));
+            for (String line : lines) {
+                String[] data = line.split(",");
+                if (data[0].equals(usuario) && data[1].equals(contraseña)) {
+                    return true;
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error reading users.csv: " + e.getMessage());
+            e.printStackTrace();
         }
+        return false;
     }
 
-    // Método para guardar un nuevo usuario en el archivo CSV
-    private void saveUserToCSV(String username, String password) {
-        try (FileWriter fw = new FileWriter(fileName, true); // 'true' para añadir al archivo
-                BufferedWriter bw = new BufferedWriter(fw);
-                PrintWriter pw = new PrintWriter(bw)) {
+    private boolean registrarUsuario(String usuario, String contraseña) {
+        // Verificar si el usuario ya existe
+        if (verificarUsuario(usuario, contraseña)) {
+            return false; // Ya existe
+        }
 
-            pw.println(username + "," + password); // Escribir en formato CSV (username,password)
-
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath, true))) {
+            writer.write(usuario + "," + contraseña);
+            writer.newLine();
         } catch (IOException e) {
-            System.out.println("Error writing to users.csv: " + e.getMessage());
+            e.printStackTrace();
+            return false;
         }
-    }
 
-    public static void main(String[] args) {
-        LogIn login = new LogIn();
-        login.showLoginWindow();
+        return true;
     }
 }
