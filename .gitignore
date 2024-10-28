@@ -1,0 +1,10 @@
+# Configuración de Eclipse
+.classpath
+.project
+.settings/
+
+# Configuracion de VSCode
+.vscode
+
+# Código compilado
+bin/
