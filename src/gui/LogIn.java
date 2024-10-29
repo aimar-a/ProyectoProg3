@@ -21,9 +21,9 @@ public class LogIn extends JFrame {
         int ancho_fields = 160;
         int alto = 25;
         int espacio = 10;
-        int altoimg = 100;
-        int alto_boton = 30;
-        int ancho_boton = 80;
+        int altoimg = 250;
+        int alto_boton = 40;
+        int ancho_boton = 100;
 
         int linea = 0;
         int columna = 0;
@@ -34,11 +34,17 @@ public class LogIn extends JFrame {
         linea += espacio;
         columna += espacio;
 
+        JLabel img = new JLabel();
+        img.setIcon(new ImageIcon("src/img/foto.png"));
+        img.setBounds(columna, linea, ancho_labels + ancho_fields + espacio, altoimg);
+        panel.add(img);
+        linea += altoimg + espacio;
+
         JLabel usuarioLabel = new JLabel("Usuario:");
         usuarioLabel.setBounds(columna, linea, ancho_labels, alto);
         columna += ancho_labels + espacio;
         panel.add(usuarioLabel);
-        JTextField usuarioField = new JTextField();
+        usuarioField = new JTextField();
         usuarioField.setBounds(columna, linea, ancho_fields, alto);
         linea += alto + espacio;
         columna = espacio;
@@ -48,29 +54,30 @@ public class LogIn extends JFrame {
         passwordLabel.setBounds(columna, linea, ancho_labels, alto);
         panel.add(passwordLabel);
         columna += ancho_labels + espacio;
-        JPasswordField passwordField = new JPasswordField();
+        passwordField = new JPasswordField();
         passwordField.setBounds(columna, linea, ancho_fields, alto);
-        linea += alto + espacio;
+        linea += alto + espacio * 2;
         columna = espacio;
 
         panel.add(passwordField);
-        JButton loginButton = new JButton("Login");
+        loginButton = new JButton("Login");
         loginButton.setBounds(columna, linea, ancho_boton, alto_boton);
         panel.add(loginButton);
-        columna += ancho_boton + espacio;
-        JButton registroButton = new JButton("Registrar");
+        columna += ancho_boton + espacio * 5;
+        registroButton = new JButton("Registrar");
         registroButton.setBounds(columna, linea, ancho_boton, alto_boton);
         panel.add(registroButton);
         linea += alto_boton + espacio;
         columna = espacio;
 
         setTitle("Login - 007Games");
-        setSize(espacio + altoimg + espacio + alto + espacio + alto + espacio + alto + espacio, 200);
+        setSize(ancho_labels + ancho_fields + espacio * 3, linea);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setResizable(false);
 
         // Añadir panel al frame
-        add(panel, BorderLayout.CENTER);
+        add(panel);
 
         // Acciones de los botones
         loginButton.addActionListener(new ActionListener() {
