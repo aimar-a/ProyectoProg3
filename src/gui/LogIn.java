@@ -30,7 +30,6 @@ public class LogIn extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
-        panel.setBackground(Color.BLUE);
         linea += espacio;
         columna += espacio;
 
@@ -76,10 +75,8 @@ public class LogIn extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
-        // Añadir panel al frame
         add(panel);
 
-        // Acciones de los botones
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

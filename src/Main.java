@@ -1,8 +1,8 @@
-import gui.LogIn;
+import gui.MenuPrincipal;
 
 public class Main {
     public static void main(String[] args) {
-        LogIn loginWindow = new LogIn();
-        loginWindow.setVisible(true);
+        MenuPrincipal menup = new MenuPrincipal();
+        menup.setVisible(true);
     }
 }
