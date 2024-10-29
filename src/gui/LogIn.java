@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.*;
 
 public class LogIn extends JFrame {
+
     private JTextField usuarioField;
     private JPasswordField passwordField;
     private JButton loginButton;
@@ -16,40 +17,59 @@ public class LogIn extends JFrame {
     private static final String CSV_FILE_PATH = "src/CSV/users.csv";
 
     public LogIn() {
+        int ancho_labels = 80;
+        int ancho_fields = 160;
+        int alto = 25;
+        int espacio = 10;
+        int altoimg = 100;
+        int alto_boton = 30;
+        int ancho_boton = 80;
+
+        int linea = 0;
+        int columna = 0;
+
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+        panel.setBackground(Color.BLUE);
+        linea += espacio;
+        columna += espacio;
+
+        JLabel usuarioLabel = new JLabel("Usuario:");
+        usuarioLabel.setBounds(columna, linea, ancho_labels, alto);
+        columna += ancho_labels + espacio;
+        panel.add(usuarioLabel);
+        JTextField usuarioField = new JTextField();
+        usuarioField.setBounds(columna, linea, ancho_fields, alto);
+        linea += alto + espacio;
+        columna = espacio;
+
+        panel.add(usuarioField);
+        JLabel passwordLabel = new JLabel("Contraseña:");
+        passwordLabel.setBounds(columna, linea, ancho_labels, alto);
+        panel.add(passwordLabel);
+        columna += ancho_labels + espacio;
+        JPasswordField passwordField = new JPasswordField();
+        passwordField.setBounds(columna, linea, ancho_fields, alto);
+        linea += alto + espacio;
+        columna = espacio;
+
+        panel.add(passwordField);
+        JButton loginButton = new JButton("Login");
+        loginButton.setBounds(columna, linea, ancho_boton, alto_boton);
+        panel.add(loginButton);
+        columna += ancho_boton + espacio;
+        JButton registroButton = new JButton("Registrar");
+        registroButton.setBounds(columna, linea, ancho_boton, alto_boton);
+        panel.add(registroButton);
+        linea += alto_boton + espacio;
+        columna = espacio;
+
         setTitle("Login - 007Games");
-        setSize(300, 200);
+        setSize(espacio + altoimg + espacio + alto + espacio + alto + espacio + alto + espacio, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JPanel panelImagen = new JPanel();
-        JLabel imagenLabel = new JLabel();
-        ImageIcon icon = new ImageIcon("img/logpic.png");
-        imagenLabel.setIcon(icon);
-        panelImagen.add(imagenLabel);
-
-        // Paneles para la interfaz gráfica
-        JPanel panel = new JPanel(new GridLayout(3, 2));
-
-        // Etiquetas y campos de texto
-        JLabel usuarioLabel = new JLabel("Usuario:");
-        usuarioField = new JTextField();
-
-        JLabel passwordLabel = new JLabel("Contraseña:");
-        passwordField = new JPasswordField();
-
-        loginButton = new JButton("Login");
-        registroButton = new JButton("Registrar");
-
-        // Añadiendo componentes al panel
-        panel.add(usuarioLabel);
-        panel.add(usuarioField);
-        panel.add(passwordLabel);
-        panel.add(passwordField);
-        panel.add(loginButton);
-        panel.add(registroButton);
-
         // Añadir panel al frame
-        add(panelImagen, BorderLayout.NORTH);
         add(panel, BorderLayout.CENTER);
 
         // Acciones de los botones
