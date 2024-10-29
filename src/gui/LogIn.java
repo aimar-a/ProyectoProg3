@@ -1,11 +1,11 @@
-package GUI;
+package gui;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.nio.file.*;
 import java.util.List;
+import javax.swing.*;
 
 public class LogIn extends JFrame {
     private JTextField usuarioField;
@@ -16,10 +16,16 @@ public class LogIn extends JFrame {
     private static final String CSV_FILE_PATH = "src/CSV/users.csv";
 
     public LogIn() {
-        setTitle("Login");
+        setTitle("Login - 007Games");
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+
+        JPanel panelImagen = new JPanel();
+        JLabel imagenLabel = new JLabel();
+        ImageIcon icon = new ImageIcon("img/logpic.png");
+        imagenLabel.setIcon(icon);
+        panelImagen.add(imagenLabel);
 
         // Paneles para la interfaz gráfica
         JPanel panel = new JPanel(new GridLayout(3, 2));
@@ -43,6 +49,7 @@ public class LogIn extends JFrame {
         panel.add(registroButton);
 
         // Añadir panel al frame
+        add(panelImagen, BorderLayout.NORTH);
         add(panel, BorderLayout.CENTER);
 
         // Acciones de los botones
