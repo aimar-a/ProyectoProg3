@@ -21,7 +21,21 @@ public class MenuPrincipal extends JFrame {
         barraAlta.add(new JLabel("007Games", SwingConstants.CENTER));
         JButton botonLogIn = new JButton("LogIn/Reg");
         barraAlta.add(botonLogIn, BorderLayout.EAST);
-     
+        
+        JButton btnSalir = new JButton("<- Volver");
+        barraAlta.add(btnSalir, BorderLayout.WEST);
+        btnSalir.addActionListener(e -> {
+
+            dispose();
+        });
+        
+        botonLogIn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new LogIn().setVisible(true);
+                dispose();
+            }
+        });
         
         
         

@@ -16,7 +16,7 @@ public class VentanaRuleta extends JFrame {
         JButton btnSalir = new JButton("<- Volver");
         topBar.add(btnSalir, BorderLayout.WEST);
         btnSalir.addActionListener(e -> {
-
+        	new MenuPrincipal();
             dispose();
         });
 
