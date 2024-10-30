@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class LogIn extends JFrame {
+public class LogIn extends JFrame{
 
     /**
      * 
@@ -31,10 +31,11 @@ public class LogIn extends JFrame {
     private JPasswordField passwordField;
     private JButton loginButton;
     private JButton registroButton;
-
+	private MenuPrincipal MenuPrincipal;
+	
     private static final String CSV_FILE_PATH = "src/CSV/users.csv";
-
-    public LogIn() {
+    public LogIn(MenuPrincipal menuprincipal) {
+    	this.MenuPrincipal=menuprincipal;
         int ancho_labels = 120;
         int ancho_fields = 200;
         int alto = 40;
@@ -85,6 +86,7 @@ public class LogIn extends JFrame {
         panel.add(registroButton);
         columna += ancho_boton + espacio * 8;
         loginButton = new JButton("Login");
+      
         loginButton.setBounds(columna, linea, ancho_boton, alto_boton);
         panel.add(loginButton);
         linea += alto_boton + espacio;
@@ -112,19 +114,24 @@ public class LogIn extends JFrame {
             }
         });
     }
-
+    
     public void realizarLogin() {
         String usuario = usuarioField.getText();
         String password = new String(passwordField.getPassword());
 
         if (validarCredenciales(usuario, password)) {
             JOptionPane.showMessageDialog(this, "Login exitoso.");
-            abrirMenuPrincipal();
+            MenuPrincipal.logeado = true;
+            MenuPrincipal.actualizarEstado(); // Llama a actualizarEstado en MenuPrincipal
+            dispose(); // Cierra la ventana de login
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
     }
+
+
+    
 
     private boolean validarCredenciales(String usuario, String password) {
         try {

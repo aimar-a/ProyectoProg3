@@ -11,7 +11,7 @@ import javax.swing.SwingConstants;
 public class VentanaRuleta extends JFrame {
     public VentanaRuleta() {
         JPanel topBar = new JPanel(new BorderLayout());
-        topBar.setBackground(Color.BLUE);
+        topBar.setBackground(Color.GREEN);
         topBar.add(new JLabel("Ruleta", SwingConstants.CENTER));
         JButton btnSalir = new JButton("<- Volver");
         topBar.add(btnSalir, BorderLayout.WEST);

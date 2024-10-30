@@ -7,8 +7,13 @@ import javax.swing.*;
 
 public class MenuPrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
+    public boolean logeado;
+    private JLabel label; // Haz la etiqueta un campo de clase
+    private JButton botonLogIn; // Haz el botón de login un campo de clase
 
     public MenuPrincipal() {
+        logeado = false;
+
         // Configuración de la ventana
         setTitle("Menú Principal");
         setSize(400, 300);
@@ -19,33 +24,28 @@ public class MenuPrincipal extends JFrame {
         JPanel barraAlta = new JPanel(new BorderLayout());
         barraAlta.setBackground(Color.RED);
         barraAlta.add(new JLabel("007Games", SwingConstants.CENTER));
-        JButton botonLogIn = new JButton("LogIn/Reg");
-        barraAlta.add(botonLogIn, BorderLayout.EAST);
-        
-        JButton btnSalir = new JButton("<- Volver");
-        barraAlta.add(btnSalir, BorderLayout.WEST);
-        btnSalir.addActionListener(e -> {
 
-            dispose();
-        });
-        
+        botonLogIn = new JButton("LogIn/Reg");
+        barraAlta.add(botonLogIn, BorderLayout.EAST);
+
+        JButton btnSalir = new JButton("Salir");
+        barraAlta.add(btnSalir, BorderLayout.WEST);
+        btnSalir.addActionListener(e -> dispose());
+
         botonLogIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new LogIn().setVisible(true);
-                dispose();
+                LogIn login = new LogIn(MenuPrincipal.this); // Pasar la referencia de MenuPrincipal
+                login.setVisible(true);
             }
         });
-        
-        
-        
 
         // Panel central
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
 
         // Texto de bienvenida
-        JLabel label = new JLabel("Bienvenido al Menú Principal, ¿A qué desea jugar?", SwingConstants.CENTER);
+        label = new JLabel("Bienvenido al Menú Principal, ¿A qué desea jugar?", SwingConstants.CENTER);
         label.setPreferredSize(new Dimension(90, 20));
         panel.add(label, BorderLayout.NORTH);
 
@@ -60,22 +60,18 @@ public class MenuPrincipal extends JFrame {
         Image scaledImage = iconoRuleta.getImage().getScaledInstance(180, 60, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
-        // Establecer la imagen redimensionada como icono del botón
         botonRuleta.setIcon(scaledIcon);
-
         botonRuleta.setPreferredSize(new Dimension(180, 60));
         botonRuleta.setHorizontalTextPosition(SwingConstants.CENTER);
         botonRuleta.setVerticalTextPosition(SwingConstants.CENTER);
         botonRuleta.setForeground(Color.BLACK);
-        botonRuleta.setFont(new Font(" Monospace", Font.BOLD, 30));
+        botonRuleta.setFont(new Font("Monospace", Font.BOLD, 30));
         buttonPane.add(botonRuleta);
 
-        buttonPane.add(botonRuleta);
         botonRuleta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new VentanaRuleta();
-                setVisible(false);
             }
         });
 
@@ -90,27 +86,37 @@ public class MenuPrincipal extends JFrame {
         botonSlot.setHorizontalTextPosition(SwingConstants.CENTER);
         botonSlot.setVerticalTextPosition(SwingConstants.CENTER);
         botonSlot.setForeground(Color.BLACK);
-        botonSlot.setFont(new Font(" Monospace", Font.BOLD, 30));
+        botonSlot.setFont(new Font("Monospace", Font.BOLD, 30));
         buttonPane.add(botonSlot);
+
         botonSlot.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new VentanaSlot();
-                dispose(); // Cierra el menú principal
+                dispose();
             }
         });
 
-        // Añadir el panel de botones al panel central
         panel.add(buttonPane, BorderLayout.CENTER);
 
-        // Añadir el panel central a la ventana
         add(panel, BorderLayout.CENTER);
-        add(barraAlta,BorderLayout.NORTH);
+        add(barraAlta, BorderLayout.NORTH);
 
         setVisible(true);
     }
 
+    // Nuevo método para actualizar el estado de logeado
+    public void actualizarEstado() {
+        if (logeado) {
+            label.setText("¡Bienvenido al Menú Principal! Ya estás logueado.");
+            botonLogIn.setEnabled(false); // Desactivar el botón si ya está logueado
+        }
+    }
+
+
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new MenuPrincipal());
     }
+    
 }
