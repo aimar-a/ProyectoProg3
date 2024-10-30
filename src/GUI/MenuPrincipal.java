@@ -16,12 +16,15 @@ public class MenuPrincipal extends JFrame {
         setLocationRelativeTo(null);
 
         // Panel superior
-        JPanel topbar = new JPanel();
-        topbar.setBackground(Color.RED);
-        JLabel title = new JLabel("007Games", SwingConstants.CENTER);
-        title.setForeground(Color.WHITE);
-        topbar.add(title);
-        add(topbar, BorderLayout.NORTH);
+        JPanel barraAlta = new JPanel(new BorderLayout());
+        barraAlta.setBackground(Color.RED);
+        barraAlta.add(new JLabel("007Games", SwingConstants.CENTER));
+        JButton botonLogIn = new JButton("LogIn/Reg");
+        barraAlta.add(botonLogIn, BorderLayout.EAST);
+     
+        
+        
+        
 
         // Panel central
         JPanel panel = new JPanel();
@@ -88,6 +91,7 @@ public class MenuPrincipal extends JFrame {
 
         // Añadir el panel central a la ventana
         add(panel, BorderLayout.CENTER);
+        add(barraAlta,BorderLayout.NORTH);
 
         setVisible(true);
     }
