@@ -1,15 +1,33 @@
-package gui;
+package GUI;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.nio.file.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
-import javax.swing.*;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class LogIn extends JFrame {
 
-    private JTextField usuarioField;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private JTextField usuarioField;
     private JPasswordField passwordField;
     private JButton loginButton;
     private JButton registroButton;
@@ -92,7 +110,7 @@ public class LogIn extends JFrame {
         });
     }
 
-    private void realizarLogin() {
+    public void realizarLogin() {
         String usuario = usuarioField.getText();
         String password = new String(passwordField.getPassword());
 

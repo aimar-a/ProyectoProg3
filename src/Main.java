@@ -1,4 +1,4 @@
-import gui.MenuPrincipal;
+import GUI.MenuPrincipal;
 
 public class Main {
     public static void main(String[] args) {
