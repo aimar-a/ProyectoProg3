@@ -2,9 +2,9 @@ import GUI.LogIn;
 
 public class Main {
     public static void main(String[] args) {
-        // MenuPrincipal menup = new MenuPrincipal();
-        // menup.setVisible(true);
-        LogIn login = new LogIn();
-        login.setVisible(true);
+        MenuPrincipal menup = new MenuPrincipal();
+        menup.setVisible(true);
+        // LogIn login = new LogIn();
+        // login.setVisible(true);
     }
 }

@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -8,7 +9,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,13 +21,13 @@ import javax.swing.JTextField;
 public class LogIn extends JFrame {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
-	 * 
-	 */
-	private JTextField usuarioField;
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private JTextField usuarioField;
     private JPasswordField passwordField;
     private JButton loginButton;
     private JButton registroButton;
@@ -35,13 +35,13 @@ public class LogIn extends JFrame {
     private static final String CSV_FILE_PATH = "src/CSV/users.csv";
 
     public LogIn() {
-        int ancho_labels = 80;
-        int ancho_fields = 160;
-        int alto = 25;
-        int espacio = 10;
-        int altoimg = 250;
-        int alto_boton = 40;
-        int ancho_boton = 100;
+        int ancho_labels = 120;
+        int ancho_fields = 200;
+        int alto = 40;
+        int espacio = 15;
+        int altoimg = 335;
+        int alto_boton = 50;
+        int ancho_boton = 110;
 
         int linea = 0;
         int columna = 0;
@@ -52,7 +52,10 @@ public class LogIn extends JFrame {
         columna += espacio;
 
         JLabel img = new JLabel();
-        img.setIcon(new ImageIcon("src/img/foto.png"));
+        ImageIcon iconoLogin = new ImageIcon(getClass().getResource("/img/foto.png"));
+        Image scaledImagen = iconoLogin.getImage().getScaledInstance(altoimg, altoimg, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcono = new ImageIcon(scaledImagen);
+        img.setIcon(scaledIcono);
         img.setBounds(columna, linea, ancho_labels + ancho_fields + espacio, altoimg);
         panel.add(img);
         linea += altoimg + espacio;
@@ -65,8 +68,8 @@ public class LogIn extends JFrame {
         usuarioField.setBounds(columna, linea, ancho_fields, alto);
         linea += alto + espacio;
         columna = espacio;
-
         panel.add(usuarioField);
+
         JLabel passwordLabel = new JLabel("Contraseña:");
         passwordLabel.setBounds(columna, linea, ancho_labels, alto);
         panel.add(passwordLabel);
@@ -75,20 +78,20 @@ public class LogIn extends JFrame {
         passwordField.setBounds(columna, linea, ancho_fields, alto);
         linea += alto + espacio * 2;
         columna = espacio;
-
         panel.add(passwordField);
-        loginButton = new JButton("Login");
-        loginButton.setBounds(columna, linea, ancho_boton, alto_boton);
-        panel.add(loginButton);
-        columna += ancho_boton + espacio * 5;
+
         registroButton = new JButton("Registrar");
         registroButton.setBounds(columna, linea, ancho_boton, alto_boton);
         panel.add(registroButton);
+        columna += ancho_boton + espacio * 8;
+        loginButton = new JButton("Login");
+        loginButton.setBounds(columna, linea, ancho_boton, alto_boton);
+        panel.add(loginButton);
         linea += alto_boton + espacio;
         columna = espacio;
 
         setTitle("Login - 007Games");
-        setSize(ancho_labels + ancho_fields + espacio * 3, linea);
+        setSize(ancho_labels + ancho_fields + espacio * 3 + 20, linea + 40);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
