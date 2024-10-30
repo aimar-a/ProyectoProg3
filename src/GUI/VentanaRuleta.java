@@ -16,17 +16,17 @@ public class VentanaRuleta extends JFrame {
         JButton btnSalir = new JButton("<- Volver");
         topBar.add(btnSalir, BorderLayout.WEST);
         btnSalir.addActionListener(e -> {
-        	new MenuPrincipal();
+            new MenuPrincipal();
             dispose();
         });
 
         setTitle("Ruleta - 007Games");
-        setSize(400, 300);
+        setSize(1600, 800);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JLabel label = new JLabel("¡Bienvenido a la Ruleta!", SwingConstants.CENTER);
-        add(label, BorderLayout.CENTER);
+        RoulettePanel bettingPanel = new RoulettePanel();
+        add(bettingPanel, BorderLayout.CENTER);
         add(topBar, BorderLayout.NORTH);
 
         setVisible(true);
