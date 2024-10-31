@@ -10,6 +10,12 @@ import javax.swing.SwingConstants;
 
 public class VentanaRuleta extends JFrame {
     public VentanaRuleta() {
+        setTitle("Ruleta - 007Games");
+        setSize(1600, 800);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
+
         JPanel topBar = new JPanel(new BorderLayout());
         topBar.setBackground(Color.GREEN);
         topBar.add(new JLabel("Ruleta", SwingConstants.CENTER));
@@ -19,11 +25,6 @@ public class VentanaRuleta extends JFrame {
             new MenuPrincipal();
             dispose();
         });
-
-        setTitle("Ruleta - 007Games");
-        setSize(1600, 800);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLocationRelativeTo(null);
 
         RoulettePanel bettingPanel = new RoulettePanel();
         add(bettingPanel, BorderLayout.CENTER);
