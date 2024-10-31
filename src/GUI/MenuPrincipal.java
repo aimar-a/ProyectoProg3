@@ -26,6 +26,7 @@ public class MenuPrincipal extends JFrame {
         barraAlta.add(new JLabel("007Games", SwingConstants.CENTER));
 
         botonLogIn = new JButton("LogIn/Reg");
+        
         barraAlta.add(botonLogIn, BorderLayout.EAST);
 
         JButton btnSalir = new JButton("Salir");
@@ -48,7 +49,7 @@ public class MenuPrincipal extends JFrame {
         botonLogIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                LogIn login = new LogIn(MenuPrincipal.this); // Pasar la referencia de MenuPrincipal
+                LogIn login = new LogIn(MenuPrincipal.this); 
                 login.setVisible(true);
             }
         });
@@ -81,18 +82,7 @@ public class MenuPrincipal extends JFrame {
         botonRuleta.setFont(new Font("Monospace", Font.BOLD, 30));
         buttonPane.add(botonRuleta);
 
-        botonRuleta.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	if(logeado) {
-            		new VentanaRuleta();
-            	}
-            	else {
-            		LogIn login = new LogIn(MenuPrincipal.this); 
-                    login.setVisible(true);
-            	}
-            }
-        });
+        botonRuleta.addActionListener(e -> abrirRuletaSiLogeado());
 
         // Botón Slots con imagen
         ImageIcon iconoSlot = new ImageIcon(getClass().getResource("/img/Slot.png"));
@@ -108,18 +98,7 @@ public class MenuPrincipal extends JFrame {
         botonSlot.setFont(new Font("Monospace", Font.BOLD, 30));
         buttonPane.add(botonSlot);
 
-        botonSlot.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	if(logeado) {
-            		new VentanaSlot();
-            	}
-            	else {
-            		LogIn login = new LogIn(MenuPrincipal.this); 
-                    login.setVisible(true);
-            	}
-            }
-        });
+        botonSlot.addActionListener(e -> abrirSlotSiLogeado());
 
         panel.add(buttonPane, BorderLayout.CENTER);
 
@@ -128,7 +107,21 @@ public class MenuPrincipal extends JFrame {
 
         setVisible(true);
     }
-
+    private void abrirRuletaSiLogeado() {
+        if (logeado) {
+            new VentanaRuleta();
+        } else {
+           
+            new LogIn(this).setVisible(true);
+        }
+    }
+    private void abrirSlotSiLogeado() {
+        if (logeado) {
+            new VentanaSlot();
+        } else {
+            new LogIn(this).setVisible(true);
+        }
+    }
     
     public void actualizarEstado() {
         if (logeado) {
@@ -140,11 +133,6 @@ public class MenuPrincipal extends JFrame {
         	botonLogIn.setEnabled(true);
         }
     }
-    
-
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new MenuPrincipal());
-    }
-    
-}
+    }}
