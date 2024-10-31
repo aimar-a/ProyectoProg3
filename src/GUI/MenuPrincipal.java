@@ -8,8 +8,8 @@ import javax.swing.*;
 public class MenuPrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
     public boolean logeado;
-    private JLabel label; // Haz la etiqueta un campo de clase
-    private JButton botonLogIn; // Haz el botón de login un campo de clase
+    private JLabel label; 
+    private JButton botonLogIn; 
 
     public MenuPrincipal() {
         logeado = false;
@@ -71,7 +71,13 @@ public class MenuPrincipal extends JFrame {
         botonRuleta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new VentanaRuleta();
+            	if(logeado) {
+            		new VentanaRuleta();
+            	}
+            	else {
+            		LogIn login = new LogIn(MenuPrincipal.this); 
+                    login.setVisible(true);
+            	}
             }
         });
 
@@ -105,11 +111,15 @@ public class MenuPrincipal extends JFrame {
         setVisible(true);
     }
 
-    // Nuevo método para actualizar el estado de logeado
+    
     public void actualizarEstado() {
         if (logeado) {
             label.setText("¡Bienvenido al Menú Principal! Ya estás logueado.");
-            botonLogIn.setEnabled(false); // Desactivar el botón si ya está logueado
+            botonLogIn.setEnabled(false);
+        }
+        else {
+        	label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
+        	botonLogIn.setEnabled(true);
         }
     }
 
