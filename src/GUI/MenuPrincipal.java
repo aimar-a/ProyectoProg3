@@ -10,7 +10,7 @@ public class MenuPrincipal extends JFrame {
     public boolean logeado;
     private JLabel label; 
     private JButton botonLogIn; 
-
+    public JButton btnSalir;
     public MenuPrincipal() {
         logeado = false;
 
@@ -30,8 +30,21 @@ public class MenuPrincipal extends JFrame {
 
         JButton btnSalir = new JButton("Salir");
         barraAlta.add(btnSalir, BorderLayout.WEST);
-        btnSalir.addActionListener(e -> dispose());
+        
+        btnSalir.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(logeado) {
+					label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
+		        	botonLogIn.setEnabled(true);
+		        	logeado=false;
+				}else {
+					dispose();
+				}
+			}
+        	
+        });
         botonLogIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -98,8 +111,13 @@ public class MenuPrincipal extends JFrame {
         botonSlot.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new VentanaSlot();
-                dispose();
+            	if(logeado) {
+            		new VentanaSlot();
+            	}
+            	else {
+            		LogIn login = new LogIn(MenuPrincipal.this); 
+                    login.setVisible(true);
+            	}
             }
         });
 
@@ -122,7 +140,7 @@ public class MenuPrincipal extends JFrame {
         	botonLogIn.setEnabled(true);
         }
     }
-
+    
 
 
     public static void main(String[] args) {

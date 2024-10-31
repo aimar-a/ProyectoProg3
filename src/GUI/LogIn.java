@@ -94,7 +94,7 @@ public class LogIn extends JFrame{
 
         setTitle("Login - 007Games");
         setSize(ancho_labels + ancho_fields + espacio * 3 + 20, linea + 40);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
 
@@ -164,11 +164,4 @@ public class LogIn extends JFrame{
             JOptionPane.showMessageDialog(this, "Usuario o contraseña no pueden estar vacíos.", "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
-    }
-
-    private void abrirMenuPrincipal() {
-        MenuPrincipal menuPrincipal = new MenuPrincipal();
-        menuPrincipal.setVisible(true);
-        this.dispose(); // Cierra la ventana de login
-    }
-}
+    }}
