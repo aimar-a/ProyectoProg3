@@ -106,10 +106,6 @@ public class MenuPrincipal extends JFrame {
         botonRuleta.setPreferredSize(new Dimension(180, 60));
         botonRuleta.setHorizontalTextPosition(SwingConstants.CENTER);
         botonRuleta.setVerticalTextPosition(SwingConstants.CENTER);
-
-        botonRuleta.setForeground(Color.WHITE);
-        botonRuleta.setFont(new Font(" Monospace", Font.BOLD, 30));
-
         botonRuleta.setForeground(Color.BLACK);
         botonRuleta.setFont(new Font("Monospace", Font.BOLD, 30));
 
@@ -137,23 +133,10 @@ public class MenuPrincipal extends JFrame {
         botonSlot.setPreferredSize(new Dimension(180, 60));
         botonSlot.setHorizontalTextPosition(SwingConstants.CENTER);
         botonSlot.setVerticalTextPosition(SwingConstants.CENTER);
-
-        botonSlot.setForeground(Color.WHITE);
-        botonSlot.setFont(new Font(" Monospace", Font.BOLD, 30));
-        
         botonSlot.setForeground(Color.BLACK);
         botonSlot.setFont(new Font("Monospace", Font.BOLD, 30));
 
         buttonPane.add(botonSlot);
-
-        panel.add(buttonPane,BorderLayout.CENTER);
-        botonSlot.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new VentanaSlot();
-                dispose(); // Cierra el menú principal
-            }
-        });
 
         botonSlot.addActionListener(e -> abrirSlotSiLogeado());
 
