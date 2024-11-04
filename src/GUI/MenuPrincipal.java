@@ -51,7 +51,35 @@ public class MenuPrincipal extends JFrame {
 
         // Panel para los botones
         JPanel buttonPane = new JPanel();
-        buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 20));
+        buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 7));
+     
+        
+        // Boton Carrera con imagen
+        
+        ImageIcon iconoCarrera = new ImageIcon(getClass().getResource("/img/images.jpeg"));
+        JButton botonCarrera = new JButton("Carrera", iconoCarrera);
+
+        Image scaledImagen = iconoCarrera.getImage().getScaledInstance(180, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcono = new ImageIcon(scaledImagen);
+
+        // Establecer la imagen redimensionada como icono del botón
+        botonCarrera.setIcon(scaledIcono);
+
+        botonCarrera.setPreferredSize(new Dimension(180, 60));
+        botonCarrera.setHorizontalTextPosition(SwingConstants.CENTER);
+        botonCarrera.setVerticalTextPosition(SwingConstants.CENTER);
+        botonCarrera.setForeground(Color.WHITE);
+        botonCarrera.setFont(new Font(" Monospace", Font.BOLD, 30));
+        buttonPane.add(botonCarrera);
+        panel.add(buttonPane,BorderLayout.CENTER);
+        botonCarrera.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VentanaCaballos VentanaC = new VentanaCaballos();
+                VentanaC.setVisible(true);
+            }
+        });
+        
 
         // Botón Ruleta con imagen
         ImageIcon iconoRuleta = new ImageIcon(getClass().getResource("/img/Ruleta.png"));
@@ -66,16 +94,16 @@ public class MenuPrincipal extends JFrame {
         botonRuleta.setPreferredSize(new Dimension(180, 60));
         botonRuleta.setHorizontalTextPosition(SwingConstants.CENTER);
         botonRuleta.setVerticalTextPosition(SwingConstants.CENTER);
-        botonRuleta.setForeground(Color.BLACK);
+        botonRuleta.setForeground(Color.WHITE);
         botonRuleta.setFont(new Font(" Monospace", Font.BOLD, 30));
         buttonPane.add(botonRuleta);
-
-        buttonPane.add(botonRuleta);
+        panel.add(buttonPane,BorderLayout.CENTER);
         botonRuleta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new VentanaRuleta();
                 setVisible(false);
+                dispose();
             }
         });
 
@@ -83,15 +111,16 @@ public class MenuPrincipal extends JFrame {
         ImageIcon iconoSlot = new ImageIcon(getClass().getResource("/img/Slot.png"));
         JButton botonSlot = new JButton("SLOTS", iconoSlot);
 
-        Image scaledImagen = iconoSlot.getImage().getScaledInstance(180, 60, Image.SCALE_SMOOTH);
-        ImageIcon scaledIcono = new ImageIcon(scaledImagen);
-        botonSlot.setIcon(scaledIcono);
+        Image scaledImagn = iconoSlot.getImage().getScaledInstance(180, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcno = new ImageIcon(scaledImagn);
+        botonSlot.setIcon(scaledIcno);
         botonSlot.setPreferredSize(new Dimension(180, 60));
         botonSlot.setHorizontalTextPosition(SwingConstants.CENTER);
         botonSlot.setVerticalTextPosition(SwingConstants.CENTER);
-        botonSlot.setForeground(Color.BLACK);
+        botonSlot.setForeground(Color.WHITE);
         botonSlot.setFont(new Font(" Monospace", Font.BOLD, 30));
         buttonPane.add(botonSlot);
+        panel.add(buttonPane,BorderLayout.CENTER);
         botonSlot.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -109,7 +138,8 @@ public class MenuPrincipal extends JFrame {
 
         setVisible(true);
     }
-
+    
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new MenuPrincipal());
     }
