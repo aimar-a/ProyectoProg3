@@ -8,9 +8,10 @@ import javax.swing.*;
 public class MenuPrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
     public boolean logeado;
-    private JLabel label; 
-    private JButton botonLogIn; 
+    private JLabel label;
+    private JButton botonLogIn;
     public JButton btnSalir;
+
     public MenuPrincipal() {
         logeado = false;
 
@@ -26,30 +27,30 @@ public class MenuPrincipal extends JFrame {
         barraAlta.add(new JLabel("007Games", SwingConstants.CENTER));
 
         botonLogIn = new JButton("LogIn/Reg");
-        
+
         barraAlta.add(botonLogIn, BorderLayout.EAST);
 
         JButton btnSalir = new JButton("Salir");
         barraAlta.add(btnSalir, BorderLayout.WEST);
-        
+
         btnSalir.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(logeado) {
-					label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
-		        	botonLogIn.setEnabled(true);
-		        	logeado=false;
-				}else {
-					dispose();
-				}
-			}
-        	
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (logeado) {
+                    label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
+                    botonLogIn.setEnabled(true);
+                    logeado = false;
+                } else {
+                    dispose();
+                }
+            }
+
         });
         botonLogIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                LogIn login = new LogIn(MenuPrincipal.this); 
+                LogIn login = new LogIn(MenuPrincipal.this);
                 login.setVisible(true);
             }
         });
@@ -65,11 +66,10 @@ public class MenuPrincipal extends JFrame {
 
         // Panel para los botones
         JPanel buttonPane = new JPanel();
-        buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 7));
-     
-        
+        buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 20));
+
         // Boton Carrera con imagen
-        
+
         ImageIcon iconoCarrera = new ImageIcon(getClass().getResource("/img/images.jpeg"));
         JButton botonCarrera = new JButton("Carrera", iconoCarrera);
 
@@ -85,7 +85,7 @@ public class MenuPrincipal extends JFrame {
         botonCarrera.setForeground(Color.WHITE);
         botonCarrera.setFont(new Font(" Monospace", Font.BOLD, 30));
         buttonPane.add(botonCarrera);
-        panel.add(buttonPane,BorderLayout.CENTER);
+        panel.add(buttonPane, BorderLayout.CENTER);
         botonCarrera.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -93,7 +93,6 @@ public class MenuPrincipal extends JFrame {
                 VentanaC.setVisible(true);
             }
         });
-        
 
         // Botón Ruleta con imagen
         ImageIcon iconoRuleta = new ImageIcon(getClass().getResource("/img/Ruleta.png"));
@@ -108,10 +107,9 @@ public class MenuPrincipal extends JFrame {
         botonRuleta.setVerticalTextPosition(SwingConstants.CENTER);
         botonRuleta.setForeground(Color.BLACK);
         botonRuleta.setFont(new Font("Monospace", Font.BOLD, 30));
-
         buttonPane.add(botonRuleta);
 
-        panel.add(buttonPane,BorderLayout.CENTER);
+        panel.add(buttonPane, BorderLayout.CENTER);
         botonRuleta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -127,15 +125,14 @@ public class MenuPrincipal extends JFrame {
         ImageIcon iconoSlot = new ImageIcon(getClass().getResource("/img/Slot.png"));
         JButton botonSlot = new JButton("SLOTS", iconoSlot);
 
-        Image scaledImagn = iconoSlot.getImage().getScaledInstance(180, 60, Image.SCALE_SMOOTH);
-        ImageIcon scaledIcno = new ImageIcon(scaledImagn);
-        botonSlot.setIcon(scaledIcno);
+        Image scaledImag = iconoSlot.getImage().getScaledInstance(180, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIco = new ImageIcon(scaledImag);
+        botonSlot.setIcon(scaledIco);
         botonSlot.setPreferredSize(new Dimension(180, 60));
         botonSlot.setHorizontalTextPosition(SwingConstants.CENTER);
         botonSlot.setVerticalTextPosition(SwingConstants.CENTER);
         botonSlot.setForeground(Color.BLACK);
         botonSlot.setFont(new Font("Monospace", Font.BOLD, 30));
-
         buttonPane.add(botonSlot);
 
         botonSlot.addActionListener(e -> abrirSlotSiLogeado());
@@ -152,10 +149,11 @@ public class MenuPrincipal extends JFrame {
         if (logeado) {
             new VentanaRuleta();
         } else {
-           
+
             new LogIn(this).setVisible(true);
         }
     }
+
     private void abrirSlotSiLogeado() {
         if (logeado) {
             new VentanaSlot();
@@ -163,18 +161,18 @@ public class MenuPrincipal extends JFrame {
             new LogIn(this).setVisible(true);
         }
     }
-    
+
     public void actualizarEstado() {
         if (logeado) {
             label.setText("¡Bienvenido al Menú Principal! Ya estás logueado.");
             botonLogIn.setEnabled(false);
-        }
-        else {
-        	label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
-        	botonLogIn.setEnabled(true);
+        } else {
+            label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
+            botonLogIn.setEnabled(true);
         }
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new MenuPrincipal());
-    }}
+    }
+}

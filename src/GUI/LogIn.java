@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class LogIn extends JFrame{
+public class LogIn extends JFrame {
 
     /**
      * 
@@ -31,15 +31,13 @@ public class LogIn extends JFrame{
     private JPasswordField passwordField;
     private JButton loginButton;
     private JButton registroButton;
-	private MenuPrincipal MenuPrincipal;
-	
+    private MenuPrincipal MenuPrincipal;
+
     private static final String CSV_FILE_PATH = "src/CSV/users.csv";
-    
-    
-public LogIn(MenuPrincipal menuPrincipal) {
-        
-        
-    	this.MenuPrincipal=menuPrincipal;
+
+    public LogIn(MenuPrincipal menuPrincipal) {
+
+        this.MenuPrincipal = menuPrincipal;
         int ancho_labels = 120;
         int ancho_fields = 200;
         int alto = 40;
@@ -90,7 +88,7 @@ public LogIn(MenuPrincipal menuPrincipal) {
         panel.add(registroButton);
         columna += ancho_boton + espacio * 8;
         loginButton = new JButton("Login");
-      
+
         loginButton.setBounds(columna, linea, ancho_boton, alto_boton);
         panel.add(loginButton);
         linea += alto_boton + espacio;
@@ -118,24 +116,21 @@ public LogIn(MenuPrincipal menuPrincipal) {
             }
         });
     }
-    
-public void realizarLogin() {
-    String usuario = usuarioField.getText();
-    String password = new String(passwordField.getPassword());
 
-    if (validarCredenciales(usuario, password)) {
-        JOptionPane.showMessageDialog(this, "Login exitoso.");
-        MenuPrincipal.logeado = true; // Cambia el estado a true en MenuPrincipal
-        MenuPrincipal.actualizarEstado(); // Llama al método para actualizar la interfaz
-        dispose(); // Cierra la ventana de login
-    } else {
-        JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", "Error",
-                JOptionPane.ERROR_MESSAGE);
+    public void realizarLogin() {
+        String usuario = usuarioField.getText();
+        String password = new String(passwordField.getPassword());
+
+        if (validarCredenciales(usuario, password)) {
+            JOptionPane.showMessageDialog(this, "Login exitoso.");
+            MenuPrincipal.logeado = true; // Cambia el estado a true en MenuPrincipal
+            MenuPrincipal.actualizarEstado(); // Llama al método para actualizar la interfaz
+            dispose(); // Cierra la ventana de login
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
-}
-
-
-    
 
     private boolean validarCredenciales(String usuario, String password) {
         try {
@@ -167,4 +162,6 @@ public void realizarLogin() {
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña no pueden estar vacíos.", "Error",
                     JOptionPane.ERROR_MESSAGE);
-        }}}
+        }
+    }
+}
