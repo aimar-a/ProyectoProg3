@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.Random;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,6 +22,7 @@ public class VentanaSlot extends JFrame {
 	JButton f3c1;
 	JButton f3c2;
 	JButton f3c3;
+	JButton[] botones = { f1c1, f1c2, f1c3, f2c1, f2c2, f2c3, f3c1, f3c2, f3c3 };
 
 	public VentanaSlot() {
 		setTitle("Slot");
@@ -31,31 +34,21 @@ public class VentanaSlot extends JFrame {
 		JPanel panelRuletas = new JPanel(new GridBagLayout());
 		panelRuletas.setBackground(Color.BLACK);
 		GridBagConstraints gbc = new GridBagConstraints();
-		f1c1 = new JButton();
-		panelRuletas.add(f1c1, gbc);
-		f1c2 = new JButton();
-		panelRuletas.add(f1c2, gbc);
-		f1c3 = new JButton();
-		panelRuletas.add(f1c3, gbc);
-		f2c1 = new JButton();
-		panelRuletas.add(f2c1, gbc);
-		f2c2 = new JButton();
-		panelRuletas.add(f2c2, gbc);
-		f2c3 = new JButton();
-		panelRuletas.add(f2c3, gbc);
-		f3c1 = new JButton();
-		panelRuletas.add(f3c1, gbc);
-		f3c2 = new JButton();
-		panelRuletas.add(f3c2, gbc);
-		f3c3 = new JButton();
-		panelRuletas.add(f3c3, gbc);
+		for (int i = 0; i < botones.length; i++) {
+			gbc.gridx = i % 3;
+			gbc.gridy = i / 3;
+			botones[i] = new JButton();
+			panelRuletas.add(botones[i], gbc);
+		}
 		girarRuletas();
 
 		JPanel panelApuestas = new JPanel();
 		panelApuestas.setBackground(Color.RED);
 		panelApuestas.add(new JLabel("Apuesta: "));
 		panelApuestas.add(new JTextArea(1, 6));
-		panelApuestas.add(new JButton("Girar"));
+		JButton botonGirar = new JButton("Girar");
+		botonGirar.addActionListener(e -> girarRuletas());
+		panelApuestas.add(botonGirar);
 
 		add(panelApuestas, BorderLayout.SOUTH);
 		add(panelRuletas, BorderLayout.CENTER);
@@ -63,6 +56,10 @@ public class VentanaSlot extends JFrame {
 	}
 
 	public void girarRuletas() {
-
+		for (int i = 0; i < botones.length; i++) {
+			Random r = new Random();
+			int n = r.nextInt(9) + 1;
+			botones[i].setIcon(new ImageIcon("src/img/slot" + n + ".png"));
+		}
 	}
 }
