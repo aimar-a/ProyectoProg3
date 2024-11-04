@@ -9,7 +9,7 @@ public class MenuPrincipal extends JFrame {
     public boolean logeado;
     private JLabel label;
     private JButton botonLogIn;
-    public JButton btnSalir;
+    public JButton botonSalir;
 
     public int altoBotones;
     public int anchoBotones;
@@ -34,10 +34,10 @@ public class MenuPrincipal extends JFrame {
 
         barraAlta.add(botonLogIn, BorderLayout.EAST);
 
-        btnSalir = new JButton("Salir");
-        barraAlta.add(btnSalir, BorderLayout.WEST);
+        botonSalir = new JButton("Salir");
+        barraAlta.add(botonSalir, BorderLayout.WEST);
 
-        btnSalir.addActionListener((ActionEvent e) -> {
+        botonSalir.addActionListener((ActionEvent e) -> {
             if (logeado) {
                 label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
                 botonLogIn.setEnabled(true);
