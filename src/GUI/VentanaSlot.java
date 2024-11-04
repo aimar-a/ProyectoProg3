@@ -52,7 +52,6 @@ public class VentanaSlot extends JFrame {
 
 		add(panelApuestas, BorderLayout.SOUTH);
 		add(panelRuletas, BorderLayout.CENTER);
-		setVisible(true);
 	}
 
 	public void girarRuletas() {
