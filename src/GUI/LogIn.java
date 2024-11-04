@@ -34,8 +34,12 @@ public class LogIn extends JFrame{
 	private MenuPrincipal MenuPrincipal;
 	
     private static final String CSV_FILE_PATH = "src/CSV/users.csv";
-    public LogIn(MenuPrincipal menuprincipal) {
-    	this.MenuPrincipal=menuprincipal;
+    
+    
+public LogIn(MenuPrincipal menuPrincipal) {
+        
+        
+    	this.MenuPrincipal=menuPrincipal;
         int ancho_labels = 120;
         int ancho_fields = 200;
         int alto = 40;
@@ -115,20 +119,20 @@ public class LogIn extends JFrame{
         });
     }
     
-    public void realizarLogin() {
-        String usuario = usuarioField.getText();
-        String password = new String(passwordField.getPassword());
+public void realizarLogin() {
+    String usuario = usuarioField.getText();
+    String password = new String(passwordField.getPassword());
 
-        if (validarCredenciales(usuario, password)) {
-            JOptionPane.showMessageDialog(this, "Login exitoso.");
-            MenuPrincipal.logeado = true;
-            MenuPrincipal.actualizarEstado(); // Llama a actualizarEstado en MenuPrincipal
-            dispose(); // Cierra la ventana de login
-        } else {
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+    if (validarCredenciales(usuario, password)) {
+        JOptionPane.showMessageDialog(this, "Login exitoso.");
+        MenuPrincipal.logeado = true; // Cambia el estado a true en MenuPrincipal
+        MenuPrincipal.actualizarEstado(); // Llama al método para actualizar la interfaz
+        dispose(); // Cierra la ventana de login
+    } else {
+        JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", "Error",
+                JOptionPane.ERROR_MESSAGE);
     }
+}
 
 
     
@@ -163,5 +167,4 @@ public class LogIn extends JFrame{
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña no pueden estar vacíos.", "Error",
                     JOptionPane.ERROR_MESSAGE);
-        }
-    }}
+        }}}
