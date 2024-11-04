@@ -7,7 +7,9 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class VentanaCarreraCaballos extends JPanel implements ActionListener {
-    private static final int NUM_CABALLOS = 5; 
+    
+	private static final long serialVersionUID = 1L;
+	private static final int NUM_CABALLOS = 5; 
     private static final int META = 700; 
     private int[] posiciones; 
     private int[] velocidades; 

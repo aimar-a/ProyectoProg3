@@ -115,15 +115,6 @@ public class MenuPrincipal extends JFrame {
         buttonPane.add(botonRuleta);
 
         panel.add(buttonPane, BorderLayout.CENTER);
-        botonRuleta.addActionListener((ActionEvent e) -> {
-            if (logeado) {
-                VentanaRuleta ventanaRuleta = new VentanaRuleta();
-                ventanaRuleta.setVisible(true);
-
-            } else {
-                LogIn logIn = new LogIn(MenuPrincipal.this);
-            }
-        });
 
         botonRuleta.addActionListener(e -> abrirRuletaSiLogeado());
 
