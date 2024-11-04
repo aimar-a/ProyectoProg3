@@ -9,6 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class VentanaRuleta extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
+
 	public VentanaRuleta() {
 		setTitle("Ruleta - 007Games");
 		setSize(1600, 800);
@@ -28,7 +31,7 @@ public class VentanaRuleta extends JFrame {
 		RoulettePanel bettingPanel = new RoulettePanel();
 		add(bettingPanel, BorderLayout.CENTER);
 		add(topBar, BorderLayout.NORTH);
-
-		setVisible(true);
+		dispose();
+		
 	}
 }
