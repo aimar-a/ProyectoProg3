@@ -12,12 +12,17 @@ public class MenuPrincipal extends JFrame {
     private JButton botonLogIn;
     public JButton btnSalir;
 
+    public int altoBotones;
+    public int anchoBotones;
+
     public MenuPrincipal() {
         logeado = false;
+        anchoBotones = 400;
+        altoBotones = 200;
 
         // Configuración de la ventana
         setTitle("Menú Principal");
-        setSize(400, 300);
+        setSize(1000, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -73,13 +78,13 @@ public class MenuPrincipal extends JFrame {
         ImageIcon iconoCarrera = new ImageIcon(getClass().getResource("/img/images.jpeg"));
         JButton botonCarrera = new JButton("Carrera", iconoCarrera);
 
-        Image scaledImagen = iconoCarrera.getImage().getScaledInstance(180, 60, Image.SCALE_SMOOTH);
+        Image scaledImagen = iconoCarrera.getImage().getScaledInstance(anchoBotones, altoBotones, Image.SCALE_SMOOTH);
         ImageIcon scaledIcono = new ImageIcon(scaledImagen);
 
         // Establecer la imagen redimensionada como icono del botón
         botonCarrera.setIcon(scaledIcono);
 
-        botonCarrera.setPreferredSize(new Dimension(180, 60));
+        botonCarrera.setPreferredSize(new Dimension(anchoBotones, altoBotones));
         botonCarrera.setHorizontalTextPosition(SwingConstants.CENTER);
         botonCarrera.setVerticalTextPosition(SwingConstants.CENTER);
         botonCarrera.setForeground(Color.WHITE);
@@ -98,11 +103,11 @@ public class MenuPrincipal extends JFrame {
         ImageIcon iconoRuleta = new ImageIcon(getClass().getResource("/img/Ruleta.png"));
         JButton botonRuleta = new JButton("RULETA", iconoRuleta);
 
-        Image scaledImage = iconoRuleta.getImage().getScaledInstance(180, 60, Image.SCALE_SMOOTH);
+        Image scaledImage = iconoRuleta.getImage().getScaledInstance(anchoBotones, altoBotones, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
         botonRuleta.setIcon(scaledIcon);
-        botonRuleta.setPreferredSize(new Dimension(180, 60));
+        botonRuleta.setPreferredSize(new Dimension(anchoBotones, altoBotones));
         botonRuleta.setHorizontalTextPosition(SwingConstants.CENTER);
         botonRuleta.setVerticalTextPosition(SwingConstants.CENTER);
         botonRuleta.setForeground(Color.BLACK);
@@ -125,10 +130,10 @@ public class MenuPrincipal extends JFrame {
         ImageIcon iconoSlot = new ImageIcon(getClass().getResource("/img/Slot.png"));
         JButton botonSlot = new JButton("SLOTS", iconoSlot);
 
-        Image scaledImag = iconoSlot.getImage().getScaledInstance(180, 60, Image.SCALE_SMOOTH);
+        Image scaledImag = iconoSlot.getImage().getScaledInstance(anchoBotones, altoBotones, Image.SCALE_SMOOTH);
         ImageIcon scaledIco = new ImageIcon(scaledImag);
         botonSlot.setIcon(scaledIco);
-        botonSlot.setPreferredSize(new Dimension(180, 60));
+        botonSlot.setPreferredSize(new Dimension(anchoBotones, altoBotones));
         botonSlot.setHorizontalTextPosition(SwingConstants.CENTER);
         botonSlot.setVerticalTextPosition(SwingConstants.CENTER);
         botonSlot.setForeground(Color.BLACK);
