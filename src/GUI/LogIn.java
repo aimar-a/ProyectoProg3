@@ -2,7 +2,6 @@ package GUI;
 
 import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,13 +30,13 @@ public class LogIn extends JFrame {
     private JPasswordField passwordField;
     private JButton loginButton;
     private JButton registroButton;
-    private MenuPrincipal MenuPrincipal;
+    private MenuPrincipal menuPrincipal;
 
     private static final String CSV_FILE_PATH = "src/CSV/users.csv";
 
-    public LogIn(MenuPrincipal menuPrincipal) {
+    public LogIn(MenuPrincipal menuPrinc) {
 
-        this.MenuPrincipal = menuPrincipal;
+        menuPrincipal = menuPrinc;
         int ancho_labels = 120;
         int ancho_fields = 200;
         int alto = 40;
@@ -102,18 +101,12 @@ public class LogIn extends JFrame {
 
         add(panel);
 
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                realizarLogin();
-            }
+        loginButton.addActionListener((ActionEvent e) -> {
+            realizarLogin();
         });
 
-        registroButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                registrarUsuario();
-            }
+        registroButton.addActionListener((ActionEvent e) -> {
+            registrarUsuario();
         });
     }
 
@@ -123,8 +116,8 @@ public class LogIn extends JFrame {
 
         if (validarCredenciales(usuario, password)) {
             JOptionPane.showMessageDialog(this, "Login exitoso.");
-            MenuPrincipal.logeado = true; // Cambia el estado a true en MenuPrincipal
-            MenuPrincipal.actualizarEstado(); // Llama al método para actualizar la interfaz
+            menuPrincipal.logeado = true; // Cambia el estado a true en MenuPrincipal
+            menuPrincipal.actualizarEstado(); // Llama al método para actualizar la interfaz
             dispose(); // Cierra la ventana de login
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", "Error",
@@ -142,7 +135,6 @@ public class LogIn extends JFrame {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
         }
         return false;
     }
@@ -157,7 +149,6 @@ public class LogIn extends JFrame {
                 writer.newLine();
                 JOptionPane.showMessageDialog(this, "Usuario registrado exitosamente.");
             } catch (IOException e) {
-                e.printStackTrace();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña no pueden estar vacíos.", "Error",

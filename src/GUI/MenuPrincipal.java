@@ -115,12 +115,13 @@ public class MenuPrincipal extends JFrame {
         buttonPane.add(botonRuleta);
 
         panel.add(buttonPane, BorderLayout.CENTER);
-        botonRuleta.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new VentanaRuleta();
-                setVisible(false);
-                dispose();
+        botonRuleta.addActionListener((ActionEvent e) -> {
+            if (logeado) {
+                VentanaRuleta ventanaRuleta = new VentanaRuleta();
+                ventanaRuleta.setVisible(true);
+
+            } else {
+                LogIn logIn = new LogIn(MenuPrincipal.this);
             }
         });
 
@@ -152,9 +153,8 @@ public class MenuPrincipal extends JFrame {
 
     private void abrirRuletaSiLogeado() {
         if (logeado) {
-            new VentanaRuleta();
+            new VentanaRuleta().setVisible(true);
         } else {
-
             new LogIn(this).setVisible(true);
         }
     }
