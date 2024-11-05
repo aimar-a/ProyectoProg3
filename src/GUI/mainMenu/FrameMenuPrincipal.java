@@ -20,6 +20,7 @@ public class FrameMenuPrincipal extends JFrame {
     private final JButton botonPerfil;
     private final int altoBotones = 200;
     private final int anchoBotones = 400;
+    public boolean loginAbierto;
 
     public FrameMenuPrincipal() {
         // Configuración inicial del JFrame
@@ -53,7 +54,12 @@ public class FrameMenuPrincipal extends JFrame {
 
         botonLogIn = new JButton("LogIn/Reg");
         barraAlta.add(botonLogIn, BorderLayout.EAST);
-        botonLogIn.addActionListener(e -> new FrameLogIn(FrameMenuPrincipal.this, null).setVisible(true));
+        botonLogIn.addActionListener(e -> {
+            if (!loginAbierto) {
+                loginAbierto = true;
+                new FrameLogIn(FrameMenuPrincipal.this, null).setVisible(true);
+            }
+        });
 
         botonSalir = new JButton("Salir");
         barraAlta.add(botonSalir, BorderLayout.WEST);
@@ -130,7 +136,10 @@ public class FrameMenuPrincipal extends JFrame {
         if (logeado) {
             frame.setVisible(true);
         } else {
-            new FrameLogIn(FrameMenuPrincipal.this, nombreJuego).setVisible(true);
+            if (!loginAbierto) {
+                loginAbierto = true;
+                new FrameLogIn(FrameMenuPrincipal.this, nombreJuego).setVisible(true);
+            }
         }
     }
 

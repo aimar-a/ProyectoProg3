@@ -6,6 +6,8 @@ import GUI.ruleta.FrameRuleta;
 import GUI.slots.FrameSlots;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -120,6 +122,13 @@ public class FrameLogIn extends JFrame {
         passwordField.addActionListener((ActionEvent e) -> {
             realizarLogin();
         });
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                menuPrinc.loginAbierto = false;
+            }
+        });
     }
 
     public void realizarLogin() {
@@ -178,4 +187,5 @@ public class FrameLogIn extends JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
+
 }
