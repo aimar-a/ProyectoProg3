@@ -171,6 +171,17 @@ public class MenuPrincipal extends JFrame {
                 
             }
         });
+        
+        
+        ImageIcon iconoPerfil = new ImageIcon(getClass().getResource("/img/iconoPerfil.png"));
+        
+
+        Image scaledImagPerfil = iconoPerfil.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconPerfil = new ImageIcon(scaledImagPerfil);
+        botonPerfil.setIcon(scaledIconPerfil);
+        botonPerfil.setPreferredSize(new Dimension(50, 50));
+        botonPerfil.setHorizontalTextPosition(SwingConstants.CENTER);
+        botonPerfil.setVerticalTextPosition(SwingConstants.CENTER);
     }
 
 	    
@@ -181,14 +192,15 @@ public class MenuPrincipal extends JFrame {
     public void actualizarEstado() {
         if (logeado) {
             label.setText("¡Bienvenido " + usuario + "! Ya estás logueado.");
-            barraAlta.remove(botonLogIn);
-            botonPerfil.setEnabled(true);
+            botonLogIn.setVisible(false);
+            botonPerfil.setVisible(true);
             barraAlta.add(botonPerfil, BorderLayout.EAST);
         } else {
             label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
-            barraAlta.remove(botonPerfil); // funciona regular
-            
+            botonPerfil.setVisible(false);
+            botonLogIn.setVisible(true);
             barraAlta.add(botonLogIn, BorderLayout.EAST);
         }
+        
     }
 }
