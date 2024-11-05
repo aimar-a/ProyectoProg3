@@ -3,6 +3,7 @@ package GUI.mainMenu;
 import GUI.Blackjack.BorrarBlackJack;
 import GUI.caballos.FrameCaballos;
 import GUI.logIn.FrameLogIn;
+import GUI.minas.FrameMinas;
 import GUI.ruleta.FrameRuleta;
 import GUI.slots.FrameSlots;
 import java.awt.*;
@@ -99,6 +100,8 @@ public class FrameMenuPrincipal extends JFrame {
                 e -> abrirVentana(JuegosDisponibles.SLOTS));
         configurarBotonJuego(panelSeleccion, "BLACKJACK", "/img/mainMenu/Blackjack.jpg",
                 e -> abrirVentana(JuegosDisponibles.BLACKJACK)); // TODO
+        configurarBotonJuego(panelSeleccion, "MINAS", "/img/mainMenu/Minas.jpg",
+                e -> abrirVentana(JuegosDisponibles.MINAS)); // TODO
 
         panelCentral.add(panelSeleccion, BorderLayout.CENTER);
         return panelCentral;
@@ -140,7 +143,9 @@ public class FrameMenuPrincipal extends JFrame {
                 case JuegosDisponibles.RULETA -> new FrameRuleta(this).setVisible(true);
                 case JuegosDisponibles.SLOTS -> new FrameSlots(this).setVisible(true);
                 case JuegosDisponibles.BLACKJACK -> new BorrarBlackJack();
+                case JuegosDisponibles.MINAS -> new FrameMinas(this).setVisible(true);
                 default -> {
+                    JOptionPane.showMessageDialog(this, "Juego no disponible", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } else {
