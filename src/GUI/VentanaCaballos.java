@@ -14,7 +14,7 @@ public class VentanaCaballos extends JFrame {
         // Barra superior
         JPanel topbar = new JPanel(new BorderLayout());
         topbar.setBackground(Color.BLUE);
-        
+
         JLabel labelTitulo = new JLabel("Carrera de caballos", SwingConstants.CENTER);
         labelTitulo.setForeground(Color.WHITE);
         topbar.add(labelTitulo, BorderLayout.CENTER);
@@ -23,7 +23,6 @@ public class VentanaCaballos extends JFrame {
         topbar.add(btnSalir, BorderLayout.WEST);
 
         btnSalir.addActionListener(e -> {
-            new MenuPrincipal();
             dispose();
         });
 

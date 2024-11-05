@@ -5,10 +5,10 @@ import javax.swing.*;
 
 public class RoulettePanel extends JPanel {
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private int tamanoBoton = 60;
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private final int tamanoBoton = 60;
 
     public RoulettePanel() {
         setLayout(new GridBagLayout());
