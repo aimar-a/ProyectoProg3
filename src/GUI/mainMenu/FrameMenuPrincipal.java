@@ -20,6 +20,7 @@ public class FrameMenuPrincipal extends JFrame {
     private final JButton botonPerfil;
     private final int altoBotones = 200;
     private final int anchoBotones = 400;
+    public boolean loginAbierto;
 
     public FrameMenuPrincipal() {
         // Configuración inicial del JFrame
@@ -53,7 +54,12 @@ public class FrameMenuPrincipal extends JFrame {
 
         botonLogIn = new JButton("LogIn/Reg");
         barraAlta.add(botonLogIn, BorderLayout.EAST);
-        botonLogIn.addActionListener(e -> new FrameLogIn(FrameMenuPrincipal.this, null).setVisible(true));
+        botonLogIn.addActionListener(e -> {
+            if (!loginAbierto) {
+                loginAbierto = true;
+                new FrameLogIn(FrameMenuPrincipal.this, null).setVisible(true);
+            }
+        });
 
         botonSalir = new JButton("Salir");
         barraAlta.add(botonSalir, BorderLayout.WEST);
@@ -86,13 +92,13 @@ public class FrameMenuPrincipal extends JFrame {
         JPanel panelSeleccion = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 20));
 
         configurarBotonJuego(panelSeleccion, "CARRERA", "/img/mainMenu/Carrera.jpeg",
-                e -> abrirVentana(new FrameCaballos(), "Caballos"));
+                e -> abrirVentana(JuegosDisponibles.CABALLOS));
         configurarBotonJuego(panelSeleccion, "RULETA", "/img/mainMenu/Ruleta.png",
-                e -> abrirVentana(new FrameRuleta(), "Ruleta"));
+                e -> abrirVentana(JuegosDisponibles.RULETA));
         configurarBotonJuego(panelSeleccion, "SLOTS", "/img/mainMenu/Slot.png",
-                e -> abrirVentana(new FrameSlots(), "Slots"));
+                e -> abrirVentana(JuegosDisponibles.SLOTS));
         configurarBotonJuego(panelSeleccion, "BLACKJACK", "/img/mainMenu/Blackjack.jpg",
-                e -> new BorrarBlackJack()); // TODO
+                e -> abrirVentana(JuegosDisponibles.BLACKJACK)); // TODO
 
         panelCentral.add(panelSeleccion, BorderLayout.CENTER);
         return panelCentral;
@@ -126,11 +132,22 @@ public class FrameMenuPrincipal extends JFrame {
         botonPerfil.addActionListener(e -> new FrameProfile(usuario).setVisible(true));
     }
 
-    private void abrirVentana(JFrame frame, String nombreJuego) {
+    public void abrirVentana(JuegosDisponibles juegoObjetivo) {
         if (logeado) {
-            frame.setVisible(true);
+            this.setVisible(false);
+            switch (juegoObjetivo) {
+                case JuegosDisponibles.CABALLOS -> new FrameCaballos(this).setVisible(true);
+                case JuegosDisponibles.RULETA -> new FrameRuleta(this).setVisible(true);
+                case JuegosDisponibles.SLOTS -> new FrameSlots(this).setVisible(true);
+                case JuegosDisponibles.BLACKJACK -> new BorrarBlackJack();
+                default -> {
+                }
+            }
         } else {
-            new FrameLogIn(FrameMenuPrincipal.this, nombreJuego).setVisible(true);
+            if (!loginAbierto) {
+                loginAbierto = true;
+                new FrameLogIn(FrameMenuPrincipal.this, juegoObjetivo).setVisible(true);
+            }
         }
     }
 

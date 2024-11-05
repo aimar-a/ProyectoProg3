@@ -1,11 +1,11 @@
 package GUI.logIn;
 
-import GUI.caballos.FrameCaballos;
 import GUI.mainMenu.FrameMenuPrincipal;
-import GUI.ruleta.FrameRuleta;
-import GUI.slots.FrameSlots;
+import GUI.mainMenu.JuegosDisponibles;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -35,13 +35,13 @@ public class FrameLogIn extends JFrame {
     private final JButton botonLogin;
     private final JButton botonRegistro;
     private final FrameMenuPrincipal menuPrincipal;
-    private final String juegoObjetivo;
+    private JuegosDisponibles juegoObjetivo;
 
     private static final String CSV_FILE_PATH = "src/CSV/users.csv";
 
-    public FrameLogIn(FrameMenuPrincipal menuPrinc, String juego) {
+    public FrameLogIn(FrameMenuPrincipal menuPrinc, JuegosDisponibles juegoObjetivo) {
         this.menuPrincipal = menuPrinc;
-        this.juegoObjetivo = juego;
+        this.juegoObjetivo = juegoObjetivo;
         int ancho_labels = 120;
         int ancho_fields = 200;
         int alto = 40;
@@ -120,6 +120,13 @@ public class FrameLogIn extends JFrame {
         passwordField.addActionListener((ActionEvent e) -> {
             realizarLogin();
         });
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                menuPrinc.loginAbierto = false;
+            }
+        });
     }
 
     public void realizarLogin() {
@@ -134,11 +141,7 @@ public class FrameLogIn extends JFrame {
 
             dispose(); // Cierra la ventana de login
             if (juegoObjetivo != null) {
-                switch (juegoObjetivo) {
-                    case "Ruleta" -> new FrameRuleta().setVisible(true);
-                    case "Slots" -> new FrameSlots().setVisible(true);
-                    case "Carrera" -> new FrameCaballos().setVisible(true);
-                }
+                menuPrincipal.abrirVentana(juegoObjetivo);
             }
         }
 
@@ -178,4 +181,5 @@ public class FrameLogIn extends JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
+
 }

@@ -259,7 +259,4 @@ public class BorrarBlackJack {
         return dealerSum;
     }
 
-    public static void main(String[] args) {
-        new BorrarBlackJack();
-    }
 }
