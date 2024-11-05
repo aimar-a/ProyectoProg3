@@ -4,7 +4,8 @@ public enum JuegosDisponibles {
     BLACKJACK("Blackjack"),
     CABALLOS("Caballos"),
     RULETA("Ruleta"),
-    SLOTS("Slots");
+    SLOTS("Slots"),
+    MINAS("Minas");
 
     private final String nombre;
 
