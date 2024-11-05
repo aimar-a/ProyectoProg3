@@ -5,7 +5,6 @@ import GUI.logIn.FrameLogIn;
 import GUI.ruleta.FrameRuleta;
 import GUI.slots.FrameSlots;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
@@ -57,7 +56,21 @@ public class FrameMenuPrincipal extends JFrame {
 
         botonSalir = new JButton("Salir");
         barraAlta.add(botonSalir, BorderLayout.WEST);
-        botonSalir.addActionListener(this::accionSalir);
+        botonSalir.addActionListener(e -> {
+            if (logeado) {
+                int opcion = JOptionPane.showConfirmDialog(this, "¿Deseas cerrar sesión?", "Cerrar Sesión",
+                        JOptionPane.YES_NO_OPTION);
+                if (opcion == JOptionPane.YES_OPTION) {
+                    cerrarSesion();
+                }
+            } else {
+                int opcion = JOptionPane.showConfirmDialog(this, "¿Estas seguro?", "Salir",
+                        JOptionPane.YES_NO_OPTION);
+                if (opcion == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+            }
+        });
 
         configurarBotonPerfil();
     }
@@ -118,18 +131,6 @@ public class FrameMenuPrincipal extends JFrame {
         }
     }
 
-    private void accionSalir(ActionEvent e) {
-        if (logeado) {
-            int opcion = JOptionPane.showConfirmDialog(this, "¿Deseas cerrar sesión?", "Cerrar Sesión",
-                    JOptionPane.YES_NO_OPTION);
-            if (opcion == JOptionPane.YES_OPTION) {
-                cerrarSesion();
-            }
-        } else {
-            dispose();
-        }
-    }
-
     private void cerrarSesion() {
         label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
         botonLogIn.setEnabled(true);
@@ -144,11 +145,13 @@ public class FrameMenuPrincipal extends JFrame {
             botonLogIn.setVisible(false);
             botonPerfil.setVisible(true);
             barraAlta.add(botonPerfil, BorderLayout.EAST);
+            botonSalir.setText("Cerrar Sesión");
         } else {
             label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
             botonPerfil.setVisible(false);
             botonLogIn.setVisible(true);
             barraAlta.add(botonLogIn, BorderLayout.EAST);
+            botonSalir.setText("Salir");
         }
     }
 }
