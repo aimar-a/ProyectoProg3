@@ -1,5 +1,6 @@
 package GUI.mainMenu;
 
+import GUI.Blackjack.BorrarBlackJack;
 import GUI.caballos.FrameCaballos;
 import GUI.logIn.FrameLogIn;
 import GUI.ruleta.FrameRuleta;
@@ -84,12 +85,14 @@ public class FrameMenuPrincipal extends JFrame {
 
         JPanel panelSeleccion = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 20));
 
-        configurarBotonJuego(panelSeleccion, "Carrera", "/img/mainMenu/Carrera.jpeg",
+        configurarBotonJuego(panelSeleccion, "CARRERA", "/img/mainMenu/Carrera.jpeg",
                 e -> abrirVentana(new FrameCaballos(), "Caballos"));
         configurarBotonJuego(panelSeleccion, "RULETA", "/img/mainMenu/Ruleta.png",
                 e -> abrirVentana(new FrameRuleta(), "Ruleta"));
         configurarBotonJuego(panelSeleccion, "SLOTS", "/img/mainMenu/Slot.png",
                 e -> abrirVentana(new FrameSlots(), "Slots"));
+        configurarBotonJuego(panelSeleccion, "BLACKJACK", "/img/mainMenu/Blackjack.jpg",
+                e -> new BorrarBlackJack()); // TODO
 
         panelCentral.add(panelSeleccion, BorderLayout.CENTER);
         return panelCentral;
@@ -113,13 +116,13 @@ public class FrameMenuPrincipal extends JFrame {
 
     private void configurarBotonPerfil() {
         ImageIcon iconoPerfil = new ImageIcon(getClass().getResource("/img/mainMenu/iconoPerfil.png"));
-        Image scaledImagePerfil = iconoPerfil.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        Image scaledImagePerfil = iconoPerfil.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon scaledIconPerfil = new ImageIcon(scaledImagePerfil);
 
         botonPerfil.setIcon(scaledIconPerfil);
-        botonPerfil.setPreferredSize(new Dimension(50, 50));
-        botonPerfil.setHorizontalTextPosition(SwingConstants.CENTER);
-        botonPerfil.setVerticalTextPosition(SwingConstants.CENTER);
+        botonPerfil.setHorizontalTextPosition(SwingConstants.RIGHT);
+        botonPerfil.setHorizontalAlignment(SwingConstants.LEFT);
+        botonPerfil.setPreferredSize(new Dimension(150, 30));
         botonPerfil.addActionListener(e -> new FrameProfile(usuario).setVisible(true));
     }
 
@@ -144,6 +147,7 @@ public class FrameMenuPrincipal extends JFrame {
             label.setText("¡Bienvenido " + usuario + "! Ya estás logueado.");
             botonLogIn.setVisible(false);
             botonPerfil.setVisible(true);
+            botonPerfil.setText(" " + usuario);
             barraAlta.add(botonPerfil, BorderLayout.EAST);
             botonSalir.setText("Cerrar Sesión");
         } else {

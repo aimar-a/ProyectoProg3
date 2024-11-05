@@ -3,14 +3,14 @@ package GUI.ruleta;
 import java.awt.*;
 import javax.swing.*;
 
-public class PanelRoulettePanel extends JPanel {
+public class PanelTablaDeApuestas extends JPanel {
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
     private final int tamanoBoton = 60;
 
-    public PanelRoulettePanel() {
+    public PanelTablaDeApuestas() {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 

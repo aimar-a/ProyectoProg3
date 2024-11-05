@@ -1,37 +1,21 @@
 package GUI.ruleta;
 
+import GUI.generalGames.MainFrame;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
-public class FrameRuleta extends JFrame {
-
-	private static final long serialVersionUID = 1L;
+public class FrameRuleta extends MainFrame {
 
 	public FrameRuleta() {
-		setTitle("Ruleta - 007Games");
-		setSize(1600, 800);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setLocationRelativeTo(null);
-		setLayout(new BorderLayout());
+		super("Ruleta");
 
-		JPanel topBar = new JPanel(new BorderLayout());
-		topBar.setBackground(Color.GREEN);
-		topBar.add(new JLabel("Ruleta", SwingConstants.CENTER));
-		JButton btnSalir = new JButton("<- Volver");
-		topBar.add(btnSalir, BorderLayout.WEST);
-		btnSalir.addActionListener(e -> {
-			dispose();
-		});
+		JPanel centralPanel = new JPanel();
+		add(centralPanel, BorderLayout.CENTER);
 
-		PanelRoulettePanel bettingPanel = new PanelRoulettePanel();
-		add(bettingPanel, BorderLayout.CENTER);
-		add(topBar, BorderLayout.NORTH);
-		dispose();
+		PanelRuleta roulettePanel = new PanelRuleta();
+		centralPanel.add(roulettePanel);
 
+		PanelTablaDeApuestas bettingPanel = new PanelTablaDeApuestas();
+		centralPanel.add(bettingPanel);
 	}
 }

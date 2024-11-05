@@ -3,8 +3,8 @@ package GUI.ruleta;
 import java.awt.*;
 import javax.swing.*;
 
-public class PanelRuletaPanel extends JPanel {
-    private static final int RADIUS = 300; // Radio de la ruleta
+public class PanelRuleta extends JPanel {
+    private static final int RADIUS = 250; // Radio de la ruleta
     private static final Color RED = new Color(255, 0, 0);
     private static final Color BLACK = new Color(0, 0, 0);
 
@@ -14,7 +14,7 @@ public class PanelRuletaPanel extends JPanel {
             24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26
     };
 
-    public PanelRuletaPanel() {
+    public PanelRuleta() {
         setPreferredSize(new Dimension(2 * RADIUS, 2 * RADIUS));
     }
 
@@ -77,15 +77,5 @@ public class PanelRuletaPanel extends JPanel {
 
         g2d.setColor(Color.DARK_GRAY); // Color del círculo central
         g2d.fillOval(x, y, diameter, diameter);
-    }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Ruleta");
-        PanelRuletaPanel ruletaPanel = new PanelRuletaPanel();
-        frame.add(ruletaPanel);
-        frame.pack();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
     }
 }
