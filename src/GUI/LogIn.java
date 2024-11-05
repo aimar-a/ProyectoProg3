@@ -108,6 +108,14 @@ public class LogIn extends JFrame {
         botonRegistro.addActionListener((ActionEvent e) -> {
             registrarUsuario();
         });
+
+        usuarioField.addActionListener((ActionEvent e) -> {
+            realizarLogin();
+        });
+
+        passwordField.addActionListener((ActionEvent e) -> {
+            realizarLogin();
+        });
     }
 
     public void realizarLogin() {
