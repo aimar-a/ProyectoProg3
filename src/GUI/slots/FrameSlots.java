@@ -1,11 +1,12 @@
 package GUI.slots;
 
 import GUI.generalGames.MainFrame;
+import GUI.mainMenu.FrameMenuPrincipal;
 import java.awt.BorderLayout;
 
 public class FrameSlots extends MainFrame {
-	public FrameSlots() {
-		super("Slots");
+	public FrameSlots(FrameMenuPrincipal frameMenuPrincipal) {
+		super("Slots", frameMenuPrincipal);
 
 		PanelSlots panelSlots = new PanelSlots();
 		add(panelSlots, BorderLayout.CENTER);

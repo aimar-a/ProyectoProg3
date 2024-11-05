@@ -1,6 +1,7 @@
 package GUI.Blackjack;
 
 import GUI.generalGames.MainFrame;
+import GUI.mainMenu.FrameMenuPrincipal;
 import java.awt.*;
 
 public class FrameBlackjack extends MainFrame {
@@ -11,8 +12,8 @@ public class FrameBlackjack extends MainFrame {
     public PanelBlackjack panelBlackjack;
     public PanelApuestasBlackjack panelApuestas;
 
-    public FrameBlackjack() {
-        super("Black Jack");
+    public FrameBlackjack(FrameMenuPrincipal frameMenuPrincipal) {
+        super("Black Jack", frameMenuPrincipal);
         setLocationRelativeTo(null);
 
         panelBlackjack = new PanelBlackjack();
