@@ -117,20 +117,15 @@ public class LogIn extends JFrame {
         if (validarCredenciales(usuario, password)) {
             JOptionPane.showMessageDialog(this, "Login exitoso.");
             menuPrincipal.logeado = true; // Cambia el estado a true en MenuPrincipal
+            menuPrincipal.usuario = usuario; // Guarda el usuario en MenuPrincipal
             menuPrincipal.actualizarEstado(); // Llama al método para actualizar la interfaz
 
             dispose(); // Cierra la ventana de login
             if (juegoObjetivo != null) {
                 switch (juegoObjetivo) {
-                    case "Ruleta":
-                        new VentanaRuleta().setVisible(true);
-                        break;
-                    case "Slots":
-                        new VentanaSlot().setVisible(true);
-                        break;
-                    case "Carrera":
-                        new VentanaCaballos().setVisible(true);
-                        break;
+                    case "Ruleta" -> new VentanaRuleta().setVisible(true);
+                    case "Slots" -> new VentanaSlot().setVisible(true);
+                    case "Carrera" -> new VentanaCaballos().setVisible(true);
                 }
             }
         }

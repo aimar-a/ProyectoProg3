@@ -7,15 +7,19 @@ import javax.swing.*;
 public class MenuPrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
     public boolean logeado;
+    public String usuario;
     private JLabel label;
     private JButton botonLogIn;
     public JButton botonSalir;
+    public JPanel barraAlta;
+    private JLabel labelUsuario;
 
     public int altoBotones;
     public int anchoBotones;
 
     public MenuPrincipal() {
         logeado = false;
+        usuario = null;
         anchoBotones = 400;
         altoBotones = 200;
 
@@ -26,7 +30,7 @@ public class MenuPrincipal extends JFrame {
         setLocationRelativeTo(null);
 
         // Panel superior
-        JPanel barraAlta = new JPanel(new BorderLayout());
+        barraAlta = new JPanel(new BorderLayout());
         barraAlta.setBackground(Color.RED);
         barraAlta.add(new JLabel("007Games", SwingConstants.CENTER));
 
@@ -37,23 +41,24 @@ public class MenuPrincipal extends JFrame {
         botonSalir = new JButton("Salir");
         barraAlta.add(botonSalir, BorderLayout.WEST);
 
-        
-        	botonSalir.addActionListener((ActionEvent e) -> {
-        	    if (logeado) {
-        	        int opcion = JOptionPane.showConfirmDialog(this, "¿Deseas cerrar sesión?", "Cerrar Sesión", JOptionPane.YES_NO_OPTION);
-        	        if (opcion == JOptionPane.YES_OPTION) {
-        	            label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
-        	            botonLogIn.setEnabled(true);
-        	            logeado = false; // Cambia el estado a no logueado
-        	            actualizarEstado(); // Refresca la interfaz
-        	        }
-        	    } else {
-        	        dispose(); // Cierra la aplicación si no está logueado
-        	    }
-        	});
-       
+        botonSalir.addActionListener((ActionEvent e) -> {
+            if (logeado) {
+                int opcion = JOptionPane.showConfirmDialog(this, "¿Deseas cerrar sesión?", "Cerrar Sesión",
+                        JOptionPane.YES_NO_OPTION);
+                if (opcion == JOptionPane.YES_OPTION) {
+                    label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
+                    botonLogIn.setEnabled(true);
+                    logeado = false; // Cambia el estado a no logueado
+                    usuario = null; // Borra el usuario
+                    actualizarEstado(); // Refresca la interfaz
+                }
+            } else {
+                dispose(); // Cierra la aplicación si no está logueado
+            }
+        });
+
         botonLogIn.addActionListener((ActionEvent e) -> {
-            LogIn login = new LogIn(MenuPrincipal.this,null);
+            LogIn login = new LogIn(MenuPrincipal.this, null);
             login.setVisible(true);
         });
 
@@ -89,11 +94,11 @@ public class MenuPrincipal extends JFrame {
         panelSeleccion.add(botonCarrera);
         panel.add(panelSeleccion, BorderLayout.CENTER);
         botonCarrera.addActionListener((ActionEvent e) -> {
-        	if (logeado) {
+            if (logeado) {
                 new VentanaCaballos().setVisible(true);
             } else {
-                new LogIn(MenuPrincipal.this,"Caballos").setVisible(true);
-                
+                new LogIn(MenuPrincipal.this, "Caballos").setVisible(true);
+
             }
 
         });
@@ -118,8 +123,8 @@ public class MenuPrincipal extends JFrame {
             if (logeado) {
                 new VentanaRuleta().setVisible(true);
             } else {
-                new LogIn(MenuPrincipal.this,"Ruleta").setVisible(true);
-                
+                new LogIn(MenuPrincipal.this, "Ruleta").setVisible(true);
+
             }
         });
 
@@ -141,7 +146,7 @@ public class MenuPrincipal extends JFrame {
             if (logeado) {
                 new VentanaSlot().setVisible(true);
             } else {
-                new LogIn(MenuPrincipal.this,"Slots").setVisible(true);
+                new LogIn(MenuPrincipal.this, "Slots").setVisible(true);
             }
         });
 
@@ -155,12 +160,15 @@ public class MenuPrincipal extends JFrame {
 
     public void actualizarEstado() {
         if (logeado) {
-            label.setText("¡Bienvenido al Menú Principal! Ya estás logueado.");
-            botonLogIn.setEnabled(false);
+            label.setText("¡Bienvenido " + usuario + "! Ya estás logueado.");
+            barraAlta.remove(botonLogIn);
+            labelUsuario = new JLabel("Usuario: " + usuario + " ");
+            barraAlta.add(labelUsuario, BorderLayout.EAST);
         } else {
             label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
-            botonLogIn.setEnabled(true);
+            barraAlta.remove(labelUsuario); // funciona regular
+            labelUsuario = null;
+            barraAlta.add(botonLogIn, BorderLayout.EAST);
         }
-
     }
 }
