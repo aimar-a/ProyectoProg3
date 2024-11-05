@@ -28,15 +28,16 @@ public class LogIn extends JFrame {
      */
     private JTextField usuarioField;
     private JPasswordField passwordField;
-    private JButton loginButton;
-    private JButton registroButton;
+    private JButton botonLogin;
+    private JButton botonRegistro;
     private MenuPrincipal menuPrincipal;
+	private String juegoObjetivo;
 
     private static final String CSV_FILE_PATH = "src/CSV/users.csv";
 
-    public LogIn(MenuPrincipal menuPrinc) {
-
-        menuPrincipal = menuPrinc;
+    public LogIn(MenuPrincipal menuPrinc, String juego) {
+        this.menuPrincipal = menuPrinc;
+        this.juegoObjetivo = juego;
         int ancho_labels = 120;
         int ancho_fields = 200;
         int alto = 40;
@@ -82,14 +83,14 @@ public class LogIn extends JFrame {
         columna = espacio;
         panel.add(passwordField);
 
-        registroButton = new JButton("Registrar");
-        registroButton.setBounds(columna, linea, ancho_boton, alto_boton);
-        panel.add(registroButton);
+        botonRegistro = new JButton("Registrar");
+        botonRegistro.setBounds(columna, linea, ancho_boton, alto_boton);
+        panel.add(botonRegistro);
         columna += ancho_boton + espacio * 8;
-        loginButton = new JButton("Login");
+        botonLogin = new JButton("Login");
 
-        loginButton.setBounds(columna, linea, ancho_boton, alto_boton);
-        panel.add(loginButton);
+        botonLogin.setBounds(columna, linea, ancho_boton, alto_boton);
+        panel.add(botonLogin);
         linea += alto_boton + espacio;
         columna = espacio;
 
@@ -101,11 +102,11 @@ public class LogIn extends JFrame {
 
         add(panel);
 
-        loginButton.addActionListener((ActionEvent e) -> {
+        botonLogin.addActionListener((ActionEvent e) -> {
             realizarLogin();
         });
 
-        registroButton.addActionListener((ActionEvent e) -> {
+        botonRegistro.addActionListener((ActionEvent e) -> {
             registrarUsuario();
         });
     }
@@ -118,12 +119,28 @@ public class LogIn extends JFrame {
             JOptionPane.showMessageDialog(this, "Login exitoso.");
             menuPrincipal.logeado = true; // Cambia el estado a true en MenuPrincipal
             menuPrincipal.actualizarEstado(); // Llama al método para actualizar la interfaz
+            
             dispose(); // Cierra la ventana de login
-        } else {
+            if(juegoObjetivo!=null) {
+            	switch (juegoObjetivo) {
+                case "Ruleta":
+                    new VentanaRuleta().setVisible(true);
+                    break;
+                case "Slots":
+                    new VentanaSlot().setVisible(true);
+                    break;
+                case "Carrera":
+                    new VentanaCaballos().setVisible(true);
+                    break;
+            }
+            	}
+            }
+            
+         else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", "Error",
                     JOptionPane.ERROR_MESSAGE);
-        }
-    }
+        }}
+
 
     private boolean validarCredenciales(String usuario, String password) {
         try {

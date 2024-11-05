@@ -37,17 +37,23 @@ public class MenuPrincipal extends JFrame {
         botonSalir = new JButton("Salir");
         barraAlta.add(botonSalir, BorderLayout.WEST);
 
-        botonSalir.addActionListener((ActionEvent e) -> {
-            if (logeado) {
-                label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
-                botonLogIn.setEnabled(true);
-                logeado = false;
-            } else {
-                dispose();
-            }
-        });
+        
+        	botonSalir.addActionListener((ActionEvent e) -> {
+        	    if (logeado) {
+        	        int opcion = JOptionPane.showConfirmDialog(this, "¿Deseas cerrar sesión?", "Cerrar Sesión", JOptionPane.YES_NO_OPTION);
+        	        if (opcion == JOptionPane.YES_OPTION) {
+        	            label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
+        	            botonLogIn.setEnabled(true);
+        	            logeado = false; // Cambia el estado a no logueado
+        	            actualizarEstado(); // Refresca la interfaz
+        	        }
+        	    } else {
+        	        dispose(); // Cierra la aplicación si no está logueado
+        	    }
+        	});
+       
         botonLogIn.addActionListener((ActionEvent e) -> {
-            LogIn login = new LogIn(MenuPrincipal.this);
+            LogIn login = new LogIn(MenuPrincipal.this,null);
             login.setVisible(true);
         });
 
@@ -83,8 +89,13 @@ public class MenuPrincipal extends JFrame {
         panelSeleccion.add(botonCarrera);
         panel.add(panelSeleccion, BorderLayout.CENTER);
         botonCarrera.addActionListener((ActionEvent e) -> {
-            VentanaCaballos VentanaC = new VentanaCaballos();
-            VentanaC.setVisible(true);
+        	if (logeado) {
+                new VentanaCaballos().setVisible(true);
+            } else {
+                new LogIn(MenuPrincipal.this,"Caballos").setVisible(true);
+                
+            }
+
         });
 
         // Botón Ruleta con imagen
@@ -107,7 +118,8 @@ public class MenuPrincipal extends JFrame {
             if (logeado) {
                 new VentanaRuleta().setVisible(true);
             } else {
-                new LogIn(MenuPrincipal.this).setVisible(true);
+                new LogIn(MenuPrincipal.this,"Ruleta").setVisible(true);
+                
             }
         });
 
@@ -129,7 +141,7 @@ public class MenuPrincipal extends JFrame {
             if (logeado) {
                 new VentanaSlot().setVisible(true);
             } else {
-                new LogIn(this).setVisible(true);
+                new LogIn(MenuPrincipal.this,"Slots").setVisible(true);
             }
         });
 
