@@ -81,12 +81,10 @@ public class RoulettePanel extends JPanel {
         String[] apuestas = { "Par", "Impar", "Rojo", "Negro", "1-18", "19-36" };
         for (int i = 0; i < 6; i++) {
             JButton btn = new JButton(apuestas[i]);
-            if (apuestas[i].equals("Rojo")) {
-                btn.setBackground(Color.RED);
-            } else if (apuestas[i].equals("Negro")) {
-                btn.setBackground(Color.BLACK);
-            } else {
-                btn.setBackground(Color.GRAY);
+            switch (apuestas[i]) {
+                case "Rojo" -> btn.setBackground(Color.RED);
+                case "Negro" -> btn.setBackground(Color.BLACK);
+                default -> btn.setBackground(Color.GRAY);
             }
             btn.setForeground(Color.WHITE);
             btn.setOpaque(true);
