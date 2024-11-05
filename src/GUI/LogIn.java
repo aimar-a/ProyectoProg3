@@ -31,7 +31,7 @@ public class LogIn extends JFrame {
     private JButton botonLogin;
     private JButton botonRegistro;
     private MenuPrincipal menuPrincipal;
-	private String juegoObjetivo;
+    private String juegoObjetivo;
 
     private static final String CSV_FILE_PATH = "src/CSV/users.csv";
 
@@ -92,7 +92,6 @@ public class LogIn extends JFrame {
         botonLogin.setBounds(columna, linea, ancho_boton, alto_boton);
         panel.add(botonLogin);
         linea += alto_boton + espacio;
-        columna = espacio;
 
         setTitle("Login - 007Games");
         setSize(ancho_labels + ancho_fields + espacio * 3 + 20, linea + 40);
@@ -119,28 +118,28 @@ public class LogIn extends JFrame {
             JOptionPane.showMessageDialog(this, "Login exitoso.");
             menuPrincipal.logeado = true; // Cambia el estado a true en MenuPrincipal
             menuPrincipal.actualizarEstado(); // Llama al método para actualizar la interfaz
-            
+
             dispose(); // Cierra la ventana de login
-            if(juegoObjetivo!=null) {
-            	switch (juegoObjetivo) {
-                case "Ruleta":
-                    new VentanaRuleta().setVisible(true);
-                    break;
-                case "Slots":
-                    new VentanaSlot().setVisible(true);
-                    break;
-                case "Carrera":
-                    new VentanaCaballos().setVisible(true);
-                    break;
+            if (juegoObjetivo != null) {
+                switch (juegoObjetivo) {
+                    case "Ruleta":
+                        new VentanaRuleta().setVisible(true);
+                        break;
+                    case "Slots":
+                        new VentanaSlot().setVisible(true);
+                        break;
+                    case "Carrera":
+                        new VentanaCaballos().setVisible(true);
+                        break;
+                }
             }
-            	}
-            }
-            
-         else {
+        }
+
+        else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", "Error",
                     JOptionPane.ERROR_MESSAGE);
-        }}
-
+        }
+    }
 
     private boolean validarCredenciales(String usuario, String password) {
         try {
