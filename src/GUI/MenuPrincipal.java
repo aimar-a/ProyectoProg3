@@ -2,6 +2,8 @@ package GUI;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class MenuPrincipal extends JFrame {
@@ -12,16 +14,18 @@ public class MenuPrincipal extends JFrame {
     private JButton botonLogIn;
     public JButton botonSalir;
     public JPanel barraAlta;
-    private JLabel labelUsuario;
-
+    private JButton botonPerfil;
     public int altoBotones;
     public int anchoBotones;
-
+    
     public MenuPrincipal() {
+    	
         logeado = false;
         usuario = null;
         anchoBotones = 400;
         altoBotones = 200;
+        botonPerfil=new JButton();
+        
 
         // Configuración del JFrame
         setTitle("Menú Principal");
@@ -156,18 +160,34 @@ public class MenuPrincipal extends JFrame {
         add(barraAlta, BorderLayout.NORTH);
 
         setVisible(true);
+        
+        
+        
+        botonPerfil.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Llamada para abrir la ventana con el JTable
+            	Profile profile=new Profile();
+            	profile.setVisible(true);
+                
+            }
+        });
     }
 
+	    
+    
+    
+    
+    
     public void actualizarEstado() {
         if (logeado) {
             label.setText("¡Bienvenido " + usuario + "! Ya estás logueado.");
             barraAlta.remove(botonLogIn);
-            labelUsuario = new JLabel("Usuario: " + usuario + " ");
-            barraAlta.add(labelUsuario, BorderLayout.EAST);
+            botonPerfil.setEnabled(true);
+            barraAlta.add(botonPerfil, BorderLayout.EAST);
         } else {
             label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
-            barraAlta.remove(labelUsuario); // funciona regular
-            labelUsuario = null;
+            barraAlta.remove(botonPerfil); // funciona regular
+            
             barraAlta.add(botonLogIn, BorderLayout.EAST);
         }
     }
