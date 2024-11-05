@@ -16,7 +16,7 @@ public class DinoGameGUI extends JFrame {
     private Timer timer;
     private double multiplier = 1.01; // Inicia en 1.01
     private boolean isRunning = false;
-    private final double MAX_MULTIPLIER = 100000.0; // Límite del multiplicador
+    private final double MAX_MULTIPLIER = 10.0; // Límite del multiplicador
     private Random random = new Random();
 
     public DinoGameGUI() {
