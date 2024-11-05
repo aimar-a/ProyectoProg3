@@ -15,3 +15,4 @@ public class FrameCaballos extends MainFrame {
         add(apuestasCaballos, BorderLayout.SOUTH);
     }
 }
+	
