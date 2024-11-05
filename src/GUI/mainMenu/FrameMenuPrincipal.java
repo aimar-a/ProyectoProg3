@@ -1,12 +1,14 @@
-package GUI;
+package GUI.mainMenu;
 
+import GUI.caballos.FrameCaballos;
+import GUI.logIn.FrameLogIn;
+import GUI.ruleta.FrameRuleta;
+import GUI.slots.FrameSlots;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.*;
 
-public class MenuPrincipal extends JFrame {
+public class FrameMenuPrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
     public boolean logeado;
     public String usuario;
@@ -14,18 +16,17 @@ public class MenuPrincipal extends JFrame {
     private JButton botonLogIn;
     public JButton botonSalir;
     public JPanel barraAlta;
-    private JButton botonPerfil;
+    private final JButton botonPerfil;
     public int altoBotones;
     public int anchoBotones;
-    
-    public MenuPrincipal() {
-    	
+
+    public FrameMenuPrincipal() {
+
         logeado = false;
         usuario = null;
         anchoBotones = 400;
         altoBotones = 200;
-        botonPerfil=new JButton();
-        
+        botonPerfil = new JButton();
 
         // Configuración del JFrame
         setTitle("Menú Principal");
@@ -62,7 +63,7 @@ public class MenuPrincipal extends JFrame {
         });
 
         botonLogIn.addActionListener((ActionEvent e) -> {
-            LogIn login = new LogIn(MenuPrincipal.this, null);
+            FrameLogIn login = new FrameLogIn(FrameMenuPrincipal.this, null);
             login.setVisible(true);
         });
 
@@ -81,7 +82,7 @@ public class MenuPrincipal extends JFrame {
 
         // Boton Carrera con imagen
 
-        ImageIcon iconoCarrera = new ImageIcon(getClass().getResource("/img/images.jpeg"));
+        ImageIcon iconoCarrera = new ImageIcon(getClass().getResource("/img/mainMenu/Carrera.jpeg"));
         JButton botonCarrera = new JButton("Carrera", iconoCarrera);
 
         Image scaledImagen = iconoCarrera.getImage().getScaledInstance(anchoBotones, altoBotones, Image.SCALE_SMOOTH);
@@ -99,16 +100,16 @@ public class MenuPrincipal extends JFrame {
         panel.add(panelSeleccion, BorderLayout.CENTER);
         botonCarrera.addActionListener((ActionEvent e) -> {
             if (logeado) {
-                new VentanaCaballos().setVisible(true);
+                new FrameCaballos().setVisible(true);
             } else {
-                new LogIn(MenuPrincipal.this, "Caballos").setVisible(true);
+                new FrameLogIn(FrameMenuPrincipal.this, "Caballos").setVisible(true);
 
             }
 
         });
 
         // Botón Ruleta con imagen
-        ImageIcon iconoRuleta = new ImageIcon(getClass().getResource("/img/Ruleta.png"));
+        ImageIcon iconoRuleta = new ImageIcon(getClass().getResource("/img/mainMenu/Ruleta.png"));
         JButton botonRuleta = new JButton("RULETA", iconoRuleta);
 
         Image scaledImage = iconoRuleta.getImage().getScaledInstance(anchoBotones, altoBotones, Image.SCALE_SMOOTH);
@@ -125,15 +126,15 @@ public class MenuPrincipal extends JFrame {
         panel.add(panelSeleccion, BorderLayout.CENTER);
         botonRuleta.addActionListener((ActionEvent e) -> {
             if (logeado) {
-                new VentanaRuleta().setVisible(true);
+                new FrameRuleta().setVisible(true);
             } else {
-                new LogIn(MenuPrincipal.this, "Ruleta").setVisible(true);
+                new FrameLogIn(FrameMenuPrincipal.this, "Ruleta").setVisible(true);
 
             }
         });
 
         // Botón Slots con imagen
-        ImageIcon iconoSlot = new ImageIcon(getClass().getResource("/img/Slot.png"));
+        ImageIcon iconoSlot = new ImageIcon(getClass().getResource("/img/mainMenu/Slot.png"));
         JButton botonSlot = new JButton("SLOTS", iconoSlot);
 
         Image scaledImag = iconoSlot.getImage().getScaledInstance(anchoBotones, altoBotones, Image.SCALE_SMOOTH);
@@ -148,9 +149,9 @@ public class MenuPrincipal extends JFrame {
 
         botonSlot.addActionListener(e -> {
             if (logeado) {
-                new VentanaSlot().setVisible(true);
+                new FrameSlots().setVisible(true);
             } else {
-                new LogIn(MenuPrincipal.this, "Slots").setVisible(true);
+                new FrameLogIn(FrameMenuPrincipal.this, "Slots").setVisible(true);
             }
         });
 
@@ -160,21 +161,14 @@ public class MenuPrincipal extends JFrame {
         add(barraAlta, BorderLayout.NORTH);
 
         setVisible(true);
-        
-        
-        
-        botonPerfil.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Llamada para abrir la ventana con el JTable
-            	Profile profile=new Profile();
-            	profile.setVisible(true);
-                
-            }
+
+        botonPerfil.addActionListener((ActionEvent e) -> {
+            // Llamada para abrir la ventana con el JTable
+            FrameProfile profile = new FrameProfile(usuario);
+            profile.setVisible(true);
         });
-        
-        
-        ImageIcon iconoPerfil = new ImageIcon(getClass().getResource("/img/iconoPerfil.png"));
-        
+
+        ImageIcon iconoPerfil = new ImageIcon(getClass().getResource("/img/mainMenu/iconoPerfil.png"));
 
         Image scaledImagPerfil = iconoPerfil.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ImageIcon scaledIconPerfil = new ImageIcon(scaledImagPerfil);
@@ -184,11 +178,6 @@ public class MenuPrincipal extends JFrame {
         botonPerfil.setVerticalTextPosition(SwingConstants.CENTER);
     }
 
-	    
-    
-    
-    
-    
     public void actualizarEstado() {
         if (logeado) {
             label.setText("¡Bienvenido " + usuario + "! Ya estás logueado.");
@@ -201,6 +190,6 @@ public class MenuPrincipal extends JFrame {
             botonLogIn.setVisible(true);
             barraAlta.add(botonLogIn, BorderLayout.EAST);
         }
-        
+
     }
 }

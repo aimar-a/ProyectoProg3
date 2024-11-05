@@ -1,4 +1,4 @@
-package GUI;
+package GUI.ruleta;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,11 +8,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class VentanaRuleta extends JFrame {
-	
+public class FrameRuleta extends JFrame {
+
 	private static final long serialVersionUID = 1L;
 
-	public VentanaRuleta() {
+	public FrameRuleta() {
 		setTitle("Ruleta - 007Games");
 		setSize(1600, 800);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -28,10 +28,10 @@ public class VentanaRuleta extends JFrame {
 			dispose();
 		});
 
-		RoulettePanel bettingPanel = new RoulettePanel();
+		PanelRoulettePanel bettingPanel = new PanelRoulettePanel();
 		add(bettingPanel, BorderLayout.CENTER);
 		add(topBar, BorderLayout.NORTH);
 		dispose();
-		
+
 	}
 }

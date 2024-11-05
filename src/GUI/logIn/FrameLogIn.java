@@ -1,5 +1,9 @@
-package GUI;
+package GUI.logIn;
 
+import GUI.caballos.FrameCaballos;
+import GUI.mainMenu.FrameMenuPrincipal;
+import GUI.ruleta.FrameRuleta;
+import GUI.slots.FrameSlots;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.io.BufferedWriter;
@@ -17,7 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class LogIn extends JFrame {
+public class FrameLogIn extends JFrame {
 
     /**
      * 
@@ -26,16 +30,16 @@ public class LogIn extends JFrame {
     /**
      * 
      */
-    private JTextField usuarioField;
-    private JPasswordField passwordField;
-    private JButton botonLogin;
-    private JButton botonRegistro;
-    private MenuPrincipal menuPrincipal;
-    private String juegoObjetivo;
+    private final JTextField usuarioField;
+    private final JPasswordField passwordField;
+    private final JButton botonLogin;
+    private final JButton botonRegistro;
+    private final FrameMenuPrincipal menuPrincipal;
+    private final String juegoObjetivo;
 
     private static final String CSV_FILE_PATH = "src/CSV/users.csv";
 
-    public LogIn(MenuPrincipal menuPrinc, String juego) {
+    public FrameLogIn(FrameMenuPrincipal menuPrinc, String juego) {
         this.menuPrincipal = menuPrinc;
         this.juegoObjetivo = juego;
         int ancho_labels = 120;
@@ -55,7 +59,7 @@ public class LogIn extends JFrame {
         columna += espacio;
 
         JLabel img = new JLabel();
-        ImageIcon iconoLogin = new ImageIcon(getClass().getResource("/img/foto.png"));
+        ImageIcon iconoLogin = new ImageIcon(getClass().getResource("/img/logIn/foto.png"));
         Image scaledImagen = iconoLogin.getImage().getScaledInstance(altoimg, altoimg, Image.SCALE_SMOOTH);
         ImageIcon scaledIcono = new ImageIcon(scaledImagen);
         img.setIcon(scaledIcono);
@@ -131,9 +135,9 @@ public class LogIn extends JFrame {
             dispose(); // Cierra la ventana de login
             if (juegoObjetivo != null) {
                 switch (juegoObjetivo) {
-                    case "Ruleta" -> new VentanaRuleta().setVisible(true);
-                    case "Slots" -> new VentanaSlot().setVisible(true);
-                    case "Carrera" -> new VentanaCaballos().setVisible(true);
+                    case "Ruleta" -> new FrameRuleta().setVisible(true);
+                    case "Slots" -> new FrameSlots().setVisible(true);
+                    case "Carrera" -> new FrameCaballos().setVisible(true);
                 }
             }
         }
@@ -144,7 +148,7 @@ public class LogIn extends JFrame {
         }
     }
 
-    private boolean validarCredenciales(String usuario, String password) {
+    public static boolean validarCredenciales(String usuario, String password) {
         try {
             List<String> lineas = Files.readAllLines(Paths.get(CSV_FILE_PATH));
             for (String linea : lineas) {

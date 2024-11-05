@@ -1,8 +1,8 @@
-import GUI.*;
+import GUI.mainMenu.FrameMenuPrincipal;
 
 public class Main {
     public static void main(String[] args) {
-        MenuPrincipal menup = new MenuPrincipal();
+        FrameMenuPrincipal menup = new FrameMenuPrincipal();
         menup.setVisible(true);
     }
 }

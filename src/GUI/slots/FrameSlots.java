@@ -1,4 +1,4 @@
-package GUI;
+package GUI.slots;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class VentanaSlot extends JFrame {
+public class FrameSlots extends JFrame {
 	JButton f1c1;
 	JButton f1c2;
 	JButton f1c3;
@@ -24,7 +24,7 @@ public class VentanaSlot extends JFrame {
 	JButton f3c3;
 	JButton[] botones = { f1c1, f1c2, f1c3, f2c1, f2c2, f2c3, f3c1, f3c2, f3c3 };
 
-	public VentanaSlot() {
+	public FrameSlots() {
 		setTitle("Slot");
 		setSize(1600, 1400);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -55,11 +55,11 @@ public class VentanaSlot extends JFrame {
 		setVisible(true);
 	}
 
-	public void girarRuletas() {
-		for (int i = 0; i < botones.length; i++) {
+	public final void girarRuletas() {
+		for (JButton boton : botones) {
 			Random r = new Random();
 			int n = r.nextInt(9) + 1;
-			botones[i].setIcon(new ImageIcon("src/img/slot" + n + ".png"));
+			boton.setIcon(new ImageIcon("src/img/slots/slot" + n + ".png"));
 		}
 	}
 }

@@ -1,16 +1,16 @@
-package GUI;
+package GUI.ruleta;
 
 import java.awt.*;
 import javax.swing.*;
 
-public class RoulettePanel extends JPanel {
+public class PanelRoulettePanel extends JPanel {
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
     private final int tamanoBoton = 60;
 
-    public RoulettePanel() {
+    public PanelRoulettePanel() {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
