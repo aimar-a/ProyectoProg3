@@ -1,8 +1,8 @@
 package GUI.Blackjack;
 
 public class Card {
-    private String value;
-    private String type;
+    private final String value;
+    private final String type;
 
     public Card(String value, String type) {
         this.value = value;

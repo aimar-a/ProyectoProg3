@@ -1,6 +1,6 @@
 package GUI.mainMenu;
 
-import GUI.Blackjack.BorrarBlackJack;
+import GUI.Blackjack.FrameBlackjack;
 import GUI.caballos.FrameCaballos;
 import GUI.dinoRun.DinoGameGUI;
 import GUI.logIn.FrameLogIn;
@@ -146,7 +146,7 @@ public class FrameMenuPrincipal extends JFrame {
                 case JuegosDisponibles.CABALLOS -> new FrameCaballos(this).setVisible(true);
                 case JuegosDisponibles.RULETA -> new FrameRuleta(this).setVisible(true);
                 case JuegosDisponibles.SLOTS -> new FrameSlots(this).setVisible(true);
-                case JuegosDisponibles.BLACKJACK -> new BorrarBlackJack();
+                case JuegosDisponibles.BLACKJACK -> new FrameBlackjack(this).setVisible(true);
                 case JuegosDisponibles.MINAS -> new FrameMinas(this).setVisible(true);
                 case JuegosDisponibles.DINOSAURIO -> new DinoGameGUI().setVisible(true);
                 default -> {

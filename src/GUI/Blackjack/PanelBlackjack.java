@@ -1,85 +1,114 @@
 package GUI.Blackjack;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import java.awt.*;
+import java.util.ArrayList;
+import javax.swing.*;
 
 public class PanelBlackjack extends JPanel {
-    FrameBlackjack frameBlackjack;
+    private Deck deck;
+    private ArrayList<Card> dealerHand;
+    private ArrayList<Card> playerHand;
+    private Card hiddenCard;
+    private int dealerSum, playerSum;
+    private int dealerAceCount, playerAceCount;
+    private JButton hitButton, stayButton;
+    private final int cardWidth = 110;
+    private final int cardHeight = 154;
 
     public PanelBlackjack() {
-        setLayout(new BorderLayout());
         setBackground(new Color(53, 101, 77));
+        setLayout(new BorderLayout());
+        initializeGame();
+    }
+
+    public void initializeGame() {
+        deck = new Deck();
+        dealerHand = new ArrayList<>();
+        playerHand = new ArrayList<>();
+        dealerSum = playerSum = dealerAceCount = playerAceCount = 0;
+        hiddenCard = deck.drawCard();
+        dealerSum += hiddenCard.getValue();
+        dealerAceCount += hiddenCard.isAce() ? 1 : 0;
+        addDealerCard();
+        addPlayerCard();
+        addPlayerCard();
+    }
+
+    public void startGame(JButton hitButton, JButton stayButton) {
+        this.hitButton = hitButton;
+        this.stayButton = stayButton;
+        hitButton.addActionListener(e -> playerHit());
+        stayButton.addActionListener(e -> playerStay());
         repaint();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        drawHands(g);
+        drawCards(g);
     }
 
-    private void drawHands(Graphics g) {
-        // Dibujar la carta oculta del dealer
-        Image hiddenCardImg = new ImageIcon(getClass().getResource("/img/Blackjack/BACK.png")).getImage();
-        if (!frameBlackjack.panelApuestas.stayButton.isEnabled()) {
-            // Revelar la carta oculta del dealer si el jugador ha hecho "Stay"
-            hiddenCardImg = new ImageIcon(
-                    getClass().getResource(frameBlackjack.game.getDealerHand().get(0).getImagePath()))
-                    .getImage();
-        }
-        g.drawImage(hiddenCardImg, 20, 20, frameBlackjack.cardWidth, frameBlackjack.cardHeight, null);
+    private void drawCards(Graphics g) {
+        try {
+            Image hiddenCardImg = new ImageIcon(getClass().getResource("/img/Blackjack/BACK.png")).getImage();
+            if (!stayButton.isEnabled()) {
+                hiddenCardImg = new ImageIcon(getClass().getResource(hiddenCard.getImagePath())).getImage();
+            }
+            g.drawImage(hiddenCardImg, 20, 20, cardWidth, cardHeight, null);
 
-        // Dibujar las cartas visibles del dealer
-        for (int i = 1; i < frameBlackjack.game.getDealerHand().size(); i++) {
-            Card card = frameBlackjack.game.getDealerHand().get(i);
-            Image cardImg = new ImageIcon(getClass().getResource(card.getImagePath())).getImage();
-            g.drawImage(cardImg, frameBlackjack.cardWidth + 25 + (frameBlackjack.cardWidth + 5) * (i - 1), 20,
-                    frameBlackjack.cardWidth, frameBlackjack.cardHeight, null);
-        }
-
-        // Dibujar las cartas del jugador
-        for (int i = 0; i < frameBlackjack.game.getPlayerHand().size(); i++) {
-            Card card = frameBlackjack.game.getPlayerHand().get(i);
-            Image cardImg = new ImageIcon(getClass().getResource(card.getImagePath())).getImage();
-            g.drawImage(cardImg, 20 + (frameBlackjack.cardWidth + 5) * i, 320, frameBlackjack.cardWidth,
-                    frameBlackjack.cardHeight, null);
-        }
-
-        // Mostrar el mensaje de fin de juego si el botón de "Stay" está deshabilitado
-        if (!frameBlackjack.panelApuestas.stayButton.isEnabled()) {
-            int dealerSum = frameBlackjack.game.reduceDealerAce();
-            int playerSum = frameBlackjack.game.reducePlayerAce();
-
-            String message = "";
-            if (playerSum > 21) {
-                message = "You Lose!";
-            } else if (dealerSum > 21) {
-                message = "You Win!";
-            } else if (playerSum == dealerSum) {
-                message = "Tie!";
-            } else if (playerSum > dealerSum) {
-                message = "You Win!";
-            } else {
-                message = "You Lose!";
+            for (int i = 0; i < dealerHand.size(); i++) {
+                Image cardImg = new ImageIcon(getClass().getResource(dealerHand.get(i).getImagePath())).getImage();
+                g.drawImage(cardImg, cardWidth + 25 + (cardWidth + 5) * i, 20, cardWidth, cardHeight, null);
             }
 
-            // Configuración de texto y color para el mensaje
-            g.setFont(new Font("Arial", Font.PLAIN, 30));
-            g.setColor(Color.white);
-            g.drawString(message, 220, 250);
+            for (int i = 0; i < playerHand.size(); i++) {
+                Image cardImg = new ImageIcon(getClass().getResource(playerHand.get(i).getImagePath())).getImage();
+                g.drawImage(cardImg, 20 + (cardWidth + 5) * i, 320, cardWidth, cardHeight, null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    public void updateGameDisplay() {
+    private void playerHit() {
+        Card card = deck.drawCard();
+        playerSum += card.getValue();
+        playerAceCount += card.isAce() ? 1 : 0;
+        playerHand.add(card);
+        if (reduceAceCount(playerSum, playerAceCount) > 21) {
+            hitButton.setEnabled(false);
+        }
         repaint();
     }
 
-    public void setFrameBlackjack(FrameBlackjack frameBlackjack2) {
-        this.frameBlackjack = frameBlackjack2;
+    private void playerStay() {
+        hitButton.setEnabled(false);
+        stayButton.setEnabled(false);
+        while (dealerSum < 17) {
+            addDealerCard();
+        }
+        repaint();
+    }
+
+    private void addDealerCard() {
+        Card card = deck.drawCard();
+        dealerSum += card.getValue();
+        dealerAceCount += card.isAce() ? 1 : 0;
+        dealerHand.add(card);
+    }
+
+    private void addPlayerCard() {
+        Card card = deck.drawCard();
+        playerSum += card.getValue();
+        playerAceCount += card.isAce() ? 1 : 0;
+        playerHand.add(card);
+    }
+
+    private int reduceAceCount(int sum, int aceCount) {
+        while (sum > 21 && aceCount > 0) {
+            sum -= 10;
+            aceCount--;
+        }
+        return sum;
     }
 }

@@ -5,24 +5,23 @@ import GUI.mainMenu.FrameMenuPrincipal;
 import java.awt.*;
 
 public class FrameBlackjack extends MainFrame {
-    public BlackJackGame game;
-    public final int cardWidth = 110;
-    public final int cardHeight = 154;
+    private final PanelBlackjack panelBlackjack;
+    private final PanelApuestasBlackjack panelApuestas;
 
-    public PanelBlackjack panelBlackjack;
-    public PanelApuestasBlackjack panelApuestas;
-
-    public FrameBlackjack(FrameMenuPrincipal frameMenuPrincipal) {
-        super("Black Jack", frameMenuPrincipal);
-        setLocationRelativeTo(null);
+    public FrameBlackjack(FrameMenuPrincipal menuPrinc) {
+        super("Black Jack", menuPrinc);
 
         panelBlackjack = new PanelBlackjack();
+        panelApuestas = new PanelApuestasBlackjack(panelBlackjack);
+
         add(panelBlackjack, BorderLayout.CENTER);
-
-        panelApuestas = new PanelApuestasBlackjack(panelBlackjack, game);
         add(panelApuestas, BorderLayout.SOUTH);
-
-        panelBlackjack.setFrameBlackjack(this);
     }
 
+    public static void main(String[] args) {
+        EventQueue.invokeLater(() -> {
+            FrameBlackjack frame = new FrameBlackjack(null);
+            frame.setVisible(true);
+        });
+    }
 }
