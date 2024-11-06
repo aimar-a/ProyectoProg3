@@ -1,28 +1,16 @@
 package GUI.Blackjack;
 
-import java.awt.*;
 import java.util.ArrayList;
-import javax.swing.*;
 
-public class PanelBlackjack extends JPanel {
-    private Mazo mazo;
-    private ArrayList<Carta> manoCrupier;
-    private ArrayList<Carta> manoJugador;
-    private Carta cartaOculta;
-    private int sumaCrupier, sumaJugador;
-    private int cuentaAsesCrupier, cuentaAsesJugador;
-    private JButton botonPedir, botonPlantarse, botonIniciar;
-    private PanelApuestasBlackjack panelApuestas;
-    private int cantidadApuesta;
-    private final int anchoCarta = 110;
-    private final int altoCarta = 154;
+import javax.swing.JOptionPane;
 
-    public PanelBlackjack() {
-        setBackground(new Color(53, 101, 77));
-        setLayout(new BorderLayout());
+public class LogicaBlackjack {
+    public LogicaBlackjack(PanelBlackjack panelBlackjack, PanelApuestasBlackjack panelApuestas) {
+        panelApuestas.botonIniciar.addActionListener(e -> panelApuestas.iniciarJuego());
+        panelApuestas.botonPedir.addActionListener(e -> panelBlackjack.pedirCartaJugador());
+        panelApuestas.botonPlantarse.addActionListener(e -> panelBlackjack.plantarseJugador());
     }
 
-    //
     public void inicializarJuego() {
         mazo = new Mazo();
         manoCrupier = new ArrayList<>();
@@ -36,43 +24,6 @@ public class PanelBlackjack extends JPanel {
         agregarCartaCrupier();
         agregarCartaJugador();
         agregarCartaJugador();
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        dibujarCartas(g);
-    }
-
-    private void dibujarCartas(Graphics g) {
-        try {
-            g.setFont(new Font("Arial", Font.BOLD, 16));
-            g.setColor(Color.WHITE);
-
-            String textoSumaCrupier = botonPlantarse.isEnabled() ? "?" : String.valueOf(sumaCrupier);
-            g.drawString("Crupier: " + textoSumaCrupier, 20, 15);
-
-            g.drawString("Jugador: " + sumaJugador, 20, 300);
-
-            Image imagenCartaOculta = new ImageIcon(getClass().getResource("/img/Blackjack/BACK.png")).getImage();
-            if (!botonPlantarse.isEnabled()) {
-                imagenCartaOculta = new ImageIcon(getClass().getResource(cartaOculta.getRutaImagen())).getImage();
-            }
-            g.drawImage(imagenCartaOculta, 20, 20, anchoCarta, altoCarta, null);
-
-            for (int i = 0; i < manoCrupier.size(); i++) {
-                Image imagenCarta = new ImageIcon(getClass().getResource(manoCrupier.get(i).getRutaImagen()))
-                        .getImage();
-                g.drawImage(imagenCarta, anchoCarta + 25 + (anchoCarta + 5) * i, 20, anchoCarta, altoCarta, null);
-            }
-
-            for (int i = 0; i < manoJugador.size(); i++) {
-                Image imagenCarta = new ImageIcon(getClass().getResource(manoJugador.get(i).getRutaImagen()))
-                        .getImage();
-                g.drawImage(imagenCarta, 20 + (anchoCarta + 5) * i, 320, anchoCarta, altoCarta, null);
-            }
-        } catch (Exception e) {
-        }
     }
 
     protected void pedirCartaJugador() {

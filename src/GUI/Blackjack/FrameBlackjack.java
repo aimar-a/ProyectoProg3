@@ -12,7 +12,8 @@ public class FrameBlackjack extends MainFrame {
         super("Black Jack", menuPrinc);
 
         panelBlackjack = new PanelBlackjack();
-        panelApuestas = new PanelApuestasBlackjack(panelBlackjack);
+        panelApuestas = new PanelApuestasBlackjack();
+        LogicaBlackjack logica = new LogicaBlackjack(panelBlackjack, panelApuestas);
 
         add(panelBlackjack, BorderLayout.CENTER);
         add(panelApuestas, BorderLayout.SOUTH);

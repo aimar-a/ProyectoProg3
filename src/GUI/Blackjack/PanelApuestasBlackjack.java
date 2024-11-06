@@ -4,37 +4,52 @@ import java.awt.*;
 import javax.swing.*;
 
 public class PanelApuestasBlackjack extends JPanel {
-    private final JButton startButton = new JButton("Start Game");
-    private final JButton hitButton = new JButton("Hit");
-    private final JButton stayButton = new JButton("Stand");
+    protected final JButton botonIniciar = new JButton("Iniciar Partida");
+    protected final JButton botonPedir = new JButton("Pedir");
+    protected final JButton botonPlantarse = new JButton("Plantarse");
+    private final JTextField campoApuesta = new JTextField(10);
 
-    public PanelApuestasBlackjack(PanelBlackjack panelBlackjack) {
+    public PanelApuestasBlackjack() {
         setLayout(new FlowLayout());
 
-        hitButton.setEnabled(false);
-        stayButton.setEnabled(false);
+        botonPedir.setEnabled(false);
+        botonPlantarse.setEnabled(false);
 
-        add(startButton);
-        add(hitButton);
-        add(stayButton);
-
-        startButton.addActionListener(e -> {
-            panelBlackjack.initializeGame();
-            panelBlackjack.startGame(hitButton, stayButton);
-            startButton.setEnabled(false);
-            hitButton.setEnabled(true);
-            stayButton.setEnabled(true);
+        add(new JLabel("Apuesta: "));
+        campoApuesta.setDocument(new javax.swing.text.PlainDocument() {
+            @Override
+            public void insertString(int offs, String str, javax.swing.text.AttributeSet a)
+                    throws javax.swing.text.BadLocationException {
+                if (str == null) {
+                    return;
+                }
+                if (str.matches("[0-9]*")) {
+                    super.insertString(offs, str, a);
+                }
+            }
         });
+        add(campoApuesta);
+        add(botonIniciar);
+        add(new JLabel(" | "));
+        add(botonPedir);
+        add(botonPlantarse);
 
-        hitButton.addActionListener(e -> {
-            if (panelBlackjack != null)
-                panelBlackjack.repaint();
-        });
+        botonIniciar.addActionListener(e -> iniciarJuego());
+    }
 
-        stayButton.addActionListener(e -> {
-            hitButton.setEnabled(false);
-            stayButton.setEnabled(false);
-            startButton.setEnabled(true);
-        });
+    public int getCantidadApuesta() {
+        return Integer.parseInt(campoApuesta.getText());
+    }
+
+    public void iniciarJuego() {
+        panelBlackjack.inicializarJuego();
+        botonIniciar.setEnabled(false);
+        botonPedir.setEnabled(true);
+        botonPlantarse.setEnabled(true);
+
+        botonPedir.addActionListener(e -> panelBlackjack.pedirCartaJugador());
+        botonPlantarse.addActionListener(e -> panelBlackjack.plantarseJugador());
+
+        repaint();
     }
 }
