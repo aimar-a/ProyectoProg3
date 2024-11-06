@@ -8,6 +8,7 @@ public class PanelApuestasBlackjack extends JPanel {
     protected final JButton botonPedir = new JButton("Pedir");
     protected final JButton botonPlantarse = new JButton("Plantarse");
     private final JTextField campoApuesta = new JTextField(10);
+    protected final JCheckBox checkAutomatico = new JCheckBox("Auto");
 
     public PanelApuestasBlackjack() {
         setLayout(new FlowLayout());
@@ -30,26 +31,13 @@ public class PanelApuestasBlackjack extends JPanel {
         });
         add(campoApuesta);
         add(botonIniciar);
+        add(checkAutomatico);
         add(new JLabel(" | "));
         add(botonPedir);
         add(botonPlantarse);
-
-        botonIniciar.addActionListener(e -> iniciarJuego());
     }
 
     public int getCantidadApuesta() {
         return Integer.parseInt(campoApuesta.getText());
-    }
-
-    public void iniciarJuego() {
-        panelBlackjack.inicializarJuego();
-        botonIniciar.setEnabled(false);
-        botonPedir.setEnabled(true);
-        botonPlantarse.setEnabled(true);
-
-        botonPedir.addActionListener(e -> panelBlackjack.pedirCartaJugador());
-        botonPlantarse.addActionListener(e -> panelBlackjack.plantarseJugador());
-
-        repaint();
     }
 }

@@ -1,17 +1,30 @@
 package GUI.Blackjack;
 
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 public class LogicaBlackjack {
+    private int cuentaAsesCrupier, cuentaAsesJugador;
+    private PanelApuestasBlackjack panelApuestas;
+    private int cantidadApuesta;
+    private Mazo mazo;
+    private ArrayList<Carta> manoCrupier;
+    private ArrayList<Carta> manoJugador;
+    // esto he puesto yo
+    private int sumaCrupier, sumaJugador;
+    private Carta cartaOculta;
+    private PanelBlackjack panelBlackjack;
+
     public LogicaBlackjack(PanelBlackjack panelBlackjack, PanelApuestasBlackjack panelApuestas) {
-        panelApuestas.botonIniciar.addActionListener(e -> panelApuestas.iniciarJuego());
-        panelApuestas.botonPedir.addActionListener(e -> panelBlackjack.pedirCartaJugador());
-        panelApuestas.botonPlantarse.addActionListener(e -> panelBlackjack.plantarseJugador());
+        this.panelBlackjack = panelBlackjack;
+        this.panelApuestas = panelApuestas;
+
+        panelApuestas.botonIniciar.addActionListener(e -> iniciarJuego());
+        panelApuestas.botonPedir.addActionListener(e -> pedirCartaJugador());
+        panelApuestas.botonPlantarse.addActionListener(e -> plantarseJugador());
     }
 
-    public void inicializarJuego() {
+    public void iniciarJuego() {
         mazo = new Mazo();
         manoCrupier = new ArrayList<>();
         manoJugador = new ArrayList<>();
@@ -24,6 +37,18 @@ public class LogicaBlackjack {
         agregarCartaCrupier();
         agregarCartaJugador();
         agregarCartaJugador();
+
+        panelApuestas.botonIniciar.setEnabled(false);
+        panelApuestas.botonPedir.setEnabled(true);
+        panelApuestas.botonPlantarse.setEnabled(true);
+
+        panelBlackjack.dibujar(cartaOculta, sumaCrupier, sumaJugador, manoCrupier, manoJugador,
+                panelApuestas.botonPlantarse);
+
+        if (sumaJugador == 21) {
+            sumaJugador = -1;
+            finalizarJuego();
+        }
     }
 
     protected void pedirCartaJugador() {
@@ -32,7 +57,8 @@ public class LogicaBlackjack {
         cuentaAsesJugador += carta.esAs() ? 1 : 0;
         manoJugador.add(carta);
 
-        repaint();
+        panelBlackjack.dibujar(cartaOculta, sumaCrupier, sumaJugador, manoCrupier, manoJugador,
+                panelApuestas.botonPlantarse);
         if (ajustarSumaConAses(sumaJugador, cuentaAsesJugador) > 21) {
             finalizarJuego();
         }
@@ -42,7 +68,8 @@ public class LogicaBlackjack {
         while (sumaCrupier < 17) {
             agregarCartaCrupier();
         }
-        repaint();
+        panelBlackjack.dibujar(cartaOculta, sumaCrupier, sumaJugador, manoCrupier, manoJugador,
+                panelApuestas.botonPlantarse);
         finalizarJuego();
     }
 
@@ -70,13 +97,15 @@ public class LogicaBlackjack {
     }
 
     private void finalizarJuego() {
-        botonPedir.setEnabled(false);
-        botonPlantarse.setEnabled(false);
+        panelApuestas.botonPedir.setEnabled(false);
+        panelApuestas.botonPlantarse.setEnabled(false);
         sumaCrupier = ajustarSumaConAses(sumaCrupier, cuentaAsesCrupier);
         sumaJugador = ajustarSumaConAses(sumaJugador, cuentaAsesJugador);
 
         String mensaje;
-        if (sumaJugador > 21) {
+        if (sumaJugador == -1) {
+            mensaje = "¡Blackjack! ¡Ganaste!\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
+        } else if (sumaJugador > 21) {
             mensaje = "¡Perdiste! Te pasaste de 21.\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
         } else if (sumaCrupier > 21) {
             mensaje = "¡Ganaste! El crupier se pasó de 21.\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
@@ -88,7 +117,10 @@ public class LogicaBlackjack {
             mensaje = "¡Perdiste!\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
         }
 
-        JOptionPane.showMessageDialog(this, mensaje, "Fin del Juego", JOptionPane.INFORMATION_MESSAGE);
-        botonIniciar.setEnabled(true);
+        JOptionPane.showMessageDialog(panelBlackjack, mensaje, "Fin del Juego", JOptionPane.INFORMATION_MESSAGE);
+        panelApuestas.botonIniciar.setEnabled(true);
+        if (panelApuestas.checkAutomatico.isSelected()) {
+            iniciarJuego();
+        }
     }
 }

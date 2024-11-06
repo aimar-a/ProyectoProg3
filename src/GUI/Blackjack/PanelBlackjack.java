@@ -5,46 +5,34 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class PanelBlackjack extends JPanel {
-    private Mazo mazo;
-    private ArrayList<Carta> manoCrupier;
-    private ArrayList<Carta> manoJugador;
-    private Carta cartaOculta;
-    private int sumaCrupier, sumaJugador;
-    private int cuentaAsesCrupier, cuentaAsesJugador;
-    private JButton botonPedir, botonPlantarse, botonIniciar;
-    private PanelApuestasBlackjack panelApuestas;
-    private int cantidadApuesta;
+    Carta cartaOculta;
+    int sumaCrupier, sumaJugador;
+    JButton botonPlantarse;
     private final int anchoCarta = 110;
     private final int altoCarta = 154;
+    ArrayList<Carta> manoCrupier;
+    ArrayList<Carta> manoJugador;
 
     public PanelBlackjack() {
         setBackground(new Color(53, 101, 77));
         setLayout(new BorderLayout());
     }
 
-    //
-    public void inicializarJuego() {
-        mazo = new Mazo();
-        manoCrupier = new ArrayList<>();
-        manoJugador = new ArrayList<>();
-        sumaCrupier = sumaJugador = cuentaAsesCrupier = cuentaAsesJugador = 0;
+    void dibujar(Carta cartaOculta, int sumaCrupier, int sumaJugador, ArrayList<Carta> manoCrupier,
+            ArrayList<Carta> manoJugador, JButton botonPlantarse) {
+        this.cartaOculta = cartaOculta;
+        this.sumaCrupier = sumaCrupier;
+        this.sumaJugador = sumaJugador;
+        this.manoCrupier = manoCrupier;
+        this.manoJugador = manoJugador;
+        this.botonPlantarse = botonPlantarse;
 
-        cartaOculta = mazo.robarCarta();
-        sumaCrupier += cartaOculta.getValor();
-        cuentaAsesCrupier += cartaOculta.esAs() ? 1 : 0;
-
-        agregarCartaCrupier();
-        agregarCartaJugador();
-        agregarCartaJugador();
+        repaint();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        dibujarCartas(g);
-    }
-
-    private void dibujarCartas(Graphics g) {
         try {
             g.setFont(new Font("Arial", Font.BOLD, 16));
             g.setColor(Color.WHITE);
@@ -75,69 +63,4 @@ public class PanelBlackjack extends JPanel {
         }
     }
 
-    protected void pedirCartaJugador() {
-        Carta carta = mazo.robarCarta();
-        sumaJugador += carta.getValor();
-        cuentaAsesJugador += carta.esAs() ? 1 : 0;
-        manoJugador.add(carta);
-
-        repaint();
-        if (ajustarSumaConAses(sumaJugador, cuentaAsesJugador) > 21) {
-            finalizarJuego();
-        }
-    }
-
-    protected void plantarseJugador() {
-        while (sumaCrupier < 17) {
-            agregarCartaCrupier();
-        }
-        repaint();
-        finalizarJuego();
-    }
-
-    private void agregarCartaCrupier() {
-        Carta carta = mazo.robarCarta();
-        sumaCrupier += carta.getValor();
-        cuentaAsesCrupier += carta.esAs() ? 1 : 0;
-        manoCrupier.add(carta);
-    }
-
-    private void agregarCartaJugador() {
-        Carta carta = mazo.robarCarta();
-        sumaJugador += carta.getValor();
-        cuentaAsesJugador += carta.esAs() ? 1 : 0;
-        manoJugador.add(carta);
-        sumaJugador = ajustarSumaConAses(sumaJugador, cuentaAsesJugador);
-    }
-
-    private int ajustarSumaConAses(int suma, int cuentaAses) {
-        while (suma > 21 && cuentaAses > 0) {
-            suma -= 10;
-            cuentaAses--;
-        }
-        return suma;
-    }
-
-    private void finalizarJuego() {
-        botonPedir.setEnabled(false);
-        botonPlantarse.setEnabled(false);
-        sumaCrupier = ajustarSumaConAses(sumaCrupier, cuentaAsesCrupier);
-        sumaJugador = ajustarSumaConAses(sumaJugador, cuentaAsesJugador);
-
-        String mensaje;
-        if (sumaJugador > 21) {
-            mensaje = "¡Perdiste! Te pasaste de 21.\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
-        } else if (sumaCrupier > 21) {
-            mensaje = "¡Ganaste! El crupier se pasó de 21.\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
-        } else if (sumaJugador == sumaCrupier) {
-            mensaje = "¡Empate!\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
-        } else if (sumaJugador > sumaCrupier) {
-            mensaje = "¡Ganaste!\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
-        } else {
-            mensaje = "¡Perdiste!\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
-        }
-
-        JOptionPane.showMessageDialog(this, mensaje, "Fin del Juego", JOptionPane.INFORMATION_MESSAGE);
-        botonIniciar.setEnabled(true);
-    }
 }
