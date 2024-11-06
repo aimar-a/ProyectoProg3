@@ -1,4 +1,3 @@
-//https://www.hipodromodelazarzuela.es/apuestas
 package GUI.caballos;
 
 import java.awt.*;
@@ -8,34 +7,77 @@ import javax.swing.*;
 public class PanelCaballos extends JPanel {
 
     private static final long serialVersionUID = 1L;
-    private static final int NUM_CABALLOS = 5;
+    private static final int NUM_CABALLOS = 8;
     private static final int META = 1400;
     private final int[] posiciones; // Posiciones de los caballos
     private boolean carreraEnCurso = false; // Estado de la carrera
     private int ganador = -1; // Índice del caballo ganador
     private final Thread hilo;
 
+    private Image[] caballoImagen;
+    private int[] frameCaballo;
+    private final JPanel[] panelCalles;
+
     public PanelCaballos() {
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Configura layout vertical
+        caballoImagen = new Image[NUM_CABALLOS];
+        frameCaballo = new int[NUM_CABALLOS];
+        panelCalles = new JPanel[NUM_CABALLOS];
         posiciones = new int[NUM_CABALLOS];
+
         for (int i = 0; i < NUM_CABALLOS; i++) {
             posiciones[i] = 0;
+            Random random = new Random();
+            caballoImagen[i] = new ImageIcon(
+                    "src/img/caballos/" + (i % 2 == 1 ? "negro" : "normal") + "/caballo8.png")
+                    .getImage();
+            frameCaballo[i] = random.nextInt(7) + 1;
+
+            // Configura panelCarril con colores intercalados
+            final int index = i;
+            panelCalles[i] = new JPanel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    Image metaImagen = new ImageIcon("src/img/caballos/meta.png").getImage();
+                    int newHeight = getHeight();
+                    int newWidth = (int) (156.0 / 313.0 * newHeight);
+                    g.setColor(Color.WHITE);
+                    g.fillRect(META - 5, 0, newWidth + 10, getHeight());
+                    g.drawImage(metaImagen, META, 0, newWidth, newHeight, this);
+                    g.drawImage(caballoImagen[index], posiciones[index], (getHeight() - (int) (81 * 1.3)) / 2,
+                            (int) (111 * 1.3), (int) (81 * 1.3), this);
+                }
+            };
+
+            panelCalles[i].setPreferredSize(new Dimension(1500, 100));
+            panelCalles[i].setBackground(i % 2 == 0 ? new Color(34, 139, 34) : new Color(144, 238, 144)); // Verde
+            add(panelCalles[i]); // Añade cada panelCarril al panel principal
         }
 
         hilo = new Thread(() -> {
             while (carreraEnCurso) {
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(50);
                     for (int i = 0; i < NUM_CABALLOS; i++) {
                         Random random = new Random();
-                        posiciones[i] += random.nextInt(3);
+                        int sumaPosicion = random.nextInt(6) + 3;
+                        posiciones[i] += sumaPosicion;
+
+                        if (frameCaballo[i] == 8) {
+                            frameCaballo[i] = 1;
+                        }
+                        caballoImagen[i] = new ImageIcon(
+                                "src/img/caballos/" + (i % 2 == 1 ? "negro" : "normal") + "/caballo"
+                                        + (frameCaballo[i]++) + ".png")
+                                .getImage();
 
                         // Verifica si algún caballo ha cruzado la meta
-                        if (posiciones[i] >= META && carreraEnCurso) {
+                        if (posiciones[i] >= META - 30 && carreraEnCurso) {
                             carreraEnCurso = false;
                             ganador = i;
                             break;
                         }
-                        System.out.println("Caballo " + (i + 1) + " en posición " + posiciones[i]);
                     }
                     repaint();
                 } catch (InterruptedException e) {
@@ -57,15 +99,9 @@ public class PanelCaballos extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        // Dibuja la línea de meta
+        // Dibuja la línea de meta en cada panelCarril
         g.setColor(Color.RED);
         g.drawLine(META, 0, META, getHeight());
-
-        // Dibuja los caballos
-        for (int i = 0; i < NUM_CABALLOS; i++) {
-            g.setColor(Color.BLUE);
-            g.fillRect(posiciones[i], 50 + i * 50, 40, 20);
-        }
 
         // Muestra el ganador si la carrera ha finalizado
         if (ganador != -1) {
