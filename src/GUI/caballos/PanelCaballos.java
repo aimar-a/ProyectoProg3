@@ -73,10 +73,10 @@ public class PanelCaballos extends JPanel {
                                 .getImage();
 
                         // Verifica si algún caballo ha cruzado la meta y asegura que solo el primero sea el ganador
-                        if (posiciones[i] >= META - 30 && carreraEnCurso) {
+                        if (posiciones[i] >= META - 135 && carreraEnCurso) {
                             carreraEnCurso = false;  // Detener la carrera
                             ganador = i;  // Establecer el ganador
-                            mostrarGanador(i + 1); // Muestra mensaje del ganador
+                            mostrarGanador(i + 1); // Muestra mensaje del ganador y luego reinicia el juego
                             break;
                         }
                     }
@@ -100,12 +100,24 @@ public class PanelCaballos extends JPanel {
         }
     }
 
-    // Método para mostrar el ganador en un JOptionPane
+    // Método para mostrar el ganador en un JOptionPane y reiniciar el juego
     private void mostrarGanador(int numeroCaballo) {
         SwingUtilities.invokeLater(() -> {
             JOptionPane.showMessageDialog(this, "¡Caballo " + numeroCaballo + " es el ganador!",
                     "Resultado de la Carrera", JOptionPane.INFORMATION_MESSAGE);
+            reiniciarJuego(); // Reinicia el juego después de cerrar el mensaje
         });
+    }
+
+    // Método para reiniciar el juego
+    private void reiniciarJuego() {
+        ganador = -1;
+        carreraEnCurso = true;
+        for (int i = 0; i < NUM_CABALLOS; i++) {
+            posiciones[i] = 0;
+        }
+        repaint(); // Refresca la interfaz
+        hilo.start(); // Vuelve a iniciar la carrera
     }
 
     @Override
@@ -124,3 +136,4 @@ public class PanelCaballos extends JPanel {
         }
     }
 }
+
