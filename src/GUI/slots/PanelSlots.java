@@ -30,7 +30,7 @@ public class PanelSlots extends JPanel {
         for (JLabel[] botone : botones) {
             for (JLabel botone1 : botone) {
                 Random r = new Random();
-                int n = r.nextInt(9) + 1;
+                int n = r.nextInt(11) + 1;
                 ImageIcon icono = new ImageIcon(getClass().getResource("/img/slots/slot" + n + ".png"));
                 Image scaledImage = icono.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                 ImageIcon scaledIcono = new ImageIcon(scaledImage);
