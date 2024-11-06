@@ -5,15 +5,14 @@ import javax.swing.JOptionPane;
 
 public class LogicaBlackjack {
     private int cuentaAsesCrupier, cuentaAsesJugador;
-    private PanelApuestasBlackjack panelApuestas;
-    private int cantidadApuesta;
+    private final PanelApuestasBlackjack panelApuestas;
     private Mazo mazo;
     private ArrayList<Carta> manoCrupier;
     private ArrayList<Carta> manoJugador;
     // esto he puesto yo
     private int sumaCrupier, sumaJugador;
     private Carta cartaOculta;
-    private PanelBlackjack panelBlackjack;
+    private final PanelBlackjack panelBlackjack;
 
     public LogicaBlackjack(PanelBlackjack panelBlackjack, PanelApuestasBlackjack panelApuestas) {
         this.panelBlackjack = panelBlackjack;
@@ -47,6 +46,12 @@ public class LogicaBlackjack {
 
         if (sumaJugador == 21) {
             sumaJugador = -1;
+            if (sumaCrupier == 21) {
+                sumaCrupier = -1;
+            }
+            finalizarJuego();
+        } else if (sumaCrupier == 21) {
+            sumaCrupier = -1;
             finalizarJuego();
         }
     }
@@ -103,7 +108,11 @@ public class LogicaBlackjack {
         sumaJugador = ajustarSumaConAses(sumaJugador, cuentaAsesJugador);
 
         String mensaje;
-        if (sumaJugador == -1) {
+        if (sumaCrupier == -1 && sumaJugador == -1) {
+            mensaje = "¡Empate! Ambos tienen Blackjack.\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
+        } else if (sumaCrupier == -1) {
+            mensaje = "¡Blackjack! ¡Perdiste!\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
+        } else if (sumaJugador == -1) {
             mensaje = "¡Blackjack! ¡Ganaste!\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
         } else if (sumaJugador > 21) {
             mensaje = "¡Perdiste! Te pasaste de 21.\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
