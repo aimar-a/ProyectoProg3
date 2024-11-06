@@ -148,7 +148,7 @@ public class FrameMenuPrincipal extends JFrame {
                 case JuegosDisponibles.SLOTS -> new FrameSlots(this).setVisible(true);
                 case JuegosDisponibles.BLACKJACK -> new BorrarBlackJack();
                 case JuegosDisponibles.MINAS -> new FrameMinas(this).setVisible(true);
-                case JuegosDisponibles.DINOSAURIO -> new DinoGameGUI();
+                case JuegosDisponibles.DINOSAURIO -> new DinoGameGUI().setVisible(true);
                 default -> {
                     JOptionPane.showMessageDialog(this, "Juego no disponible", "Error", JOptionPane.ERROR_MESSAGE);
                 }
