@@ -2,6 +2,7 @@ package GUI.mainMenu;
 
 import GUI.Blackjack.BorrarBlackJack;
 import GUI.caballos.FrameCaballos;
+import GUI.dinoRun.DinoGameGUI;
 import GUI.logIn.FrameLogIn;
 import GUI.minas.FrameMinas;
 import GUI.ruleta.FrameRuleta;
@@ -69,6 +70,7 @@ public class FrameMenuPrincipal extends JFrame {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Deseas cerrar sesión?", "Cerrar Sesión",
                         JOptionPane.YES_NO_OPTION);
                 if (opcion == JOptionPane.YES_OPTION) {
+                    loginAbierto = false;
                     cerrarSesion();
                 }
             } else {
@@ -102,6 +104,8 @@ public class FrameMenuPrincipal extends JFrame {
                 e -> abrirVentana(JuegosDisponibles.BLACKJACK)); // TODO
         configurarBotonJuego(panelSeleccion, "MINAS", "/img/mainMenu/Minas.jpg",
                 e -> abrirVentana(JuegosDisponibles.MINAS)); // TODO
+        configurarBotonJuego(panelSeleccion, "DINOSAURIO", "/img/mainMenu/Dinosaurio.jpg",
+                e -> abrirVentana(JuegosDisponibles.DINOSAURIO)); // TODO
 
         panelCentral.add(panelSeleccion, BorderLayout.CENTER);
         return panelCentral;
@@ -144,6 +148,7 @@ public class FrameMenuPrincipal extends JFrame {
                 case JuegosDisponibles.SLOTS -> new FrameSlots(this).setVisible(true);
                 case JuegosDisponibles.BLACKJACK -> new BorrarBlackJack();
                 case JuegosDisponibles.MINAS -> new FrameMinas(this).setVisible(true);
+                case JuegosDisponibles.DINOSAURIO -> new DinoGameGUI();
                 default -> {
                     JOptionPane.showMessageDialog(this, "Juego no disponible", "Error", JOptionPane.ERROR_MESSAGE);
                 }
