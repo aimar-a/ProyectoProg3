@@ -36,8 +36,8 @@ public class DinoGameGUI extends JFrame {
         betPanel.add(betField);
 
         // Configurar la etiqueta del multiplicador y el dinosaurio
-        multiplierLabel = new JLabel("Multiplicador: x1.01", SwingConstants.CENTER);
-        dinoLabel = new JLabel("🦖", SwingConstants.CENTER);
+        multiplierLabel = new JLabel("Multiplicador: x1.00", SwingConstants.CENTER);
+        dinoLabel = new JLabel("", SwingConstants.CENTER);
 
         // Configurar botones de inicio y cobro
         startButton = new JButton("Iniciar Carrera");
@@ -78,7 +78,7 @@ public class DinoGameGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (isRunning) {
                     // Generar un incremento aleatorio que no sea demasiado regular
-                    double increment = 0.1 + (random.nextDouble() * 0.4); // Incremento entre 0.1 y 0.5
+                    double increment = 0.1 + (random.nextDouble() * 0.1); // Incremento entre 0.1 y 0.5
                     multiplier += increment; // Aumentar el multiplicador
 
                     // Limitar el multiplicador al máximo permitido
@@ -132,9 +132,9 @@ public class DinoGameGUI extends JFrame {
 
                 isRunning = true;
                 multiplier = 1.01; // Reiniciar el multiplicador a 1.01
-                multiplierLabel.setText("Multiplicador: x1.01");
+                multiplierLabel.setText("Multiplicador: x1.00");
                 progressBar.setValue(0); // Reiniciar la barra de progreso
-                progressBar.setString("x1.01"); // Reiniciar el texto de la barra
+                progressBar.setString("x1.00"); // Reiniciar el texto de la barra
                 timer.start();
                 startButton.setEnabled(false);
                 cashOutButton.setEnabled(true);
