@@ -14,7 +14,7 @@ public class PanelSlots extends JPanel {
 
     public PanelSlots() {
         setLayout(new GridBagLayout());
-        setBackground(Color.BLACK);
+        setBackground(Color.GRAY);
         GridBagConstraints gbc = new GridBagConstraints();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -27,14 +27,17 @@ public class PanelSlots extends JPanel {
     }
 
     public final void girarRuletas() {
-        for (JLabel[] botone : botones) {
-            for (JLabel botone1 : botone) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
                 Random r = new Random();
                 int n = r.nextInt(11) + 1;
+                if (n == 10 && (j == 0 || j == 1)) {
+                    n = 0;
+                }
                 ImageIcon icono = new ImageIcon(getClass().getResource("/img/slots/slot" + n + ".png"));
                 Image scaledImage = icono.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                 ImageIcon scaledIcono = new ImageIcon(scaledImage);
-                botone1.setIcon(scaledIcono);
+                botones[i][j].setIcon(scaledIcono);
             }
         }
     }
