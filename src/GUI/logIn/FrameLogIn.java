@@ -35,7 +35,7 @@ public class FrameLogIn extends JFrame {
     private final JButton botonLogin;
     private final JButton botonRegistro;
     private final FrameMenuPrincipal menuPrincipal;
-    private JuegosDisponibles juegoObjetivo;
+    private final JuegosDisponibles juegoObjetivo;
 
     private static final String CSV_FILE_PATH = "src/CSV/users.csv";
 

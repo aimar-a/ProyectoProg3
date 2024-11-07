@@ -19,7 +19,7 @@ public class FrameMenuPrincipal extends JFrame {
     private JButton botonSalir;
     private JPanel barraAlta;
     private final JButton botonPerfil;
-    private boolean loginAbierto;
+    public boolean loginAbierto;
 
     public FrameMenuPrincipal() {
         // Configuración inicial del JFrame
