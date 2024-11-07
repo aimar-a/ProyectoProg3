@@ -16,28 +16,44 @@ public class PanelSlots extends JPanel {
         setLayout(new GridBagLayout());
         setBackground(Color.GRAY);
         GridBagConstraints gbc = new GridBagConstraints();
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                gbc.gridx = j;
-                gbc.gridy = i;
-                botones[i][j] = new JLabel();
-                add(botones[i][j], gbc);
+        for (int columna = 0; columna < 3; columna++) {
+            for (int fila = 0; fila < 3; fila++) {
+                gbc.gridx = columna;
+                gbc.gridy = fila;
+                botones[columna][fila] = new JLabel();
+                add(botones[columna][fila], gbc);
             }
         }
     }
 
+    public void girarColumna(int columna) {
+        for (int ff = 2; ff > 0; ff--) {
+            botones[columna][ff].setIcon(botones[columna][ff - 1].getIcon());
+        }
+        long seed = System.nanoTime(); // Usa los nanosegundos del sistema como semilla
+        Random r = new Random(seed);
+        int n = r.nextInt(11) + 1;
+        if (n == 10) {
+            n = 0;
+        }
+        ImageIcon icono = new ImageIcon(getClass().getResource("/img/slots/slot" + n + ".png"));
+        Image scaledImage = icono.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcono = new ImageIcon(scaledImage);
+        botones[columna][0].setIcon(scaledIcono);
+    }
+
     public final void girarRuletas() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int col = 0; col < 3; col++) {
+            for (int fil = 0; fil < 3; fil++) {
                 Random r = new Random();
                 int n = r.nextInt(11) + 1;
-                if (n == 10 && (j == 0 || j == 1)) {
+                if (n == 10 && (fil == 0 || fil == 1)) {
                     n = 0;
                 }
                 ImageIcon icono = new ImageIcon(getClass().getResource("/img/slots/slot" + n + ".png"));
-                Image scaledImage = icono.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                Image scaledImage = icono.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
                 ImageIcon scaledIcono = new ImageIcon(scaledImage);
-                botones[i][j].setIcon(scaledIcono);
+                botones[col][fil].setIcon(scaledIcono);
             }
         }
     }

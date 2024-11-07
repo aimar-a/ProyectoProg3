@@ -11,9 +11,16 @@ public class FrameSlots extends MainFrame {
 		PanelSlots panelSlots = new PanelSlots();
 		add(panelSlots, BorderLayout.CENTER);
 
-		PanelApuestas panelApuestas = new PanelApuestas(panelSlots);
+		PanelApuestasSlots panelApuestas = new PanelApuestasSlots();
 		add(panelApuestas, BorderLayout.SOUTH);
 
+		new LogicaSlots(panelSlots, panelApuestas);
+
 		panelSlots.girarRuletas();
+	}
+
+	public static void main(String[] args) {
+		new FrameSlots(null).setVisible(true);
+		;
 	}
 }
