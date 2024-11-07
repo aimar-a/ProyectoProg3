@@ -1,6 +1,5 @@
 package GUI.slots;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -14,7 +13,6 @@ public class PanelSlots extends JPanel {
 
     public PanelSlots() {
         setLayout(new GridBagLayout());
-        setBackground(Color.GRAY);
         GridBagConstraints gbc = new GridBagConstraints();
         for (int columna = 0; columna < 3; columna++) {
             for (int fila = 0; fila < 3; fila++) {

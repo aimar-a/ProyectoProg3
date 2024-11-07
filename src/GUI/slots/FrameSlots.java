@@ -21,6 +21,5 @@ public class FrameSlots extends MainFrame {
 
 	public static void main(String[] args) {
 		new FrameSlots(null).setVisible(true);
-		;
 	}
 }
