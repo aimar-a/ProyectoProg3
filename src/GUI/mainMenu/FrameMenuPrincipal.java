@@ -8,7 +8,6 @@ import GUI.minas.FrameMinas;
 import GUI.ruleta.FrameRuleta;
 import GUI.slots.FrameSlots;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class FrameMenuPrincipal extends JFrame {
@@ -20,14 +19,15 @@ public class FrameMenuPrincipal extends JFrame {
     private JButton botonSalir;
     private JPanel barraAlta;
     private final JButton botonPerfil;
-    private final int altoBotones = 200;
-    private final int anchoBotones = 400;
-    public boolean loginAbierto;
+    private boolean loginAbierto;
 
     public FrameMenuPrincipal() {
         // Configuración inicial del JFrame
         setTitle("Menú Principal");
-        setSize(1000, 800);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int frameWidth = (int) (screenSize.width * 0.6);
+        int frameHeight = (int) (screenSize.height * 0.8);
+        setSize(frameWidth, frameHeight);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -89,53 +89,55 @@ public class FrameMenuPrincipal extends JFrame {
         JPanel panelCentral = new JPanel(new BorderLayout());
 
         label = new JLabel("Bienvenido al Menú Principal, ¿A qué desea jugar?", SwingConstants.CENTER);
-        label.setPreferredSize(new Dimension(90, 20));
+        int labelWidth = getWidth() / 10;
+        int labelHeight = getHeight() / 40;
+        label.setPreferredSize(new Dimension(labelWidth, labelHeight));
         panelCentral.add(label, BorderLayout.NORTH);
 
-        JPanel panelSeleccion = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 20));
+        JPanel panelSeleccion = new JPanel(new FlowLayout(FlowLayout.CENTER, getWidth() / 25, getHeight() / 40));
 
-        configurarBotonJuego(panelSeleccion, "CARRERA", "/img/mainMenu/Carrera.jpeg",
-                e -> abrirVentana(JuegosDisponibles.CABALLOS));
-        configurarBotonJuego(panelSeleccion, "RULETA", "/img/mainMenu/Ruleta.png",
-                e -> abrirVentana(JuegosDisponibles.RULETA));
-        configurarBotonJuego(panelSeleccion, "SLOTS", "/img/mainMenu/Slot.png",
-                e -> abrirVentana(JuegosDisponibles.SLOTS));
-        configurarBotonJuego(panelSeleccion, "BLACKJACK", "/img/mainMenu/Blackjack.jpg",
-                e -> abrirVentana(JuegosDisponibles.BLACKJACK)); // TODO
-        configurarBotonJuego(panelSeleccion, "MINAS", "/img/mainMenu/Minas.jpg",
-                e -> abrirVentana(JuegosDisponibles.MINAS)); // TODO
-        configurarBotonJuego(panelSeleccion, "DINOSAURIO", "/img/mainMenu/Dinosaurio.jpg",
-                e -> abrirVentana(JuegosDisponibles.DINOSAURIO)); // TODO
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.CABALLOS, "/img/mainMenu/Carrera.jpeg");
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.RULETA, "/img/mainMenu/Ruleta.png");
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.SLOTS, "/img/mainMenu/Slot.png");
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.BLACKJACK, "/img/mainMenu/Blackjack.jpg");
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.MINAS, "/img/mainMenu/Minas.jpg");
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.DINOSAURIO, "/img/mainMenu/Dinosaurio.jpg");
 
         panelCentral.add(panelSeleccion, BorderLayout.CENTER);
         return panelCentral;
     }
 
-    private void configurarBotonJuego(JPanel panel, String texto, String rutaImagen, ActionListener accion) {
+    private void configurarBotonJuego(JPanel panel, JuegosDisponibles juegoElegido, String rutaImagen) {
+        int botonWidth = (int) (getWidth() / (getWidth() > 1.5 * getHeight() ? 3.5 : 2.5));
+        int botonHeight = (int) (getHeight() / (getWidth() > 1.5 * getHeight() ? 2.5 : 4));
+
         ImageIcon icono = new ImageIcon(getClass().getResource(rutaImagen));
-        Image scaledImage = icono.getImage().getScaledInstance(anchoBotones, altoBotones, Image.SCALE_SMOOTH);
+        Image scaledImage = icono.getImage().getScaledInstance(botonWidth, botonHeight, Image.SCALE_SMOOTH);
         ImageIcon scaledIcono = new ImageIcon(scaledImage);
 
-        JButton botonJuego = new JButton(texto, scaledIcono);
-        botonJuego.setPreferredSize(new Dimension(anchoBotones, altoBotones));
+        JButton botonJuego = new JButton(juegoElegido.getNombre(), scaledIcono);
+        botonJuego.setPreferredSize(new Dimension(botonWidth, botonHeight));
         botonJuego.setHorizontalTextPosition(SwingConstants.CENTER);
         botonJuego.setVerticalTextPosition(SwingConstants.CENTER);
-        botonJuego.setForeground(Color.BLACK);
-        botonJuego.setFont(new Font("Monospace", Font.BOLD, 30));
-        botonJuego.addActionListener(accion);
+        botonJuego.setForeground(Color.WHITE);
+        botonJuego.setFont(new Font("Monospace", Font.BOLD, botonWidth / 6));
+        botonJuego.addActionListener(e -> abrirVentana(juegoElegido));
 
         panel.add(botonJuego);
     }
 
     private void configurarBotonPerfil() {
+        int iconSize = getHeight() / 25;
+        int botonPerfilWidth = getWidth() / 6;
+
         ImageIcon iconoPerfil = new ImageIcon(getClass().getResource("/img/mainMenu/iconoPerfil.png"));
-        Image scaledImagePerfil = iconoPerfil.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        Image scaledImagePerfil = iconoPerfil.getImage().getScaledInstance(iconSize, iconSize, Image.SCALE_SMOOTH);
         ImageIcon scaledIconPerfil = new ImageIcon(scaledImagePerfil);
 
         botonPerfil.setIcon(scaledIconPerfil);
         botonPerfil.setHorizontalTextPosition(SwingConstants.RIGHT);
         botonPerfil.setHorizontalAlignment(SwingConstants.LEFT);
-        botonPerfil.setPreferredSize(new Dimension(150, 30));
+        botonPerfil.setPreferredSize(new Dimension(botonPerfilWidth, iconSize));
         botonPerfil.addActionListener(e -> new FrameProfile(usuario).setVisible(true));
     }
 
