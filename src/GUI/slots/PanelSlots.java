@@ -30,10 +30,10 @@ public class PanelSlots extends JPanel {
         for (int ff = 2; ff > 0; ff--) {
             botones[columna][ff].setIcon(botones[columna][ff - 1].getIcon());
         }
-        long seed = System.nanoTime(); // Usa los nanosegundos del sistema como semilla
+        long seed = System.nanoTime();
         Random r = new Random(seed);
         int n = r.nextInt(11) + 1;
-        if (n == 10) {
+        if (n == 10 && columna != 2) {
             n = 0;
         }
         ImageIcon icono = new ImageIcon(getClass().getResource("/img/slots/slot" + n + ".png"));
@@ -47,7 +47,7 @@ public class PanelSlots extends JPanel {
             for (int fil = 0; fil < 3; fil++) {
                 Random r = new Random();
                 int n = r.nextInt(11) + 1;
-                if (n == 10 && (fil == 0 || fil == 1)) {
+                if (n == 10 && (col != 2)) {
                     n = 0;
                 }
                 ImageIcon icono = new ImageIcon(getClass().getResource("/img/slots/slot" + n + ".png"));
