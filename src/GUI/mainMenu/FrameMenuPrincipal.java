@@ -1,6 +1,6 @@
 package GUI.mainMenu;
 
-import GUI.Blackjack.FrameBlackjack;
+import GUI.blackjack.FrameBlackjack;
 import GUI.caballos.FrameCaballos;
 import GUI.dinoRun.DinoGameGUI;
 import GUI.logIn.FrameLogIn;

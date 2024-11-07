@@ -1,4 +1,6 @@
-package GUI.Blackjack;
+// Código inspirado por el tutorial "Code Black Jack in Java" de [Kenny Yip Coding] en YouTube.
+// Enlace: https://www.youtube.com/watch?v=GMdgjaDdOjI 
+package GUI.blackjack;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -19,7 +21,7 @@ public class LogicaBlackjack {
         this.panelApuestas = panelApuestas;
 
         panelApuestas.botonIniciar.addActionListener(e -> iniciarJuego());
-        panelApuestas.botonPedir.addActionListener(e -> pedirCartaJugador());
+        panelApuestas.botonPedir.addActionListener(e -> agregarCartaJugador());
         panelApuestas.botonPlantarse.addActionListener(e -> plantarseJugador());
     }
 
@@ -56,21 +58,12 @@ public class LogicaBlackjack {
         }
     }
 
-    protected void pedirCartaJugador() {
-        Carta carta = mazo.robarCarta();
-        sumaJugador += carta.getValor();
-        cuentaAsesJugador += carta.esAs() ? 1 : 0;
-        manoJugador.add(carta);
-
-        panelBlackjack.dibujar(cartaOculta, sumaCrupier, sumaJugador, manoCrupier, manoJugador,
-                panelApuestas.botonPlantarse);
-        if (ajustarSumaConAses(sumaJugador, cuentaAsesJugador) > 21) {
-            finalizarJuego();
-        }
-    }
-
     protected void plantarseJugador() {
-        while (sumaCrupier < 17) {
+        while (ajustarSumaConAses(sumaCrupier, cuentaAsesCrupier) < 17
+                || (sumaCrupier - (cuentaAsesCrupier - 1) * 11 == 17 && cuentaAsesCrupier > 0)) {
+            // ChatGPT: Exigir que el crupier pida en un 17 blando (17 y algun as con valor
+            // 11) es simplemente una estrategia que favorece al casino, ya que aumenta la
+            // probabilidad de que el crupier obtenga una mano más fuerte.
             agregarCartaCrupier();
         }
         panelBlackjack.dibujar(cartaOculta, sumaCrupier, sumaJugador, manoCrupier, manoJugador,
@@ -90,7 +83,12 @@ public class LogicaBlackjack {
         sumaJugador += carta.getValor();
         cuentaAsesJugador += carta.esAs() ? 1 : 0;
         manoJugador.add(carta);
-        sumaJugador = ajustarSumaConAses(sumaJugador, cuentaAsesJugador);
+
+        panelBlackjack.dibujar(cartaOculta, sumaCrupier, sumaJugador, manoCrupier, manoJugador,
+                panelApuestas.botonPlantarse);
+        if (ajustarSumaConAses(sumaJugador, cuentaAsesJugador) > 21) {
+            finalizarJuego();
+        }
     }
 
     private int ajustarSumaConAses(int suma, int cuentaAses) {
