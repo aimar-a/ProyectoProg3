@@ -14,6 +14,7 @@ public class PanelApuestasSlots extends JPanel {
         setBackground(Color.RED);
         add(new JLabel("Apuesta: "));
         apuesta = new JTextField(10);
+        add(apuesta);
         botonGirar = new JButton("Girar");
         add(botonGirar);
     }

@@ -97,7 +97,8 @@ public class FrameMenuPrincipal extends JFrame {
         JPanel panelSeleccion = new JPanel(new FlowLayout(FlowLayout.CENTER, getWidth() / 25, getHeight() / 40));
 
         configurarBotonJuego(panelSeleccion, JuegosDisponibles.CABALLOS, "/img/mainMenu/Carrera.jpeg");
-        configurarBotonJuego(panelSeleccion, JuegosDisponibles.RULETA, "/img/mainMenu/Ruleta.png");
+        // configurarBotonJuego(panelSeleccion, JuegosDisponibles.RULETA,
+        // "/img/mainMenu/Ruleta.png");
         configurarBotonJuego(panelSeleccion, JuegosDisponibles.SLOTS, "/img/mainMenu/Slot.png");
         configurarBotonJuego(panelSeleccion, JuegosDisponibles.BLACKJACK, "/img/mainMenu/Blackjack.jpg");
         configurarBotonJuego(panelSeleccion, JuegosDisponibles.MINAS, "/img/mainMenu/Minas.jpg");

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class Mazo {
+public final class Mazo {
     private final ArrayList<Carta> cartas = new ArrayList<>();
     private final Random aleatorio = new Random();
 

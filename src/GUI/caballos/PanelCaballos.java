@@ -12,10 +12,9 @@ public class PanelCaballos extends JPanel {
     private final int[] posiciones; // Posiciones de los caballos
     private boolean carreraEnCurso = false; // Estado de la carrera
     private int ganador = -1; // Índice del caballo ganador
-    private final Thread hilo;
 
     private Image[] caballoImagen;
-    private int[] frameCaballo;
+    private final int[] frameCaballo;
     private final JPanel[] panelCalles;
 
     public PanelCaballos() {
@@ -54,8 +53,11 @@ public class PanelCaballos extends JPanel {
             panelCalles[i].setBackground(i % 2 == 0 ? new Color(34, 139, 34) : new Color(144, 238, 144)); // Verde
             add(panelCalles[i]); // Añade cada panelCarril al panel principal
         }
+    }
 
-        hilo = new Thread(() -> {
+    private class Hilo extends Thread {
+        @Override
+        public void run() {
             while (carreraEnCurso) {
                 try {
                     Thread.sleep(50);
@@ -72,20 +74,21 @@ public class PanelCaballos extends JPanel {
                                         + (frameCaballo[i]++) + ".png")
                                 .getImage();
 
-                        // Verifica si algún caballo ha cruzado la meta y asegura que solo el primero sea el ganador
+                        // Verifica si algún caballo ha cruzado la meta y asegura que solo el primero
+                        // sea el ganador
                         if (posiciones[i] >= META - 135 && carreraEnCurso) {
-                            carreraEnCurso = false;  // Detener la carrera
-                            ganador = i;  // Establecer el ganador
+                            carreraEnCurso = false; // Detener la carrera
+                            ganador = i; // Establecer el ganador
                             mostrarGanador(i + 1); // Muestra mensaje del ganador y luego reinicia el juego
                             break;
                         }
                     }
                     repaint();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
             }
-        });
+            interrupt();
+        }
     }
 
     // Método para iniciar la carrera
@@ -96,7 +99,7 @@ public class PanelCaballos extends JPanel {
             for (int i = 0; i < NUM_CABALLOS; i++) {
                 posiciones[i] = 0;
             }
-            hilo.start();
+            new Hilo().start();
         }
     }
 
@@ -112,12 +115,11 @@ public class PanelCaballos extends JPanel {
     // Método para reiniciar el juego
     private void reiniciarJuego() {
         ganador = -1;
-        carreraEnCurso = true;
+        carreraEnCurso = false;
         for (int i = 0; i < NUM_CABALLOS; i++) {
             posiciones[i] = 0;
         }
         repaint(); // Refresca la interfaz
-        hilo.start(); // Vuelve a iniciar la carrera
     }
 
     @Override
@@ -136,4 +138,3 @@ public class PanelCaballos extends JPanel {
         }
     }
 }
-

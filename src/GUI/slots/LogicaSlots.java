@@ -12,7 +12,7 @@ public class LogicaSlots {
         panelSlots.girarRuletas();
     }
 
-    Thread hilo = new Thread() {
+    public class Hilo extends Thread {
         @Override
         public void run() {
             for (int i = 30; i > 0; i--) {
@@ -28,12 +28,12 @@ public class LogicaSlots {
                 } catch (InterruptedException ex) {
                 }
             }
-            hilo.interrupt();
+            interrupt();
         }
-    };
+    }
 
     public void realizarTirada() {
-        hilo.start();
+        new Hilo().start();
     }
 
 }
