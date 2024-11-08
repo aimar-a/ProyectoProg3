@@ -5,6 +5,7 @@ import GUI.caballos.FrameCaballos;
 import GUI.dinoRun.DinoGameGUI;
 import GUI.logIn.FrameLogIn;
 import GUI.minas.FrameMinas;
+import GUI.perfil.FrameProfile;
 import GUI.ruleta.FrameRuleta;
 import GUI.slots.FrameSlots;
 import java.awt.*;

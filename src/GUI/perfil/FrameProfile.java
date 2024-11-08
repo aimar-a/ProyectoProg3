@@ -1,4 +1,4 @@
-package GUI.mainMenu;
+package GUI.perfil;
 
 import GUI.logIn.FrameLogIn;
 import java.awt.*;
