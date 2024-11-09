@@ -14,22 +14,17 @@ import java.nio.file.Paths;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class FrameLogIn extends JFrame {
+// IAG: Convertir esta clase de JFrame a JDialog para que simpere este por encima de FrameMenuPrincipal
+public class FrameLogIn extends JDialog {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
-    /**
-     * 
-     */
     private final JTextField usuarioField;
     private final JPasswordField passwordField;
     private final JButton botonLogin;
@@ -40,8 +35,10 @@ public class FrameLogIn extends JFrame {
     private static final String CSV_FILE_PATH = "src/CSV/users.csv";
 
     public FrameLogIn(FrameMenuPrincipal menuPrinc, JuegosDisponibles juegoObjetivo) {
+        super(menuPrinc, "Login - 007Games", true); // Hacemos el JDialog modal
         this.menuPrincipal = menuPrinc;
         this.juegoObjetivo = juegoObjetivo;
+
         int ancho_labels = 120;
         int ancho_fields = 200;
         int alto = 40;
@@ -97,10 +94,9 @@ public class FrameLogIn extends JFrame {
         panel.add(botonLogin);
         linea += alto_boton + espacio;
 
-        setTitle("Login - 007Games");
         setSize(ancho_labels + ancho_fields + espacio * 3 + 20, linea + 40);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(menuPrinc); // Ubica la ventana en relación con el FrameMenuPrincipal
         setResizable(false);
 
         add(panel);
