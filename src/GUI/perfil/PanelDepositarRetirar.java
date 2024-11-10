@@ -1,5 +1,6 @@
 package GUI.perfil;
 
+import GUI.AccionesCsv;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -7,32 +8,22 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.regex.Pattern;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 public class PanelDepositarRetirar extends JPanel {
-    private CardLayout cardLayout;
-    private JPanel panelCentral;
+    private final CardLayout cardLayout;
+    private final JPanel panelCentral;
 
-    private String usuario;
-
-    private static final String RUTA_CARTERA_CSV = "src/CSV/cartera.csv";
-    private static final String RUTA_HISTORIAL_CSV = "src/CSV/historialMovimientos.csv";
+    private final String usuario;
 
     private JTextField cantidadTarjeta;
     private JTextField cantidadDinero;
@@ -63,7 +54,7 @@ public class PanelDepositarRetirar extends JPanel {
         panelCentral.add(panelTransferencia, "Banco");
         panelCentral.add(panelPaypal, "Paypal");
 
-        setupButtonActions(panelInferior, panelTarjeta, panelTransferencia, panelPaypal);
+        setupButtonActions(panelInferior);
     }
 
     private JPanel createButtonPanel() {
@@ -149,7 +140,7 @@ public class PanelDepositarRetirar extends JPanel {
         GridBagConstraints gbc = createGridBagConstraints();
 
         JTextField correoPaypal = createTextField(20);
-        JTextField contrasenaPaypal = createTextField(20);
+        JPasswordField contrasenaPaypal = new JPasswordField(20);
         cantidadPaypal = createTextField(20);
 
         addField(panelPaypal, gbc, "Cantidad: ", cantidadPaypal, 0);
@@ -253,86 +244,7 @@ public class PanelDepositarRetirar extends JPanel {
         return textField;
     }
 
-    public static void updateSaldo(String usuario, double cantidad, boolean isDeposito) {
-        List<String> lines = new ArrayList<>();
-        boolean userFound = false;
-        double saldoFinal = 0;
-
-        try {
-            // Leer el archivo CSV de usuarios
-            lines = Files.readAllLines(Paths.get(RUTA_CARTERA_CSV));
-            for (int i = 0; i < lines.size(); i++) {
-                String[] data = lines.get(i).split(",");
-                String nombreUsuario = data[0];
-                double saldo = Double.parseDouble(data[1]);
-
-                if (nombreUsuario.equals(usuario)) {
-                    userFound = true;
-                    saldoFinal = isDeposito ? saldo + cantidad : saldo - cantidad;
-
-                    // Verificar si el saldo se quedará negativo
-                    if (saldoFinal < 0) {
-                        JOptionPane.showMessageDialog(null, "Error: el saldo no puede quedar en negativo.", "Error",
-                                JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-
-                    // Actualizar la línea con el nuevo saldo
-                    lines.set(i, nombreUsuario + "," + saldoFinal);
-                    JOptionPane.showMessageDialog(null, "Operación realizada correctamente.", "Éxito",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    break;
-                }
-            }
-
-            if (!userFound) {
-                JOptionPane.showMessageDialog(null, "Usuario no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            // Escribir las líneas actualizadas en el archivo CSV de usuarios
-            Files.write(Paths.get(RUTA_CARTERA_CSV), lines);
-
-            // Registrar el movimiento en el historial
-            registrarMovimiento(usuario, cantidad, saldoFinal, isDeposito);
-
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error al leer o escribir el archivo.", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Formato incorrecto en el archivo CSV.", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-        }
-    }
-
-    private static void registrarMovimiento(String usuario, double cantidad, double saldoFinal, boolean isDeposito) {
-        try {
-            // Crear el formato para la fecha actual
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String fecha = dateFormat.format(new Date());
-
-            // Determinar el signo de la modificación (+ o -)
-            String modificacion = (isDeposito ? "+" : "-") + cantidad;
-
-            String tipo = isDeposito ? "deposito" : "retiro";
-
-            // Escribir el movimiento en el archivo de historial
-            String movimiento = fecha + "," + usuario + "," + modificacion + "," + tipo + "," + saldoFinal + "\n";
-
-            // Si el archivo ya existe, lo abrimos en modo append
-            Files.write(Paths.get(RUTA_HISTORIAL_CSV), movimiento.getBytes(), StandardOpenOption.CREATE,
-                    StandardOpenOption.APPEND);
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error al registrar el movimiento en el historial.", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-        }
-    }
-
-    private void setupButtonActions(JPanel panelInferior, JPanel panelTarjeta, JPanel panelTransferencia,
-            JPanel panelPaypal) {
+    private void setupButtonActions(JPanel panelInferior) {
         JButton botonTarjeta = (JButton) panelInferior.getComponent(0);
         JButton botonTransferencia = (JButton) panelInferior.getComponent(1);
         JButton botonPaypal = (JButton) panelInferior.getComponent(2);
@@ -360,25 +272,53 @@ public class PanelDepositarRetirar extends JPanel {
         // Add action listeners for deposit and withdraw buttons
         botonDepositarTarjeta.addActionListener(e -> {
             double cantidad = Double.parseDouble(cantidadTarjeta.getText());
-            updateSaldo(usuario, cantidad, true);
+            if (AccionesCsv.agregarMovimiento(usuario, cantidad, "deposito")) {
+                JOptionPane.showMessageDialog(this, "Depósito realizado correctamente", "Información",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al realizar el depósito", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
         });
 
         botonDepositarTransferencia.addActionListener(e -> {
             double cantidad = Double.parseDouble(cantidadDinero.getText());
-            updateSaldo(usuario, cantidad, true);
+            if (AccionesCsv.agregarMovimiento(usuario, cantidad, "deposito")) {
+                JOptionPane.showMessageDialog(this, "Depósito realizado correctamente", "Información",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al realizar el depósito", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
         });
         botonRetirarTransferencia.addActionListener(e -> {
             double cantidad = Double.parseDouble(cantidadDinero.getText());
-            updateSaldo(usuario, cantidad, false);
+            if (AccionesCsv.agregarMovimiento(usuario, -cantidad, "retiro")) {
+                JOptionPane.showMessageDialog(this, "Retiro realizado correctamente", "Información",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al realizar el retiro", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         });
 
         botonDepositarPaypal.addActionListener(e -> {
             double cantidad = Double.parseDouble(cantidadPaypal.getText());
-            updateSaldo(usuario, cantidad, true);
+            if (AccionesCsv.agregarMovimiento(usuario, cantidad, "deposito")) {
+                JOptionPane.showMessageDialog(this, "Depósito realizado correctamente", "Información",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al realizar el depósito", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
         });
         botonRetirarPaypal.addActionListener(e -> {
             double cantidad = Double.parseDouble(cantidadPaypal.getText());
-            updateSaldo(usuario, cantidad, false);
+            if (AccionesCsv.agregarMovimiento(usuario, -cantidad, "retiro")) {
+                JOptionPane.showMessageDialog(this, "Retiro realizado correctamente", "Información",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al realizar el retiro", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         });
     }
 }

@@ -1,5 +1,6 @@
 package GUI.mainMenu;
 
+import GUI.AccionesCsv;
 import GUI.blackjack.FrameBlackjack;
 import GUI.caballos.FrameCaballos;
 import GUI.dinoRun.DinoGameGUI;
@@ -21,6 +22,7 @@ public class FrameMenuPrincipal extends JFrame {
     private JPanel barraAlta;
     private final JButton botonPerfil;
     public boolean loginAbierto;
+    private JPanel panelDerechaBarraAlta;
 
     public FrameMenuPrincipal() {
         // Configuración inicial del JFrame
@@ -54,8 +56,18 @@ public class FrameMenuPrincipal extends JFrame {
         JLabel titulo = new JLabel("007Games", SwingConstants.CENTER);
         barraAlta.add(titulo);
 
+        panelDerechaBarraAlta = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        panelDerechaBarraAlta.setBackground(Color.RED);
+        panelDerechaBarraAlta.setPreferredSize(new Dimension(getWidth() / 3, 35));
+        barraAlta.add(panelDerechaBarraAlta, BorderLayout.EAST);
+
+        JPanel panelIzquierdaBarraAlta = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelIzquierdaBarraAlta.setBackground(Color.RED);
+        panelIzquierdaBarraAlta.setPreferredSize(new Dimension(getWidth() / 3, 35));
+        barraAlta.add(panelIzquierdaBarraAlta, BorderLayout.WEST);
+
         botonLogIn = new JButton("LogIn/Reg");
-        barraAlta.add(botonLogIn, BorderLayout.EAST);
+        panelDerechaBarraAlta.add(botonLogIn, BorderLayout.EAST);
         botonLogIn.addActionListener(e -> {
             if (!loginAbierto) {
                 loginAbierto = true;
@@ -64,7 +76,7 @@ public class FrameMenuPrincipal extends JFrame {
         });
 
         botonSalir = new JButton("Salir");
-        barraAlta.add(botonSalir, BorderLayout.WEST);
+        panelIzquierdaBarraAlta.add(botonSalir, BorderLayout.WEST);
         botonSalir.addActionListener(e -> {
             if (logeado) {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Deseas cerrar sesión?", "Cerrar Sesión",
@@ -101,7 +113,8 @@ public class FrameMenuPrincipal extends JFrame {
         // "/img/mainMenu/Ruleta.png");
         configurarBotonJuego(panelSeleccion, JuegosDisponibles.SLOTS, "/img/mainMenu/Slot.png");
         configurarBotonJuego(panelSeleccion, JuegosDisponibles.BLACKJACK, "/img/mainMenu/Blackjack.jpg");
-        configurarBotonJuego(panelSeleccion, JuegosDisponibles.MINAS, "/img/mainMenu/Minas.jpg");
+        // configurarBotonJuego(panelSeleccion, JuegosDisponibles.MINAS,
+        // "/img/mainMenu/Minas.jpg");
         configurarBotonJuego(panelSeleccion, JuegosDisponibles.DINOSAURIO, "/img/mainMenu/Dinosaurio.jpg");
 
         panelCentral.add(panelSeleccion, BorderLayout.CENTER);
@@ -128,8 +141,7 @@ public class FrameMenuPrincipal extends JFrame {
     }
 
     private void configurarBotonPerfil() {
-        int iconSize = getHeight() / 25;
-        int botonPerfilWidth = getWidth() / 6;
+        int iconSize = 16;
 
         ImageIcon iconoPerfil = new ImageIcon(getClass().getResource("/img/mainMenu/iconoPerfil.png"));
         Image scaledImagePerfil = iconoPerfil.getImage().getScaledInstance(iconSize, iconSize, Image.SCALE_SMOOTH);
@@ -138,7 +150,6 @@ public class FrameMenuPrincipal extends JFrame {
         botonPerfil.setIcon(scaledIconPerfil);
         botonPerfil.setHorizontalTextPosition(SwingConstants.RIGHT);
         botonPerfil.setHorizontalAlignment(SwingConstants.LEFT);
-        botonPerfil.setPreferredSize(new Dimension(botonPerfilWidth, iconSize));
         botonPerfil.addActionListener(e -> new FramePerfil(this).setVisible(true));
     }
 
@@ -178,13 +189,14 @@ public class FrameMenuPrincipal extends JFrame {
             botonLogIn.setVisible(false);
             botonPerfil.setVisible(true);
             botonPerfil.setText(" " + usuario);
-            barraAlta.add(botonPerfil, BorderLayout.EAST);
+            panelDerechaBarraAlta.add(new JLabel("Saldo: " + String.format("%.2f", AccionesCsv.obtenerSaldo(usuario))));
+            panelDerechaBarraAlta.add(botonPerfil);
             botonSalir.setText("Cerrar Sesión");
         } else {
             label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
             botonPerfil.setVisible(false);
             botonLogIn.setVisible(true);
-            barraAlta.add(botonLogIn, BorderLayout.EAST);
+            panelDerechaBarraAlta.add(botonLogIn);
             botonSalir.setText("Salir");
         }
     }

@@ -1,18 +1,15 @@
 package GUI.perfil;
 
+import GUI.AccionesCsv;
 import java.awt.*;
-import java.io.*;
-import java.nio.file.*;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.*;
 
 public class PanelCambiarContrasena extends JPanel {
 
-    private JPasswordField txtContrasenaAntigua;
-    private JPasswordField txtContrasenaNueva;
-    private JPasswordField txtConfirmarContrasena;
-    private JButton btnCambiar;
+    private final JPasswordField txtContrasenaAntigua;
+    private final JPasswordField txtContrasenaNueva;
+    private final JPasswordField txtConfirmarContrasena;
+    private final JButton btnCambiar;
 
     public PanelCambiarContrasena(String usuario) {
         setLayout(new BorderLayout()); // Configurar el layout en BorderLayout
@@ -74,61 +71,24 @@ public class PanelCambiarContrasena extends JPanel {
         String contrasenaNueva = new String(txtContrasenaNueva.getPassword());
         String contrasenaConfirmada = new String(txtConfirmarContrasena.getPassword());
 
-        // Verificar que la nueva contraseña y la confirmación coinciden
+        if (!contrasenaAntigua.equals(AccionesCsv.obtenerContrasena(usuario))) {
+            JOptionPane.showMessageDialog(this, "La contraseña antigua es incorrecta.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         if (!contrasenaNueva.equals(contrasenaConfirmada)) {
             JOptionPane.showMessageDialog(this, "Las contraseñas nuevas no coinciden.", "Error",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        try {
-            // Leer el archivo de usuarios y contraseñas
-            List<String> lines = Files.readAllLines(Paths.get("src/CSV/usuarioContra.csv"));
-            boolean usuarioEncontrado = false;
-            boolean contrasenaCorrecta = false;
-            List<String> nuevasLineas = new ArrayList<>();
-
-            for (String line : lines) {
-                String[] data = line.split(",");
-                String nombreUsuario = data[0];
-                String contrasenaActual = data[1];
-
-                // Verificar si el usuario coincide
-                if (nombreUsuario.equals(usuario)) {
-                    usuarioEncontrado = true;
-                    // Verificar si la contraseña antigua es correcta
-                    if (contrasenaAntigua.equals(contrasenaActual)) {
-                        contrasenaCorrecta = true;
-                        // Actualizar la contraseña en la línea
-                        nuevasLineas.add(nombreUsuario + "," + contrasenaNueva);
-                    } else {
-                        JOptionPane.showMessageDialog(this, "La contraseña antigua es incorrecta.", "Error",
-                                JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-                } else {
-                    nuevasLineas.add(line); // Mantener la línea original si no es el usuario actual
-                }
-            }
-
-            // Si el usuario no fue encontrado
-            if (!usuarioEncontrado) {
-                JOptionPane.showMessageDialog(this, "Usuario no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            // Si la contraseña antigua fue correcta, proceder a actualizar
-            if (contrasenaCorrecta) {
-                // Escribir las nuevas líneas en el archivo
-                Files.write(Paths.get("src/CSV/usuarioContra.csv"), nuevasLineas);
-                JOptionPane.showMessageDialog(this, "Contraseña cambiada correctamente.", "Éxito",
-                        JOptionPane.INFORMATION_MESSAGE);
-            }
-
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error al leer o escribir el archivo.", "Error",
+        if (contrasenaAntigua.equals(contrasenaNueva)) {
+            JOptionPane.showMessageDialog(this, "La nueva contraseña no puede ser igual a la anterior.", "Error",
                     JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            return;
         }
+
+        AccionesCsv.cambiarContrasena(usuario, contrasenaNueva);
     }
 }

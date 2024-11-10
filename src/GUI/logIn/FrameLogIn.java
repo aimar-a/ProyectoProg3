@@ -1,21 +1,16 @@
 package GUI.logIn;
 
+import GUI.AccionValidarCampo;
+import GUI.AccionesCsv;
 import GUI.mainMenu.FrameMenuPrincipal;
 import GUI.mainMenu.JuegosDisponibles;
+import GUI.perfil.TiposDeDatos;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -38,10 +33,6 @@ public class FrameLogIn extends JDialog {
     private final JButton botonRegistro;
     private final FrameMenuPrincipal menuPrincipal;
     private final JuegosDisponibles juegoObjetivo;
-
-    private static final String RUTA_USUARIO_CONTRA = "src/CSV/usuarioContra.csv";
-    private static final String RUTA_USUARIO_DATOS = "src/CSV/usuarioDatos.csv";
-    private static final String RUTA_CARTERA = "src/CSV/cartera.csv";
 
     public FrameLogIn(FrameMenuPrincipal menuPrinc, JuegosDisponibles juegoObjetivo) {
         super(menuPrinc, "Login - 007Games", true); // Hacemos el JDialog modal
@@ -138,7 +129,7 @@ public class FrameLogIn extends JDialog {
         String usuario = usuarioField.getText();
         String password = new String(passwordField.getPassword());
 
-        if (validarCredenciales(usuario, password)) {
+        if (password.equals(AccionesCsv.obtenerContrasena(usuario))) {
             JOptionPane.showMessageDialog(this, "Login exitoso.");
             menuPrincipal.logeado = true; // Cambia el estado a true en MenuPrincipal
             menuPrincipal.usuario = usuario; // Guarda el usuario en MenuPrincipal
@@ -154,36 +145,6 @@ public class FrameLogIn extends JDialog {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
-    }
-
-    // IAG: Optimizar la búsqueda binaria para que sea más eficiente
-    public static boolean validarCredenciales(String usuario, String password) {
-        try {
-            List<String> lineas = Files.readAllLines(Paths.get(RUTA_USUARIO_CONTRA));
-
-            // Hacer búsqueda binaria sobre el usuario
-            int inicio = 0;
-            int fin = lineas.size() - 1;
-
-            while (inicio <= fin) {
-                int medio = (inicio + fin) / 2;
-                String[] datos = lineas.get(medio).split(",");
-                String usuarioActual = datos[0];
-
-                int comparacion = usuario.compareTo(usuarioActual);
-                if (comparacion == 0) {
-                    // Usuario encontrado, verificar la contraseña
-                    return datos[1].equals(password);
-                } else if (comparacion < 0) {
-                    fin = medio - 1; // El usuario está en la mitad izquierda
-                } else {
-                    inicio = medio + 1; // El usuario está en la mitad derecha
-                }
-            }
-        } catch (IOException e) {
-            // Manejo de errores, podrías registrar el error si es necesario
-        }
-        return false; // Usuario no encontrado
     }
 
     // IAG
@@ -203,6 +164,12 @@ public class FrameLogIn extends JDialog {
         JButton btnAceptar = new JButton("Aceptar");
         JButton btnCancelar = new JButton("Cancelar");
         btnAceptar.setEnabled(false);
+
+        JTextField[] camposTexto = { txtNombre, txtApellidos, txtDNI, txtEmail, txtTelefono, txtProvincia, txtCiudad,
+                txtDireccion, txtFechaNacimiento, txtUsuario };
+        TiposDeDatos[] regex = { TiposDeDatos.NOMBRE, TiposDeDatos.APELLIDOS, TiposDeDatos.DNI, TiposDeDatos.EMAIL,
+                TiposDeDatos.TELEFONO, TiposDeDatos.PROVINCIA, TiposDeDatos.CIUDAD, TiposDeDatos.DIRECCION,
+                TiposDeDatos.FECHA_NACIMIENTO, TiposDeDatos.USUARIO };
 
         // Crear un panel con los campos
         JPanel panelCampos = new JPanel(new GridLayout(12, 2, 10, 10));
@@ -240,20 +207,17 @@ public class FrameLogIn extends JDialog {
         DocumentListener validationListener = new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                verificarCampos(txtNombre, txtApellidos, txtDNI, txtEmail, txtTelefono, txtProvincia, txtCiudad,
-                        txtDireccion, txtFechaNacimiento, txtUsuario, btnAceptar);
+                AccionValidarCampo.verificarCampos(btnAceptar, camposTexto, regex);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                verificarCampos(txtNombre, txtApellidos, txtDNI, txtEmail, txtTelefono, txtProvincia, txtCiudad,
-                        txtDireccion, txtFechaNacimiento, txtUsuario, btnAceptar);
+                AccionValidarCampo.verificarCampos(btnAceptar, camposTexto, regex);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                verificarCampos(txtNombre, txtApellidos, txtDNI, txtEmail, txtTelefono, txtProvincia, txtCiudad,
-                        txtDireccion, txtFechaNacimiento, txtUsuario, btnAceptar);
+                AccionValidarCampo.verificarCampos(btnAceptar, camposTexto, regex);
             }
         };
         JDialog dialog = new JDialog(this, "Registrar Usuario", true);
@@ -261,11 +225,11 @@ public class FrameLogIn extends JDialog {
         agregarDocumentListeners(validationListener, txtNombre, txtApellidos, txtDNI, txtEmail, txtTelefono,
                 txtProvincia, txtCiudad, txtDireccion, txtFechaNacimiento, txtUsuario);
 
-        verificarCampos(txtNombre, txtApellidos, txtDNI, txtEmail, txtTelefono, txtProvincia, txtCiudad, txtDireccion,
-                txtFechaNacimiento, txtUsuario, btnAceptar);
+        AccionValidarCampo.verificarCampos(btnAceptar, camposTexto, regex);
 
         btnCancelar.addActionListener(e -> dialog.dispose());
         btnAceptar.addActionListener(e -> {
+            btnAceptar.setEnabled(false);
             // Obtener los datos ingresados
             String usuario = txtUsuario.getText();
             String nombre = txtNombre.getText();
@@ -278,49 +242,18 @@ public class FrameLogIn extends JDialog {
             String direccion = txtDireccion.getText();
             String fechaNacimiento = txtFechaNacimiento.getText();
             String contrasena = new String(txtContrasena.getPassword());
-            String fechaRegistro = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
 
-            // Verificar que el usuario no exista en usuarioContra.csv
-            try {
-                List<String> usuarioContraLines = Files.readAllLines(Paths.get(RUTA_USUARIO_CONTRA));
-                for (String line : usuarioContraLines) {
-                    String[] data = line.split(",");
-                    if (data[0].equals(usuario)) {
-                        JOptionPane.showMessageDialog(null, "El usuario ya existe.", "Error",
-                                JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-                }
+            String[] datos = { nombre, apellidos, dni, email, telefono.split(" ")[0], telefono.split(" ")[1], provincia,
+                    ciudad, direccion.split(",")[0], direccion.split(",")[1].replace(" ", ""), fechaNacimiento };
 
-                // Añadir al usuario en usuarioContra.csv
-                usuarioContraLines.add(usuario + "," + contrasena);
-                Collections.sort(usuarioContraLines);
-                Files.write(Paths.get(RUTA_USUARIO_CONTRA), usuarioContraLines);
-
-                // Añadir al usuario en usuarioDatos.csv
-                List<String> usuarioDatosLines = Files.readAllLines(Paths.get(RUTA_USUARIO_DATOS));
-                String usuarioDatos = usuario + "," + nombre + "," + apellidos + "," + dni + "," + email + "," +
-                        telefono.substring(0, 3) + "," + telefono.substring(3) + "," + provincia + "," + ciudad + "," +
-                        direccion.split(", ")[0] + "," + direccion.split(", ")[1] + "," + fechaNacimiento + ","
-                        + fechaRegistro;
-                usuarioDatosLines.add(usuarioDatos);
-                Collections.sort(usuarioDatosLines);
-                Files.write(Paths.get(RUTA_USUARIO_DATOS), usuarioDatosLines);
-
-                // Añadir al usuario en cartera.csv
-                List<String> carteraLines = Files.readAllLines(Paths.get(RUTA_CARTERA));
-                carteraLines.add(usuario + ",0.0");
-                Collections.sort(carteraLines);
-                Files.write(Paths.get(RUTA_CARTERA), carteraLines);
-
+            if (AccionesCsv.agregarUsuario(usuario, contrasena, datos)) {
                 JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente.", "Éxito",
                         JOptionPane.INFORMATION_MESSAGE);
-
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(null, "Error al acceder a los archivos.", "Error",
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al registrar el usuario.", "Error",
                         JOptionPane.ERROR_MESSAGE);
-                ex.printStackTrace();
             }
+
             dialog.dispose();
         });
         dialog.setContentPane(panelPrincipal);
@@ -334,44 +267,5 @@ public class FrameLogIn extends JDialog {
         for (JTextField campoTexto : camposTexto) {
             campoTexto.getDocument().addDocumentListener(listener);
         }
-    }
-
-    private void verificarCampos(JTextField txtNombre, JTextField txtApellidos, JTextField txtDNI, JTextField txtEmail,
-            JTextField txtTelefono, JTextField txtProvincia, JTextField txtCiudad, JTextField txtDireccion,
-            JTextField txtFechaNacimiento, JTextField txtUsuario, JButton btnAceptar) {
-        boolean esValido = true;
-
-        esValido &= validarCampo(txtNombre, "[a-zA-ZáéíóúÁÉÍÓÚñÑ]+");
-        esValido &= validarCampo(txtApellidos, "[a-zA-ZáéíóúÁÉÍÓÚñÑ]+( [a-zA-ZáéíóúÁÉÍÓÚñÑ]+)*");
-        esValido &= validarCampo(txtDNI, "\\d{8}[A-HJ-NP-TV-Z]");
-        esValido &= validarCampo(txtEmail, "^[A-Za-z0-9+_.-]+@(.+)$");
-        esValido &= validarCampo(txtTelefono, "\\+\\d{1,3} \\d{7,10}");
-        esValido &= validarCampo(txtProvincia, "[a-zA-ZáéíóúÁÉÍÓÚñÑ]+");
-        esValido &= validarCampo(txtCiudad, "[a-zA-ZáéíóúÁÉÍÓÚñÑ]+");
-        esValido &= validarCampo(txtDireccion, "^[a-zA-Z0-9 ]+, \\d+$");
-        esValido &= validarCampo(txtFechaNacimiento, "\\d{2}/\\d{2}/\\d{4}");
-        esValido &= validarCampo(txtUsuario, "[a-zA-Z0-9]+");
-
-        try {
-            List<String> usuarioContraLines = Files.readAllLines(Paths.get(RUTA_USUARIO_CONTRA));
-            for (String line : usuarioContraLines) {
-                String[] data = line.split(",");
-                if (data[0].equals(txtUsuario.getText())) {
-                    esValido = false;
-                    txtUsuario.setForeground(Color.RED);
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        btnAceptar.setEnabled(esValido);
-    }
-
-    private boolean validarCampo(JTextField campo, String regex) {
-        boolean esValido = !campo.getText().trim().isEmpty() && campo.getText().matches(regex);
-        campo.setForeground(esValido ? Color.BLACK : Color.RED);
-        return esValido;
     }
 }
