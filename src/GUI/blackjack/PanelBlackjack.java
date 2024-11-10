@@ -1,5 +1,5 @@
 // Código inspirado por el tutorial "Code Black Jack in Java" de [Kenny Yip Coding] en YouTube.
-// Enlace: https://www.youtube.com/watch?v=GMdgjaDdOjI 
+// URL: https://www.youtube.com/watch?v=GMdgjaDdOjI 
 package GUI.blackjack;
 
 import java.awt.*;
