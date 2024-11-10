@@ -61,6 +61,8 @@ public class PanelDatosUsuario extends JPanel {
             setEditable(false, txtNombre, txtApellidos, txtDNI, txtEmail, txtTelefono, txtProvincia, txtCiudad,
                     txtDireccion, txtFechaNacimiento, txtFechaRegistro);
         });
+        verificarCampos(txtNombre, txtApellidos, txtDNI, txtEmail, txtTelefono, txtProvincia, txtCiudad,
+                        txtDireccion, txtFechaNacimiento, txtFechaRegistro, btnGuardar);
         btnGuardar.setEnabled(false);
         panelOpciones.add(btnGuardar);
         add(panelOpciones, BorderLayout.SOUTH);
