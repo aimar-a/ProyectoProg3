@@ -5,7 +5,7 @@ import GUI.caballos.FrameCaballos;
 import GUI.dinoRun.DinoGameGUI;
 import GUI.logIn.FrameLogIn;
 import GUI.minas.FrameMinas;
-import GUI.perfil.FrameProfile;
+import GUI.perfil.FramePerfil;
 import GUI.ruleta.FrameRuleta;
 import GUI.slots.FrameSlots;
 import java.awt.*;
@@ -45,7 +45,6 @@ public class FrameMenuPrincipal extends JFrame {
         // Añadir paneles al JFrame
         add(panelCentral, BorderLayout.CENTER);
         add(barraAlta, BorderLayout.NORTH);
-        setVisible(true);
     }
 
     private void configurarBarraAlta() {
@@ -140,7 +139,7 @@ public class FrameMenuPrincipal extends JFrame {
         botonPerfil.setHorizontalTextPosition(SwingConstants.RIGHT);
         botonPerfil.setHorizontalAlignment(SwingConstants.LEFT);
         botonPerfil.setPreferredSize(new Dimension(botonPerfilWidth, iconSize));
-        botonPerfil.addActionListener(e -> new FrameProfile(usuario).setVisible(true));
+        botonPerfil.addActionListener(e -> new FramePerfil(this).setVisible(true));
     }
 
     public void abrirVentana(JuegosDisponibles juegoObjetivo) {
