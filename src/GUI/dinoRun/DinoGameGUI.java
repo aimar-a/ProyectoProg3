@@ -1,10 +1,10 @@
 package GUI.dinoRun;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import javax.swing.*;
 
 public class DinoGameGUI extends JFrame {
     private JButton startButton;
@@ -22,7 +22,7 @@ public class DinoGameGUI extends JFrame {
     public DinoGameGUI() {
         setTitle("Dino Game - Casa de Apuestas");
         setSize(400, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         // Panel principal para la disposición general
@@ -93,8 +93,10 @@ public class DinoGameGUI extends JFrame {
                     progressBar.setValue(progressValue);
                     progressBar.setString(String.format("x%.2f", multiplier)); // Mostrar multiplicador en texto
 
-                    // Simular probabilidad de choque, con mayor probabilidad a medida que aumenta el multiplicador
-                    if (random.nextDouble() < (0.05 + (multiplier / MAX_MULTIPLIER) * 0.1)) { // Aumentar riesgo de choque
+                    // Simular probabilidad de choque, con mayor probabilidad a medida que aumenta
+                    // el multiplicador
+                    if (random.nextDouble() < (0.05 + (multiplier / MAX_MULTIPLIER) * 0.1)) { // Aumentar riesgo de
+                                                                                              // choque
                         endGame(false);
                     }
                 }
@@ -102,7 +104,8 @@ public class DinoGameGUI extends JFrame {
         });
     }
 
-    // Método para mapear el valor del multiplicador al rango de la barra de progreso
+    // Método para mapear el valor del multiplicador al rango de la barra de
+    // progreso
     private double mapMultiplierToProgress(double multiplier) {
         // Mapea de 1.01 a 100000 a 0 a 100
         return (multiplier - 1.01) / (MAX_MULTIPLIER - 1.01) * 100;
@@ -116,17 +119,20 @@ public class DinoGameGUI extends JFrame {
                 // Validar que se haya ingresado una cantidad para apostar
                 String betText = betField.getText();
                 if (betText.isEmpty()) {
-                    JOptionPane.showMessageDialog(DinoGameGUI.this, "Por favor, ingrese una cantidad para apostar.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(DinoGameGUI.this, "Por favor, ingrese una cantidad para apostar.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                // Convertir la entrada a un número (aquí se puede añadir más validación si se desea)
+                // Convertir la entrada a un número (aquí se puede añadir más validación si se
+                // desea)
                 try {
                     double betAmount = Double.parseDouble(betText);
                     if (betAmount <= 0) {
                         throw new NumberFormatException();
                     }
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(DinoGameGUI.this, "Por favor, ingrese una cantidad válida.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(DinoGameGUI.this, "Por favor, ingrese una cantidad válida.", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
@@ -159,9 +165,9 @@ public class DinoGameGUI extends JFrame {
         startButton.setEnabled(true);
         cashOutButton.setEnabled(false);
 
-        String message = cashedOut ?
-                "¡Cobraste con éxito! Multiplicador: x" + String.format("%.2f", multiplier) + " sobre tu apuesta." :
-                "¡El dinosaurio se estrelló! Perdiste tu apuesta.";
+        String message = cashedOut
+                ? "¡Cobraste con éxito! Multiplicador: x" + String.format("%.2f", multiplier) + " sobre tu apuesta."
+                : "¡El dinosaurio se estrelló! Perdiste tu apuesta.";
         JOptionPane.showMessageDialog(this, message);
     }
 
