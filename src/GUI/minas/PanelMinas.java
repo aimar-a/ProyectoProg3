@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class PanelMinas extends JPanel {
 
-    private JButton[][] botones = new JButton[5][5]; // Matriz de botones
+    private final JButton[][] botones = new JButton[5][5]; // Matriz de botones
 
     public PanelMinas() {
         setLayout(new GridBagLayout());

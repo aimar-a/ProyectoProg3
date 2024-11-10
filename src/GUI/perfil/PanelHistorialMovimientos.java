@@ -1,9 +1,8 @@
 package GUI.perfil;
 
+import GUI.AccionesCsv;
 import java.awt.Color;
 import java.awt.Font;
-import java.io.*;
-import java.nio.file.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -11,18 +10,22 @@ import javax.swing.table.DefaultTableModel;
 
 public class PanelHistorialMovimientos extends JPanel {
 
-    private JTable table;
-    private DefaultTableModel tableModel;
-
-    private static final String RUTA_HISTORIAL_CSV = "src/CSV/historialMovimientos.csv";
+    private final JTable table;
+    private final DefaultTableModel tableModel;
 
     public PanelHistorialMovimientos(String usuario) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Layout vertical
 
         // Crear el modelo de la tabla con los encabezados
-        tableModel = new DefaultTableModel(new String[] { "Fecha", "Usuario", "Modificación", "Tipo", "Saldo Final" },
+        tableModel = new DefaultTableModel(
+                new String[] { "Fecha", "Hora", "Modificación", "Tipo", "Saldo Final" },
                 0);
         table = new JTable(tableModel);
+
+        // Personalizar la fuente de la tabla
+        Font font = new Font("Arial", Font.PLAIN, 16);
+        table.setFont(font);
+        table.setRowHeight(20); // Ajustar la altura de las filas para la nueva fuente
 
         // Personalizar el renderer de la tabla
         table.getColumnModel().getColumn(2).setCellRenderer(new ModificacionCellRenderer());
@@ -37,29 +40,15 @@ public class PanelHistorialMovimientos extends JPanel {
     }
 
     private void cargarHistorialMovimientos(String usuario) {
-        try {
-            // Leer el archivo historialMovimientos.csv
-            List<String> lines = Files.readAllLines(Paths.get(RUTA_HISTORIAL_CSV));
+        List<String[]> historial = AccionesCsv.obtenerHistorial(usuario);
+        for (String[] data : historial) {
+            String fecha = data[0];
+            String hora = data[1];
+            String modificacion = data[3];
+            String tipo = data[4];
+            double saldoFinal = Double.parseDouble(data[5]);
 
-            // Filtrar los movimientos para el usuario especificado
-            for (String line : lines) {
-                String[] data = line.split(",");
-
-                String fecha = data[0];
-                String nombreUsuario = data[1];
-                String modificacion = data[2];
-                String tipo = data[3];
-                double saldoFinal = Double.parseDouble(data[4]);
-
-                // Si el movimiento pertenece al usuario dado, añadirlo a la tabla
-                if (nombreUsuario.equals(usuario)) {
-                    tableModel.addRow(new Object[] { fecha, nombreUsuario, modificacion, tipo, saldoFinal });
-                }
-            }
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error al leer el archivo de historial de movimientos.", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            tableModel.addRow(new Object[] { fecha, hora, modificacion, tipo, saldoFinal });
         }
     }
 
