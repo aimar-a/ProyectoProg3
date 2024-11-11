@@ -18,6 +18,7 @@ public class TopBar extends JPanel {
         setBackground(Color.GREEN);
         add(new JLabel(title, SwingConstants.CENTER));
         JButton btnSalir = new JButton("<- Volver");
+        btnSalir.setFocusable(false);
         add(btnSalir, BorderLayout.WEST);
         btnSalir.addActionListener(e -> {
             frameMenuPrincipal.setVisible(true);
