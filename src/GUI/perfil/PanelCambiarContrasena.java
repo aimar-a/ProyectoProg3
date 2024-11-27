@@ -1,6 +1,6 @@
 package GUI.perfil;
 
-import GUI.AccionesCsv;
+import datos.AccionesCsv;
 import java.awt.*;
 import javax.swing.*;
 

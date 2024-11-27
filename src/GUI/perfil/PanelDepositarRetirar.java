@@ -1,6 +1,6 @@
 package GUI.perfil;
 
-import GUI.AccionesCsv;
+import datos.AccionesCsv;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;

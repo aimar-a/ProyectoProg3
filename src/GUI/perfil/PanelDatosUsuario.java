@@ -1,7 +1,7 @@
 package GUI.perfil;
 
 import GUI.AccionValidarCampo;
-import GUI.AccionesCsv;
+import datos.AccionesCsv;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;

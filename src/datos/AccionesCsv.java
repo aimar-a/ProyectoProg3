@@ -1,4 +1,4 @@
-package GUI;
+package datos;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,10 +14,10 @@ import java.util.Locale;
 
 public class AccionesCsv {
 
-    private static final String CSV_CONTRASENAS = "src/CSV/usuarioContra.csv";
-    private static final String CSV_DATOS = "src/CSV/usuarioDatos.csv";
-    private static final String CSV_CARTERA = "src/CSV/cartera.csv";
-    private static final String CSV_HISTORIAL = "src/CSV/historialMovimientos.csv";
+    private static final String CSV_CONTRASENAS = "resources/csv/usuarioContra.csv";
+    private static final String CSV_DATOS = "resources/csv/usuarioDatos.csv";
+    private static final String CSV_CARTERA = "resources/csv/cartera.csv";
+    private static final String CSV_HISTORIAL = "resources/csv/historialMovimientos.csv";
 
     // IAG
     public static String obtenerContrasena(String usuario) {

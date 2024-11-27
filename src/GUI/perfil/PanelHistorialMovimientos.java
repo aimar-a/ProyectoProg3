@@ -1,6 +1,6 @@
 package GUI.perfil;
 
-import GUI.AccionesCsv;
+import datos.AccionesCsv;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.*;

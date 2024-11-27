@@ -1,6 +1,7 @@
 package GUI;
 
 import GUI.perfil.TiposDeDatos;
+import datos.AccionesCsv;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -25,4 +26,5 @@ public class AccionValidarCampo {
         boolean esValido = !campo.getText().trim().isEmpty() && campo.getText().matches(regex);
         campo.setForeground(esValido ? Color.BLACK : Color.RED);
         return esValido;
-    }}
+    }
+}

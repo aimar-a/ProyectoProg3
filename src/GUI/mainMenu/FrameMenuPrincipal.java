@@ -1,6 +1,5 @@
 package GUI.mainMenu;
 
-import GUI.AccionesCsv;
 import GUI.blackjack.FrameBlackjack;
 import GUI.caballos.FrameCaballos;
 import GUI.dinoRun.DinoGameGUI;
@@ -9,6 +8,7 @@ import GUI.minas.FrameMinas;
 import GUI.perfil.FramePerfil;
 import GUI.ruleta.FrameRuleta;
 import GUI.slots.FrameSlots;
+import datos.AccionesCsv;
 import java.awt.*;
 import javax.swing.*;
 
@@ -16,7 +16,8 @@ public class FrameMenuPrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
     public boolean logeado;
     public String usuario;
-    private JLabel label;
+    private JLabel labelBienvenida;
+    private JLabel labelSaldo = new JLabel();
     private JButton botonLogIn;
     private JButton botonSalir;
     private JPanel barraAlta;
@@ -43,6 +44,11 @@ public class FrameMenuPrincipal extends JFrame {
 
         // Configuración del panel central con opciones de juego
         JPanel panelCentral = configurarPanelCentral();
+
+        labelSaldo.setVisible(false);
+        botonPerfil.setVisible(false);
+        panelDerechaBarraAlta.add(labelSaldo);
+        panelDerechaBarraAlta.add(botonPerfil);
 
         // Añadir paneles al JFrame
         add(panelCentral, BorderLayout.CENTER);
@@ -100,11 +106,11 @@ public class FrameMenuPrincipal extends JFrame {
     private JPanel configurarPanelCentral() {
         JPanel panelCentral = new JPanel(new BorderLayout());
 
-        label = new JLabel("Bienvenido al Menú Principal, ¿A qué desea jugar?", SwingConstants.CENTER);
+        labelBienvenida = new JLabel("Bienvenido al Menú Principal, ¿A qué desea jugar?", SwingConstants.CENTER);
         int labelWidth = getWidth() / 10;
         int labelHeight = getHeight() / 40;
-        label.setPreferredSize(new Dimension(labelWidth, labelHeight));
-        panelCentral.add(label, BorderLayout.NORTH);
+        labelBienvenida.setPreferredSize(new Dimension(labelWidth, labelHeight));
+        panelCentral.add(labelBienvenida, BorderLayout.NORTH);
 
         JPanel panelSeleccion = new JPanel(new FlowLayout(FlowLayout.CENTER, getWidth() / 25, getHeight() / 40));
 
@@ -179,7 +185,7 @@ public class FrameMenuPrincipal extends JFrame {
     }
 
     private void cerrarSesion() {
-        label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
+        labelBienvenida.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
         botonLogIn.setEnabled(true);
         logeado = false;
         usuario = null;
@@ -188,18 +194,19 @@ public class FrameMenuPrincipal extends JFrame {
 
     public void actualizarEstado() {
         if (logeado) {
-            label.setText("¡Bienvenido " + usuario + "! Ya estás logueado.");
+            labelBienvenida.setText("¡Bienvenido " + usuario + "! Ya estás logueado.");
             botonLogIn.setVisible(false);
             botonPerfil.setVisible(true);
+            labelSaldo.setVisible(true);
             botonPerfil.setText(" " + usuario);
-            panelDerechaBarraAlta.add(new JLabel("Saldo: " + String.format("%.2f", AccionesCsv.obtenerSaldo(usuario))));
-            panelDerechaBarraAlta.add(botonPerfil);
+            labelSaldo.setText("Saldo: " + String.format("%.2f", AccionesCsv.obtenerSaldo(usuario)));
             botonSalir.setText("Cerrar Sesión");
         } else {
-            label.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
+            labelBienvenida.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
             botonPerfil.setVisible(false);
             botonLogIn.setVisible(true);
-            panelDerechaBarraAlta.add(botonLogIn);
+            labelSaldo.setVisible(false);
+            labelSaldo.setText("");
             botonSalir.setText("Salir");
         }
     }

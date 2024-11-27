@@ -1,10 +1,10 @@
 package GUI.logIn;
 
 import GUI.AccionValidarCampo;
-import GUI.AccionesCsv;
 import GUI.mainMenu.FrameMenuPrincipal;
 import GUI.mainMenu.JuegosDisponibles;
 import GUI.perfil.TiposDeDatos;
+import datos.AccionesCsv;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Image;

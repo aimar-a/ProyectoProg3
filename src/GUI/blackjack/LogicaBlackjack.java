@@ -11,7 +11,6 @@ public class LogicaBlackjack {
     private Mazo mazo;
     private ArrayList<Carta> manoCrupier;
     private ArrayList<Carta> manoJugador;
-    // esto he puesto yo
     private int sumaCrupier, sumaJugador;
     private Carta cartaOculta;
     private final PanelBlackjack panelBlackjack;
@@ -26,11 +25,13 @@ public class LogicaBlackjack {
     }
 
     public void iniciarJuego() {
+        // Reiniciar valores y configurar el juego
         mazo = new Mazo();
         manoCrupier = new ArrayList<>();
         manoJugador = new ArrayList<>();
         sumaCrupier = sumaJugador = cuentaAsesCrupier = cuentaAsesJugador = 0;
 
+        // Robar la carta oculta del crupier
         cartaOculta = mazo.robarCarta();
         sumaCrupier += cartaOculta.getValor();
         cuentaAsesCrupier += cartaOculta.esAs() ? 1 : 0;
@@ -39,13 +40,17 @@ public class LogicaBlackjack {
         agregarCartaJugador();
         agregarCartaJugador();
 
+        // Desactivar el botón "Iniciar" y el spinner de apuestas
         panelApuestas.botonIniciar.setEnabled(false);
+        panelApuestas.spinnerApuesta.setEnabled(false); // Desactivar el spinner
         panelApuestas.botonPedir.setEnabled(true);
         panelApuestas.botonPlantarse.setEnabled(true);
 
+        // Dibujar estado inicial
         panelBlackjack.dibujar(cartaOculta, sumaCrupier, sumaJugador, manoCrupier, manoJugador,
                 panelApuestas.botonPlantarse);
 
+        // Comprobar Blackjack inicial
         if (sumaJugador == 21) {
             sumaJugador = -1;
             if (sumaCrupier == 21) {
@@ -59,16 +64,65 @@ public class LogicaBlackjack {
     }
 
     protected void plantarseJugador() {
+        // Crupier juega según sus reglas
         while (ajustarSumaConAses(sumaCrupier, cuentaAsesCrupier) < 17
                 || (sumaCrupier - (cuentaAsesCrupier - 1) * 11 == 17 && cuentaAsesCrupier > 0)) {
-            // ChatGPT: Exigir que el crupier pida en un 17 blando (17 y algun as con valor
-            // 11) es simplemente una estrategia que favorece al casino, ya que aumenta la
-            // probabilidad de que el crupier obtenga una mano más fuerte.
             agregarCartaCrupier();
         }
+
         panelBlackjack.dibujar(cartaOculta, sumaCrupier, sumaJugador, manoCrupier, manoJugador,
                 panelApuestas.botonPlantarse);
         finalizarJuego();
+    }
+
+    private void finalizarJuego() {
+        // Desactivar los botones de acción del jugador
+        panelApuestas.botonPedir.setEnabled(false);
+        panelApuestas.botonPlantarse.setEnabled(false);
+
+        // Ajustar valores finales considerando los ases
+        sumaCrupier = ajustarSumaConAses(sumaCrupier, cuentaAsesCrupier);
+        sumaJugador = ajustarSumaConAses(sumaJugador, cuentaAsesJugador);
+
+        // Determinar el resultado
+        String mensaje;
+        if (sumaCrupier == -1 && sumaJugador == -1) {
+            mensaje = "¡Empate! Ambos tienen Blackjack.";
+        } else if (sumaCrupier == -1) {
+            mensaje = "¡Blackjack! ¡Perdiste!";
+        } else if (sumaJugador == -1) {
+            mensaje = "¡Blackjack! ¡Ganaste!";
+        } else if (sumaJugador > 21) {
+            mensaje = "¡Perdiste! Te pasaste de 21.";
+        } else if (sumaCrupier > 21) {
+            mensaje = "¡Ganaste! El crupier se pasó de 21.";
+        } else if (sumaJugador == sumaCrupier) {
+            mensaje = "¡Empate!";
+        } else if (sumaJugador > sumaCrupier) {
+            mensaje = "¡Ganaste!";
+        } else {
+            mensaje = "¡Perdiste!";
+        }
+
+        // Mostrar mensaje del resultado
+        JOptionPane.showMessageDialog(panelBlackjack, mensaje, "Fin del Juego", JOptionPane.INFORMATION_MESSAGE);
+
+        // Reactivar el botón "Iniciar" y el spinner de apuestas
+        panelApuestas.botonIniciar.setEnabled(true);
+        panelApuestas.spinnerApuesta.setEnabled(true); // Reactivar el spinner
+
+        // Reiniciar automáticamente si está activada la opción automática
+        if (panelApuestas.checkAutomatico.isSelected()) {
+            iniciarJuego();
+        }
+    }
+
+    private int ajustarSumaConAses(int suma, int cuentaAses) {
+        while (suma > 21 && cuentaAses > 0) {
+            suma -= 10;
+            cuentaAses--;
+        }
+        return suma;
     }
 
     private void agregarCartaCrupier() {
@@ -88,46 +142,6 @@ public class LogicaBlackjack {
                 panelApuestas.botonPlantarse);
         if (ajustarSumaConAses(sumaJugador, cuentaAsesJugador) > 21) {
             finalizarJuego();
-        }
-    }
-
-    private int ajustarSumaConAses(int suma, int cuentaAses) {
-        while (suma > 21 && cuentaAses > 0) {
-            suma -= 10;
-            cuentaAses--;
-        }
-        return suma;
-    }
-
-    private void finalizarJuego() {
-        panelApuestas.botonPedir.setEnabled(false);
-        panelApuestas.botonPlantarse.setEnabled(false);
-        sumaCrupier = ajustarSumaConAses(sumaCrupier, cuentaAsesCrupier);
-        sumaJugador = ajustarSumaConAses(sumaJugador, cuentaAsesJugador);
-
-        String mensaje;
-        if (sumaCrupier == -1 && sumaJugador == -1) {
-            mensaje = "¡Empate! Ambos tienen Blackjack.\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
-        } else if (sumaCrupier == -1) {
-            mensaje = "¡Blackjack! ¡Perdiste!\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
-        } else if (sumaJugador == -1) {
-            mensaje = "¡Blackjack! ¡Ganaste!\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
-        } else if (sumaJugador > 21) {
-            mensaje = "¡Perdiste! Te pasaste de 21.\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
-        } else if (sumaCrupier > 21) {
-            mensaje = "¡Ganaste! El crupier se pasó de 21.\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
-        } else if (sumaJugador == sumaCrupier) {
-            mensaje = "¡Empate!\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
-        } else if (sumaJugador > sumaCrupier) {
-            mensaje = "¡Ganaste!\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
-        } else {
-            mensaje = "¡Perdiste!\nCrupier: " + sumaCrupier + ", Jugador: " + sumaJugador;
-        }
-
-        JOptionPane.showMessageDialog(panelBlackjack, mensaje, "Fin del Juego", JOptionPane.INFORMATION_MESSAGE);
-        panelApuestas.botonIniciar.setEnabled(true);
-        if (panelApuestas.checkAutomatico.isSelected()) {
-            iniciarJuego();
         }
     }
 }

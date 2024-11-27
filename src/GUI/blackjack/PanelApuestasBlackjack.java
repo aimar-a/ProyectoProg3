@@ -4,34 +4,41 @@ package GUI.blackjack;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class PanelApuestasBlackjack extends JPanel {
     protected final JButton botonIniciar = new JButton("Iniciar Partida");
     protected final JButton botonPedir = new JButton("Pedir");
     protected final JButton botonPlantarse = new JButton("Plantarse");
-    private final JTextField campoApuesta = new JTextField(10);
+    protected final JSpinner spinnerApuesta = new JSpinner(new SpinnerNumberModel(0, 0, 10000, 1)); // Mín: 0, Máx:
+                                                                                                    // 10000,
+                                                                                                    // Incremento: 1
     protected final JCheckBox checkAutomatico = new JCheckBox("Auto");
 
     public PanelApuestasBlackjack() {
         setLayout(new FlowLayout());
 
+        // Deshabilitar botones hasta que comience la partida
         botonPedir.setEnabled(false);
         botonPlantarse.setEnabled(false);
+        botonIniciar.setEnabled(false); // Iniciar deshabilitado por defecto
 
+        // Etiqueta y Spinner para la apuesta
         add(new JLabel("Apuesta: "));
-        campoApuesta.setDocument(new javax.swing.text.PlainDocument() {
+        add(spinnerApuesta);
+
+        // Listener para habilitar o deshabilitar el botón según la apuesta
+        spinnerApuesta.addChangeListener(new ChangeListener() {
             @Override
-            public void insertString(int offs, String str, javax.swing.text.AttributeSet a)
-                    throws javax.swing.text.BadLocationException {
-                if (str == null) {
-                    return;
-                }
-                if (str.matches("[0-9]*")) {
-                    super.insertString(offs, str, a);
-                }
+            public void stateChanged(ChangeEvent e) {
+                // Verificar si la apuesta es mayor a 0
+                int apuesta = (int) spinnerApuesta.getValue();
+                botonIniciar.setEnabled(apuesta > 0);
             }
         });
-        add(campoApuesta);
+
+        // Agregar botones y elementos adicionales
         add(botonIniciar);
         add(checkAutomatico);
         add(new JLabel(" | "));
@@ -39,7 +46,8 @@ public class PanelApuestasBlackjack extends JPanel {
         add(botonPlantarse);
     }
 
+    // Obtener la cantidad apostada
     public int getCantidadApuesta() {
-        return Integer.parseInt(campoApuesta.getText());
+        return (int) spinnerApuesta.getValue();
     }
 }
