@@ -1,8 +1,6 @@
 // https://www.freeslots.com/es/Slot21.htm 
 package GUI.slots;
 
-import java.awt.event.ActionEvent;
-
 public class LogicaSlots {
     private final PanelSlots panelSlots;
     private final PanelApuestasSlots panelApuestas;
@@ -13,9 +11,6 @@ public class LogicaSlots {
         this.panelApuestas = panelApuestas;
         panelApuestas.botonGirar.addActionListener(e -> realizarTirada());
         panelSlots.girarRuletas();
-        panelApuestas.apuesta.addActionListener((ActionEvent e) -> {
-            realizarTirada();
-        });
     }
 
     public class Hilo extends Thread {
