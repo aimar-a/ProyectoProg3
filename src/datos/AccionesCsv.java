@@ -1,7 +1,6 @@
 package datos;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,7 +16,6 @@ public class AccionesCsv {
     private static final String CSV_CONTRASENAS = "resources/csv/usuarioContra.csv";
     private static final String CSV_DATOS = "resources/csv/usuarioDatos.csv";
     private static final String CSV_CARTERA = "resources/csv/cartera.csv";
-    private static final String CSV_HISTORIAL = "resources/csv/historialMovimientos.csv";
 
     // IAG
     public static String obtenerContrasena(String usuario) {
@@ -194,53 +192,6 @@ public class AccionesCsv {
         }
 
         return actualizado;
-    }
-
-    // IAG
-    public static boolean agregarMovimiento(String usuario, double cantidad, String asunto) {
-        double saldoActual = obtenerSaldo(usuario);
-        double nuevoSaldo = saldoActual + cantidad;
-        if (nuevoSaldo < 0) {
-            return false;
-        }
-        if (!cambiarSaldo(usuario, nuevoSaldo)) {
-            return false;
-        }
-
-        String fecha = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        String hora = new SimpleDateFormat("HH:mm:ss").format(new Date());
-        String movimiento = String.format(Locale.US, "%s,%s,%s,%+.2f,%s,%.2f", fecha, hora, usuario, cantidad, asunto,
-                nuevoSaldo);
-
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(CSV_HISTORIAL, true))) {
-            bw.write(movimiento);
-            bw.newLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-
-        return true;
-    }
-
-    // IAG
-    public static List<String[]> obtenerHistorial(String usuario) {
-        List<String[]> historial = new ArrayList<>();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(CSV_HISTORIAL))) {
-            String linea;
-
-            while ((linea = br.readLine()) != null) {
-                String[] datos = linea.split(",");
-
-                if (datos[2].equals(usuario)) {
-                    historial.add(datos);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return historial;
     }
 
     // IAG
