@@ -1,6 +1,6 @@
 package GUI.perfil;
 
-import datos.AccionesCsv;
+import datos.GestorUsuarios;
 import java.awt.*;
 import javax.swing.*;
 
@@ -71,7 +71,7 @@ public class PanelCambiarContrasena extends JPanel {
         String contrasenaNueva = new String(txtContrasenaNueva.getPassword());
         String contrasenaConfirmada = new String(txtConfirmarContrasena.getPassword());
 
-        if (!contrasenaAntigua.equals(AccionesCsv.obtenerContrasena(usuario))) {
+        if (!contrasenaAntigua.equals(GestorUsuarios.obtenerContrasena(usuario))) {
             JOptionPane.showMessageDialog(this, "La contraseña antigua es incorrecta.", "Error",
                     JOptionPane.ERROR_MESSAGE);
             return;
@@ -89,6 +89,6 @@ public class PanelCambiarContrasena extends JPanel {
             return;
         }
 
-        AccionesCsv.cambiarContrasena(usuario, contrasenaNueva);
+        GestorUsuarios.cambiarContrasena(usuario, contrasenaNueva);
     }
 }

@@ -1,6 +1,6 @@
 package GUI.perfil;
 
-public enum TiposDeDatos {
+public enum BORRARTiposDeDatos {
     USUARIO("[a-zA-Z0-9]+"),
     NOMBRE("[a-zA-ZáéíóúÁÉÍÓÚñÑ]+"),
     APELLIDOS("[a-zA-ZáéíóúÁÉÍÓÚñÑ]+( [a-zA-ZáéíóúÁÉÍÓÚñÑ]+)*"),
@@ -22,4 +22,3 @@ public enum TiposDeDatos {
         return regex;
     }
 }
-	

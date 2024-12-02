@@ -1,7 +1,7 @@
 package GUI.perfil;
 
-import GUI.AccionValidarCampo;
-import datos.AccionesCsv;
+import datos.AccionValidarCampo;
+import datos.GestorUsuarios;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -17,7 +17,7 @@ public class PanelDatosUsuario extends JPanel {
     private static final Font FONT = new Font("Arial", Font.PLAIN, 16);
 
     public PanelDatosUsuario(String usuario) {
-        String[] datos = AccionesCsv.obtenerDatos(usuario);
+        String[] datos = GestorUsuarios.obtenerDatos(usuario);
         setLayout(new BorderLayout());
 
         JPanel panelCentral = new JPanel(new GridBagLayout());
@@ -62,7 +62,7 @@ public class PanelDatosUsuario extends JPanel {
                     txtTelefono.getText().split(" ")[0], txtTelefono.getText().split(" ")[1], txtProvincia.getText(),
                     txtCiudad.getText(), txtDireccion.getText().split(",")[0],
                     txtDireccion.getText().split(",")[1].replace(" ", ""), txtFechaNacimiento.getText() };
-            if (AccionesCsv.cambiarDatos(usuario, datosNuevos)) {
+            if (GestorUsuarios.cambiarDatos(usuario, datosNuevos)) {
                 JOptionPane.showMessageDialog(this, "Datos actualizados correctamente", "Información",
                         JOptionPane.INFORMATION_MESSAGE);
             } else {

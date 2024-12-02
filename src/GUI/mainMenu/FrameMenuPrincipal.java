@@ -8,7 +8,8 @@ import GUI.minas.FrameMinas;
 import GUI.perfil.FramePerfil;
 import GUI.ruleta.FrameRuleta;
 import GUI.slots.FrameSlots;
-import datos.AccionesCsv;
+import datos.GestorMovimientos;
+import datos.GestorUsuarios;
 import java.awt.*;
 import javax.swing.*;
 
@@ -199,7 +200,7 @@ public class FrameMenuPrincipal extends JFrame {
             botonPerfil.setVisible(true);
             labelSaldo.setVisible(true);
             botonPerfil.setText(" " + usuario);
-            labelSaldo.setText("Saldo: " + String.format("%.2f", AccionesCsv.obtenerSaldo(usuario)));
+            labelSaldo.setText("Saldo: " + String.format("%.2f", GestorMovimientos.obtenerSaldo(usuario)));
             botonSalir.setText("Cerrar Sesión");
         } else {
             labelBienvenida.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");

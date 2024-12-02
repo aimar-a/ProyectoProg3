@@ -1,6 +1,6 @@
 package GUI.perfil;
 
-import datos.GestorBD;
+import datos.GestorMovimientos;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -272,7 +272,7 @@ public class PanelDepositarRetirar extends JPanel {
         // Add action listeners for deposit and withdraw buttons
         botonDepositarTarjeta.addActionListener(e -> {
             double cantidad = Double.parseDouble(cantidadTarjeta.getText());
-            if (GestorBD.agregarMovimiento(usuario, cantidad, "deposito")) {
+            if (GestorMovimientos.agregarMovimiento(usuario, cantidad, "deposito")) {
                 JOptionPane.showMessageDialog(this, "Depósito realizado correctamente", "Información",
                         JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -283,7 +283,7 @@ public class PanelDepositarRetirar extends JPanel {
 
         botonDepositarTransferencia.addActionListener(e -> {
             double cantidad = Double.parseDouble(cantidadDinero.getText());
-            if (GestorBD.agregarMovimiento(usuario, cantidad, "deposito")) {
+            if (GestorMovimientos.agregarMovimiento(usuario, cantidad, "deposito")) {
                 JOptionPane.showMessageDialog(this, "Depósito realizado correctamente", "Información",
                         JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -293,7 +293,7 @@ public class PanelDepositarRetirar extends JPanel {
         });
         botonRetirarTransferencia.addActionListener(e -> {
             double cantidad = Double.parseDouble(cantidadDinero.getText());
-            if (GestorBD.agregarMovimiento(usuario, -cantidad, "retiro")) {
+            if (GestorMovimientos.agregarMovimiento(usuario, -cantidad, "retiro")) {
                 JOptionPane.showMessageDialog(this, "Retiro realizado correctamente", "Información",
                         JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -303,7 +303,7 @@ public class PanelDepositarRetirar extends JPanel {
 
         botonDepositarPaypal.addActionListener(e -> {
             double cantidad = Double.parseDouble(cantidadPaypal.getText());
-            if (GestorBD.agregarMovimiento(usuario, cantidad, "deposito")) {
+            if (GestorMovimientos.agregarMovimiento(usuario, cantidad, "deposito")) {
                 JOptionPane.showMessageDialog(this, "Depósito realizado correctamente", "Información",
                         JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -313,7 +313,7 @@ public class PanelDepositarRetirar extends JPanel {
         });
         botonRetirarPaypal.addActionListener(e -> {
             double cantidad = Double.parseDouble(cantidadPaypal.getText());
-            if (GestorBD.agregarMovimiento(usuario, -cantidad, "retiro")) {
+            if (GestorMovimientos.agregarMovimiento(usuario, -cantidad, "retiro")) {
                 JOptionPane.showMessageDialog(this, "Retiro realizado correctamente", "Información",
                         JOptionPane.INFORMATION_MESSAGE);
             } else {

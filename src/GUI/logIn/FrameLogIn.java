@@ -1,10 +1,9 @@
 package GUI.logIn;
 
-import GUI.AccionValidarCampo;
 import GUI.mainMenu.FrameMenuPrincipal;
 import GUI.mainMenu.JuegosDisponibles;
-import GUI.perfil.TiposDeDatos;
-import datos.AccionesCsv;
+import datos.GestorUsuarios;
+import datos.TiposDeDatos;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -129,7 +128,7 @@ public class FrameLogIn extends JDialog {
         String usuario = usuarioField.getText();
         String password = new String(passwordField.getPassword());
 
-        if (password.equals(AccionesCsv.obtenerContrasena(usuario))) {
+        if (password.equals(GestorUsuarios.obtenerContrasena(usuario))) {
             JOptionPane.showMessageDialog(this, "Login exitoso.");
             menuPrincipal.logeado = true; // Cambia el estado a true en MenuPrincipal
             menuPrincipal.usuario = usuario; // Guarda el usuario en MenuPrincipal
@@ -147,7 +146,6 @@ public class FrameLogIn extends JDialog {
         }
     }
 
-    // IAG
     public void registrarUsuario() {
         // Definir los campos de entrada
         JTextField txtUsuario = new JTextField();
@@ -159,44 +157,115 @@ public class FrameLogIn extends JDialog {
         JTextField txtProvincia = new JTextField();
         JTextField txtCiudad = new JTextField();
         JTextField txtDireccion = new JTextField("Calle, Número");
-        JTextField txtFechaNacimiento = new JTextField("DD/MM/AAAA");
+        JTextField txtFechaNacimiento = new JTextField();
         JPasswordField txtContrasena = new JPasswordField();
+
         JButton btnAceptar = new JButton("Aceptar");
         JButton btnCancelar = new JButton("Cancelar");
         btnAceptar.setEnabled(false);
 
+        JLabel labelFormatoInfoUsuario = new JLabel();
+        JLabel labelFormatoInfoNombre = new JLabel();
+        JLabel labelFormatoInfoApellidos = new JLabel();
+        JLabel labelFormatoInfoDNI = new JLabel();
+        JLabel labelFormatoInfoEmail = new JLabel();
+        JLabel labelFormatoInfoTelefono = new JLabel();
+        JLabel labelFormatoInfoProvincia = new JLabel();
+        JLabel labelFormatoInfoCiudad = new JLabel();
+        JLabel labelFormatoInfoDireccion = new JLabel();
+        JLabel labelFormatoInfoFechaNacimiento = new JLabel();
+        JLabel labelFormatoInfoContrasena = new JLabel();
+
         JTextField[] camposTexto = { txtNombre, txtApellidos, txtDNI, txtEmail, txtTelefono, txtProvincia, txtCiudad,
                 txtDireccion, txtFechaNacimiento, txtUsuario };
-        TiposDeDatos[] regex = { TiposDeDatos.NOMBRE, TiposDeDatos.APELLIDOS, TiposDeDatos.DNI, TiposDeDatos.EMAIL,
+        TiposDeDatos[] tiposDatos = { TiposDeDatos.NOMBRE, TiposDeDatos.APELLIDOS, TiposDeDatos.DNI, TiposDeDatos.MAIL,
                 TiposDeDatos.TELEFONO, TiposDeDatos.PROVINCIA, TiposDeDatos.CIUDAD, TiposDeDatos.DIRECCION,
-                TiposDeDatos.FECHA_NACIMIENTO, TiposDeDatos.USUARIO };
+                TiposDeDatos.FECHA_DE_NACIMIENTO, TiposDeDatos.USUARIO };
+        JLabel[] labelsFormatoInfo = { labelFormatoInfoNombre, labelFormatoInfoApellidos, labelFormatoInfoDNI,
+                labelFormatoInfoEmail, labelFormatoInfoTelefono, labelFormatoInfoProvincia, labelFormatoInfoCiudad,
+                labelFormatoInfoDireccion, labelFormatoInfoFechaNacimiento, labelFormatoInfoUsuario };
 
         // Crear un panel con los campos
-        JPanel panelCampos = new JPanel(new GridLayout(12, 2, 10, 10));
+        JPanel panelCampos = new JPanel(new GridLayout(23, 2, 10, 10));
         panelCampos.add(new JLabel("Usuario:"));
         panelCampos.add(txtUsuario);
+        panelCampos.add(new JLabel());
+        panelCampos.add(labelFormatoInfoUsuario);
+
         panelCampos.add(new JLabel("Nombre:"));
         panelCampos.add(txtNombre);
+        panelCampos.add(new JLabel());
+        panelCampos.add(labelFormatoInfoNombre);
+
         panelCampos.add(new JLabel("Apellidos:"));
         panelCampos.add(txtApellidos);
+        panelCampos.add(new JLabel());
+        panelCampos.add(labelFormatoInfoApellidos);
+
         panelCampos.add(new JLabel("DNI:"));
         panelCampos.add(txtDNI);
+        panelCampos.add(new JLabel());
+        panelCampos.add(labelFormatoInfoDNI);
+
         panelCampos.add(new JLabel("Email:"));
         panelCampos.add(txtEmail);
+        panelCampos.add(new JLabel());
+        panelCampos.add(labelFormatoInfoEmail);
+
         panelCampos.add(new JLabel("Teléfono:"));
         panelCampos.add(txtTelefono);
+        panelCampos.add(new JLabel());
+        panelCampos.add(labelFormatoInfoTelefono);
+
         panelCampos.add(new JLabel("Provincia:"));
         panelCampos.add(txtProvincia);
+        panelCampos.add(new JLabel());
+        panelCampos.add(labelFormatoInfoProvincia);
+
         panelCampos.add(new JLabel("Ciudad:"));
         panelCampos.add(txtCiudad);
+        panelCampos.add(new JLabel());
+        panelCampos.add(labelFormatoInfoCiudad);
+
         panelCampos.add(new JLabel("Dirección:"));
         panelCampos.add(txtDireccion);
+        panelCampos.add(new JLabel());
+        panelCampos.add(labelFormatoInfoDireccion);
+
         panelCampos.add(new JLabel("Fecha de nacimiento:"));
         panelCampos.add(txtFechaNacimiento);
+        panelCampos.add(new JLabel());
+        panelCampos.add(labelFormatoInfoFechaNacimiento);
+
         panelCampos.add(new JLabel("Contraseña:"));
         panelCampos.add(txtContrasena);
+        panelCampos.add(new JLabel());
+        panelCampos.add(labelFormatoInfoContrasena);
+
         panelCampos.add(btnCancelar);
         panelCampos.add(btnAceptar);
+
+        TiposDeDatos.comprobarCamposYInfo(camposTexto, labelsFormatoInfo, tiposDatos);
+
+        for (JTextField campo : camposTexto) {
+            // IAG
+            campo.getDocument().addDocumentListener(new DocumentListener() {
+                @Override
+                public void insertUpdate(DocumentEvent e) {
+                    TiposDeDatos.comprobarCamposYInfo(camposTexto, labelsFormatoInfo, tiposDatos);
+                }
+
+                @Override
+                public void removeUpdate(DocumentEvent e) {
+                    TiposDeDatos.comprobarCamposYInfo(camposTexto, labelsFormatoInfo, tiposDatos);
+                }
+
+                @Override
+                public void changedUpdate(DocumentEvent e) {
+                    TiposDeDatos.comprobarCamposYInfo(camposTexto, labelsFormatoInfo, tiposDatos);
+                }
+            });
+        }
 
         // Crear un panel principal con borde
         JPanel panelPrincipal = new JPanel();
@@ -204,28 +273,7 @@ public class FrameLogIn extends JDialog {
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(panelCampos, BorderLayout.CENTER);
 
-        DocumentListener validationListener = new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                AccionValidarCampo.verificarCampos(btnAceptar, camposTexto, regex);
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                AccionValidarCampo.verificarCampos(btnAceptar, camposTexto, regex);
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                AccionValidarCampo.verificarCampos(btnAceptar, camposTexto, regex);
-            }
-        };
         JDialog dialog = new JDialog(this, "Registrar Usuario", true);
-
-        agregarDocumentListeners(validationListener, txtNombre, txtApellidos, txtDNI, txtEmail, txtTelefono,
-                txtProvincia, txtCiudad, txtDireccion, txtFechaNacimiento, txtUsuario);
-
-        AccionValidarCampo.verificarCampos(btnAceptar, camposTexto, regex);
 
         btnCancelar.addActionListener(e -> dialog.dispose());
         btnAceptar.addActionListener(e -> {
@@ -246,7 +294,7 @@ public class FrameLogIn extends JDialog {
             String[] datos = { nombre, apellidos, dni, email, telefono.split(" ")[0], telefono.split(" ")[1], provincia,
                     ciudad, direccion.split(",")[0], direccion.split(",")[1].replace(" ", ""), fechaNacimiento };
 
-            if (AccionesCsv.agregarUsuario(usuario, contrasena, datos)) {
+            if (GestorUsuarios.agregarUsuario(usuario, contrasena, datos)) {
                 JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente.", "Éxito",
                         JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -257,15 +305,10 @@ public class FrameLogIn extends JDialog {
             dialog.dispose();
         });
         dialog.setContentPane(panelPrincipal);
-        dialog.setSize(400, 500);
+        dialog.setSize(800, 800);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
     }
 
-    private void agregarDocumentListeners(DocumentListener listener, JTextField... camposTexto) {
-        for (JTextField campoTexto : camposTexto) {
-            campoTexto.getDocument().addDocumentListener(listener);
-        }
-    }
 }
