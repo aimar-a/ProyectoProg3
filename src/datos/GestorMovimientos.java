@@ -80,7 +80,7 @@ public class GestorMovimientos {
             pstmt.setString(1, usuario);
             pstmt.executeUpdate();
             Random random = new Random();
-            agregarMovimiento(usuario, random.nextInt(10), "bienvenida");
+            agregarMovimiento(usuario, random.nextFloat(10), "bienvenida");
         } catch (SQLException e) {
             e.printStackTrace();
         }

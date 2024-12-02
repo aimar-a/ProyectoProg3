@@ -1,8 +1,11 @@
 package GUI.logIn;
 
+import datos.GestorMovimientos;
 import datos.GestorUsuarios;
 import datos.TiposDeDatos;
 import java.awt.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 import javax.swing.*;
@@ -45,11 +48,14 @@ public class FrameRegistro extends JDialog {
         btnAceptar.setEnabled(false);
 
         campos = new JTextField[] { txtUsuario, txtNombre, txtApellidos, txtDNI, txtEmail, txtNumeroTelefono,
-                txtProvincia, txtCiudad, txtCalle, txtNumero };
+                txtProvincia, txtCiudad, txtCalle, txtNumero, txtContrasena };
         tipos = new TiposDeDatos[] { TiposDeDatos.USUARIO, TiposDeDatos.NOMBRE, TiposDeDatos.APELLIDOS,
                 TiposDeDatos.DNI, TiposDeDatos.MAIL, TiposDeDatos.TELEFONO, TiposDeDatos.PROVINCIA,
-                TiposDeDatos.CIUDAD, TiposDeDatos.CALLE, TiposDeDatos.NUMERO };
-        labelsFormatoInfo = Arrays.stream(campos).map(c -> new JLabel()).toArray(JLabel[]::new);
+                TiposDeDatos.CIUDAD, TiposDeDatos.CALLE, TiposDeDatos.NUMERO, TiposDeDatos.CONTRASENA };
+        JLabel jlabelInfoFormatDireccion = new JLabel();
+        labelsFormatoInfo = new JLabel[] { new JLabel(), new JLabel(), new JLabel(), new JLabel(), new JLabel(),
+                new JLabel(), new JLabel(), new JLabel(), jlabelInfoFormatDireccion, jlabelInfoFormatDireccion,
+                new JLabel() };
         JLabel jlabelInfoFormatFechaNacimiento = new JLabel(TiposDeDatos
                 .validarDato(TiposDeDatos.FECHA_DE_NACIMIENTO, formatFecha(comboDia.getSelectedItem(),
                         comboMes.getSelectedItem(), comboAno.getSelectedItem())));
@@ -93,7 +99,7 @@ public class FrameRegistro extends JDialog {
         btnCancelar.addActionListener(e -> dispose());
         btnAceptar.addActionListener(e -> registrarUsuario(txtUsuario, txtNombre, txtApellidos, txtDNI,
                 txtEmail, comboPrefijo, txtNumeroTelefono, txtCalle, txtNumero, comboDia, comboMes,
-                comboAno, txtContrasena));
+                comboAno, txtContrasena, txtProvincia, txtCiudad));
 
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -136,7 +142,7 @@ public class FrameRegistro extends JDialog {
         comboAno.setPreferredSize(new Dimension(70, 20));
         addFieldWithPanel3(panelCampos, "Fecha de nacimiento (Día/Mes/Año):", comboDia, comboMes, comboAno,
                 jlabelInfoFormatFechaNacimiento);
-        addField(panelCampos, "Contraseña:", txtContrasena, labelsFormatoInfo[9]);
+        addField(panelCampos, "Contraseña:", txtContrasena, labelsFormatoInfo[10]);
     }
 
     private void addField(JPanel panel, String labelText, JTextField textField, JLabel infoLabel) {
@@ -173,7 +179,7 @@ public class FrameRegistro extends JDialog {
             JTextField txtDNI, JTextField txtEmail, JComboBox<String> comboPrefijo,
             JTextField txtNumeroTelefono, JTextField txtCalle, JTextField txtNumero,
             JComboBox<String> comboDia, JComboBox<String> comboMes, JComboBox<String> comboAno,
-            JPasswordField txtContrasena) {
+            JPasswordField txtContrasena, JTextField txtProvincia, JTextField txtCiudad) {
         if (!TiposDeDatos.comprobarCamposYInfo(campos, labelsFormatoInfo, tipos)) {
             JOptionPane.showMessageDialog(this, "Por favor, revise los campos con errores.", "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -185,10 +191,15 @@ public class FrameRegistro extends JDialog {
         String apellidos = txtApellidos.getText().trim();
         String dni = txtDNI.getText().trim();
         String email = txtEmail.getText().trim();
-        String telefono = comboPrefijo.getSelectedItem() + " " + txtNumeroTelefono.getText().trim();
-        String direccion = txtCalle.getText().trim() + ", " + txtNumero.getText().trim();
-        String fechaNacimiento = comboDia.getSelectedItem() + "-" + comboMes.getSelectedItem() + "-"
-                + comboAno.getSelectedItem();
+        String prefijo = comboPrefijo.getSelectedItem().toString();
+        String numero = txtNumeroTelefono.getText().trim();
+        String provincia = txtProvincia.getText().trim();
+        String ciudad = txtCiudad.getText().trim();
+        String direccion = txtCalle.getText().trim();
+        String ndireccion = txtNumero.getText().trim();
+        String fechaNacimiento = formatFecha(comboDia.getSelectedItem(), comboMes.getSelectedItem(),
+                comboAno.getSelectedItem());
+        String fechaRegistro = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         String contrasena = new String(txtContrasena.getPassword());
 
         if (usuario.isEmpty() || nombre.isEmpty() || apellidos.isEmpty() || dni.isEmpty() || email.isEmpty()
@@ -200,10 +211,15 @@ public class FrameRegistro extends JDialog {
         }
 
         boolean registroExitoso = GestorUsuarios.agregarUsuario(usuario, contrasena,
-                new String[] { nombre, apellidos, dni, email, telefono, direccion, fechaNacimiento });
+                new String[] { nombre, apellidos, dni, email, prefijo, numero, provincia, ciudad,
+                        direccion, ndireccion,
+                        fechaNacimiento, fechaRegistro });
 
         if (registroExitoso) {
-            JOptionPane.showMessageDialog(this, "Usuario registrado exitosamente.", "Éxito",
+            JOptionPane.showMessageDialog(this,
+                    "Felicidades, has obtenido " + GestorMovimientos.obtenerSaldo(usuario)
+                            + " dineros como premio de bienvenida. ¡Bienvenido a la familia!",
+                    "Éxito",
                     JOptionPane.INFORMATION_MESSAGE);
             dispose();
         } else {
