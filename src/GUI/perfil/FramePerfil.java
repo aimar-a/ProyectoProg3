@@ -27,7 +27,7 @@ public class FramePerfil extends JDialog {
         inicializarPanelSuperior();
 
         // Establecer el panel inicial
-        panelCentralPerfil = new PanelDepositarRetirar(usuario);
+        panelCentralPerfil = new PanelDatosUsuario(usuario);
         add(panelCentralPerfil, BorderLayout.CENTER);
     }
 

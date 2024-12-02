@@ -7,7 +7,4 @@ public class Main {
         FrameMenuPrincipal menup = new FrameMenuPrincipal();
         menup.setVisible(true);
     }
-    // commit
-    // prueba commit
-    // prueba commit 2
 }

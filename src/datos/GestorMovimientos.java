@@ -73,4 +73,17 @@ public class GestorMovimientos {
         }
         return false;
     }
+
+    protected static boolean bienvenidaUsuario(String usuario) {
+        String sql = "INSERT INTO Cartera (Usuario, Saldo) VALUES (?, 0)";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, usuario);
+            pstmt.executeUpdate();
+            Random random = new Random();
+            agregarMovimiento(usuario, random.nextInt(10), "bienvenida");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

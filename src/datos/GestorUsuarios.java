@@ -93,6 +93,7 @@ public class GestorUsuarios {
             for (int i = 0; i < datos.length; i++) {
                 pstmtDatos.setString(i + 2, datos[i]);
             }
+            GestorMovimientos.bienvenidaUsuario(usuario);
             pstmtDatos.executeUpdate();
             return true;
         } catch (SQLException e) {

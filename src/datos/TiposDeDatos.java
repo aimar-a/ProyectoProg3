@@ -25,11 +25,17 @@ public enum TiposDeDatos {
     TELEFONO,
     PROVINCIA,
     CIUDAD,
-    DIRECCION,
+    CALLE,
+    NUMERO,
     FECHA_DE_NACIMIENTO,
     FECHA_INSCRIPCION;
 
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
     public static String validarDato(TiposDeDatos tipo, String valor) {
+        if (valor == null || valor.isEmpty()) {
+            return "El campo no puede estar vacío.";
+        }
         switch (tipo) {
             case USUARIO:
                 if (GestorUsuarios.usuarioExiste(valor)) {
@@ -62,7 +68,7 @@ public enum TiposDeDatos {
             case FECHA:
             case FECHA_INSCRIPCION:
                 if (!esFechaValida(valor)) {
-                    return "La fecha no tiene un formato válido (yyyy-MM-dd).";
+                    return "La fecha no tiene un formato válido (dd-MM-yyyy).";
                 }
                 break;
 
@@ -74,9 +80,9 @@ public enum TiposDeDatos {
 
             case FECHA_DE_NACIMIENTO:
                 if (!esFechaValida(valor)) {
-                    return "La fecha de nacimiento no tiene un formato válido (yyyy-MM-dd).";
+                    return "La fecha de nacimiento no tiene un formato válido (dd-MM-yyyy).";
                 }
-                LocalDate fechaNacimiento = LocalDate.parse(valor, DateTimeFormatter.ISO_LOCAL_DATE);
+                LocalDate fechaNacimiento = LocalDate.parse(valor, DATE_FORMATTER);
                 if (Period.between(fechaNacimiento, LocalDate.now()).getYears() < 18) {
                     return "El usuario debe ser mayor de edad.";
                 }
@@ -115,9 +121,15 @@ public enum TiposDeDatos {
 
             case PROVINCIA:
             case CIUDAD:
-            case DIRECCION:
+            case CALLE:
                 if (valor == null || valor.isEmpty()) {
                     return "El campo no puede estar vacío.";
+                }
+                break;
+
+            case NUMERO:
+                if (valor == null || valor.isEmpty() || !valor.matches("^\\d+$")) {
+                    return "El número de la calle no es válido.";
                 }
                 break;
 
@@ -138,25 +150,28 @@ public enum TiposDeDatos {
         return errores;
     }
 
-    public static void comprobarCamposYInfo(JTextField[] campos, JLabel[] info, TiposDeDatos[] tipos) {
+    public static boolean comprobarCamposYInfo(JTextField[] campos, JLabel[] info, TiposDeDatos[] tipos) {
         if (tipos.length != campos.length || tipos.length != info.length) {
             throw new IllegalArgumentException("Los arrays de tipos, campos e info deben tener la misma longitud.");
         }
+        boolean valido = true;
         String[] errores = validarCampos(tipos, campos);
         for (int i = 0; i < errores.length; i++) {
             if (errores[i] != null) {
                 info[i].setText(errores[i]);
                 campos[i].setForeground(Color.RED);
+                valido = false;
             } else {
                 info[i].setText("");
                 campos[i].setForeground(Color.BLACK);
             }
         }
+        return valido;
     }
 
     private static boolean esFechaValida(String fecha) {
         try {
-            LocalDate.parse(fecha, DateTimeFormatter.ISO_LOCAL_DATE);
+            LocalDate.parse(fecha, DATE_FORMATTER);
             return true;
         } catch (DateTimeParseException e) {
             return false;
