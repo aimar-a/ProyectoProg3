@@ -17,9 +17,9 @@ public class FramePerfil extends JDialog {
 
     public FramePerfil(FrameMenuPrincipal parent) {
         super(parent, "Perfil del Usuario", true);
-        this.usuario = parent.usuario;
+        this.usuario = parent.getUsuario();
 
-        setSize(800, 800);
+        setSize(900, 1000);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(parent);
         setLayout(new BorderLayout());
@@ -80,11 +80,5 @@ public class FramePerfil extends JDialog {
         add(panelCentralPerfil, BorderLayout.CENTER); // Agregar el nuevo panel
         revalidate(); // Asegurarse de que el layout se actualice
         repaint(); // Redibujar el componente
-    }
-
-    public static void main(String[] args) {
-        FrameMenuPrincipal menuPrincipal = new FrameMenuPrincipal();
-        menuPrincipal.usuario = "cruiz";
-        new FramePerfil(menuPrincipal).setVisible(true);
     }
 }

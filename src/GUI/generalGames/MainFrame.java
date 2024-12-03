@@ -19,7 +19,6 @@ public class MainFrame extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         add(new TopBar(title + " - 007Games", this, menuPrinc), BorderLayout.NORTH);
-        dispose();
 
         addWindowListener(new WindowAdapter() {
             @Override

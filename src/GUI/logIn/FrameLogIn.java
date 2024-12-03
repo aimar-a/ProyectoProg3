@@ -125,7 +125,7 @@ public class FrameLogIn extends JDialog {
         if (password.equals(GestorUsuarios.obtenerContrasena(usuario))) {
             JOptionPane.showMessageDialog(this, "Login exitoso.");
             menuPrincipal.logeado = true; // Cambia el estado a true en MenuPrincipal
-            menuPrincipal.usuario = usuario; // Guarda el usuario en MenuPrincipal
+            menuPrincipal.setUsuario(usuario); // Guarda el usuario en MenuPrincipal
             menuPrincipal.actualizarEstado(); // Llama al método para actualizar la interfaz
 
             dispose(); // Cierra la ventana de login

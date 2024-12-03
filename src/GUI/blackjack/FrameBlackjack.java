@@ -10,21 +10,14 @@ public class FrameBlackjack extends MainFrame {
     private final PanelBlackjack panelBlackjack;
     private final PanelApuestasBlackjack panelApuestas;
 
-    public FrameBlackjack(FrameMenuPrincipal menuPrinc) {
+    public FrameBlackjack(FrameMenuPrincipal menuPrinc, String usuario) {
         super("Black Jack", menuPrinc);
 
         panelBlackjack = new PanelBlackjack();
         panelApuestas = new PanelApuestasBlackjack();
-        new LogicaBlackjack(panelBlackjack, panelApuestas);
+        new LogicaBlackjack(panelBlackjack, panelApuestas, usuario);
 
         add(panelBlackjack, BorderLayout.CENTER);
         add(panelApuestas, BorderLayout.SOUTH);
-    }
-
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            FrameBlackjack frame = new FrameBlackjack(null);
-            frame.setVisible(true);
-        });
     }
 }

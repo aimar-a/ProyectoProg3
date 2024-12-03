@@ -8,7 +8,7 @@ public class PanelCaballos extends JPanel {
 
     private static final long serialVersionUID = 1L;
     private static final int NUM_CABALLOS = 8;
-    private static final int META = 1400;
+    private static final int META = 1600;
     private final int[] posiciones; // Posiciones de los caballos
     private boolean carreraEnCurso = false; // Estado de la carrera
     private int ganador = -1; // Índice del caballo ganador
@@ -16,6 +16,11 @@ public class PanelCaballos extends JPanel {
     private Image[] caballoImagen;
     private final int[] frameCaballo;
     private final JPanel[] panelCalles;
+
+    private int caballoSeleccionado = 0;
+    private float apuesta = 0;
+
+    private PanelApuestasCaballos panelApuestasCaballos;
 
     public PanelCaballos() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Configura layout vertical
@@ -42,8 +47,8 @@ public class PanelCaballos extends JPanel {
                     int newHeight = getHeight();
                     int newWidth = (int) (156.0 / 313.0 * newHeight);
                     g.setColor(Color.WHITE);
-                    g.fillRect(META - 5, 0, newWidth + 10, getHeight());
-                    g.drawImage(metaImagen, META, 0, newWidth, newHeight, this);
+                    g.fillRect(META - 10, 0, newWidth + 10, getHeight());
+                    g.drawImage(metaImagen, META - 5, 0, newWidth, newHeight, this);
                     g.drawImage(caballoImagen[index], posiciones[index], (getHeight() - (int) (81 * 1.3)) / 2,
                             (int) (111 * 1.3), (int) (81 * 1.3), this);
                 }
@@ -79,7 +84,12 @@ public class PanelCaballos extends JPanel {
                         if (posiciones[i] >= META - 135 && carreraEnCurso) {
                             carreraEnCurso = false; // Detener la carrera
                             ganador = i; // Establecer el ganador
-                            mostrarGanador(i + 1); // Muestra mensaje del ganador y luego reinicia el juego
+                            if (ganador + 1 == caballoSeleccionado) {
+                                panelApuestasCaballos.mostrarGanador(true, i + 1);
+                            } else {
+                                panelApuestasCaballos.mostrarGanador(false, i + 1);
+                            }
+                            reiniciarJuego();
                             break;
                         }
                     }
@@ -92,8 +102,9 @@ public class PanelCaballos extends JPanel {
     }
 
     // Método para iniciar la carrera
-    public void iniciarCarrera() {
+    public void iniciarCarrera(int caballoSeleccionado) {
         if (!carreraEnCurso) {
+            this.caballoSeleccionado = caballoSeleccionado;
             carreraEnCurso = true;
             ganador = -1; // Reinicia el ganador
             for (int i = 0; i < NUM_CABALLOS; i++) {
@@ -101,15 +112,6 @@ public class PanelCaballos extends JPanel {
             }
             new Hilo().start();
         }
-    }
-
-    // Método para mostrar el ganador en un JOptionPane y reiniciar el juego
-    private void mostrarGanador(int numeroCaballo) {
-        SwingUtilities.invokeLater(() -> {
-            JOptionPane.showMessageDialog(this, "¡Caballo " + numeroCaballo + " es el ganador!",
-                    "Resultado de la Carrera", JOptionPane.INFORMATION_MESSAGE);
-            reiniciarJuego(); // Reinicia el juego después de cerrar el mensaje
-        });
     }
 
     // Método para reiniciar el juego
@@ -120,6 +122,7 @@ public class PanelCaballos extends JPanel {
             posiciones[i] = 0;
         }
         repaint(); // Refresca la interfaz
+        panelApuestasCaballos.reiniciarJuego();
     }
 
     @Override
@@ -136,5 +139,9 @@ public class PanelCaballos extends JPanel {
             g.setFont(new Font("Arial", Font.BOLD, 20));
             g.drawString("¡Caballo " + (ganador + 1) + " es el ganador!", 200, getHeight() - 50);
         }
+    }
+
+    protected void setPanelApuestasCaballos(PanelApuestasCaballos panelApuestasCaballos) {
+        this.panelApuestasCaballos = panelApuestasCaballos;
     }
 }

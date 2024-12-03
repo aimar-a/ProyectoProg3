@@ -8,4 +8,3 @@ public class Main {
         menup.setVisible(true);
     }
 }
-

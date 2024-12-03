@@ -15,7 +15,7 @@ import javax.swing.*;
 public class FrameMenuPrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
     public boolean logeado;
-    public String usuario;
+    private String usuario;
     private JLabel labelBienvenida;
     private JLabel labelSaldo = new JLabel();
     private JButton botonLogIn;
@@ -60,6 +60,7 @@ public class FrameMenuPrincipal extends JFrame {
         barraAlta.setBackground(Color.RED);
 
         JLabel titulo = new JLabel("007Games", SwingConstants.CENTER);
+        titulo.setFont(new Font("Monospace", Font.BOLD, 30));
         barraAlta.add(titulo);
 
         panelDerechaBarraAlta = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -163,10 +164,10 @@ public class FrameMenuPrincipal extends JFrame {
         if (logeado) {
             this.setVisible(false);
             switch (juegoObjetivo) {
-                case JuegosDisponibles.CABALLOS -> new FrameCaballos(this).setVisible(true);
+                case JuegosDisponibles.CABALLOS -> new FrameCaballos(this, usuario).setVisible(true);
                 case JuegosDisponibles.RULETA -> new FrameRuleta(this).setVisible(true);
                 case JuegosDisponibles.SLOTS -> new FrameSlots(this).setVisible(true);
-                case JuegosDisponibles.BLACKJACK -> new FrameBlackjack(this).setVisible(true);
+                case JuegosDisponibles.BLACKJACK -> new FrameBlackjack(this, usuario).setVisible(true);
                 case JuegosDisponibles.MINAS -> new FrameMinas(this).setVisible(true);
                 case JuegosDisponibles.DINOSAURIO -> new FrameDino(this).setVisible(true);
                 default -> {
@@ -196,7 +197,10 @@ public class FrameMenuPrincipal extends JFrame {
             botonPerfil.setVisible(true);
             labelSaldo.setVisible(true);
             botonPerfil.setText(" " + usuario);
-            labelSaldo.setText("Saldo: " + String.format("%.2f", GestorMovimientos.obtenerSaldo(usuario)));
+            labelSaldo.setText("Saldo: " + GestorMovimientos.obtenerSaldo(usuario) + " fichas  ");
+            labelSaldo.setFont(labelSaldo.getFont().deriveFont(15.0f));
+            labelSaldo.setForeground(Color.WHITE);
+            GestorMovimientos.setLabelMainMenu(labelSaldo);
             botonSalir.setText("Cerrar Sesión");
         } else {
             labelBienvenida.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
@@ -206,5 +210,13 @@ public class FrameMenuPrincipal extends JFrame {
             labelSaldo.setText("");
             botonSalir.setText("Salir");
         }
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 }

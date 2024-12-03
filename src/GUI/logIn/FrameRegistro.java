@@ -55,11 +55,14 @@ public class FrameRegistro extends JDialog {
                 TiposDeDatos.CIUDAD, TiposDeDatos.CALLE, TiposDeDatos.NUMERO, TiposDeDatos.CONTRASENA };
         JLabel jlabelInfoFormatDireccion = new JLabel();
         labelsFormatoInfo = new JLabel[] { new JLabel(), new JLabel(), new JLabel(), new JLabel(), new JLabel(),
-                new JLabel(), new JLabel(), new JLabel(), jlabelInfoFormatDireccion, jlabelInfoFormatDireccion,
+                new JLabel(), new JLabel(), new JLabel(), jlabelInfoFormatDireccion,
+                jlabelInfoFormatDireccion,
                 new JLabel() };
         JLabel jlabelInfoFormatFechaNacimiento = new JLabel(TiposDeDatos
-                .validarDato(TiposDeDatos.FECHA_DE_NACIMIENTO, TiposDeDatos.formatFecha(comboDia.getSelectedItem(),
-                        comboMes.getSelectedItem(), comboAno.getSelectedItem())));
+                .validarDato(TiposDeDatos.FECHA_DE_NACIMIENTO,
+                        TiposDeDatos.formatFecha(comboDia.getSelectedItem(),
+                                comboMes.getSelectedItem(),
+                                comboAno.getSelectedItem())));
 
         btnAceptar.setEnabled(TiposDeDatos.comprobarCamposYInfo(campos, labelsFormatoInfo, tipos));
         Arrays.stream(campos).forEach(campo -> campo.getDocument().addDocumentListener(new DocumentListener() {
@@ -198,7 +201,8 @@ public class FrameRegistro extends JDialog {
         String ciudad = txtCiudad.getText().trim();
         String direccion = txtCalle.getText().trim();
         String ndireccion = txtNumero.getText().trim();
-        String fechaNacimiento = TiposDeDatos.formatFecha(comboDia.getSelectedItem(), comboMes.getSelectedItem(),
+        String fechaNacimiento = TiposDeDatos.formatFecha(comboDia.getSelectedItem(),
+                comboMes.getSelectedItem(),
                 comboAno.getSelectedItem());
         String fechaRegistro = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         String contrasena = new String(txtContrasena.getPassword());
@@ -219,7 +223,7 @@ public class FrameRegistro extends JDialog {
         if (registroExitoso) {
             JOptionPane.showMessageDialog(this,
                     "Felicidades, has obtenido " + GestorMovimientos.obtenerSaldo(usuario)
-                            + " dineros como premio de bienvenida. ¡Bienvenido a la familia!",
+                            + " fichas como premio de bienvenida. ¡Bienvenido a la familia!",
                     "Éxito",
                     JOptionPane.INFORMATION_MESSAGE);
             dispose();

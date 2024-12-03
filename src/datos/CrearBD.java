@@ -20,6 +20,7 @@ public class CrearBD {
             boolean createDatabase = readConfig();
             if (createDatabase) {
                 initializeDatabase();
+                Files.write(Paths.get(CONFIG_PATH), Collections.singletonList("false"));
             }
 
         } catch (Exception e) {
@@ -54,7 +55,7 @@ public class CrearBD {
         String carteraTable = """
                 CREATE TABLE IF NOT EXISTS Cartera (
                     Usuario TEXT PRIMARY KEY,
-                    Saldo REAL
+                    Saldo INTEGER
                 );
                 """;
 
@@ -88,9 +89,9 @@ public class CrearBD {
                     Fecha TEXT,
                     Hora TEXT,
                     Usuario TEXT,
-                    Cantidad REAL,
+                    Cantidad INTEGER,
                     Asunto TEXT,
-                    SaldoFinal REAL
+                    SaldoFinal INTEGER
                 );
                 """;
 

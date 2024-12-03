@@ -2,6 +2,7 @@
 // URL: https://www.youtube.com/watch?v=GMdgjaDdOjI 
 package GUI.blackjack;
 
+import datos.GestorMovimientos;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -15,13 +16,18 @@ public class LogicaBlackjack {
     private Carta cartaOculta;
     private final PanelBlackjack panelBlackjack;
 
-    public LogicaBlackjack(PanelBlackjack panelBlackjack, PanelApuestasBlackjack panelApuestas) {
+    private int apuesta;
+    private String usuario;
+
+    public LogicaBlackjack(PanelBlackjack panelBlackjack, PanelApuestasBlackjack panelApuestas, String usuario) {
         this.panelBlackjack = panelBlackjack;
         this.panelApuestas = panelApuestas;
+        this.usuario = usuario;
 
         panelApuestas.botonIniciar.addActionListener(e -> iniciarJuego());
         panelApuestas.botonPedir.addActionListener(e -> agregarCartaJugador());
         panelApuestas.botonPlantarse.addActionListener(e -> plantarseJugador());
+
     }
 
     public void iniciarJuego() {
@@ -45,6 +51,9 @@ public class LogicaBlackjack {
         panelApuestas.spinnerApuesta.setEnabled(false); // Desactivar el spinner
         panelApuestas.botonPedir.setEnabled(true);
         panelApuestas.botonPlantarse.setEnabled(true);
+
+        this.apuesta = panelApuestas.getCantidadApuesta();
+        GestorMovimientos.agregarMovimiento(usuario, -this.apuesta, "apuesta:blackjack");
 
         // Dibujar estado inicial
         panelBlackjack.dibujar(cartaOculta, sumaCrupier, sumaJugador, manoCrupier, manoJugador,
@@ -102,6 +111,15 @@ public class LogicaBlackjack {
             mensaje = "¡Ganaste!";
         } else {
             mensaje = "¡Perdiste!";
+        }
+        if (mensaje.contains("Ganaste")) {
+            GestorMovimientos.agregarMovimiento(usuario, this.apuesta * 2, "victoria:blackjack");
+            mensaje += "\nHas ganado " + this.apuesta + "€";
+        } else if (mensaje.contains("Empate")) {
+            GestorMovimientos.agregarMovimiento(usuario, this.apuesta, "empate:blackjack");
+            mensaje += "\nHas recuperado tu apuesta de " + this.apuesta + "€";
+        } else {
+            mensaje += "\nHas perdido " + this.apuesta + "€";
         }
 
         // Mostrar mensaje del resultado

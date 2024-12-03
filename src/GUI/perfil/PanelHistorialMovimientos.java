@@ -46,7 +46,7 @@ public class PanelHistorialMovimientos extends JPanel {
             String hora = data[1];
             String modificacion = data[3];
             String tipo = data[4];
-            double saldoFinal = Double.parseDouble(data[5]);
+            int saldoFinal = Integer.parseInt(data[5]);
 
             tableModel.addRow(new Object[] { fecha, hora, modificacion, tipo, saldoFinal });
         }
