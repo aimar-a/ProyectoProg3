@@ -8,3 +8,6 @@
 
 # Código compilado
 bin/
+
+# Base de datos
+resources/db/
