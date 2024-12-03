@@ -9,7 +9,6 @@ import GUI.perfil.FramePerfil;
 import GUI.ruleta.FrameRuleta;
 import GUI.slots.FrameSlots;
 import datos.GestorMovimientos;
-import datos.GestorUsuarios;
 import java.awt.*;
 import javax.swing.*;
 

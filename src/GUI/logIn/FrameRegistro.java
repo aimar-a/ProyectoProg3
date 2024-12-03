@@ -41,7 +41,8 @@ public class FrameRegistro extends JDialog {
         JComboBox<String> comboMes = new JComboBox<>(
                 IntStream.rangeClosed(1, 12).mapToObj(String::valueOf).toArray(String[]::new));
         JComboBox<String> comboAno = new JComboBox<>(
-                IntStream.rangeClosed(1900, 2023).mapToObj(String::valueOf).toArray(String[]::new));
+                IntStream.rangeClosed(1900, 2024).mapToObj(String::valueOf).toArray(String[]::new));
+        comboAno.setSelectedItem("2024");
         JPasswordField txtContrasena = new JPasswordField();
         JButton btnAceptar = new JButton("Aceptar");
         JButton btnCancelar = new JButton("Cancelar");
@@ -57,7 +58,7 @@ public class FrameRegistro extends JDialog {
                 new JLabel(), new JLabel(), new JLabel(), jlabelInfoFormatDireccion, jlabelInfoFormatDireccion,
                 new JLabel() };
         JLabel jlabelInfoFormatFechaNacimiento = new JLabel(TiposDeDatos
-                .validarDato(TiposDeDatos.FECHA_DE_NACIMIENTO, formatFecha(comboDia.getSelectedItem(),
+                .validarDato(TiposDeDatos.FECHA_DE_NACIMIENTO, TiposDeDatos.formatFecha(comboDia.getSelectedItem(),
                         comboMes.getSelectedItem(), comboAno.getSelectedItem())));
 
         btnAceptar.setEnabled(TiposDeDatos.comprobarCamposYInfo(campos, labelsFormatoInfo, tipos));
@@ -115,7 +116,7 @@ public class FrameRegistro extends JDialog {
     private void updateFechaNacimientoLabel(JComboBox<String> comboDia, JComboBox<String> comboMes,
             JComboBox<String> comboAno, JLabel jlabelInfoFormatFechaNacimiento) {
         jlabelInfoFormatFechaNacimiento.setText(TiposDeDatos.validarDato(TiposDeDatos.FECHA_DE_NACIMIENTO,
-                formatFecha(comboDia.getSelectedItem(), comboMes.getSelectedItem(),
+                TiposDeDatos.formatFecha(comboDia.getSelectedItem(), comboMes.getSelectedItem(),
                         comboAno.getSelectedItem())));
     }
 
@@ -197,7 +198,7 @@ public class FrameRegistro extends JDialog {
         String ciudad = txtCiudad.getText().trim();
         String direccion = txtCalle.getText().trim();
         String ndireccion = txtNumero.getText().trim();
-        String fechaNacimiento = formatFecha(comboDia.getSelectedItem(), comboMes.getSelectedItem(),
+        String fechaNacimiento = TiposDeDatos.formatFecha(comboDia.getSelectedItem(), comboMes.getSelectedItem(),
                 comboAno.getSelectedItem());
         String fechaRegistro = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         String contrasena = new String(txtContrasena.getPassword());
@@ -229,9 +230,4 @@ public class FrameRegistro extends JDialog {
         }
     }
 
-    private String formatFecha(Object dia, Object mes, Object ano) {
-        String diaFormat = String.format("%02d", Integer.parseInt(dia.toString()));
-        String mesFormat = String.format("%02d", Integer.parseInt(mes.toString()));
-        return diaFormat + "-" + mesFormat + "-" + ano;
-    }
 }

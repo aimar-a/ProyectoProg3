@@ -177,4 +177,11 @@ public enum TiposDeDatos {
             return false;
         }
     }
+
+    public static String formatFecha(Object dia, Object mes, Object ano) {
+        String diaFormat = String.format("%02d", Integer.parseInt(dia.toString()));
+        String mesFormat = String.format("%02d", Integer.parseInt(mes.toString()));
+        return diaFormat + "-" + mesFormat + "-" + ano;
+    }
+
 }
