@@ -1,69 +1,93 @@
 package GUI.dinoRun;
 
+import datos.GestorMovimientos;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PanelApuestasDino extends JPanel {
-    private JTextField betField;
-    private JButton startButton;
-    private JButton cashOutButton;
-    private PanelDino dinoPlay; // Cambiado para recibir PanelDino
+    private final String usuario; // Usuario para identificar en la base de datos
+    private final JSpinner apuestaSpinner; // Cambiado a JSpinner
+    private final JButton startButton;
+    private final JButton cashOutButton;
+    private final PanelDino dinoPlay;
 
-    public PanelApuestasDino(PanelDino dinoPlay) {
-    	setBackground(Color.red);
+    public PanelApuestasDino(String usuario, PanelDino dinoPlay) {
+        setBackground(Color.RED);
+        this.usuario = usuario;
         this.dinoPlay = dinoPlay;
 
         setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 
         JLabel betLabel = new JLabel("Apuesta:");
-        betField = new JTextField(10);
+        apuestaSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 10000, 1));
         startButton = new JButton("Iniciar Carrera");
         cashOutButton = new JButton("Cobrar");
         cashOutButton.setEnabled(false);
 
         add(betLabel);
-        add(betField);
+        add(apuestaSpinner);
         add(startButton);
         add(cashOutButton);
 
         startButton.addActionListener(new StartButtonListener());
         cashOutButton.addActionListener(new CashOutButtonListener());
+
+        // Configurar el listener de fin de juego
+        dinoPlay.setGameEndListener((cashedOut) -> {
+            SwingUtilities.invokeLater(this::resetButtons);
+        });
+    }
+
+    private void resetButtons() {
+        startButton.setEnabled(true);
+        cashOutButton.setEnabled(false);
+        apuestaSpinner.setEnabled(true);
     }
 
     private class StartButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            String betText = betField.getText();
-            if (betText.isEmpty()) {
-                JOptionPane.showMessageDialog(dinoPlay, "Por favor, ingrese una cantidad para apostar.",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            try {
-                double betAmount = Double.parseDouble(betText);
-                if (betAmount <= 0) {
-                    throw new NumberFormatException();
-                }
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(dinoPlay, "Por favor, ingrese una cantidad válida.",
+            int apuesta = (int) apuestaSpinner.getValue();
+            if (apuesta <= 0) {
+                JOptionPane.showMessageDialog(dinoPlay, "Ingresa una apuesta válida.",
                         "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            dinoPlay.startGame(); // Llamada a método en PanelDino
+            if (GestorMovimientos.obtenerSaldo(usuario) < apuesta) {
+                JOptionPane.showMessageDialog(dinoPlay, "Saldo insuficiente.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Deduce la apuesta del saldo
+            GestorMovimientos.agregarMovimiento(usuario, -apuesta, "apuesta:dinosaurio");
+            dinoPlay.setApuesta(apuesta); // Pasar apuesta a PanelDino
+            dinoPlay.startGame();
+            
             startButton.setEnabled(false);
             cashOutButton.setEnabled(true);
+            apuestaSpinner.setEnabled(false);
         }
     }
 
     private class CashOutButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            dinoPlay.cashOut(); // Llamada a método en PanelDino
-            startButton.setEnabled(true);
-            cashOutButton.setEnabled(false);
+            int ganancia = dinoPlay.cashOut();
+            if (ganancia > 0) {
+                GestorMovimientos.agregarMovimiento(usuario, ganancia, "victoria:dinosaurio");
+                JOptionPane.showMessageDialog(dinoPlay,
+                        "¡Has ganado " + ganancia + " monedas!", "¡Enhorabuena!",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(dinoPlay, "¡Juego terminado!", "Fin del juego",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            resetButtons();
         }
     }
 }
