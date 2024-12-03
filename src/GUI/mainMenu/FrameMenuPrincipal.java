@@ -3,6 +3,7 @@ package GUI.mainMenu;
 import GUI.blackjack.FrameBlackjack;
 import GUI.caballos.FrameCaballos;
 import GUI.dinoRun.DinoGameGUI;
+import GUI.dinoRun.FrameDino;
 import GUI.logIn.FrameLogIn;
 import GUI.minas.FrameMinas;
 import GUI.perfil.FramePerfil;
@@ -169,8 +170,7 @@ public class FrameMenuPrincipal extends JFrame {
                 case JuegosDisponibles.BLACKJACK -> new FrameBlackjack(this).setVisible(true);
                 case JuegosDisponibles.MINAS -> new FrameMinas(this).setVisible(true);
                 case JuegosDisponibles.DINOSAURIO -> {
-                    this.setVisible(true);
-                    new DinoGameGUI().setVisible(true);
+                    new FrameDino(this).setVisible(true);
                 }
                 default -> {
                     JOptionPane.showMessageDialog(this, "Juego no disponible", "Error", JOptionPane.ERROR_MESSAGE);
