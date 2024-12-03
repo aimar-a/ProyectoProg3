@@ -1,5 +1,6 @@
 package GUI.generalGames;
 
+import GUI.ColorVariables;
 import GUI.mainMenu.FrameMenuPrincipal;
 import datos.GestorMovimientos;
 import java.awt.BorderLayout;
@@ -14,9 +15,8 @@ public class TopBar extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
-    public TopBar(String title, JFrame frame, FrameMenuPrincipal frameMenuPrincipal) {
+    public TopBar(String title, JFrame frame, FrameMenuPrincipal frameMenuPrincipal, boolean darkMode) {
         setLayout(new BorderLayout());
-        setBackground(Color.GREEN);
         JLabel lblTitle = new JLabel(title, SwingConstants.CENTER);
         lblTitle.setFont(lblTitle.getFont().deriveFont(20.0f));
         add(lblTitle, BorderLayout.CENTER);
@@ -30,8 +30,15 @@ public class TopBar extends JPanel {
         JLabel lblSaldo = new JLabel(
                 "Saldo: " + GestorMovimientos.obtenerSaldo(frameMenuPrincipal.getUsuario()) + " fichas  ");
         lblSaldo.setFont(lblSaldo.getFont().deriveFont(15.0f));
-        lblSaldo.setForeground(Color.WHITE);
         add(lblSaldo, BorderLayout.EAST);
         GestorMovimientos.setLabelGameMenu(lblSaldo);
+
+        if (darkMode) {
+            setBackground(ColorVariables.COLOR_VERDE_DARK);
+            lblTitle.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+        } else {
+            setBackground(ColorVariables.COLOR_VERDE_LIGHT);
+            lblTitle.setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
+        }
     }
 }

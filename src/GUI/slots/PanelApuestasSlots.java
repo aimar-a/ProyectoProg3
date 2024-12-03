@@ -1,5 +1,7 @@
 package GUI.slots;
 
+import GUI.ColorVariables;
+import GUI.mainMenu.FrameMenuPrincipal;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,10 +17,7 @@ public class PanelApuestasSlots extends JPanel {
     protected JSpinner spinnerApuesta;
     protected JButton botonGirar;
 
-    public PanelApuestasSlots() {
-        // Configuración inicial del panel
-        setBackground(Color.RED);
-
+    public PanelApuestasSlots(boolean darkMode) {
         // Etiqueta para la apuesta
         add(new JLabel("Apuesta: "));
 
@@ -42,5 +41,14 @@ public class PanelApuestasSlots extends JPanel {
             }
         });
 
+        if (darkMode) {
+            setBackground(ColorVariables.COLOR_ROJO_DARK);
+        } else {
+            setBackground(ColorVariables.COLOR_ROJO_LIGHT);
+        }
+    }
+
+    public int getApuesta() {
+        return (int) spinnerApuesta.getValue();
     }
 }

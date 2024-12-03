@@ -1,5 +1,6 @@
 package GUI.perfil;
 
+import GUI.ColorVariables;
 import datos.GestorUsuarios;
 import datos.TiposDeDatos;
 import java.awt.*;
@@ -11,12 +12,12 @@ import javax.swing.event.DocumentListener;
 public class PanelDatosUsuario extends JPanel {
 
     private static final long serialVersionUID = 1L;
-    private static final Font FORMAT_INFO_FONT = new Font("Arial", Font.ITALIC, 8);
+    private static final Font FORMAT_INFO_FONT = new Font("Arial", Font.ITALIC, 10);
     private JTextField[] campos;
     private JLabel[] labelsFormatoInfo;
     private TiposDeDatos[] tipos;
 
-    public PanelDatosUsuario(String usuario) {
+    public PanelDatosUsuario(String usuario, boolean darkMode) {
         String[] datosUsuario = GestorUsuarios.obtenerDatos(usuario);
         setLayout(new BorderLayout());
 
@@ -148,6 +149,33 @@ public class PanelDatosUsuario extends JPanel {
         comboAnoNac.addActionListener(e -> validationListener.changedUpdate(null));
 
         agregarDocumentListeners(validationListener, campos);
+
+        if (darkMode) {
+            setBackground(ColorVariables.COLOR_FONDO_DARK);
+            panelCentral.setBackground(ColorVariables.COLOR_FONDO_DARK);
+            panelOpciones.setBackground(ColorVariables.COLOR_FONDO_DARK);
+            btnEditar.setBackground(ColorVariables.COLOR_BOTON_DARK);
+            btnEditar.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            btnGuardar.setBackground(ColorVariables.COLOR_BOTON_DARK);
+            btnGuardar.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            IntStream.range(0, labelsFormatoInfo.length)
+                    .forEach(i -> labelsFormatoInfo[i].setForeground(ColorVariables.COLOR_TEXTO_DARK));
+            setLabelColors(panelCentral, ColorVariables.COLOR_TEXTO_DARK);
+        } else {
+            setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            panelCentral.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            panelOpciones.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+        }
+    }
+
+    private void setLabelColors(Container container, Color color) {
+        for (Component component : container.getComponents()) {
+            if (component instanceof JLabel) {
+                component.setForeground(color);
+            } else if (component instanceof Container) {
+                setLabelColors((Container) component, color);
+            }
+        }
     }
 
     private JTextField createTextField(String text, boolean editable) {

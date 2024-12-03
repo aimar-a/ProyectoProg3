@@ -10,11 +10,11 @@ public class FrameBlackjack extends MainFrame {
     private final PanelBlackjack panelBlackjack;
     private final PanelApuestasBlackjack panelApuestas;
 
-    public FrameBlackjack(FrameMenuPrincipal menuPrinc, String usuario) {
-        super("Black Jack", menuPrinc);
+    public FrameBlackjack(FrameMenuPrincipal menuPrinc, String usuario, boolean darkMode) {
+        super("Black Jack", menuPrinc, darkMode);
 
         panelBlackjack = new PanelBlackjack();
-        panelApuestas = new PanelApuestasBlackjack();
+        panelApuestas = new PanelApuestasBlackjack(darkMode);
         new LogicaBlackjack(panelBlackjack, panelApuestas, usuario);
 
         add(panelBlackjack, BorderLayout.CENTER);

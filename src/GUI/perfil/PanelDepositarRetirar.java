@@ -1,5 +1,6 @@
 package GUI.perfil;
 
+import GUI.ColorVariables;
 import datos.GestorMovimientos;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -35,15 +36,36 @@ public class PanelDepositarRetirar extends JPanel {
     private JButton botonDepositarPaypal;
     private JButton botonRetirarPaypal;
 
-    public PanelDepositarRetirar(String usuario) {
+    private final Color backgroundColor;
+    private final Color foregroundColor;
+    private final Color buttonColor;
+    private final Color buttonTextColor;
+
+    public PanelDepositarRetirar(String usuario, boolean darkMode) {
         this.usuario = usuario;
         setLayout(new BorderLayout());
+
+        // Define color variables
+        if (darkMode) {
+            backgroundColor = ColorVariables.COLOR_FONDO_DARK;
+            foregroundColor = ColorVariables.COLOR_TEXTO_DARK;
+            buttonColor = ColorVariables.COLOR_BOTON_DARK;
+            buttonTextColor = ColorVariables.COLOR_BOTON_TEXTO_DARK;
+        } else {
+            backgroundColor = ColorVariables.COLOR_FONDO_LIGHT;
+            foregroundColor = ColorVariables.COLOR_TEXTO_LIGHT;
+            buttonColor = ColorVariables.COLOR_BOTON_LIGHT;
+            buttonTextColor = ColorVariables.COLOR_BOTON_TEXTO_LIGHT;
+        }
+
+        setBackground(backgroundColor);
 
         JPanel panelInferior = createButtonPanel();
         add(panelInferior, BorderLayout.SOUTH);
 
         cardLayout = new CardLayout();
         panelCentral = new JPanel(cardLayout);
+        panelCentral.setBackground(backgroundColor);
         add(panelCentral, BorderLayout.CENTER);
 
         JPanel panelTarjeta = createTarjetaPanel();
@@ -59,9 +81,10 @@ public class PanelDepositarRetirar extends JPanel {
 
     private JPanel createButtonPanel() {
         JPanel panelInferior = new JPanel();
-        JButton botonTarjeta = new JButton("Tarjeta Crédito");
-        JButton botonTransferencia = new JButton("Cuenta Banco");
-        JButton botonPaypal = new JButton("Cuenta Paypal");
+        panelInferior.setBackground(backgroundColor);
+        JButton botonTarjeta = createButton("Tarjeta Crédito");
+        JButton botonTransferencia = createButton("Cuenta Banco");
+        JButton botonPaypal = createButton("Cuenta Paypal");
         panelInferior.add(botonTarjeta);
         panelInferior.add(botonTransferencia);
         panelInferior.add(botonPaypal);
@@ -70,6 +93,7 @@ public class PanelDepositarRetirar extends JPanel {
 
     private JPanel createTarjetaPanel() {
         JPanel panelTarjeta = new JPanel(new GridBagLayout());
+        panelTarjeta.setBackground(backgroundColor);
         GridBagConstraints gbc = createGridBagConstraints();
 
         JTextField titularTarjeta = createTextField(15);
@@ -87,8 +111,7 @@ public class PanelDepositarRetirar extends JPanel {
 
         addSpace(panelTarjeta, gbc, 6);
 
-        botonDepositarTarjeta = new JButton("Depositar");
-        botonDepositarTarjeta.setFont(new Font("Arial", Font.BOLD, 18));
+        botonDepositarTarjeta = createButton("Depositar");
         botonDepositarTarjeta.setEnabled(false);
         addButton(panelTarjeta, gbc, botonDepositarTarjeta, 7);
 
@@ -100,6 +123,7 @@ public class PanelDepositarRetirar extends JPanel {
 
     private JPanel createTransferenciaPanel() {
         JPanel panelTransferencia = new JPanel(new GridBagLayout());
+        panelTransferencia.setBackground(backgroundColor);
         GridBagConstraints gbc = createGridBagConstraints();
 
         JTextField numeroCuenta = createTextField(20);
@@ -117,10 +141,8 @@ public class PanelDepositarRetirar extends JPanel {
 
         addSpace(panelTransferencia, gbc, 6);
 
-        botonDepositarTransferencia = new JButton("Depositar");
-        botonDepositarTransferencia.setFont(new Font("Arial", Font.BOLD, 18));
-        botonRetirarTransferencia = new JButton("Retirar");
-        botonRetirarTransferencia.setFont(new Font("Arial", Font.BOLD, 18));
+        botonDepositarTransferencia = createButton("Depositar");
+        botonRetirarTransferencia = createButton("Retirar");
         botonDepositarTransferencia.setEnabled(false);
         botonRetirarTransferencia.setEnabled(false);
         addButton(panelTransferencia, gbc, botonDepositarTransferencia, 7);
@@ -137,6 +159,7 @@ public class PanelDepositarRetirar extends JPanel {
 
     private JPanel createPaypalPanel() {
         JPanel panelPaypal = new JPanel(new GridBagLayout());
+        panelPaypal.setBackground(backgroundColor);
         GridBagConstraints gbc = createGridBagConstraints();
 
         JTextField correoPaypal = createTextField(20);
@@ -150,10 +173,8 @@ public class PanelDepositarRetirar extends JPanel {
 
         addSpace(panelPaypal, gbc, 4);
 
-        botonDepositarPaypal = new JButton("Depositar");
-        botonDepositarPaypal.setFont(new Font("Arial", Font.BOLD, 18));
-        botonRetirarPaypal = new JButton("Retirar");
-        botonRetirarPaypal.setFont(new Font("Arial", Font.BOLD, 18));
+        botonDepositarPaypal = createButton("Depositar");
+        botonRetirarPaypal = createButton("Retirar");
         botonDepositarPaypal.setEnabled(false);
         botonRetirarPaypal.setEnabled(false);
         addButton(panelPaypal, gbc, botonDepositarPaypal, 5);
@@ -178,10 +199,13 @@ public class PanelDepositarRetirar extends JPanel {
         JLabel jLabel = new JLabel(label);
         jLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         jLabel.setPreferredSize(new Dimension(150, 30)); // Adjust the width as needed
+        jLabel.setForeground(foregroundColor);
         panel.add(jLabel, gbc);
         gbc.gridx = 1;
         field.setFont(new Font("Arial", Font.PLAIN, 16));
         field.setPreferredSize(new Dimension(200, 30));
+        field.setBackground(backgroundColor);
+        field.setForeground(foregroundColor);
         panel.add(field, gbc);
     }
 
@@ -223,7 +247,7 @@ public class PanelDepositarRetirar extends JPanel {
                         allFilled = false;
                         field.setForeground(Color.RED);
                     } else {
-                        field.setForeground(Color.BLACK);
+                        field.setForeground(foregroundColor);
                     }
                 }
                 for (JButton button : buttons) {
@@ -241,7 +265,17 @@ public class PanelDepositarRetirar extends JPanel {
         JTextField textField = new JTextField(columns);
         textField.setFont(new Font("Arial", Font.PLAIN, 16));
         textField.setPreferredSize(new Dimension(200, 30));
+        textField.setBackground(backgroundColor);
+        textField.setForeground(foregroundColor);
         return textField;
+    }
+
+    private JButton createButton(String text) {
+        JButton button = new JButton(text);
+        button.setFont(new Font("Arial", Font.BOLD, 18));
+        button.setBackground(buttonColor);
+        button.setForeground(buttonTextColor);
+        return button;
     }
 
     private void setupButtonActions(JPanel panelInferior) {

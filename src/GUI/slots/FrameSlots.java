@@ -1,25 +1,28 @@
 package GUI.slots;
 
+import GUI.ColorVariables;
 import GUI.generalGames.MainFrame;
 import GUI.mainMenu.FrameMenuPrincipal;
 import java.awt.BorderLayout;
 
 public class FrameSlots extends MainFrame {
-	public FrameSlots(FrameMenuPrincipal frameMenuPrincipal) {
-		super("Slots", frameMenuPrincipal);
+	public FrameSlots(FrameMenuPrincipal frameMenuPrincipal, String usuario, boolean darkMode) {
+		super("Slots", frameMenuPrincipal, darkMode);
 
-		PanelSlots panelSlots = new PanelSlots();
+		PanelSlots panelSlots = new PanelSlots(darkMode);
 		add(panelSlots, BorderLayout.CENTER);
 
-		PanelApuestasSlots panelApuestas = new PanelApuestasSlots();
+		PanelApuestasSlots panelApuestas = new PanelApuestasSlots(darkMode);
 		add(panelApuestas, BorderLayout.SOUTH);
 
-		new LogicaSlots(panelSlots, panelApuestas);
+		new LogicaSlots(panelSlots, panelApuestas, usuario);
+
+		if (darkMode) {
+			setBackground(ColorVariables.COLOR_FONDO_DARK);
+		} else {
+			setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+		}
 
 		panelSlots.girarRuletas();
-	}
-
-	public static void main(String[] args) {
-		new FrameSlots(null).setVisible(true);
 	}
 }

@@ -1,5 +1,7 @@
 package GUI.slots;
 
+import GUI.ColorVariables;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -9,24 +11,41 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class PanelSlots extends JPanel {
-    JLabel[][] botones = new JLabel[3][3];
+    private JLabel[][] labelsSlots = new JLabel[3][3];
+    private int[][] numsImg = new int[3][3];
+    private JLabel labelRecompensa;
 
-    public PanelSlots() {
+    public PanelSlots(boolean darkMode) {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         for (int columna = 0; columna < 3; columna++) {
             for (int fila = 0; fila < 3; fila++) {
                 gbc.gridx = columna;
                 gbc.gridy = fila;
-                botones[columna][fila] = new JLabel();
-                add(botones[columna][fila], gbc);
+                labelsSlots[columna][fila] = new JLabel();
+                add(labelsSlots[columna][fila], gbc);
             }
+        }
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 3;
+        labelRecompensa = new JLabel("¡Buena suerte!");
+        labelRecompensa.setFont(labelRecompensa.getFont().deriveFont(50.0f));
+        labelRecompensa.setForeground(Color.YELLOW);
+        add(labelRecompensa, gbc);
+
+        if (darkMode) {
+            setBackground(ColorVariables.COLOR_FONDO_DARK);
+            labelRecompensa.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+        } else {
+            setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            labelRecompensa.setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
         }
     }
 
     public void girarColumna(int columna) {
         for (int ff = 2; ff > 0; ff--) {
-            botones[columna][ff].setIcon(botones[columna][ff - 1].getIcon());
+            labelsSlots[columna][ff].setIcon(labelsSlots[columna][ff - 1].getIcon());
         }
         long seed = System.nanoTime();
         Random r = new Random(seed);
@@ -37,7 +56,7 @@ public class PanelSlots extends JPanel {
         ImageIcon icono = new ImageIcon(getClass().getResource("/img/slots/slot" + n + ".png"));
         Image scaledImage = icono.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         ImageIcon scaledIcono = new ImageIcon(scaledImage);
-        botones[columna][0].setIcon(scaledIcono);
+        labelsSlots[columna][0].setIcon(scaledIcono);
     }
 
     public final void girarRuletas() {
@@ -51,8 +70,17 @@ public class PanelSlots extends JPanel {
                 ImageIcon icono = new ImageIcon(getClass().getResource("/img/slots/slot" + n + ".png"));
                 Image scaledImage = icono.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
                 ImageIcon scaledIcono = new ImageIcon(scaledImage);
-                botones[col][fil].setIcon(scaledIcono);
+                numsImg[col][fil] = n;
+                labelsSlots[col][fil].setIcon(scaledIcono);
             }
         }
+    }
+
+    public int[][] getIntsSlots() {
+        return this.numsImg;
+    }
+
+    protected void setLabelRecompensa(String recompensa) {
+        labelRecompensa.setText(recompensa);
     }
 }

@@ -1,5 +1,6 @@
 package GUI.perfil;
 
+import GUI.ColorVariables;
 import datos.GestorUsuarios;
 import java.awt.*;
 import javax.swing.*;
@@ -11,7 +12,7 @@ public class PanelCambiarContrasena extends JPanel {
     private final JPasswordField txtConfirmarContrasena;
     private final JButton btnCambiar;
 
-    public PanelCambiarContrasena(String usuario) {
+    public PanelCambiarContrasena(String usuario, boolean darkMode) {
         setLayout(new BorderLayout()); // Configurar el layout en BorderLayout
 
         // Panel central con GridBagLayout
@@ -63,6 +64,27 @@ public class PanelCambiarContrasena extends JPanel {
         btnCambiar.addActionListener(e -> cambiarContrasena(usuario));
         panelSur.add(btnCambiar);
         add(panelSur, BorderLayout.SOUTH);
+
+        if (darkMode) {
+            setBackground(ColorVariables.COLOR_FONDO_DARK);
+            panelCentro.setBackground(ColorVariables.COLOR_FONDO_DARK);
+            panelSur.setBackground(ColorVariables.COLOR_FONDO_DARK);
+            lblContrasenaAntigua.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            lblContrasenaNueva.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            lblConfirmarContrasena.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            txtContrasenaAntigua.setBackground(ColorVariables.COLOR_FONDO_DARK);
+            txtContrasenaAntigua.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            txtContrasenaNueva.setBackground(ColorVariables.COLOR_FONDO_DARK);
+            txtContrasenaNueva.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            txtConfirmarContrasena.setBackground(ColorVariables.COLOR_FONDO_DARK);
+            txtConfirmarContrasena.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            btnCambiar.setBackground(ColorVariables.COLOR_BOTON_DARK);
+            btnCambiar.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+        } else {
+            setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            panelCentro.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            panelSur.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+        }
     }
 
     private void cambiarContrasena(String usuario) {

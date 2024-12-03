@@ -2,6 +2,8 @@
 // URL: https://www.youtube.com/watch?v=GMdgjaDdOjI 
 package GUI.blackjack;
 
+import GUI.ColorVariables;
+import GUI.mainMenu.FrameMenuPrincipal;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -16,7 +18,7 @@ public class PanelApuestasBlackjack extends JPanel {
                                                                                                     // Incremento: 1
     protected final JCheckBox checkAutomatico = new JCheckBox("Auto");
 
-    public PanelApuestasBlackjack() {
+    public PanelApuestasBlackjack(boolean darkMode) {
         setLayout(new FlowLayout());
 
         // Deshabilitar botones hasta que comience la partida
@@ -44,6 +46,14 @@ public class PanelApuestasBlackjack extends JPanel {
         add(new JLabel(" | "));
         add(botonPedir);
         add(botonPlantarse);
+
+        if (darkMode) {
+            setBackground(ColorVariables.COLOR_FONDO_DARK);
+            setForeground(ColorVariables.COLOR_TEXTO_DARK);
+        } else {
+            setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
+        }
     }
 
     // Obtener la cantidad apostada

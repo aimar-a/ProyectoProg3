@@ -114,12 +114,12 @@ public class LogicaBlackjack {
         }
         if (mensaje.contains("Ganaste")) {
             GestorMovimientos.agregarMovimiento(usuario, this.apuesta * 2, "victoria:blackjack");
-            mensaje += "\nHas ganado " + this.apuesta + "€";
+            mensaje += "\nHas ganado " + this.apuesta + " fichas";
         } else if (mensaje.contains("Empate")) {
             GestorMovimientos.agregarMovimiento(usuario, this.apuesta, "empate:blackjack");
-            mensaje += "\nHas recuperado tu apuesta de " + this.apuesta + "€";
+            mensaje += "\nHas recuperado tu apuesta de " + this.apuesta + " fichas";
         } else {
-            mensaje += "\nHas perdido " + this.apuesta + "€";
+            mensaje += "\nHas perdido " + this.apuesta + " fichas";
         }
 
         // Mostrar mensaje del resultado

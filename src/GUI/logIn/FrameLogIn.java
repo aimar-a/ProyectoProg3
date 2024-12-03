@@ -1,5 +1,6 @@
 package GUI.logIn;
 
+import GUI.ColorVariables;
 import GUI.mainMenu.FrameMenuPrincipal;
 import GUI.mainMenu.JuegosDisponibles;
 import datos.GestorUsuarios;
@@ -27,7 +28,7 @@ public class FrameLogIn extends JDialog {
     private final FrameMenuPrincipal menuPrincipal;
     private final JuegosDisponibles juegoObjetivo;
 
-    public FrameLogIn(FrameMenuPrincipal menuPrinc, JuegosDisponibles juegoObjetivo) {
+    public FrameLogIn(FrameMenuPrincipal menuPrinc, JuegosDisponibles juegoObjetivo, boolean darkMode) {
         super(menuPrinc, "Login - 007Games", true); // Hacemos el JDialog modal
         this.menuPrincipal = menuPrinc;
         this.juegoObjetivo = juegoObjetivo;
@@ -99,7 +100,7 @@ public class FrameLogIn extends JDialog {
         });
 
         botonRegistro.addActionListener((ActionEvent e) -> {
-            new FrameRegistro(this).setVisible(true);
+            new FrameRegistro(this, darkMode).setVisible(true);
         });
 
         usuarioField.addActionListener((ActionEvent e) -> {
@@ -116,6 +117,32 @@ public class FrameLogIn extends JDialog {
                 menuPrinc.loginAbierto = false;
             }
         });
+
+        if (darkMode) {
+            panel.setBackground(ColorVariables.COLOR_FONDO_DARK);
+            usuarioLabel.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            passwordLabel.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            usuarioField.setBackground(ColorVariables.COLOR_FONDO_DARK);
+            usuarioField.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            passwordField.setBackground(ColorVariables.COLOR_FONDO_DARK);
+            passwordField.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            botonLogin.setBackground(ColorVariables.COLOR_BOTON_DARK);
+            botonLogin.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            botonRegistro.setBackground(ColorVariables.COLOR_BOTON_DARK);
+            botonRegistro.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+        } else {
+            panel.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            usuarioLabel.setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
+            passwordLabel.setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
+            usuarioField.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            usuarioField.setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
+            passwordField.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            passwordField.setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
+            botonLogin.setBackground(ColorVariables.COLOR_BOTON_LIGHT);
+            botonLogin.setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
+            botonRegistro.setBackground(ColorVariables.COLOR_BOTON_LIGHT);
+            botonRegistro.setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
+        }
     }
 
     public void realizarLogin() {

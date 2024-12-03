@@ -1,8 +1,10 @@
 package GUI.mainMenu;
 
+import GUI.ColorVariables;
 import GUI.blackjack.FrameBlackjack;
 import GUI.caballos.FrameCaballos;
 import GUI.dinoRun.FrameDino;
+import GUI.generalGames.TopBar;
 import GUI.logIn.FrameLogIn;
 import GUI.minas.FrameMinas;
 import GUI.perfil.FramePerfil;
@@ -24,6 +26,11 @@ public class FrameMenuPrincipal extends JFrame {
     private final JButton botonPerfil;
     public boolean loginAbierto;
     private JPanel panelDerechaBarraAlta;
+    private JPanel panelIzquierdaBarraAlta;
+    private boolean darkMode;
+    private JPanel panelSeleccion;
+    private JPanel panelCentral;
+    private JLabel titulo;
 
     public FrameMenuPrincipal() {
         // Configuración inicial del JFrame
@@ -59,7 +66,7 @@ public class FrameMenuPrincipal extends JFrame {
         barraAlta = new JPanel(new BorderLayout());
         barraAlta.setBackground(Color.RED);
 
-        JLabel titulo = new JLabel("007Games", SwingConstants.CENTER);
+        titulo = new JLabel("007Games", SwingConstants.CENTER);
         titulo.setFont(new Font("Monospace", Font.BOLD, 30));
         barraAlta.add(titulo);
 
@@ -68,7 +75,7 @@ public class FrameMenuPrincipal extends JFrame {
         panelDerechaBarraAlta.setPreferredSize(new Dimension(getWidth() / 3, 35));
         barraAlta.add(panelDerechaBarraAlta, BorderLayout.EAST);
 
-        JPanel panelIzquierdaBarraAlta = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelIzquierdaBarraAlta = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panelIzquierdaBarraAlta.setBackground(Color.RED);
         panelIzquierdaBarraAlta.setPreferredSize(new Dimension(getWidth() / 3, 35));
         barraAlta.add(panelIzquierdaBarraAlta, BorderLayout.WEST);
@@ -78,7 +85,7 @@ public class FrameMenuPrincipal extends JFrame {
         botonLogIn.addActionListener(e -> {
             if (!loginAbierto) {
                 loginAbierto = true;
-                new FrameLogIn(FrameMenuPrincipal.this, null).setVisible(true);
+                new FrameLogIn(FrameMenuPrincipal.this, null, darkMode).setVisible(true);
             }
         });
 
@@ -101,11 +108,46 @@ public class FrameMenuPrincipal extends JFrame {
             }
         });
 
+        SwitchButton toggleDarkMode = new SwitchButton();
+        toggleDarkMode.addEventSelected(new EventSwitchSelected() {
+            @Override
+            public void onSelected(boolean selected) {
+                if (selected) {
+                    enableDarkMode();
+                } else {
+                    disableDarkMode();
+                }
+            }
+        });
+        panelIzquierdaBarraAlta.add(toggleDarkMode, BorderLayout.WEST);
+
         configurarBotonPerfil();
     }
 
+    private void enableDarkMode() {
+        darkMode = true;
+        panelSeleccion.setBackground(ColorVariables.COLOR_FONDO_DARK);
+        labelBienvenida.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+        panelCentral.setBackground(ColorVariables.COLOR_FONDO_DARK);
+        barraAlta.setBackground(ColorVariables.COLOR_ROJO_DARK);
+        panelDerechaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_DARK);
+        panelIzquierdaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_DARK);
+        titulo.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+    }
+
+    private void disableDarkMode() {
+        darkMode = false;
+        panelSeleccion.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+        labelBienvenida.setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
+        panelCentral.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+        barraAlta.setBackground(ColorVariables.COLOR_ROJO_LIGHT);
+        panelDerechaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_LIGHT);
+        panelIzquierdaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_LIGHT);
+        titulo.setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
+    }
+
     private JPanel configurarPanelCentral() {
-        JPanel panelCentral = new JPanel(new BorderLayout());
+        panelCentral = new JPanel(new BorderLayout());
 
         labelBienvenida = new JLabel("Bienvenido al Menú Principal, ¿A qué desea jugar?", SwingConstants.CENTER);
         int labelWidth = getWidth() / 10;
@@ -113,7 +155,7 @@ public class FrameMenuPrincipal extends JFrame {
         labelBienvenida.setPreferredSize(new Dimension(labelWidth, labelHeight));
         panelCentral.add(labelBienvenida, BorderLayout.NORTH);
 
-        JPanel panelSeleccion = new JPanel(new FlowLayout(FlowLayout.CENTER, getWidth() / 25, getHeight() / 40));
+        panelSeleccion = new JPanel(new FlowLayout(FlowLayout.CENTER, getWidth() / 25, getHeight() / 40));
 
         configurarBotonJuego(panelSeleccion, JuegosDisponibles.CABALLOS, "/img/mainMenu/Carrera.jpeg");
         // configurarBotonJuego(panelSeleccion, JuegosDisponibles.RULETA,
@@ -157,17 +199,18 @@ public class FrameMenuPrincipal extends JFrame {
         botonPerfil.setIcon(scaledIconPerfil);
         botonPerfil.setHorizontalTextPosition(SwingConstants.RIGHT);
         botonPerfil.setHorizontalAlignment(SwingConstants.LEFT);
-        botonPerfil.addActionListener(e -> new FramePerfil(this).setVisible(true));
+        botonPerfil.addActionListener(e -> new FramePerfil(this, darkMode).setVisible(true));
     }
 
     public void abrirVentana(JuegosDisponibles juegoObjetivo) {
         if (logeado) {
             this.setVisible(false);
             switch (juegoObjetivo) {
-                case JuegosDisponibles.CABALLOS -> new FrameCaballos(this, usuario).setVisible(true);
+                case JuegosDisponibles.CABALLOS -> new FrameCaballos(this, usuario, darkMode).setVisible(true);
                 case JuegosDisponibles.RULETA -> new FrameRuleta(this).setVisible(true);
-                case JuegosDisponibles.SLOTS -> new FrameSlots(this).setVisible(true);
-                case JuegosDisponibles.BLACKJACK -> new FrameBlackjack(this, usuario).setVisible(true);
+                case JuegosDisponibles.SLOTS ->
+                    new FrameSlots(this, usuario, darkMode).setVisible(true);
+                case JuegosDisponibles.BLACKJACK -> new FrameBlackjack(this, usuario, darkMode).setVisible(true);
                 case JuegosDisponibles.MINAS -> new FrameMinas(this).setVisible(true);
                 case JuegosDisponibles.DINOSAURIO -> new FrameDino(this).setVisible(true);
                 default -> {
@@ -177,7 +220,7 @@ public class FrameMenuPrincipal extends JFrame {
         } else {
             if (!loginAbierto) {
                 loginAbierto = true;
-                new FrameLogIn(FrameMenuPrincipal.this, juegoObjetivo).setVisible(true);
+                new FrameLogIn(FrameMenuPrincipal.this, juegoObjetivo, darkMode).setVisible(true);
             }
         }
     }

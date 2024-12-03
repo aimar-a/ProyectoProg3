@@ -1,5 +1,6 @@
 package GUI.perfil;
 
+import GUI.ColorVariables;
 import datos.GestorMovimientos;
 import java.awt.Color;
 import java.awt.Font;
@@ -13,7 +14,7 @@ public class PanelHistorialMovimientos extends JPanel {
     private final JTable table;
     private final DefaultTableModel tableModel;
 
-    public PanelHistorialMovimientos(String usuario) {
+    public PanelHistorialMovimientos(String usuario, boolean darkMode) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Layout vertical
 
         // Crear el modelo de la tabla con los encabezados
@@ -34,6 +35,21 @@ public class PanelHistorialMovimientos extends JPanel {
         // Agregar la tabla a un JScrollPane para que sea desplazable
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane);
+
+        // Aplicar colores según el modo
+        if (darkMode) {
+            setBackground(ColorVariables.COLOR_FONDO_DARK);
+            table.setBackground(ColorVariables.COLOR_FONDO_DARK);
+            table.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            table.setGridColor(Color.GRAY);
+            scrollPane.getViewport().setBackground(ColorVariables.COLOR_FONDO_DARK);
+        } else {
+            setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            table.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            table.setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
+            table.setGridColor(Color.LIGHT_GRAY);
+            scrollPane.getViewport().setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+        }
 
         // Cargar los movimientos del archivo CSV y mostrarlos en la tabla
         cargarHistorialMovimientos(usuario);
