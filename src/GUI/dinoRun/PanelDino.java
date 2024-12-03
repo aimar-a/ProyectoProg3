@@ -18,6 +18,15 @@ public class PanelDino extends JPanel {
     private ImageIcon[] dinoFrames; // Arreglo de imágenes del dinosaurio
     private int currentFrame = 0; // Índice del cuadro actual para la animación
     private Thread animationThread; // Hilo para manejar la animación
+    public interface GameEndListener {
+        void onGameEnd(boolean cashedOut);
+    }
+
+    private GameEndListener gameEndListener;
+
+    public void setGameEndListener(GameEndListener listener) {
+        this.gameEndListener = listener;
+    }
 
     public PanelDino() {
     	setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Diseño vertical
@@ -137,23 +146,39 @@ public class PanelDino extends JPanel {
         }
     }
 
-    public void cashOut() {
-        if (isRunning) {
-            endGame(true);
-        }
+    private int apuesta = 0;
+
+    public void setApuesta(int apuesta) {
+        this.apuesta = apuesta;
     }
 
+    public int cashOut() {
+        if (!isRunning) return 0; // Si el juego no está corriendo, no hay ganancias
+
+        endGame(true); // Termina el juego
+        int ganancia = (int) (apuesta * multiplier);
+        apuesta = 0; // Reinicia la apuesta
+        return ganancia;
+    }
+
+    
     private void endGame(boolean cashedOut) {
         isRunning = false;
         timer.stop();
         stopAnimation();
-        
 
+        // Notificar al listener que el juego terminó
+        if (gameEndListener != null) {
+            gameEndListener.onGameEnd(cashedOut);
+        }
+
+        // Mensaje al usuario
         String message = cashedOut
                 ? "¡Cobraste con éxito! Multiplicador: x" + String.format("%.2f", multiplier) + " sobre tu apuesta."
                 : "¡El dinosaurio se estrelló! Perdiste tu apuesta.";
         JOptionPane.showMessageDialog(this, message);
     }
+}
 
     
-}
+
