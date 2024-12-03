@@ -1,10 +1,11 @@
 package GUI.dinoRun;
 
+import GUI.ColorVariables;
 import datos.GestorMovimientos;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
 public class PanelApuestasDino extends JPanel {
     private final String usuario; // Usuario para identificar en la base de datos
@@ -13,7 +14,7 @@ public class PanelApuestasDino extends JPanel {
     private final JButton cashOutButton;
     private final PanelDino dinoPlay;
 
-    public PanelApuestasDino(String usuario, PanelDino dinoPlay) {
+    public PanelApuestasDino(String usuario, PanelDino dinoPlay, boolean darkMode) {
         setBackground(Color.RED);
         this.usuario = usuario;
         this.dinoPlay = dinoPlay;
@@ -38,6 +39,14 @@ public class PanelApuestasDino extends JPanel {
         dinoPlay.setGameEndListener((cashedOut) -> {
             SwingUtilities.invokeLater(this::resetButtons);
         });
+
+        if (darkMode) {
+            setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            setBackground(ColorVariables.COLOR_FONDO_DARK);
+        } else {
+            setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
+            setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+        }
     }
 
     private void resetButtons() {
@@ -66,7 +75,7 @@ public class PanelApuestasDino extends JPanel {
             GestorMovimientos.agregarMovimiento(usuario, -apuesta, "apuesta:dinosaurio");
             dinoPlay.setApuesta(apuesta); // Pasar apuesta a PanelDino
             dinoPlay.startGame();
-            
+
             startButton.setEnabled(false);
             cashOutButton.setEnabled(true);
             apuestaSpinner.setEnabled(false);

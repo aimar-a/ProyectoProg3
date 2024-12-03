@@ -1,10 +1,11 @@
 package GUI.dinoRun;
 
-import javax.swing.*;
+import GUI.ColorVariables;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import javax.swing.*;
 
 public class PanelDino extends JPanel {
     private JLabel multiplierLabel;
@@ -18,6 +19,7 @@ public class PanelDino extends JPanel {
     private ImageIcon[] dinoFrames; // Arreglo de imágenes del dinosaurio
     private int currentFrame = 0; // Índice del cuadro actual para la animación
     private Thread animationThread; // Hilo para manejar la animación
+
     public interface GameEndListener {
         void onGameEnd(boolean cashedOut);
     }
@@ -28,9 +30,9 @@ public class PanelDino extends JPanel {
         this.gameEndListener = listener;
     }
 
-    public PanelDino() {
-    	setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Diseño vertical
-    	JPanel animationPanel = new JPanel();
+    public PanelDino(boolean darkMode) {
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Diseño vertical
+        JPanel animationPanel = new JPanel();
         animationPanel.setLayout(new BoxLayout(animationPanel, BoxLayout.Y_AXIS));
         // Cargar imágenes para la animación del dinosaurio
         loadDinoFrames();
@@ -38,38 +40,28 @@ public class PanelDino extends JPanel {
         // Panel principal para la disposición general
         JPanel panel = new JPanel(new BorderLayout());
 
-        
-        
-        
-        
         multiplierLabel = new JLabel("Multiplicador: x1.00", SwingConstants.CENTER);
         dinoLabel = new JLabel("", SwingConstants.CENTER);
         dinoLabel.setPreferredSize(new Dimension(1300, 300)); // Tamaño preferido
         dinoLabel.setIcon(dinoFrames[0]); // Establecer el primer cuadro
         dinoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         // Barra de progreso horizontal de 0 a 100
-        
-        
+
         progressBar = new JProgressBar(0, 100);
         progressBar.setStringPainted(true); // Mostrar el texto del progreso
         progressBar.setString("x1.01");
-        progressBar.setMaximumSize(new Dimension(400,30 )); // Tamaño fijo
+        progressBar.setMaximumSize(new Dimension(400, 30)); // Tamaño fijo
         progressBar.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrado horizontalmente
 
-      
         animationPanel.add(dinoLabel);
         animationPanel.add(progressBar);
-        
-        
+
         // Crear un panel para centrar la barra de progreso
-        
 
         // Añadir los componentes al panel principal
         panel.add(multiplierLabel, BorderLayout.NORTH);
-        
-        panel.add(animationPanel, BorderLayout.CENTER);
 
-        
+        panel.add(animationPanel, BorderLayout.CENTER);
 
         // Agregar el panel principal al frame
         add(panel);
@@ -97,6 +89,18 @@ public class PanelDino extends JPanel {
                 }
             }
         });
+
+        if (darkMode) {
+            setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            setBackground(ColorVariables.COLOR_FONDO_DARK);
+            panel.setBackground(ColorVariables.COLOR_FONDO_DARK);
+            animationPanel.setBackground(ColorVariables.COLOR_FONDO_DARK);
+        } else {
+            setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
+            setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            panel.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            animationPanel.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+        }
     }
 
     private void loadDinoFrames() {
@@ -125,8 +129,7 @@ public class PanelDino extends JPanel {
         if (animationThread != null && animationThread.isAlive()) {
             isRunning = false;
             animationThread.interrupt();
-            
-           
+
         }
     }
 
@@ -153,7 +156,8 @@ public class PanelDino extends JPanel {
     }
 
     public int cashOut() {
-        if (!isRunning) return 0; // Si el juego no está corriendo, no hay ganancias
+        if (!isRunning)
+            return 0; // Si el juego no está corriendo, no hay ganancias
 
         endGame(true); // Termina el juego
         int ganancia = (int) (apuesta * multiplier);
@@ -161,7 +165,6 @@ public class PanelDino extends JPanel {
         return ganancia;
     }
 
-    
     private void endGame(boolean cashedOut) {
         isRunning = false;
         timer.stop();
@@ -179,6 +182,3 @@ public class PanelDino extends JPanel {
         JOptionPane.showMessageDialog(this, message);
     }
 }
-
-    
-
