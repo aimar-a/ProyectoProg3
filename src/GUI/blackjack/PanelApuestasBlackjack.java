@@ -3,7 +3,6 @@
 package GUI.blackjack;
 
 import GUI.ColorVariables;
-import GUI.mainMenu.FrameMenuPrincipal;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -48,10 +47,10 @@ public class PanelApuestasBlackjack extends JPanel {
         add(botonPlantarse);
 
         if (darkMode) {
-            setBackground(ColorVariables.COLOR_FONDO_DARK);
+            setBackground(ColorVariables.COLOR_ROJO_DARK);
             setForeground(ColorVariables.COLOR_TEXTO_DARK);
         } else {
-            setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            setBackground(ColorVariables.COLOR_ROJO_DARK);
             setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
         }
     }

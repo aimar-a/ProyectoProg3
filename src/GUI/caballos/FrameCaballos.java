@@ -12,7 +12,7 @@ public class FrameCaballos extends MainFrame {
         PanelCaballos carreraCaballos = new PanelCaballos();
         add(carreraCaballos, BorderLayout.CENTER);
 
-        PanelApuestasCaballos apuestasCaballos = new PanelApuestasCaballos(usuario);
+        PanelApuestasCaballos apuestasCaballos = new PanelApuestasCaballos(usuario, darkMode);
         add(apuestasCaballos, BorderLayout.SOUTH);
 
         carreraCaballos.setPanelApuestasCaballos(apuestasCaballos);

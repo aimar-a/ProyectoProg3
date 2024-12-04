@@ -5,6 +5,7 @@ import datos.GestorMovimientos;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Image;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -13,25 +14,114 @@ import javax.swing.table.DefaultTableModel;
 public class PanelHistorialMovimientos extends JPanel {
 
     private final JTable table;
-    private final DefaultTableModel tableModel;
+    private final DefaultTableModel tableModel = new DefaultTableModel(
+            new String[] { "Fecha", "Hora", "Modificación", "Tipo", "Saldo Final" },
+            0) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
 
     public PanelHistorialMovimientos(String usuario, boolean darkMode) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Layout vertical
 
-        // Crear el modelo de la tabla con los encabezados
-        tableModel = new DefaultTableModel(
-                new String[] { "Fecha", "Hora", "Modificación", "Tipo", "Saldo Final" },
-                0);
         table = new JTable(tableModel);
 
         // Personalizar la fuente de la tabla
-        Font font = new Font("Arial", Font.PLAIN, 16);
-        table.setFont(font);
-        table.setRowHeight(20); // Ajustar la altura de las filas para la nueva fuente
+        table.setRowHeight(40); // Ajustar la altura de las filas para la nueva fuente
 
         // Personalizar el renderer de la tabla
-        table.getColumnModel().getColumn(2).setCellRenderer(new ModificacionCellRenderer());
-        table.getColumnModel().getColumn(4).setCellRenderer(new SaldoFinalCellRenderer());
+        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                    boolean hasFocus, int row, int column) {
+                JLabel cell = new JLabel(value.toString());
+                cell.setForeground(darkMode ? ColorVariables.COLOR_TEXTO_DARK : ColorVariables.COLOR_TEXTO_LIGHT);
+                cell.setFont(new Font("Arial", Font.PLAIN, 16)); // Fuente y tamaño
+                if (column == 0) {
+                    cell.setHorizontalAlignment(SwingConstants.CENTER); // Centrar el texto
+                    cell.setFont(new Font("Arial", Font.ITALIC, 20)); // Fuente en negrita
+                } else if (column == 1) {
+                    cell.setHorizontalAlignment(SwingConstants.CENTER); // Centrar el texto
+                    cell.setFont(new Font("Arial", Font.ITALIC, 20)); // Fuente en negrita
+                    String[] timeParts = value.toString().split(":");
+                    int hour = Integer.parseInt(timeParts[0]);
+                    int minute = Integer.parseInt(timeParts[1]);
+                    int second = Integer.parseInt(timeParts[2]);
+                    float intensidad = (hour * 3600 + minute * 60 + second) / 86400f;
+                    cell.setBackground(new Color(intensidad, intensidad, intensidad));
+                    cell.setForeground(intensidad > 0.5 ? Color.BLACK : Color.WHITE);
+                    cell.setOpaque(true);
+                } else if (column == 2) { // Columna "Modificación"
+                    cell.setHorizontalAlignment(SwingConstants.CENTER); // Centrar el texto
+                    cell.setOpaque(true); // Permitir cambiar el color de fondo
+                    cell.setFont(new Font("Times new roman", Font.BOLD, 20)); // Fuente en negrita
+                    if (Integer.parseInt(value.toString()) > 0) {
+                        cell.setText("+" + value.toString()); // Agregar el signo + si es positivo
+                        cell.setBackground(new Color(0, 255, 0, 50)); // Fondo verde claro
+                    } else if (Integer.parseInt(value.toString()) < 0) {
+                        cell.setBackground(new Color(255, 0, 0, 50)); // Fondo rojo claro
+                    }
+                    if (((String) table.getValueAt(row, 3)).contains("victoria")) { // Si es una victoria
+                        cell.setForeground(Color.GREEN); // Color verde
+                    } else if (((String) table.getValueAt(row, 3)).contains("apuesta")) { // Si es una apuesta
+                        cell.setForeground(Color.RED); // Color rojo
+                    } else if (((String) table.getValueAt(row, 3)).contains("deposito")) { // Si es un depósito
+                        cell.setForeground(Color.BLUE); // Color azul
+                    } else if (((String) table.getValueAt(row, 3)).contains("retiro")) { // Si es un retiro
+                        cell.setForeground(Color.ORANGE); // Color naranja
+                    } else if (((String) table.getValueAt(row, 3)).contains("bienvenida")) {
+                        cell.setForeground(Color.MAGENTA); // Color magenta
+                    }
+                } else if (column == 4) { // Columna "Saldo Final"
+                    cell.setHorizontalAlignment(SwingConstants.RIGHT); // Alinear a la derecha
+                    cell.setFont(cell.getFont().deriveFont(Font.BOLD, 25f)); // Fuente en negrita y tamaño 20
+                    cell.setFont(cell.getFont().deriveFont(Font.BOLD)); // Fuente en negrita
+                } else if (column == 3) {
+                    cell.setHorizontalAlignment(SwingConstants.CENTER); // Centrar el texto
+                    cell.setText(""); // Limpiar el texto
+                    if (((String) value).contains("slots")) {
+                        ImageIcon icon = new ImageIcon(("src/img/perfil/slot.png"));
+                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+                        cell.setIcon(new ImageIcon(image));
+                    } else if (((String) value).contains("caballo")) {
+                        ImageIcon icon = new ImageIcon(("src/img/perfil/caballo.png"));
+                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+                        cell.setIcon(new ImageIcon(image));
+                    } else if (((String) value).contains("blackjack")) {
+                        ImageIcon icon = new ImageIcon(("src/img/perfil/blackjack.png"));
+                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+                        cell.setIcon(new ImageIcon(image));
+                    } else if (((String) value).contains("dino")) {
+                        ImageIcon icon = new ImageIcon(("src/img/perfil/dino.png"));
+                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+                        cell.setIcon(new ImageIcon(image));
+                    } else if (((String) value).contains("victoria")) {
+                        ImageIcon icon = new ImageIcon(("src/img/perfil/victoria.png"));
+                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+                        cell.setIcon(new ImageIcon(image));
+                    } else if (((String) value).contains("apuesta")) {
+                        ImageIcon icon = new ImageIcon(("src/img/perfil/apuesta.png"));
+                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+                        cell.setIcon(new ImageIcon(image));
+                    } else if (((String) value).contains("deposito")) {
+                        ImageIcon icon = new ImageIcon(("src/img/perfil/deposito.png"));
+                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+                        cell.setIcon(new ImageIcon(image));
+                    } else if (((String) value).contains("retiro")) {
+                        ImageIcon icon = new ImageIcon(("src/img/perfil/retiro.png"));
+                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+                        cell.setIcon(new ImageIcon(image));
+                    } else if (((String) value).contains("bienvenida")) {
+                        ImageIcon icon = new ImageIcon(("src/img/perfil/bienvenida.png"));
+                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+                        cell.setIcon(new ImageIcon(image));
+                    }
+                }
+                return cell;
+            }
+        });
 
         // Agregar la tabla a un JScrollPane para que sea desplazable
         JScrollPane scrollPane = new JScrollPane(table);
@@ -66,46 +156,6 @@ public class PanelHistorialMovimientos extends JPanel {
             int saldoFinal = Integer.parseInt(data[5]);
 
             tableModel.addRow(new Object[] { fecha, hora, modificacion, tipo, saldoFinal });
-        }
-    }
-
-    // Renderer para la columna "Modificación"
- // Renderer para la columna "Modificación"
-    class ModificacionCellRenderer extends DefaultTableCellRenderer {
-        @Override
-        public Component getTableCellRendererComponent(
-                JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-
-            // Llamar al método padre para establecer las configuraciones iniciales
-            Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-
-            // Obtener el valor de la columna "Tipo" en la misma fila
-            String tipo = (String) table.getValueAt(row, 3); // Índice de la columna "Tipo"
-
-            // Cambiar colores según el tipo de operación
-            if ("victoria".equalsIgnoreCase(tipo)) {
-                cell.setForeground(Color.GREEN); // Verde para ganar
-            } else if ("apuesta".equalsIgnoreCase(tipo)) {
-                cell.setForeground(Color.RED); // Rojo para perder
-            } else if ("deposito".equalsIgnoreCase(tipo)) {
-                cell.setForeground(Color.BLUE); // Gris para depósito
-            } else {
-                cell.setForeground(Color.BLACK); // Color predeterminado
-            }
-
-            return cell;
-        }
-    }
-
-
-
-    // Renderer para la columna "Saldo Final"
-    class SaldoFinalCellRenderer extends DefaultTableCellRenderer {
-        @Override
-        protected void setValue(Object value) {
-            super.setValue(value);
-            setFont(getFont().deriveFont(Font.BOLD)); // Establecer la fuente en negrita
-            setForeground(Color.BLACK); // Color negro para el saldo
         }
     }
 }

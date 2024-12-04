@@ -43,10 +43,10 @@ public class PanelApuestasDino extends JPanel {
 
         if (darkMode) {
             setForeground(ColorVariables.COLOR_TEXTO_DARK);
-            setBackground(ColorVariables.COLOR_FONDO_DARK);
+            setBackground(ColorVariables.COLOR_ROJO_DARK);
         } else {
             setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
-            setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            setBackground(ColorVariables.COLOR_ROJO_LIGHT);
         }
     }
 

@@ -1,5 +1,6 @@
 package GUI.caballos;
 
+import GUI.ColorVariables;
 import datos.GestorMovimientos;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -20,7 +21,7 @@ public class PanelApuestasCaballos extends JPanel {
     private final JSpinner spinnerApuesta;
     private final JButton botonIniciarCarrera;
 
-    public PanelApuestasCaballos(String usuario) {
+    public PanelApuestasCaballos(String usuario, boolean darkMode) {
         setBackground(Color.RED);
         this.usuario = usuario;
         // Etiqueta y ComboBox para seleccionar caballo
@@ -64,6 +65,9 @@ public class PanelApuestasCaballos extends JPanel {
             apuesta = (int) spinnerApuesta.getValue();
             panelCaballos.iniciarCarrera((int) comboBoxCaballoSeleccionado.getSelectedItem());
         });
+
+        // Personalizar el panel
+        setBackground(darkMode ? ColorVariables.COLOR_ROJO_DARK : ColorVariables.COLOR_ROJO_LIGHT);
     }
 
     protected void setPanelCaballos(PanelCaballos panelCaballos) {
