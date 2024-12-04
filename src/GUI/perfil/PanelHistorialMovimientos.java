@@ -3,6 +3,7 @@ package GUI.perfil;
 import GUI.ColorVariables;
 import datos.GestorMovimientos;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.util.*;
 import javax.swing.*;
@@ -69,20 +70,34 @@ public class PanelHistorialMovimientos extends JPanel {
     }
 
     // Renderer para la columna "Modificación"
+ // Renderer para la columna "Modificación"
     class ModificacionCellRenderer extends DefaultTableCellRenderer {
         @Override
-        protected void setValue(Object value) {
-            super.setValue(value);
-            String modificacion = (String) value;
-            if (modificacion.startsWith("+")) {
-                setForeground(Color.GREEN); // Color verde para depósitos
-            } else if (modificacion.startsWith("-")) {
-                setForeground(Color.RED); // Color rojo para retiros
+        public Component getTableCellRendererComponent(
+                JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+
+            // Llamar al método padre para establecer las configuraciones iniciales
+            Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+            // Obtener el valor de la columna "Tipo" en la misma fila
+            String tipo = (String) table.getValueAt(row, 3); // Índice de la columna "Tipo"
+
+            // Cambiar colores según el tipo de operación
+            if ("victoria".equalsIgnoreCase(tipo)) {
+                cell.setForeground(Color.GREEN); // Verde para ganar
+            } else if ("apuesta".equalsIgnoreCase(tipo)) {
+                cell.setForeground(Color.RED); // Rojo para perder
+            } else if ("deposito".equalsIgnoreCase(tipo)) {
+                cell.setForeground(Color.BLUE); // Gris para depósito
             } else {
-                setForeground(Color.BLACK); // Por defecto, color negro
+                cell.setForeground(Color.BLACK); // Color predeterminado
             }
+
+            return cell;
         }
     }
+
+
 
     // Renderer para la columna "Saldo Final"
     class SaldoFinalCellRenderer extends DefaultTableCellRenderer {

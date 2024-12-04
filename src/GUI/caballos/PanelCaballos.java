@@ -5,10 +5,10 @@ import java.util.Random;
 import javax.swing.*;
 
 public class PanelCaballos extends JPanel {
-
+	//IAG
     private static final long serialVersionUID = 1L;
     private static final int NUM_CABALLOS = 8;
-    private static final int META = 1600;
+    private static final int META = 1400;
     private final int[] posiciones; // Posiciones de los caballos
     private boolean carreraEnCurso = false; // Estado de la carrera
     private int ganador = -1; // Índice del caballo ganador

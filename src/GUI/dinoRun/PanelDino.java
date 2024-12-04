@@ -154,7 +154,7 @@ public class PanelDino extends JPanel {
     public void setApuesta(int apuesta) {
         this.apuesta = apuesta;
     }
-
+    
     public int cashOut() {
         if (!isRunning)
             return 0; // Si el juego no está corriendo, no hay ganancias

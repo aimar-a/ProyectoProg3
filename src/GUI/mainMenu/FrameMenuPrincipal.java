@@ -15,6 +15,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class FrameMenuPrincipal extends JFrame {
+	//IAG
     private static final long serialVersionUID = 1L;
     public boolean logeado;
     private String usuario;

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class PanelApuestasDino extends JPanel {
+
     private final String usuario; // Usuario para identificar en la base de datos
     private final JSpinner apuestaSpinner; // Cambiado a JSpinner
     private final JButton startButton;
