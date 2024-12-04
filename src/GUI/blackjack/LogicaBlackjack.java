@@ -53,6 +53,10 @@ public class LogicaBlackjack {
         panelApuestas.botonPlantarse.setEnabled(true);
 
         this.apuesta = panelApuestas.getCantidadApuesta();
+        if (GestorMovimientos.obtenerSaldo(usuario) < this.apuesta) {
+            JOptionPane.showMessageDialog(panelBlackjack, "No tienes suficientes fichas para realizar esta apuesta.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
         GestorMovimientos.agregarMovimiento(usuario, -this.apuesta, "apuesta:blackjack");
 
         // Dibujar estado inicial

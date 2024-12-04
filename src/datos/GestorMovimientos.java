@@ -32,6 +32,9 @@ public class GestorMovimientos {
     }
 
     public static boolean agregarMovimiento(String usuario, int cantidad, String asunto) {
+        if (-cantidad > obtenerSaldo(usuario)) {
+            return false;
+        }
         if (!cambiarSaldo(usuario, obtenerSaldo(usuario) + cantidad)) {
             return false;
         }

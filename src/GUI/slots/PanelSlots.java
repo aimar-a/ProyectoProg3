@@ -46,6 +46,7 @@ public class PanelSlots extends JPanel {
     public void girarColumna(int columna) {
         for (int ff = 2; ff > 0; ff--) {
             labelsSlots[columna][ff].setIcon(labelsSlots[columna][ff - 1].getIcon());
+            numsImg[columna][ff] = numsImg[columna][ff - 1];
         }
         long seed = System.nanoTime();
         Random r = new Random(seed);
@@ -53,6 +54,7 @@ public class PanelSlots extends JPanel {
         if (n == 10 && columna != 2) {
             n = 0;
         }
+        numsImg[columna][0] = n;
         ImageIcon icono = new ImageIcon(getClass().getResource("/img/slots/slot" + n + ".png"));
         Image scaledImage = icono.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         ImageIcon scaledIcono = new ImageIcon(scaledImage);
@@ -70,7 +72,6 @@ public class PanelSlots extends JPanel {
                 ImageIcon icono = new ImageIcon(getClass().getResource("/img/slots/slot" + n + ".png"));
                 Image scaledImage = icono.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
                 ImageIcon scaledIcono = new ImageIcon(scaledImage);
-                numsImg[col][fil] = n;
                 labelsSlots[col][fil].setIcon(scaledIcono);
             }
         }

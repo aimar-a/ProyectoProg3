@@ -2,6 +2,7 @@
 package GUI.slots;
 
 import datos.GestorMovimientos;
+import javax.swing.JOptionPane;
 
 public class LogicaSlots {
     private final PanelSlots panelSlots;
@@ -50,6 +51,10 @@ public class LogicaSlots {
             return;
         }
         this.apuesta = panelApuestas.getApuesta();
+        if (GestorMovimientos.obtenerSaldo(usuario) < apuesta) {
+            JOptionPane.showMessageDialog(panelSlots, "Saldo insuficiente", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         GestorMovimientos.agregarMovimiento(usuario, -apuesta, "apuesta:slots");
         hilo = new Hilo();
         hilo.start();

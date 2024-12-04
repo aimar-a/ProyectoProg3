@@ -133,6 +133,9 @@ public class FrameMenuPrincipal extends JFrame {
         panelDerechaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_DARK);
         panelIzquierdaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_DARK);
         titulo.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+        UIManager.put("OptionPane.background", ColorVariables.COLOR_FONDO_DARK);
+        UIManager.put("Panel.background", ColorVariables.COLOR_FONDO_DARK);
+        UIManager.put("OptionPane.messageForeground", ColorVariables.COLOR_TEXTO_DARK);
     }
 
     private void disableDarkMode() {
@@ -144,6 +147,9 @@ public class FrameMenuPrincipal extends JFrame {
         panelDerechaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_LIGHT);
         panelIzquierdaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_LIGHT);
         titulo.setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
+        UIManager.put("OptionPane.background", ColorVariables.COLOR_FONDO_LIGHT);
+        UIManager.put("Panel.background", ColorVariables.COLOR_FONDO_LIGHT);
+        UIManager.put("OptionPane.messageForeground", ColorVariables.COLOR_TEXTO_LIGHT);
     }
 
     private JPanel configurarPanelCentral() {
