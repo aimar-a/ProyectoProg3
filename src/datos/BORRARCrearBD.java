@@ -5,7 +5,7 @@ import java.nio.file.*;
 import java.sql.*;
 import java.util.*;
 
-public class CrearBD {
+public class BORRARCrearBD {
     private static final String DB_URL = "jdbc:sqlite:resources/db/casino.db";
     private static final String CONFIG_PATH = "resources/db/crearBD.txt";
     private static final String CSV_DIR = "resources/csv/";

@@ -1,7 +1,8 @@
 package GUI.dinoRun;
 
 import GUI.ColorVariables;
-import datos.GestorMovimientos;
+import datos.AsuntoMovimiento;
+import datos.GestorBD;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -66,14 +67,14 @@ public class PanelApuestasDino extends JPanel {
                 return;
             }
 
-            if (GestorMovimientos.obtenerSaldo(usuario) < apuesta) {
+            if (GestorBD.obtenerSaldo(usuario) < apuesta) {
                 JOptionPane.showMessageDialog(dinoPlay, "Saldo insuficiente.",
                         "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             // Deduce la apuesta del saldo
-            GestorMovimientos.agregarMovimiento(usuario, -apuesta, "apuesta:dinosaurio");
+            GestorBD.agregarMovimiento(usuario, -apuesta, AsuntoMovimiento.DINO_APUESTA);
             dinoPlay.setApuesta(apuesta); // Pasar apuesta a PanelDino
             dinoPlay.startGame();
 
@@ -88,7 +89,7 @@ public class PanelApuestasDino extends JPanel {
         public void actionPerformed(ActionEvent e) {
             int ganancia = dinoPlay.cashOut();
             if (ganancia > 0) {
-                GestorMovimientos.agregarMovimiento(usuario, ganancia, "victoria:dinosaurio");
+                GestorBD.agregarMovimiento(usuario, ganancia, AsuntoMovimiento.DINO_PREMIO);
                 JOptionPane.showMessageDialog(dinoPlay,
                         "¡Has ganado " + ganancia + " monedas!", "¡Enhorabuena!",
                         JOptionPane.INFORMATION_MESSAGE);

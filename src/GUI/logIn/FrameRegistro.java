@@ -1,8 +1,7 @@
 package GUI.logIn;
 
 import GUI.ColorVariables;
-import datos.GestorMovimientos;
-import datos.GestorUsuarios;
+import datos.GestorBD;
 import datos.TiposDeDatos;
 import java.awt.*;
 import java.time.LocalDate;
@@ -219,7 +218,10 @@ public class FrameRegistro extends JDialog {
                         JTextField txtNumeroTelefono, JTextField txtCalle, JTextField txtNumero,
                         JComboBox<String> comboDia, JComboBox<String> comboMes, JComboBox<String> comboAno,
                         JPasswordField txtContrasena, JTextField txtProvincia, JTextField txtCiudad) {
-                if (!TiposDeDatos.comprobarCamposYInfo(campos, labelsFormatoInfo, tipos)) {
+                if (!TiposDeDatos.comprobarCamposYInfo(campos, labelsFormatoInfo, tipos) || TiposDeDatos.validarDato(
+                                TiposDeDatos.FECHA_DE_NACIMIENTO,
+                                TiposDeDatos.formatFecha(comboDia.getSelectedItem(), comboMes.getSelectedItem(),
+                                                comboAno.getSelectedItem())) != null) {
                         JOptionPane.showMessageDialog(this, "Por favor, revise los campos con errores.", "Error",
                                         JOptionPane.ERROR_MESSAGE);
                         return;
@@ -250,14 +252,14 @@ public class FrameRegistro extends JDialog {
                         return;
                 }
 
-                boolean registroExitoso = GestorUsuarios.agregarUsuario(usuario, contrasena,
+                int fichasBienvenida = GestorBD.agregarUsuario(usuario, contrasena,
                                 new String[] { nombre, apellidos, dni, email, prefijo, numero, provincia, ciudad,
                                                 direccion, ndireccion,
                                                 fechaNacimiento, fechaRegistro });
 
-                if (registroExitoso) {
+                if (fichasBienvenida > 0) {
                         JOptionPane.showMessageDialog(this,
-                                        "Felicidades, has obtenido " + GestorMovimientos.obtenerSaldo(usuario)
+                                        "Felicidades, has obtenido " + fichasBienvenida
                                                         + " fichas como premio de bienvenida. ¡Bienvenido a la familia!",
                                         "Éxito",
                                         JOptionPane.INFORMATION_MESSAGE);

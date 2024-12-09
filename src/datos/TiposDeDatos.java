@@ -38,7 +38,7 @@ public enum TiposDeDatos {
         }
         switch (tipo) {
             case USUARIO:
-                if (GestorUsuarios.usuarioExiste(valor)) {
+                if (GestorBD.usuarioExiste(valor)) {
                     return "El usuario ya existe.";
                 }
                 if (valor == null || valor.isEmpty() || !valor.matches("^[a-zA-Z0-9._-]{3,20}$")) {

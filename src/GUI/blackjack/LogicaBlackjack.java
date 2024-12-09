@@ -2,7 +2,8 @@
 // URL: https://www.youtube.com/watch?v=GMdgjaDdOjI 
 package GUI.blackjack;
 
-import datos.GestorMovimientos;
+import datos.AsuntoMovimiento;
+import datos.GestorBD;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -31,6 +32,12 @@ public class LogicaBlackjack {
     }
 
     public void iniciarJuego() {
+        this.apuesta = panelApuestas.getCantidadApuesta();
+        if (GestorBD.obtenerSaldo(usuario) < this.apuesta) {
+            JOptionPane.showMessageDialog(panelBlackjack, "No tienes suficientes fichas para realizar esta apuesta.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         // Reiniciar valores y configurar el juego
         mazo = new Mazo();
         manoCrupier = new ArrayList<>();
@@ -52,12 +59,7 @@ public class LogicaBlackjack {
         panelApuestas.botonPedir.setEnabled(true);
         panelApuestas.botonPlantarse.setEnabled(true);
 
-        this.apuesta = panelApuestas.getCantidadApuesta();
-        if (GestorMovimientos.obtenerSaldo(usuario) < this.apuesta) {
-            JOptionPane.showMessageDialog(panelBlackjack, "No tienes suficientes fichas para realizar esta apuesta.",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        GestorMovimientos.agregarMovimiento(usuario, -this.apuesta, "apuesta:blackjack");
+        GestorBD.agregarMovimiento(usuario, -this.apuesta, AsuntoMovimiento.BLACKJACK_APUESTA);
 
         // Dibujar estado inicial
         panelBlackjack.dibujar(cartaOculta, sumaCrupier, sumaJugador, manoCrupier, manoJugador,
@@ -117,10 +119,10 @@ public class LogicaBlackjack {
             mensaje = "¡Perdiste!";
         }
         if (mensaje.contains("Ganaste")) {
-            GestorMovimientos.agregarMovimiento(usuario, this.apuesta * 2, "victoria:blackjack");
+            GestorBD.agregarMovimiento(usuario, this.apuesta * 2, AsuntoMovimiento.BLACKJACK_PREMIO);
             mensaje += "\nHas ganado " + this.apuesta + " fichas";
         } else if (mensaje.contains("Empate")) {
-            GestorMovimientos.agregarMovimiento(usuario, this.apuesta, "empate:blackjack");
+            GestorBD.agregarMovimiento(usuario, this.apuesta, AsuntoMovimiento.BLACKJACK_EMPATE);
             mensaje += "\nHas recuperado tu apuesta de " + this.apuesta + " fichas";
         } else {
             mensaje += "\nHas perdido " + this.apuesta + " fichas";
@@ -160,7 +162,8 @@ public class LogicaBlackjack {
         cuentaAsesJugador += carta.esAs() ? 1 : 0;
         manoJugador.add(carta);
 
-        panelBlackjack.dibujar(cartaOculta, sumaCrupier, sumaJugador, manoCrupier, manoJugador,
+        panelBlackjack.dibujar(cartaOculta, sumaCrupier, ajustarSumaConAses(sumaJugador, cuentaAsesJugador),
+                manoCrupier, manoJugador,
                 panelApuestas.botonPlantarse);
         if (ajustarSumaConAses(sumaJugador, cuentaAsesJugador) > 21) {
             finalizarJuego();

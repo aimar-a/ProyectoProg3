@@ -1,7 +1,7 @@
 package GUI.perfil;
 
 import GUI.ColorVariables;
-import datos.GestorMovimientos;
+import datos.GestorBD;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -147,15 +147,15 @@ public class PanelHistorialMovimientos extends JPanel {
     }
 
     private void cargarHistorialMovimientos(String usuario) {
-        List<String[]> historial = GestorMovimientos.obtenerHistorial(usuario);
+        List<String[]> historial = GestorBD.obtenerHistorial(usuario);
         for (String[] data : historial) {
             String fecha = data[0];
             String hora = data[1];
-            String modificacion = data[3];
-            String tipo = data[4];
-            int saldoFinal = Integer.parseInt(data[5]);
+            String modificacion = data[2];
+            String asunto = data[3];
+            int saldoFinal = Integer.parseInt(data[4]);
 
-            tableModel.addRow(new Object[] { fecha, hora, modificacion, tipo, saldoFinal });
+            tableModel.addRow(new Object[] { fecha, hora, modificacion, asunto, saldoFinal });
         }
     }
 }

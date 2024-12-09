@@ -1,7 +1,8 @@
 package GUI.caballos;
 
 import GUI.ColorVariables;
-import datos.GestorMovimientos;
+import datos.AsuntoMovimiento;
+import datos.GestorBD;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -53,12 +54,12 @@ public class PanelApuestasCaballos extends JPanel {
 
         // Acción del botón
         botonIniciarCarrera.addActionListener(e -> {
-            if (GestorMovimientos.obtenerSaldo(usuario) < (int) spinnerApuesta.getValue()) {
+            if (GestorBD.obtenerSaldo(usuario) < (int) spinnerApuesta.getValue()) {
                 // Si el usuario no tiene saldo suficiente, mostrar mensaje de error
                 JOptionPane.showMessageDialog(panelCaballos, "Saldo insuficiente", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            GestorMovimientos.agregarMovimiento(usuario, -(int) spinnerApuesta.getValue(), "apuesta:caballos");
+            GestorBD.agregarMovimiento(usuario, -(int) spinnerApuesta.getValue(), AsuntoMovimiento.CABALLOS_APUESTA);
             botonIniciarCarrera.setEnabled(false);
             spinnerApuesta.setEnabled(false);
             comboBoxCaballoSeleccionado.setEnabled(false);
@@ -79,7 +80,7 @@ public class PanelApuestasCaballos extends JPanel {
             JOptionPane.showMessageDialog(panelCaballos,
                     "¡Has ganado " + apuesta * 8 + " monedas!\nCaballo ganador: " + caballoGanador, "¡Enhorabuena!",
                     JOptionPane.INFORMATION_MESSAGE);
-            GestorMovimientos.agregarMovimiento(usuario, apuesta * 8, "victoria:caballos");
+            GestorBD.agregarMovimiento(usuario, apuesta * 8, AsuntoMovimiento.CABALLOS_PREMIO);
             apuesta = 0;
         } else {
             JOptionPane.showMessageDialog(panelCaballos, "¡Has perdido!\nCaballo ganador: " + caballoGanador,

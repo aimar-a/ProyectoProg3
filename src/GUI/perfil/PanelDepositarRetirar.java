@@ -1,7 +1,8 @@
 package GUI.perfil;
 
 import GUI.ColorVariables;
-import datos.GestorMovimientos;
+import datos.AsuntoMovimiento;
+import datos.GestorBD;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -306,7 +307,7 @@ public class PanelDepositarRetirar extends JPanel {
         // Add action listeners for deposit and withdraw buttons
         botonDepositarTarjeta.addActionListener(e -> {
             double cantidad = Double.parseDouble(cantidadTarjeta.getText());
-            if (GestorMovimientos.agregarMovimiento(usuario, (int) cantidad * 100, "deposito:tarjeta")) {
+            if (GestorBD.agregarMovimiento(usuario, (int) cantidad * 100, AsuntoMovimiento.DEPOSITO_TARJETA)) {
                 JOptionPane.showMessageDialog(this, "Depósito realizado correctamente", "Información",
                         JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -317,7 +318,7 @@ public class PanelDepositarRetirar extends JPanel {
 
         botonDepositarTransferencia.addActionListener(e -> {
             double cantidad = Double.parseDouble(cantidadDinero.getText());
-            if (GestorMovimientos.agregarMovimiento(usuario, (int) cantidad * 100, "deposito:transferencia")) {
+            if (GestorBD.agregarMovimiento(usuario, (int) cantidad * 100, AsuntoMovimiento.DEPOSITO_TRANSFERENCIA)) {
                 JOptionPane.showMessageDialog(this, "Depósito realizado correctamente", "Información",
                         JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -327,7 +328,7 @@ public class PanelDepositarRetirar extends JPanel {
         });
         botonRetirarTransferencia.addActionListener(e -> {
             double cantidad = Double.parseDouble(cantidadDinero.getText());
-            if (GestorMovimientos.agregarMovimiento(usuario, (int) -cantidad * 100, "retiro:transferencia")) {
+            if (GestorBD.agregarMovimiento(usuario, (int) -cantidad * 100, AsuntoMovimiento.RETIRO_TRANSFERENCIA)) {
                 JOptionPane.showMessageDialog(this, "Retiro realizado correctamente", "Información",
                         JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -337,7 +338,7 @@ public class PanelDepositarRetirar extends JPanel {
 
         botonDepositarPaypal.addActionListener(e -> {
             double cantidad = Double.parseDouble(cantidadPaypal.getText());
-            if (GestorMovimientos.agregarMovimiento(usuario, (int) cantidad * 100, "deposito:paypal")) {
+            if (GestorBD.agregarMovimiento(usuario, (int) cantidad * 100, AsuntoMovimiento.DEPOSITO_PAYPAL)) {
                 JOptionPane.showMessageDialog(this, "Depósito realizado correctamente", "Información",
                         JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -347,7 +348,7 @@ public class PanelDepositarRetirar extends JPanel {
         });
         botonRetirarPaypal.addActionListener(e -> {
             double cantidad = Double.parseDouble(cantidadPaypal.getText());
-            if (GestorMovimientos.agregarMovimiento(usuario, (int) -cantidad * 100, "retiro:paypal")) {
+            if (GestorBD.agregarMovimiento(usuario, (int) -cantidad * 100, AsuntoMovimiento.RETIRO_PAYPAL)) {
                 JOptionPane.showMessageDialog(this, "Retiro realizado correctamente", "Información",
                         JOptionPane.INFORMATION_MESSAGE);
             } else {

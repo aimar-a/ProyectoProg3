@@ -2,7 +2,7 @@ package datos;
 
 import java.sql.*;
 
-public class GestorUsuarios {
+public class BORRARGestorUsuarios {
     private static Connection connection;
 
     public static void setConnection(Connection connection) {

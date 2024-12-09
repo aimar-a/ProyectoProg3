@@ -1,7 +1,7 @@
 package GUI.perfil;
 
 import GUI.ColorVariables;
-import datos.GestorUsuarios;
+import datos.GestorBD;
 import java.awt.*;
 import javax.swing.*;
 
@@ -93,7 +93,7 @@ public class PanelCambiarContrasena extends JPanel {
         String contrasenaNueva = new String(txtContrasenaNueva.getPassword());
         String contrasenaConfirmada = new String(txtConfirmarContrasena.getPassword());
 
-        if (!contrasenaAntigua.equals(GestorUsuarios.obtenerContrasena(usuario))) {
+        if (!contrasenaAntigua.equals(GestorBD.obtenerContrasena(usuario))) {
             JOptionPane.showMessageDialog(this, "La contraseña antigua es incorrecta.", "Error",
                     JOptionPane.ERROR_MESSAGE);
             return;
@@ -111,6 +111,12 @@ public class PanelCambiarContrasena extends JPanel {
             return;
         }
 
-        GestorUsuarios.cambiarContrasena(usuario, contrasenaNueva);
+        if (GestorBD.cambiarContrasena(usuario, contrasenaNueva)) {
+            JOptionPane.showMessageDialog(this, "Contraseña cambiada correctamente.", "Éxito",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al cambiar la contraseña.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

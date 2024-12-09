@@ -10,12 +10,12 @@ import GUI.minas.FrameMinas;
 import GUI.perfil.FramePerfil;
 import GUI.ruleta.FrameRuleta;
 import GUI.slots.FrameSlots;
-import datos.GestorMovimientos;
+import datos.GestorBD;
 import java.awt.*;
 import javax.swing.*;
 
 public class FrameMenuPrincipal extends JFrame {
-	//IAG
+    // IAG
     private static final long serialVersionUID = 1L;
     public boolean logeado;
     private String usuario;
@@ -247,10 +247,10 @@ public class FrameMenuPrincipal extends JFrame {
             botonPerfil.setVisible(true);
             labelSaldo.setVisible(true);
             botonPerfil.setText(" " + usuario);
-            labelSaldo.setText("Saldo: " + GestorMovimientos.obtenerSaldo(usuario) + " fichas  ");
+            labelSaldo.setText("Saldo: " + GestorBD.obtenerSaldo(usuario) + " fichas  ");
             labelSaldo.setFont(labelSaldo.getFont().deriveFont(15.0f));
             labelSaldo.setForeground(Color.WHITE);
-            GestorMovimientos.setLabelMainMenu(labelSaldo);
+            GestorBD.setLblMainMenu(labelSaldo);
             botonSalir.setText("Cerrar Sesión");
         } else {
             labelBienvenida.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");

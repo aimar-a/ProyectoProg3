@@ -1,7 +1,8 @@
 // https://www.freeslots.com/es/Slot21.htm 
 package GUI.slots;
 
-import datos.GestorMovimientos;
+import datos.AsuntoMovimiento;
+import datos.GestorBD;
 import javax.swing.JOptionPane;
 
 public class LogicaSlots {
@@ -39,7 +40,7 @@ public class LogicaSlots {
             }
             int mult = premios.comprobarResultado(panelSlots.getIntsSlots());
             if (mult > 0) {
-                GestorMovimientos.agregarMovimiento(usuario, apuesta * mult, "victoria:slots");
+                GestorBD.agregarMovimiento(usuario, apuesta * mult, AsuntoMovimiento.SLOTS_PREMIO);
             }
             panelSlots.setLabelRecompensa(apuesta + "x" + mult + " = " + apuesta * mult);
             interrupt();
@@ -51,11 +52,11 @@ public class LogicaSlots {
             return;
         }
         this.apuesta = panelApuestas.getApuesta();
-        if (GestorMovimientos.obtenerSaldo(usuario) < apuesta) {
+        if (GestorBD.obtenerSaldo(usuario) < apuesta) {
             JOptionPane.showMessageDialog(panelSlots, "Saldo insuficiente", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        GestorMovimientos.agregarMovimiento(usuario, -apuesta, "apuesta:slots");
+        GestorBD.agregarMovimiento(usuario, -apuesta, AsuntoMovimiento.SLOTS_APUESTA);
         hilo = new Hilo();
         hilo.start();
     }

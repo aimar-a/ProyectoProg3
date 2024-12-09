@@ -8,11 +8,12 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 public class FramePerfil extends JDialog {
-	//IAG
+    // IAG
     JButton btnPerfil = new JButton("Ver Perfil");
     JButton btnDespositarRetirar = new JButton("Depositar/Retirar");
     JButton btnHistorialMovimientos = new JButton("Ver Historial de Movimientos");
     JButton btnCambiarContraseña = new JButton("Cambiar Contraseña");
+    JButton btnVolver = new JButton("<- Volver");
 
     JPanel panelCentralPerfil = new JPanel();
     String usuario;
@@ -24,7 +25,7 @@ public class FramePerfil extends JDialog {
         this.usuario = parent.getUsuario();
         this.darkMode = darkMode;
 
-        setSize(900, 1000);
+        setSize((int) (getToolkit().getScreenSize().width * 0.4), (int) (getToolkit().getScreenSize().height * 0.8));
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(parent);
         setLayout(new BorderLayout());
@@ -70,11 +71,20 @@ public class FramePerfil extends JDialog {
             btnCambiarContraseña.setEnabled(false);
         });
 
-        JPanel panelSuperior = new JPanel();
-        panelSuperior.add(btnPerfil);
-        panelSuperior.add(btnDespositarRetirar);
-        panelSuperior.add(btnHistorialMovimientos);
-        panelSuperior.add(btnCambiarContraseña);
+        btnVolver.addActionListener(e -> {
+            dispose();
+        });
+
+        JPanel panelSuperior = new JPanel(new BorderLayout());
+        JPanel panelEleccion = new JPanel();
+        panelSuperior.add(panelEleccion, BorderLayout.CENTER);
+        JPanel panelVolver = new JPanel();
+        panelVolver.add(btnVolver);
+        panelSuperior.add(panelVolver, BorderLayout.WEST);
+        panelEleccion.add(btnPerfil);
+        panelEleccion.add(btnDespositarRetirar);
+        panelEleccion.add(btnHistorialMovimientos);
+        panelEleccion.add(btnCambiarContraseña);
         add(panelSuperior, BorderLayout.NORTH);
 
         if (darkMode) {

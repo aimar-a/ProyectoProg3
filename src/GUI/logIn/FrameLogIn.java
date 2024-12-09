@@ -3,7 +3,7 @@ package GUI.logIn;
 import GUI.ColorVariables;
 import GUI.mainMenu.FrameMenuPrincipal;
 import GUI.mainMenu.JuegosDisponibles;
-import datos.GestorUsuarios;
+import datos.GestorBD;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -149,7 +149,7 @@ public class FrameLogIn extends JDialog {
         String usuario = usuarioField.getText();
         String password = new String(passwordField.getPassword());
 
-        if (password.equals(GestorUsuarios.obtenerContrasena(usuario))) {
+        if (password.equals(GestorBD.obtenerContrasena(usuario))) {
             JOptionPane.showMessageDialog(this, "Login exitoso.");
             menuPrincipal.logeado = true; // Cambia el estado a true en MenuPrincipal
             menuPrincipal.setUsuario(usuario); // Guarda el usuario en MenuPrincipal

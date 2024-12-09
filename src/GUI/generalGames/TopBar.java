@@ -2,9 +2,8 @@ package GUI.generalGames;
 
 import GUI.ColorVariables;
 import GUI.mainMenu.FrameMenuPrincipal;
-import datos.GestorMovimientos;
+import datos.GestorBD;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,10 +27,10 @@ public class TopBar extends JPanel {
             frame.dispose();
         });
         JLabel lblSaldo = new JLabel(
-                "Saldo: " + GestorMovimientos.obtenerSaldo(frameMenuPrincipal.getUsuario()) + " fichas  ");
+                "Saldo: " + GestorBD.obtenerSaldo(frameMenuPrincipal.getUsuario()) + " fichas  ");
         lblSaldo.setFont(lblSaldo.getFont().deriveFont(15.0f));
         add(lblSaldo, BorderLayout.EAST);
-        GestorMovimientos.setLabelGameMenu(lblSaldo);
+        GestorBD.setLblGameMenu(lblSaldo);
 
         if (darkMode) {
             setBackground(ColorVariables.COLOR_VERDE_DARK);

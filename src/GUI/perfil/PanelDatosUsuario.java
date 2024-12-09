@@ -1,7 +1,7 @@
 package GUI.perfil;
 
 import GUI.ColorVariables;
-import datos.GestorUsuarios;
+import datos.GestorBD;
 import datos.TiposDeDatos;
 import java.awt.*;
 import java.util.stream.IntStream;
@@ -18,7 +18,7 @@ public class PanelDatosUsuario extends JPanel {
     private TiposDeDatos[] tipos;
 
     public PanelDatosUsuario(String usuario, boolean darkMode) {
-        String[] datosUsuario = GestorUsuarios.obtenerDatos(usuario);
+        String[] datosUsuario = GestorBD.obtenerDatos(usuario);
         setLayout(new BorderLayout());
 
         JPanel panelCentral = new JPanel(new GridLayout(25, 2, 10, 10));
@@ -111,7 +111,7 @@ public class PanelDatosUsuario extends JPanel {
                     TiposDeDatos.formatFecha(comboDiaNac.getSelectedItem(), comboMesNac.getSelectedItem(),
                             comboAnoNac.getSelectedItem())
             };
-            if (GestorUsuarios.cambiarDatos(usuario, datosNuevos)) {
+            if (GestorBD.cambiarDatos(usuario, datosNuevos)) {
                 JOptionPane.showMessageDialog(this, "Datos actualizados correctamente", "Información",
                         JOptionPane.INFORMATION_MESSAGE);
             } else {

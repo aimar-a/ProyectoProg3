@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.*;
 import javax.swing.JLabel;
 
-public class GestorMovimientos {
+public class BORRARGestorMovimientos {
     private static Connection connection;
     private static JLabel lblMainMenu;
     private static JLabel lblGameMenu;

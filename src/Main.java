@@ -1,9 +1,9 @@
 import GUI.mainMenu.FrameMenuPrincipal;
-import datos.CrearBD;
+import datos.GestorBD;
 
 public class Main {
     public static void main(String[] args) {
-        new CrearBD();
+        GestorBD.crearBD();
         FrameMenuPrincipal menup = new FrameMenuPrincipal();
         menup.setVisible(true);
     }
