@@ -2,17 +2,25 @@
 # 007 Casino
 
 ### Descripción
-**007 Casino** es una aplicación de casino virtual desarrollada en Java que ofrece a los usuarios una experiencia de juego variada. El casino contiene cuatro juegos populares: carreras de caballos, máquinas tragamonedas (slots), blackjack y un juego de dinosaurios. Para jugar a cualquiera de estos juegos, los usuarios deben iniciar sesión o registrarse en la plataforma.
+**007 Casino** es una aplicación de casino virtual desarrollada en Java que busca ofrecer a los usuarios una experiencia inmersiva y variada en el mundo de los juegos de azar. La plataforma cuenta con cuatro juegos populares: carreras de caballos, máquinas tragamonedas (slots), blackjack y un juego de dinosaurios.
+
+Para disfrutar de cualquiera de estos juegos, los usuarios deben registrarse en la plataforma y acceder a su cuenta mediante un sistema de autenticación seguro. Este proyecto ha sido diseñado para proporcionar entretenimiento mientras se refuerzan conceptos de desarrollo en Java.
 
 ### Características
 - **Juegos disponibles**: Carreras de caballos, slots, blackjack y juego de dinosaurio.
-- **Interfaz intuitiva**: Interfaz gráfica desarrollada con Java Swing.
-- **Sistema de autenticación**: Registro e inicio de sesión de usuarios para acceder a las funciones.
+- **Interfaz intuitiva**: Diseñada utilizando Java Swing, la interfaz gráfica proporciona una navegación clara y amigable, apta para todo tipo de usuarios.
+- **Sistema de autenticación**:  A través de un proceso de registro y login, los usuarios pueden proteger sus cuentas y acceder a las funcionalidades completas del casino.
 - **Gestión de perfil**: Permite a los usuarios:
-  - Modificar sus datos personales.
+  - Actualización de datos personales para mantener la información al día.
   - Depositar o retirar dinero de su cuenta.
-  - Consultar el historial de movimientos.
-  - Cambiar su contraseña.
+  - Consulta detallada del historial de movimientos, proporcionando transparencia y control sobre las transacciones realizadas.
+  - Cambiar su contraseña. 
+- **Base de datos**: Un sistema de almacenamiento fiable que administra eficientemente la información de los usuarios. Incluye: 
+  - Datos de inicio de sesión para asegurar un acceso seguro.
+  - Registro de información personal y transacciones.
+  - Almacenamiento de saldo, historial de movimientos y preferencias del usuario.
+
+     
 
 ### Requisitos
 - **Java Development Kit**: jdk-21.0.4.7-hotspot o superior.
@@ -41,6 +49,6 @@
 - Aimar Arriaga Markaida
 
 ### Notas
-Este proyecto es un desarrollo académico para la asignatura de Programación III. El uso de inteligencia artificial ayudó a agilizar el desarrollo del código y de la interfaz.
+Este proyecto es un desarrollo académico para la asignatura de Programación III. El uso de inteligencia artificial ayudó a agilizar el desarrollo del código y de la interfaz.Si bien está pensado para fines educativos, ofrece una base sólida para futuras mejoras y expansiones.
 
 ---
