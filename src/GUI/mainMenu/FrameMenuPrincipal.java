@@ -4,7 +4,6 @@ import GUI.ColorVariables;
 import GUI.blackjack.FrameBlackjack;
 import GUI.caballos.FrameCaballos;
 import GUI.dinoRun.FrameDino;
-import GUI.generalGames.TopBar;
 import GUI.logIn.FrameLogIn;
 import GUI.minas.FrameMinas;
 import GUI.perfil.FramePerfil;
@@ -15,7 +14,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class FrameMenuPrincipal extends JFrame {
-	// IAG: Modificado (ChatGPT y GitHub Copilot)
+    // IAG: Modificado (ChatGPT y GitHub Copilot)
     private static final long serialVersionUID = 1L;
     public boolean logeado;
     private String usuario;
@@ -121,6 +120,7 @@ public class FrameMenuPrincipal extends JFrame {
             }
         });
         panelIzquierdaBarraAlta.add(toggleDarkMode, BorderLayout.WEST);
+        panelIzquierdaBarraAlta.add(new JLabel("Modo oscuro"));
 
         configurarBotonPerfil();
     }
