@@ -1,7 +1,6 @@
 // Código inspirado por el tutorial "Code Black Jack in Java" de [Kenny Yip Coding] en YouTube.
 // URL: https://www.youtube.com/watch?v=GMdgjaDdOjI 
 package GUI.blackjack;
-
 public class Carta {
     private final String valor;
     private final String palo;

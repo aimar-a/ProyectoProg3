@@ -11,6 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class PanelSlots extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	// IAG: Modificado (ChatGPT y GitHub Copilot)
     private JLabel[][] labelsSlots = new JLabel[3][3];
     private int[][] numsImg = new int[3][3];
     private JLabel labelRecompensa;

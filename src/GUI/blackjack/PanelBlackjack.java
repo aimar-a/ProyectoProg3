@@ -5,7 +5,7 @@ package GUI.blackjack;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
-
+//IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelBlackjack extends JPanel {
     private Carta cartaOculta;
     private int sumaCrupier, sumaJugador;

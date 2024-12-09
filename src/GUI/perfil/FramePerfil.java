@@ -8,7 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 public class FramePerfil extends JDialog {
-    // IAG
+     // IAG: Modificado (ChatGPT y GitHub Copilot)
     JButton btnPerfil = new JButton("Ver Perfil");
     JButton btnDespositarRetirar = new JButton("Depositar/Retirar");
     JButton btnHistorialMovimientos = new JButton("Ver Historial de Movimientos");

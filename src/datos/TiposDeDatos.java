@@ -8,7 +8,7 @@ import java.time.format.DateTimeParseException;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-// IAG
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public enum TiposDeDatos {
     USUARIO,
     SALDO,

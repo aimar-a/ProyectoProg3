@@ -10,7 +10,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-
+//IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelHistorialMovimientos extends JPanel {
 
     private final JTable table;

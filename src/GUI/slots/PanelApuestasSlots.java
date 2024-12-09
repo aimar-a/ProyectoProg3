@@ -14,7 +14,9 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class PanelApuestasSlots extends JPanel {
-    protected JSpinner spinnerApuesta;
+	// IAG: Modificado (ChatGPT y GitHub Copilot)
+	private static final long serialVersionUID = 1L;
+	protected JSpinner spinnerApuesta;
     protected JButton botonGirar;
 
     public PanelApuestasSlots(boolean darkMode) {

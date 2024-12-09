@@ -7,7 +7,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
+//IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelApuestasBlackjack extends JPanel {
     protected final JButton botonIniciar = new JButton("Iniciar Partida");
     protected final JButton botonPedir = new JButton("Pedir");

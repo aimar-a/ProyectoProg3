@@ -6,7 +6,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class PanelCambiarContrasena extends JPanel {
-
+	// IAG: Modificado (ChatGPT y GitHub Copilot)
     private final JPasswordField txtContrasenaAntigua;
     private final JPasswordField txtContrasenaNueva;
     private final JPasswordField txtConfirmarContrasena;

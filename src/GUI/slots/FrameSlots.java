@@ -6,6 +6,11 @@ import GUI.mainMenu.FrameMenuPrincipal;
 import java.awt.BorderLayout;
 
 public class FrameSlots extends MainFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public FrameSlots(FrameMenuPrincipal frameMenuPrincipal, String usuario, boolean darkMode) {
 		super("Slots", frameMenuPrincipal, darkMode);
 

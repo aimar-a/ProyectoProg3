@@ -4,7 +4,7 @@ package GUI.slots;
 import datos.AsuntoMovimiento;
 import datos.GestorBD;
 import javax.swing.JOptionPane;
-
+//IAG: Modificado (ChatGPT y GitHub Copilot)
 public class LogicaSlots {
     private final PanelSlots panelSlots;
     private final PanelApuestasSlots panelApuestas;

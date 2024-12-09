@@ -357,7 +357,7 @@ public class GestorBD {
         if (-cantidad > obtenerSaldo(usuario)) {
             return false;
         }
-        if (!actualizarSaldo(usuario, obtenerSaldo(usuario) + cantidad)) {
+        if (!actualizarSaldo(usuario, cantidad)) {
             return false;
         }
         String sql = """

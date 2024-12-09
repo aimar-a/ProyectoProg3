@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-
+//IAG: Modificado (ChatGPT y GitHub Copilot)
 public class FrameRegistro extends JDialog {
 
         private static final long serialVersionUID = 1L;

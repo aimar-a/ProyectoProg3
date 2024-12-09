@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
+//IAG: Modificado (ChatGPT y GitHub Copilot)
 public class TopBar extends JPanel {
 
     private static final long serialVersionUID = 1L;

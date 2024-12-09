@@ -20,7 +20,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-
+//IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelDepositarRetirar extends JPanel {
     private final CardLayout cardLayout;
     private final JPanel panelCentral;

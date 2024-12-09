@@ -19,7 +19,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 public class SwitchButton extends Component {
-
+	// IAG: Modificado (ChatGPT y GitHub Copilot)
     public boolean isSelected() {
         return selected;
     }
