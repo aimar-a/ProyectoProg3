@@ -338,7 +338,7 @@ public class GestorBD {
     }
 
     private static boolean actualizarSaldo(String usuario, int cantidad) {
-        String sql = "UPDATE usuario SET fichas = fichas + ? WHERE usuario = ?";
+        String sql = "UPDATE usuario SET fichas = ? WHERE usuario = ?";
         try (Connection conn = DriverManager.getConnection(DB_URL);
                 PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, cantidad);
@@ -357,7 +357,7 @@ public class GestorBD {
         if (-cantidad > obtenerSaldo(usuario)) {
             return false;
         }
-        if (!actualizarSaldo(usuario, cantidad)) {
+        if (!actualizarSaldo(usuario, obtenerSaldo(usuario) + cantidad)) {
             return false;
         }
         String sql = """
