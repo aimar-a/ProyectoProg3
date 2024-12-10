@@ -33,6 +33,9 @@ Para disfrutar de cualquiera de estos juegos, los usuarios deben registrarse en 
    javac src/Main.java
    java src/Main
    ```
+## Inicializacion de la base de datos
+1. Abrir el archivo resources/db/crearBD.txt.
+2. Cambiar el txt de false a true.
 
 ### Estructura del Proyecto
 - `src/Main.java`: Punto de entrada del programa.
