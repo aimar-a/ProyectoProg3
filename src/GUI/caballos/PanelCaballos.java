@@ -3,9 +3,9 @@ package GUI.caballos;
 import java.awt.*;
 import java.util.Random;
 import javax.swing.*;
-//IAG: Modificado (ChatGPT y GitHub Copilot)
+
 public class PanelCaballos extends JPanel {
-	
+
     private static final long serialVersionUID = 1L;
     private static final int NUM_CABALLOS = 8;
     private static final int META = 1400;
@@ -51,6 +51,11 @@ public class PanelCaballos extends JPanel {
                     g.drawImage(metaImagen, META - 5, 0, newWidth, newHeight, this);
                     g.drawImage(caballoImagen[index], posiciones[index], (getHeight() - (int) (81 * 1.3)) / 2,
                             (int) (111 * 1.3), (int) (81 * 1.3), this);
+
+                    // Dibuja el número del caballo
+                    g.setColor(Color.BLACK);
+                    g.setFont(new Font("Arial", Font.BOLD, 20));
+                    g.drawString("Caballo " + (index + 1), 10, 30);
                 }
             };
 

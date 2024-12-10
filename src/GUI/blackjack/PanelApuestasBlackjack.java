@@ -7,6 +7,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 //IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelApuestasBlackjack extends JPanel {
     protected final JButton botonIniciar = new JButton("Iniciar Partida");
@@ -50,7 +51,7 @@ public class PanelApuestasBlackjack extends JPanel {
             setBackground(ColorVariables.COLOR_ROJO_DARK);
             setForeground(ColorVariables.COLOR_TEXTO_DARK);
         } else {
-            setBackground(ColorVariables.COLOR_ROJO_DARK);
+            setBackground(ColorVariables.COLOR_ROJO_LIGHT);
             setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
         }
     }

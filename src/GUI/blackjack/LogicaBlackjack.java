@@ -79,15 +79,30 @@ public class LogicaBlackjack {
     }
 
     protected void plantarseJugador() {
-        // Crupier juega según sus reglas
-        while (ajustarSumaConAses(sumaCrupier, cuentaAsesCrupier) < 17
-                || (sumaCrupier - (cuentaAsesCrupier - 1) * 11 == 17 && cuentaAsesCrupier > 0)) {
-            agregarCartaCrupier();
-        }
+        // Desactivar los botones de acción del jugador
+        panelApuestas.botonPedir.setEnabled(false);
+        panelApuestas.botonPlantarse.setEnabled(false);
 
+        // Mostrar la carta oculta del crupier
         panelBlackjack.dibujar(cartaOculta, sumaCrupier, sumaJugador, manoCrupier, manoJugador,
                 panelApuestas.botonPlantarse);
-        finalizarJuego();
+
+        // Crear un Timer para agregar cartas con un intervalo de 1 segundo
+        new Thread(() -> {
+            try {
+                while (ajustarSumaConAses(sumaCrupier, cuentaAsesCrupier) < 17
+                        || (sumaCrupier - (cuentaAsesCrupier - 1) * 11 == 17 && cuentaAsesCrupier > 0)) {
+                    Thread.sleep(1000);
+                    agregarCartaCrupier();
+                    panelBlackjack.dibujar(cartaOculta, ajustarSumaConAses(sumaCrupier,
+                            cuentaAsesCrupier), sumaJugador, manoCrupier, manoJugador,
+                            panelApuestas.botonPlantarse);
+                }
+                finalizarJuego();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }).start();
     }
 
     private void finalizarJuego() {
