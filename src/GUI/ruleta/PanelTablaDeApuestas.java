@@ -1,5 +1,6 @@
 package GUI.ruleta;
 
+import GUI.ColorVariables;
 import java.awt.*;
 import javax.swing.*;
 
@@ -10,8 +11,9 @@ public class PanelTablaDeApuestas extends JPanel {
     private static final long serialVersionUID = 1L;
     private final int tamanoBoton = 60;
 
-    public PanelTablaDeApuestas() {
+    public PanelTablaDeApuestas(boolean darkMode) {
         setLayout(new GridBagLayout());
+        setBackground(darkMode ? ColorVariables.COLOR_FONDO_DARK : ColorVariables.COLOR_FONDO_LIGHT);
         GridBagConstraints gbc = new GridBagConstraints();
 
         JButton btn0 = new JButton("0");

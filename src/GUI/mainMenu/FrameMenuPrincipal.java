@@ -165,8 +165,7 @@ public class FrameMenuPrincipal extends JFrame {
         panelSeleccion = new JPanel(new FlowLayout(FlowLayout.CENTER, getWidth() / 25, getHeight() / 40));
 
         configurarBotonJuego(panelSeleccion, JuegosDisponibles.CABALLOS, "/img/mainMenu/Carrera.jpeg");
-        // configurarBotonJuego(panelSeleccion, JuegosDisponibles.RULETA,
-        // "/img/mainMenu/Ruleta.png");
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.RULETA, "/img/mainMenu/Ruleta.png");
         configurarBotonJuego(panelSeleccion, JuegosDisponibles.SLOTS, "/img/mainMenu/Slot.png");
         configurarBotonJuego(panelSeleccion, JuegosDisponibles.BLACKJACK, "/img/mainMenu/Blackjack.jpg");
         // configurarBotonJuego(panelSeleccion, JuegosDisponibles.MINAS,
@@ -214,9 +213,8 @@ public class FrameMenuPrincipal extends JFrame {
             this.setVisible(false);
             switch (juegoObjetivo) {
                 case JuegosDisponibles.CABALLOS -> new FrameCaballos(this, usuario, darkMode).setVisible(true);
-                case JuegosDisponibles.RULETA -> new FrameRuleta(this).setVisible(true);
-                case JuegosDisponibles.SLOTS ->
-                    new FrameSlots(this, usuario, darkMode).setVisible(true);
+                case JuegosDisponibles.RULETA -> new FrameRuleta(this, usuario, darkMode).setVisible(true);
+                case JuegosDisponibles.SLOTS -> new FrameSlots(this, usuario, darkMode).setVisible(true);
                 case JuegosDisponibles.BLACKJACK -> new FrameBlackjack(this, usuario, darkMode).setVisible(true);
                 case JuegosDisponibles.MINAS -> new FrameMinas(this).setVisible(true);
                 case JuegosDisponibles.DINOSAURIO -> new FrameDino(this, usuario, darkMode).setVisible(true);

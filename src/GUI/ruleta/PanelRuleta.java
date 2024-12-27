@@ -1,81 +1,98 @@
 package GUI.ruleta;
 
+import GUI.ColorVariables;
 import java.awt.*;
+import java.util.Random;
 import javax.swing.*;
 
 public class PanelRuleta extends JPanel {
-    private static final int RADIUS = 250; // Radio de la ruleta
-    private static final Color RED = new Color(255, 0, 0);
-    private static final Color BLACK = new Color(0, 0, 0);
-
-    // Orden de los números en una ruleta de casino real
-    private static final int[] NUMS = {
+    private final int[] numbers = {
             0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5,
             24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26
     };
+    private final JLabel resultLabel;
+    private final JPanel numbersPanel;
+    private int currentIndex = 0;
+    private static final int NUMEROS_EN_CADA_LADO = 18;
 
-    public PanelRuleta() {
-        setPreferredSize(new Dimension(2 * RADIUS, 2 * RADIUS));
-    }
+    public PanelRuleta(boolean darkMode) {
+        setLayout(new BorderLayout());
+        setBackground(darkMode ? ColorVariables.COLOR_FONDO_DARK : ColorVariables.COLOR_FONDO_LIGHT);
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-
-        // Dibujar la ruleta
-        drawRuleta(g2d);
-
-        // Dibujar la circunferencia central ajustada
-        drawCentralCircle(g2d);
-    }
-
-    private void drawRuleta(Graphics2D g2d) {
-        double anglePerSector = 360.0 / NUMS.length;
-
-        for (int i = 0; i < NUMS.length; i++) {
-            int number = NUMS[i];
-            double startAngle = i * anglePerSector;
-
-            // Determinar el color del sector (verde para 0, rojo/negro alternado para el
-            // resto)
-            Color color;
-            if (number == 0) {
-                color = Color.GREEN;
+        // Numbers panel
+        numbersPanel = new JPanel();
+        numbersPanel.setLayout(new GridLayout(1, numbers.length));
+        Random random = new Random();
+        currentIndex = random.nextInt(numbers.length);
+        for (int i = -NUMEROS_EN_CADA_LADO; i < NUMEROS_EN_CADA_LADO + 1; i++) {
+            int index = (currentIndex + i + numbers.length) % numbers.length;
+            JLabel numberLabel = new JLabel(String.valueOf(numbers[index]), SwingConstants.CENTER);
+            numberLabel.setPreferredSize(new Dimension(80, 80));
+            numberLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            numberLabel.setForeground(Color.WHITE);
+            if (index == 0) {
+                numberLabel.setBackground(Color.GREEN);
             } else {
-                // Alternar colores basados en el patrón de ruletas reales
-                color = (i % 2 == 0) ? RED : BLACK;
+                numberLabel.setBackground((index % 2 == 0) ? Color.BLACK : Color.RED);
             }
-            g2d.setColor(color);
+            numbersPanel.add(numberLabel);
+            numberLabel.setOpaque(true);
+        }
 
-            // Dibujar el sector de la ruleta
-            g2d.fillArc(0, 0, 2 * RADIUS, 2 * RADIUS, (int) -startAngle, (int) -anglePerSector - 1);
+        // Result label
+        resultLabel = new JLabel("\u25B2", SwingConstants.CENTER); // Triangle as indicator
+        resultLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        resultLabel.setForeground(darkMode ? Color.WHITE : Color.BLACK);
 
-            // Dibujar el número en el borde del sector
-            g2d.setColor(Color.WHITE);
-            g2d.setFont(new Font("Arial", Font.BOLD, 12));
-            String numStr = Integer.toString(number);
+        // Add components to panel
+        add(numbersPanel, BorderLayout.CENTER);
+        add(resultLabel, BorderLayout.SOUTH);
+    }
 
-            // Calcular la posición del número más cerca del borde
-            double angleForNumber = Math.toRadians(startAngle + anglePerSector / 2);
-            int x = (int) (RADIUS + RADIUS * 0.85 * Math.cos(angleForNumber)); // 0.85 ajusta la cercanía al borde
-            int y = (int) (RADIUS + RADIUS * 0.85 * Math.sin(angleForNumber));
+    public void spinRoulette() {
+        Random random = new Random();
+        double slower = random.nextDouble(0.2) + 1.1;
+        new Thread(() -> {
+            for (double wait = 1; wait < 800; wait *= slower) {
+                try {
+                    Thread.sleep((long) wait);
+                    currentIndex = (currentIndex + 1) % numbers.length;
+                    SwingUtilities.invokeLater(() -> {
+                        for (int j = -NUMEROS_EN_CADA_LADO; j < NUMEROS_EN_CADA_LADO + 1; j++) {
+                            JLabel label = (JLabel) numbersPanel.getComponent(j + NUMEROS_EN_CADA_LADO);
+                            int index = (currentIndex + j + numbers.length) % numbers.length;
+                            label.setText(
+                                    String.valueOf(numbers[index]));
+                            if (index == 0) {
+                                label.setBackground(Color.GREEN);
+                            } else {
+                                label.setBackground((index % 2 == 0) ? Color.BLACK : Color.RED);
+                            }
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
 
-            // Centrar el número en las coordenadas calculadas
-            FontMetrics fm = g2d.getFontMetrics();
-            g2d.drawString(numStr, x - fm.stringWidth(numStr) / 2, y + fm.getAscent() / 2);
+    private void highlightNumber(int index, boolean highlight) {
+        Component component = numbersPanel.getComponent(index);
+        if (component instanceof JLabel) {
+            JLabel label = (JLabel) component;
+            label.setOpaque(highlight);
+            label.setBackground(highlight ? Color.YELLOW : null);
+            label.repaint();
         }
     }
 
-    private void drawCentralCircle(Graphics2D g2d) {
-        int innerRadius = (int) (RADIUS * 0.75); // Radio del círculo central ajustado para que quede más grande
+    private void showResult() {
+        JOptionPane.showMessageDialog(this, "Resultado: " + numbers[currentIndex], "Resultado",
+                JOptionPane.INFORMATION_MESSAGE);
+    }
 
-        // Posición y tamaño del círculo
-        int x = RADIUS - innerRadius;
-        int y = RADIUS - innerRadius;
-        int diameter = 2 * innerRadius;
-
-        g2d.setColor(Color.DARK_GRAY); // Color del círculo central
-        g2d.fillOval(x, y, diameter, diameter);
+    public int getResult() {
+        return numbers[currentIndex];
     }
 }

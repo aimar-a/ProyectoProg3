@@ -17,7 +17,7 @@ public class PanelApuestasDino extends JPanel {
     private final PanelDino dinoPlay;
 
     public PanelApuestasDino(String usuario, PanelDino dinoPlay, boolean darkMode) {
-        setBackground(Color.RED);
+        setBackground(darkMode ? ColorVariables.COLOR_ROJO_DARK : ColorVariables.COLOR_ROJO_LIGHT);
         this.usuario = usuario;
         this.dinoPlay = dinoPlay;
 

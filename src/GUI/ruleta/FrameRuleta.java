@@ -7,16 +7,19 @@ import javax.swing.JPanel;
 
 public class FrameRuleta extends MainFrame {
 
-	public FrameRuleta(FrameMenuPrincipal frameMenuPrincipal) {
-		super("Ruleta", frameMenuPrincipal);
+	public FrameRuleta(FrameMenuPrincipal frameMenuPrincipal, String usuario, boolean darkMode) {
+		super("Ruleta", frameMenuPrincipal, darkMode);
 
 		JPanel centralPanel = new JPanel();
 		add(centralPanel, BorderLayout.CENTER);
 
-		PanelRuleta roulettePanel = new PanelRuleta();
+		PanelRuleta roulettePanel = new PanelRuleta(darkMode);
 		centralPanel.add(roulettePanel);
 
-		PanelTablaDeApuestas bettingPanel = new PanelTablaDeApuestas();
+		PanelTablaDeApuestas bettingPanel = new PanelTablaDeApuestas(darkMode);
 		centralPanel.add(bettingPanel);
+
+		PanelApuestasRuleta betsPanel = new PanelApuestasRuleta(usuario, roulettePanel, bettingPanel, darkMode);
+		add(betsPanel, BorderLayout.SOUTH);
 	}
 }
