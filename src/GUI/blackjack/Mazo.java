@@ -15,6 +15,10 @@ public final class Mazo {
         barajarMazo();
     }
 
+    public Mazo(Mazo copiar) {
+        copiar.getCartas().forEach(carta -> cartas.add(new Carta(carta)));
+    }
+
     private void construirMazo() {
         String[] valores = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
         String[] tipos = { "C", "D", "H", "S" };
@@ -36,5 +40,25 @@ public final class Mazo {
 
     public ArrayList<Carta> getCartas() {
         return cartas;
+    }
+
+    public void quitarCarta(Carta carta) {
+        cartas.remove(carta);
+    }
+
+    public void quitarCartas(ArrayList<Carta> cartas) {
+        cartas.forEach(this::quitarCarta);
+    }
+
+    public int size() {
+        return cartas.size();
+    }
+
+    public Carta getCarta(int index) {
+        return cartas.get(index);
+    }
+
+    public Mazo clone() {
+        return new Mazo(this);
     }
 }

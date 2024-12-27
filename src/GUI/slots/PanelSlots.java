@@ -102,6 +102,10 @@ public class PanelSlots extends JPanel {
         int n = r.nextInt(11) + 1;
         if (n == 10 && columna != 2) {
             n = 0;
+        } else if (n == 4 && columna == 0) {
+            n = 20;
+        } else if (n == 4 && columna == 1) {
+            n = 21;
         }
         numsImg[columna][0] = n;
         ImageIcon icono = new ImageIcon(getClass().getResource("/img/slots/slot" + n + ".png"));

@@ -1,6 +1,9 @@
 // Código inspirado por el tutorial "Code Black Jack in Java" de [Kenny Yip Coding] en YouTube.
 // URL: https://www.youtube.com/watch?v=GMdgjaDdOjI 
 package GUI.blackjack;
+
+import java.util.Objects;
+
 public class Carta {
     private final String valor;
     private final String palo;
@@ -8,6 +11,11 @@ public class Carta {
     public Carta(String valor, String palo) {
         this.valor = valor;
         this.palo = palo;
+    }
+
+    public Carta(Carta copiar) {
+        this.valor = copiar.valor;
+        this.palo = copiar.palo;
     }
 
     @Override
@@ -28,5 +36,20 @@ public class Carta {
 
     public String getRutaImagen() {
         return "/img/blackjack/" + toString() + ".png";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        Carta carta = (Carta) obj;
+        return valor.equals(carta.valor) && palo.equals(carta.palo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(valor, palo);
     }
 }

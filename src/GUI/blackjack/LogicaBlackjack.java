@@ -4,16 +4,13 @@ package GUI.blackjack;
 
 import datos.AsuntoMovimiento;
 import datos.GestorBD;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class LogicaBlackjack {
-    private int cuentaAsesCrupier, cuentaAsesJugador;
     private final PanelApuestasBlackjack panelApuestas;
     private Mazo mazo;
-    private ArrayList<Carta> manoCrupier;
-    private ArrayList<Carta> manoJugador;
-    private int sumaCrupier, sumaJugador;
+    private Mano manoCrupier;
+    private Mano manoJugador;
     private Carta cartaOculta;
     private final PanelBlackjack panelBlackjack;
 
@@ -40,14 +37,11 @@ public class LogicaBlackjack {
         }
         // Reiniciar valores y configurar el juego
         mazo = new Mazo();
-        manoCrupier = new ArrayList<>();
-        manoJugador = new ArrayList<>();
-        sumaCrupier = sumaJugador = cuentaAsesCrupier = cuentaAsesJugador = 0;
+        manoCrupier = new Mano();
+        manoJugador = new Mano();
 
         // Robar la carta oculta del crupier
         cartaOculta = mazo.robarCarta();
-        sumaCrupier += cartaOculta.getValor();
-        cuentaAsesCrupier += cartaOculta.esAs() ? 1 : 0;
 
         agregarCartaCrupier();
         agregarCartaJugador();
@@ -62,19 +56,14 @@ public class LogicaBlackjack {
         GestorBD.agregarMovimiento(usuario, -this.apuesta, AsuntoMovimiento.BLACKJACK_APUESTA);
 
         // Dibujar estado inicial
-        panelBlackjack.dibujar(cartaOculta, sumaCrupier, sumaJugador, manoCrupier, manoJugador,
-                panelApuestas.botonPlantarse);
+        panelBlackjack.dibujar(manoCrupier, manoJugador, panelApuestas.botonPlantarse);
 
-        // Comprobar Blackjack inicial
-        if (sumaJugador == 21) {
-            sumaJugador = -1;
-            if (sumaCrupier == 21) {
-                sumaCrupier = -1;
-            }
-            finalizarJuego();
-        } else if (sumaCrupier == 21) {
-            sumaCrupier = -1;
-            finalizarJuego();
+        if (manoJugador.getSuma() == 21 && manoCrupier.getSuma() + cartaOculta.getValor() == 21) {
+            finalizarJuego(3);
+        } else if (manoJugador.getSuma() == 21) {
+            finalizarJuego(1);
+        } else if (manoCrupier.getSuma() + cartaOculta.getValor() == 21) {
+            finalizarJuego(2);
         }
     }
 
@@ -84,18 +73,18 @@ public class LogicaBlackjack {
         panelApuestas.botonPlantarse.setEnabled(false);
 
         // Mostrar la carta oculta del crupier
-        panelBlackjack.dibujar(cartaOculta, sumaCrupier, sumaJugador, manoCrupier, manoJugador,
+        manoCrupier.agregarCarta(cartaOculta);
+        panelBlackjack.dibujar(manoCrupier, manoJugador,
                 panelApuestas.botonPlantarse);
 
         // Crear un Timer para agregar cartas con un intervalo de 1 segundo
         new Thread(() -> {
             try {
-                while (ajustarSumaConAses(sumaCrupier, cuentaAsesCrupier) < 17
-                        || (sumaCrupier - (cuentaAsesCrupier - 1) * 11 == 17 && cuentaAsesCrupier > 0)) {
+                while (manoCrupier.getSuma() < 17
+                        || (manoCrupier.getSuma() == 17 && manoCrupier.getCuentaAses() > 0)) {
                     Thread.sleep(1000);
                     agregarCartaCrupier();
-                    panelBlackjack.dibujar(cartaOculta, ajustarSumaConAses(sumaCrupier,
-                            cuentaAsesCrupier), sumaJugador, manoCrupier, manoJugador,
+                    panelBlackjack.dibujar(manoCrupier, manoJugador,
                             panelApuestas.botonPlantarse);
                 }
                 finalizarJuego();
@@ -106,33 +95,41 @@ public class LogicaBlackjack {
     }
 
     private void finalizarJuego() {
+        finalizarJuego(0);
+    }
+
+    private void finalizarJuego(int resultado) {
         // Desactivar los botones de acción del jugador
         panelApuestas.botonPedir.setEnabled(false);
         panelApuestas.botonPlantarse.setEnabled(false);
 
-        // Ajustar valores finales considerando los ases
-        sumaCrupier = ajustarSumaConAses(sumaCrupier, cuentaAsesCrupier);
-        sumaJugador = ajustarSumaConAses(sumaJugador, cuentaAsesJugador);
-
-        // Determinar el resultado
         String mensaje;
-        if (sumaCrupier == -1 && sumaJugador == -1) {
+
+        if (resultado == 1 || resultado == 2 || resultado == 3) {
+            // Mostrar la carta oculta del crupier
+            manoCrupier.agregarCarta(cartaOculta);
+            panelBlackjack.dibujar(manoCrupier, manoJugador,
+                    panelApuestas.botonPlantarse);
+        }
+
+        if (resultado == 3) {
             mensaje = "¡Empate! Ambos tienen Blackjack.";
-        } else if (sumaCrupier == -1) {
+        } else if (resultado == 2) {
             mensaje = "¡Blackjack! ¡Perdiste!";
-        } else if (sumaJugador == -1) {
+        } else if (resultado == 1) {
             mensaje = "¡Blackjack! ¡Ganaste!";
-        } else if (sumaJugador > 21) {
+        } else if (manoJugador.getSuma() > 21) {
             mensaje = "¡Perdiste! Te pasaste de 21.";
-        } else if (sumaCrupier > 21) {
+        } else if (manoCrupier.getSuma() > 21) {
             mensaje = "¡Ganaste! El crupier se pasó de 21.";
-        } else if (sumaJugador == sumaCrupier) {
+        } else if (manoJugador.getSuma() == manoCrupier.getSuma()) {
             mensaje = "¡Empate!";
-        } else if (sumaJugador > sumaCrupier) {
+        } else if (manoJugador.getSuma() > manoCrupier.getSuma()) {
             mensaje = "¡Ganaste!";
         } else {
             mensaje = "¡Perdiste!";
         }
+
         if (mensaje.contains("Ganaste")) {
             GestorBD.agregarMovimiento(usuario, this.apuesta * 2, AsuntoMovimiento.BLACKJACK_PREMIO);
             mensaje += "\nHas ganado " + this.apuesta + " fichas";
@@ -156,31 +153,18 @@ public class LogicaBlackjack {
         }
     }
 
-    private int ajustarSumaConAses(int suma, int cuentaAses) {
-        while (suma > 21 && cuentaAses > 0) {
-            suma -= 10;
-            cuentaAses--;
-        }
-        return suma;
-    }
-
     private void agregarCartaCrupier() {
         Carta carta = mazo.robarCarta();
-        sumaCrupier += carta.getValor();
-        cuentaAsesCrupier += carta.esAs() ? 1 : 0;
-        manoCrupier.add(carta);
+        manoCrupier.agregarCarta(carta);
     }
 
     private void agregarCartaJugador() {
         Carta carta = mazo.robarCarta();
-        sumaJugador += carta.getValor();
-        cuentaAsesJugador += carta.esAs() ? 1 : 0;
-        manoJugador.add(carta);
+        manoJugador.agregarCarta(carta);
 
-        panelBlackjack.dibujar(cartaOculta, sumaCrupier, ajustarSumaConAses(sumaJugador, cuentaAsesJugador),
-                manoCrupier, manoJugador,
+        panelBlackjack.dibujar(manoCrupier, manoJugador,
                 panelApuestas.botonPlantarse);
-        if (ajustarSumaConAses(sumaJugador, cuentaAsesJugador) > 21) {
+        if (manoJugador.getSuma() > 21) {
             finalizarJuego();
         }
     }
