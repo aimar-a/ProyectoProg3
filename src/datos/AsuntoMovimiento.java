@@ -16,6 +16,7 @@ public enum AsuntoMovimiento {
     DINO_APUESTA("dino:apuesta"),
     DINO_PREMIO("dino:premio"),
     RULETA_APUESTA("ruleta:apuesta"),
+    RULETA_RETIRAR_APUESTA("ruleta:retirar_ap"),
     RULETA_PREMIO("ruleta:premio"),
     SLOTS_APUESTA("slots:apuesta"),
     SLOTS_PREMIO("slots:premio"),

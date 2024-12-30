@@ -168,6 +168,7 @@ public class PanelTablaDeApuestas extends JPanel {
                     }
                 }
                 int premio = premio(this.ruleta.getNumeroPremiado());
+                GestorBD.agregarMovimiento(usuario, premio, AsuntoMovimiento.RULETA_PREMIO);
                 JOptionPane.showMessageDialog(this,
                         "Número premiado: " + this.ruleta.getNumeroPremiado() + "\nPremio: " + premio);
                 setApuestasPermitidas(true);
@@ -231,7 +232,8 @@ public class PanelTablaDeApuestas extends JPanel {
                 }
                 break;
             case 5:
-                if (GestorBD.agregarMovimiento(usuario, apuestas.get(apuesta), AsuntoMovimiento.RULETA_APUESTA)) {
+                if (GestorBD.agregarMovimiento(usuario, apuestas.get(apuesta),
+                        AsuntoMovimiento.RULETA_RETIRAR_APUESTA)) {
                     apuestas.remove(apuesta);
                 }
                 break;
