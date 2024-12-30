@@ -14,6 +14,7 @@ public class PanelRuleta extends JPanel {
     private final JPanel numbersPanel;
     private int currentIndex = 0;
     private static final int NUMEROS_EN_CADA_LADO = 18;
+    private int numeroPremiado = -1;
 
     public PanelRuleta(boolean darkMode) {
         setLayout(new BorderLayout());
@@ -53,7 +54,7 @@ public class PanelRuleta extends JPanel {
         Random random = new Random();
         double slower = random.nextDouble(0.2) + 1.1;
         new Thread(() -> {
-            for (double wait = 1; wait < 800; wait *= slower) {
+            for (double wait = 0.2; wait < 800; wait *= slower) {
                 try {
                     Thread.sleep((long) wait);
                     currentIndex = (currentIndex + 1) % numbers.length;
@@ -74,25 +75,19 @@ public class PanelRuleta extends JPanel {
                     e.printStackTrace();
                 }
             }
+            numeroPremiado = numbers[currentIndex];
         }).start();
-    }
-
-    private void highlightNumber(int index, boolean highlight) {
-        Component component = numbersPanel.getComponent(index);
-        if (component instanceof JLabel) {
-            JLabel label = (JLabel) component;
-            label.setOpaque(highlight);
-            label.setBackground(highlight ? Color.YELLOW : null);
-            label.repaint();
-        }
-    }
-
-    private void showResult() {
-        JOptionPane.showMessageDialog(this, "Resultado: " + numbers[currentIndex], "Resultado",
-                JOptionPane.INFORMATION_MESSAGE);
     }
 
     public int getResult() {
         return numbers[currentIndex];
+    }
+
+    protected void setNumeroPremiado(int numeroPremiado) {
+        this.numeroPremiado = numeroPremiado;
+    }
+
+    protected int getNumeroPremiado() {
+        return numeroPremiado;
     }
 }

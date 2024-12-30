@@ -16,10 +16,11 @@ public class FrameRuleta extends MainFrame {
 		PanelRuleta roulettePanel = new PanelRuleta(darkMode);
 		centralPanel.add(roulettePanel);
 
-		PanelTablaDeApuestas bettingPanel = new PanelTablaDeApuestas(darkMode);
+		PanelTablaDeApuestas bettingPanel = new PanelTablaDeApuestas(roulettePanel, usuario, darkMode);
 		centralPanel.add(bettingPanel);
 
-		PanelApuestasRuleta betsPanel = new PanelApuestasRuleta(usuario, roulettePanel, bettingPanel, darkMode);
-		add(betsPanel, BorderLayout.SOUTH);
+		// PanelApuestasRuleta betsPanel = new PanelApuestasRuleta(usuario,
+		// roulettePanel, bettingPanel, darkMode);
+		// add(betsPanel, BorderLayout.SOUTH);
 	}
 }
