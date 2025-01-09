@@ -63,6 +63,8 @@ public class PanelHistorialMovimientos extends JPanel {
                         cell.setBackground(new Color(0, 255, 0, 50)); // Fondo verde claro
                     } else if (Integer.parseInt(value.toString()) < 0) {
                         cell.setBackground(new Color(255, 0, 0, 50)); // Fondo rojo claro
+                    } else {
+                        cell.setBackground(new Color(255, 255, 0, 50)); // Fondo amarillo claro
                     }
                     if (((String) table.getValueAt(row, 3)).contains("victoria")) { // Si es una victoria
                         cell.setForeground(Color.GREEN); // Color verde
@@ -130,6 +132,10 @@ public class PanelHistorialMovimientos extends JPanel {
                         cell.setIcon(new ImageIcon(image));
                     } else if (((String) value).contains("empate")) {
                         ImageIcon icon = new ImageIcon(("resources/img/perfil/empate.png"));
+                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+                        cell.setIcon(new ImageIcon(image));
+                    } else if (((String) value).contains("retirar_ap")) {
+                        ImageIcon icon = new ImageIcon(("resources/img/perfil/cancelar.png"));
                         Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
                         cell.setIcon(new ImageIcon(image));
                     } else if (((String) value).contains("deposito")) {
