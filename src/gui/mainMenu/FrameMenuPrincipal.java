@@ -7,7 +7,6 @@ import gui.perfil.FramePerfil;
 import juegos.blackjack.FrameBlackjack;
 import juegos.caballos.FrameCaballos;
 import juegos.dinoRun.FrameDino;
-import juegos.minas.FrameMinas;
 import juegos.ruleta.FrameRuleta;
 import juegos.slots.FrameSlots;
 
@@ -169,8 +168,6 @@ public class FrameMenuPrincipal extends JFrame {
         configurarBotonJuego(panelSeleccion, JuegosDisponibles.RULETA, "resources/img/mainMenu/Ruleta.png");
         configurarBotonJuego(panelSeleccion, JuegosDisponibles.SLOTS, "resources/img/mainMenu/Slot.png");
         configurarBotonJuego(panelSeleccion, JuegosDisponibles.BLACKJACK, "resources/img/mainMenu/Blackjack.jpg");
-        // configurarBotonJuego(panelSeleccion, JuegosDisponibles.MINAS,
-        // "/img/mainMenu/Minas.jpg");
         configurarBotonJuego(panelSeleccion, JuegosDisponibles.DINOSAURIO, "resources/img/mainMenu/Dinosaurio.jpg");
 
         panelCentral.add(panelSeleccion, BorderLayout.CENTER);
@@ -217,7 +214,6 @@ public class FrameMenuPrincipal extends JFrame {
                 case JuegosDisponibles.RULETA -> new FrameRuleta(this, usuario, darkMode).setVisible(true);
                 case JuegosDisponibles.SLOTS -> new FrameSlots(this, usuario, darkMode).setVisible(true);
                 case JuegosDisponibles.BLACKJACK -> new FrameBlackjack(this, usuario, darkMode).setVisible(true);
-                case JuegosDisponibles.MINAS -> new FrameMinas(this, usuario, darkMode).setVisible(true);
                 case JuegosDisponibles.DINOSAURIO -> new FrameDino(this, usuario, darkMode).setVisible(true);
                 default -> {
                     JOptionPane.showMessageDialog(this, "Juego no disponible", "Error", JOptionPane.ERROR_MESSAGE);
