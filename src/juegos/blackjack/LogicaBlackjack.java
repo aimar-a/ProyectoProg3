@@ -1,11 +1,13 @@
 // Código inspirado por el tutorial "Code Black Jack in Java" de [Kenny Yip Coding] en YouTube.
 // URL: https://www.youtube.com/watch?v=GMdgjaDdOjI 
+
 package juegos.blackjack;
 
 import datos.AsuntoMovimiento;
 import datos.GestorBD;
 import javax.swing.JOptionPane;
 
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class LogicaBlackjack {
     private final PanelApuestasBlackjack panelApuestas;
     private Mazo mazo;

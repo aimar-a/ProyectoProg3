@@ -1,15 +1,14 @@
 package juegos.slots;
 
+import gui.ColorVariables;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-import gui.ColorVariables;
-
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelApuestasSlots extends JPanel {
-    // IAG: Modificado (ChatGPT y GitHub Copilot)
     private static final long serialVersionUID = 1L;
     protected JSpinner spinnerApuesta;
     protected JButton botonGirar;

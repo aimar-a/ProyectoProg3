@@ -8,6 +8,7 @@ import javax.swing.*;
 
 import gui.ColorVariables;
 
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelDino extends JPanel {
     private JLabel multiplierLabel;
     private JLabel dinoLabel;

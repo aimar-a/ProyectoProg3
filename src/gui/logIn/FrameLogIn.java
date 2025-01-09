@@ -4,7 +4,6 @@ import datos.GestorBD;
 import gui.ColorVariables;
 import gui.mainMenu.FrameMenuPrincipal;
 import gui.mainMenu.JuegosDisponibles;
-
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -18,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-// IAG: Convertir esta clase de JFrame a JDialog para que simpere este por encima de FrameMenuPrincipal
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class FrameLogIn extends JDialog {
 
     private static final long serialVersionUID = 1L;

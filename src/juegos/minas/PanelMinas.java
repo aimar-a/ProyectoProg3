@@ -5,6 +5,7 @@ import java.awt.*;
 import java.util.Random;
 import javax.swing.*;
 
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelMinas extends JPanel {
 
     private final JButton[][] botones = new JButton[5][5]; // Matriz de botones

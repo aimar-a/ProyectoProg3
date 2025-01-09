@@ -7,6 +7,7 @@ import java.awt.*;
 import java.util.HashMap;
 import javax.swing.*;
 
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelTablaDeApuestas extends JPanel {
     private static final long serialVersionUID = 1L;
     private final int tamanoBoton = 50;

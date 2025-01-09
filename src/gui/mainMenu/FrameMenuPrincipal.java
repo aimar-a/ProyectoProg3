@@ -14,8 +14,8 @@ import juegos.slots.FrameSlots;
 import java.awt.*;
 import javax.swing.*;
 
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class FrameMenuPrincipal extends JFrame {
-    // IAG: Modificado (ChatGPT y GitHub Copilot)
     private static final long serialVersionUID = 1L;
     public boolean logeado;
     private String usuario;

@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelSlots extends JPanel {
     private static final long serialVersionUID = 1L;
     private JLabel[][] labelsSlots = new JLabel[3][3];

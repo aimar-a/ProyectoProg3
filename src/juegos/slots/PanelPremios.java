@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelPremios extends JPanel {
     public PanelPremios() {
         super(new GridBagLayout());

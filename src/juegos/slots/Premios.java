@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class Premios {
     private List<List<Integer>> combinaciones = new ArrayList<>();
     private List<Integer> premios = new ArrayList<>();

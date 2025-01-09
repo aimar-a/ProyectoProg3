@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelApuestasDino extends JPanel {
 
     private final String usuario; // Usuario para identificar en la base de datos

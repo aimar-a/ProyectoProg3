@@ -5,6 +5,7 @@ package juegos.blackjack;
 import java.awt.*;
 import javax.swing.*;
 
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelBlackjack extends JPanel {
     private JButton botonPlantarse;
     private Mano manoCrupier;

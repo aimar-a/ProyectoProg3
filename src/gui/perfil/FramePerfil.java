@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import gui.ColorVariables;
 import gui.mainMenu.FrameMenuPrincipal;
 
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class FramePerfil extends JDialog {
-    // IAG: Modificado (ChatGPT y GitHub Copilot)
     JButton btnPerfil = new JButton("Ver Perfil");
     JButton btnDespositarRetirar = new JButton("Depositar/Retirar");
     JButton btnHistorialMovimientos = new JButton("Ver Historial de Movimientos");

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.Random;
 import javax.swing.*;
 
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelCaballos extends JPanel {
 
     private static final long serialVersionUID = 1L;

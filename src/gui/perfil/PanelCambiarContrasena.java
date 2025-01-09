@@ -2,12 +2,11 @@ package gui.perfil;
 
 import datos.GestorBD;
 import gui.ColorVariables;
-
 import java.awt.*;
 import javax.swing.*;
 
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelCambiarContrasena extends JPanel {
-    // IAG: Modificado (ChatGPT y GitHub Copilot)
     private final JPasswordField txtContrasenaAntigua;
     private final JPasswordField txtContrasenaNueva;
     private final JPasswordField txtConfirmarContrasena;

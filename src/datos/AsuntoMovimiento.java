@@ -1,5 +1,6 @@
 package datos;
 
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public enum AsuntoMovimiento {
     BIENVENIDA("bienvenida"),
     DEPOSITO_TARJETA("deposito:tarjeta"),
