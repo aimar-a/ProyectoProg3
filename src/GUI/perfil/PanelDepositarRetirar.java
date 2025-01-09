@@ -1,8 +1,8 @@
-package GUI.perfil;
+package gui.perfil;
 
-import GUI.ColorVariables;
 import datos.AsuntoMovimiento;
 import datos.GestorBD;
+import gui.ColorVariables;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -20,6 +20,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
 //IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelDepositarRetirar extends JPanel {
     private final CardLayout cardLayout;

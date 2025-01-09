@@ -1,15 +1,16 @@
-package GUI.mainMenu;
+package gui.mainMenu;
 
-import GUI.ColorVariables;
-import GUI.blackjack.FrameBlackjack;
-import GUI.caballos.FrameCaballos;
-import GUI.dinoRun.FrameDino;
-import GUI.logIn.FrameLogIn;
-import GUI.minas.FrameMinas;
-import GUI.perfil.FramePerfil;
-import GUI.ruleta.FrameRuleta;
-import GUI.slots.FrameSlots;
 import datos.GestorBD;
+import gui.ColorVariables;
+import gui.logIn.FrameLogIn;
+import gui.perfil.FramePerfil;
+import juegos.blackjack.FrameBlackjack;
+import juegos.caballos.FrameCaballos;
+import juegos.dinoRun.FrameDino;
+import juegos.minas.FrameMinas;
+import juegos.ruleta.FrameRuleta;
+import juegos.slots.FrameSlots;
+
 import java.awt.*;
 import javax.swing.*;
 
@@ -164,13 +165,13 @@ public class FrameMenuPrincipal extends JFrame {
 
         panelSeleccion = new JPanel(new FlowLayout(FlowLayout.CENTER, getWidth() / 25, getHeight() / 40));
 
-        configurarBotonJuego(panelSeleccion, JuegosDisponibles.CABALLOS, "/img/mainMenu/Carrera.jpeg");
-        configurarBotonJuego(panelSeleccion, JuegosDisponibles.RULETA, "/img/mainMenu/Ruleta.png");
-        configurarBotonJuego(panelSeleccion, JuegosDisponibles.SLOTS, "/img/mainMenu/Slot.png");
-        configurarBotonJuego(panelSeleccion, JuegosDisponibles.BLACKJACK, "/img/mainMenu/Blackjack.jpg");
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.CABALLOS, "resources/img/mainMenu/Carrera.jpeg");
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.RULETA, "resources/img/mainMenu/Ruleta.png");
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.SLOTS, "resources/img/mainMenu/Slot.png");
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.BLACKJACK, "resources/img/mainMenu/Blackjack.jpg");
         // configurarBotonJuego(panelSeleccion, JuegosDisponibles.MINAS,
         // "/img/mainMenu/Minas.jpg");
-        configurarBotonJuego(panelSeleccion, JuegosDisponibles.DINOSAURIO, "/img/mainMenu/Dinosaurio.jpg");
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.DINOSAURIO, "resources/img/mainMenu/Dinosaurio.jpg");
 
         panelCentral.add(panelSeleccion, BorderLayout.CENTER);
         return panelCentral;
@@ -180,7 +181,7 @@ public class FrameMenuPrincipal extends JFrame {
         int botonWidth = (int) (getWidth() / (getWidth() > 1.5 * getHeight() ? 3.5 : 2.5));
         int botonHeight = (int) (getHeight() / (getWidth() > 1.5 * getHeight() ? 2.5 : 4));
 
-        ImageIcon icono = new ImageIcon(getClass().getResource(rutaImagen));
+        ImageIcon icono = new ImageIcon(rutaImagen);
         Image scaledImage = icono.getImage().getScaledInstance(botonWidth, botonHeight, Image.SCALE_SMOOTH);
         ImageIcon scaledIcono = new ImageIcon(scaledImage);
 
@@ -198,7 +199,7 @@ public class FrameMenuPrincipal extends JFrame {
     private void configurarBotonPerfil() {
         int iconSize = 16;
 
-        ImageIcon iconoPerfil = new ImageIcon(getClass().getResource("/img/mainMenu/iconoPerfil.png"));
+        ImageIcon iconoPerfil = new ImageIcon("resources/img/mainMenu/iconoPerfil.png");
         Image scaledImagePerfil = iconoPerfil.getImage().getScaledInstance(iconSize, iconSize, Image.SCALE_SMOOTH);
         ImageIcon scaledIconPerfil = new ImageIcon(scaledImagePerfil);
 
@@ -216,7 +217,7 @@ public class FrameMenuPrincipal extends JFrame {
                 case JuegosDisponibles.RULETA -> new FrameRuleta(this, usuario, darkMode).setVisible(true);
                 case JuegosDisponibles.SLOTS -> new FrameSlots(this, usuario, darkMode).setVisible(true);
                 case JuegosDisponibles.BLACKJACK -> new FrameBlackjack(this, usuario, darkMode).setVisible(true);
-                case JuegosDisponibles.MINAS -> new FrameMinas(this).setVisible(true);
+                case JuegosDisponibles.MINAS -> new FrameMinas(this, usuario, darkMode).setVisible(true);
                 case JuegosDisponibles.DINOSAURIO -> new FrameDino(this, usuario, darkMode).setVisible(true);
                 default -> {
                     JOptionPane.showMessageDialog(this, "Juego no disponible", "Error", JOptionPane.ERROR_MESSAGE);

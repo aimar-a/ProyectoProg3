@@ -1,8 +1,9 @@
-package GUI.perfil;
+package gui.perfil;
 
-import GUI.ColorVariables;
 import datos.GestorBD;
 import datos.TiposDeDatos;
+import gui.ColorVariables;
+
 import java.awt.*;
 import java.util.stream.IntStream;
 import javax.swing.*;
@@ -10,7 +11,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 public class PanelDatosUsuario extends JPanel {
-	// IAG: Modificado (ChatGPT y GitHub Copilot)
+    // IAG: Modificado (ChatGPT y GitHub Copilot)
     private static final long serialVersionUID = 1L;
     private static final Font FORMAT_INFO_FONT = new Font("Arial", Font.ITALIC, 10);
     private JTextField[] campos;

@@ -1,6 +1,7 @@
-package GUI;
+package gui;
 
 import java.awt.Color;
+
 //IAG: Modificado (ChatGPT y GitHub Copilot)
 public class ColorVariables {
     public static final Color COLOR_FONDO_DARK = new Color(50, 50, 50);

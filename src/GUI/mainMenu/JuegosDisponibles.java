@@ -1,4 +1,4 @@
-package GUI.mainMenu;
+package gui.mainMenu;
 
 public enum JuegosDisponibles {
     BLACKJACK("Blackjack"),

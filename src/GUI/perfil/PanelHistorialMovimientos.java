@@ -1,7 +1,7 @@
-package GUI.perfil;
+package gui.perfil;
 
-import GUI.ColorVariables;
 import datos.GestorBD;
+import gui.ColorVariables;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -10,12 +10,13 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+
 //IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelHistorialMovimientos extends JPanel {
 
     private final JTable table;
     private final DefaultTableModel tableModel = new DefaultTableModel(
-            new String[] { "Fecha", "Hora", "Modificación", "Tipo", "Saldo Final" },
+            new String[] { "Fecha", "Hora", "Modificación", "Tipo", "Accion", "Saldo Final" },
             0) {
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -74,7 +75,7 @@ public class PanelHistorialMovimientos extends JPanel {
                     } else if (((String) table.getValueAt(row, 3)).contains("bienvenida")) {
                         cell.setForeground(Color.MAGENTA); // Color magenta
                     }
-                } else if (column == 4) { // Columna "Saldo Final"
+                } else if (column == 5) { // Columna "Saldo Final"
                     cell.setHorizontalAlignment(SwingConstants.RIGHT); // Alinear a la derecha
                     cell.setFont(cell.getFont().deriveFont(Font.BOLD, 25f)); // Fuente en negrita y tamaño 20
                     cell.setFont(cell.getFont().deriveFont(Font.BOLD)); // Fuente en negrita
@@ -82,41 +83,69 @@ public class PanelHistorialMovimientos extends JPanel {
                     cell.setHorizontalAlignment(SwingConstants.CENTER); // Centrar el texto
                     cell.setText(""); // Limpiar el texto
                     if (((String) value).contains("slots")) {
-                        ImageIcon icon = new ImageIcon(("src/img/perfil/slot.png"));
+                        ImageIcon icon = new ImageIcon(("resources/img/perfil/slot.png"));
                         Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
                         cell.setIcon(new ImageIcon(image));
                     } else if (((String) value).contains("caballo")) {
-                        ImageIcon icon = new ImageIcon(("src/img/perfil/caballo.png"));
+                        ImageIcon icon = new ImageIcon(("resources/img/perfil/caballo.png"));
                         Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
                         cell.setIcon(new ImageIcon(image));
                     } else if (((String) value).contains("blackjack")) {
-                        ImageIcon icon = new ImageIcon(("src/img/perfil/blackjack.png"));
+                        ImageIcon icon = new ImageIcon(("resources/img/perfil/blackjack.png"));
+                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+                        cell.setIcon(new ImageIcon(image));
+                    } else if (((String) value).contains("ruleta")) {
+                        ImageIcon icon = new ImageIcon(("resources/img/perfil/ruleta.png"));
                         Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
                         cell.setIcon(new ImageIcon(image));
                     } else if (((String) value).contains("dino")) {
-                        ImageIcon icon = new ImageIcon(("src/img/perfil/dino.png"));
-                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
-                        cell.setIcon(new ImageIcon(image));
-                    } else if (((String) value).contains("victoria")) {
-                        ImageIcon icon = new ImageIcon(("src/img/perfil/victoria.png"));
-                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
-                        cell.setIcon(new ImageIcon(image));
-                    } else if (((String) value).contains("apuesta")) {
-                        ImageIcon icon = new ImageIcon(("src/img/perfil/apuesta.png"));
+                        ImageIcon icon = new ImageIcon(("resources/img/perfil/dino.png"));
                         Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
                         cell.setIcon(new ImageIcon(image));
                     } else if (((String) value).contains("deposito")) {
-                        ImageIcon icon = new ImageIcon(("src/img/perfil/deposito.png"));
+                        ImageIcon icon = new ImageIcon(("resources/img/perfil/deposito.png"));
                         Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
                         cell.setIcon(new ImageIcon(image));
                     } else if (((String) value).contains("retiro")) {
-                        ImageIcon icon = new ImageIcon(("src/img/perfil/retiro.png"));
+                        ImageIcon icon = new ImageIcon(("resources/img/perfil/retiro.png"));
                         Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
                         cell.setIcon(new ImageIcon(image));
                     } else if (((String) value).contains("bienvenida")) {
-                        ImageIcon icon = new ImageIcon(("src/img/perfil/bienvenida.png"));
+                        ImageIcon icon = new ImageIcon(("resources/img/perfil/bienvenida.png"));
                         Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
                         cell.setIcon(new ImageIcon(image));
+                    } else {
+                        cell.setText(value.toString());
+                    }
+                } else if (column == 4) {
+                    cell.setHorizontalAlignment(SwingConstants.CENTER); // Centrar el texto
+                    cell.setText(""); // Limpiar el texto
+                    if (((String) value).contains("premio")) {
+                        ImageIcon icon = new ImageIcon(("resources/img/perfil/premio.png"));
+                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+                        cell.setIcon(new ImageIcon(image));
+                    } else if (((String) value).contains("apuesta")) {
+                        ImageIcon icon = new ImageIcon(("resources/img/perfil/apuesta.png"));
+                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+                        cell.setIcon(new ImageIcon(image));
+                    } else if (((String) value).contains("empate")) {
+                        ImageIcon icon = new ImageIcon(("resources/img/perfil/empate.png"));
+                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+                        cell.setIcon(new ImageIcon(image));
+                    } else if (((String) value).contains("deposito")) {
+                        ImageIcon icon = new ImageIcon(("resources/img/perfil/deposito.png"));
+                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+                        cell.setIcon(new ImageIcon(image));
+                    } else if (((String) value).contains("retiro")) {
+                        ImageIcon icon = new ImageIcon(("resources/img/perfil/retiro.png"));
+                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+                        cell.setIcon(new ImageIcon(image));
+                    } else if (((String) value).contains("bienvenida")) {
+                        ImageIcon icon = new ImageIcon(("resources/img/perfil/bienvenida.png"));
+                        Image image = icon.getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+                        cell.setIcon(new ImageIcon(image));
+                    } else {
+                        cell.setText(value.toString());
                     }
                 }
                 return cell;
@@ -155,7 +184,7 @@ public class PanelHistorialMovimientos extends JPanel {
             String asunto = data[3];
             int saldoFinal = Integer.parseInt(data[4]);
 
-            tableModel.addRow(new Object[] { fecha, hora, modificacion, asunto, saldoFinal });
+            tableModel.addRow(new Object[] { fecha, hora, modificacion, asunto, asunto, saldoFinal });
         }
     }
 }

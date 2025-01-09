@@ -1,14 +1,15 @@
-package GUI.perfil;
+package gui.perfil;
 
-import GUI.ColorVariables;
-import GUI.mainMenu.FrameMenuPrincipal;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
+import gui.ColorVariables;
+import gui.mainMenu.FrameMenuPrincipal;
+
 public class FramePerfil extends JDialog {
-     // IAG: Modificado (ChatGPT y GitHub Copilot)
+    // IAG: Modificado (ChatGPT y GitHub Copilot)
     JButton btnPerfil = new JButton("Ver Perfil");
     JButton btnDespositarRetirar = new JButton("Depositar/Retirar");
     JButton btnHistorialMovimientos = new JButton("Ver Historial de Movimientos");

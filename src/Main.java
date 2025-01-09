@@ -1,5 +1,5 @@
-import GUI.mainMenu.FrameMenuPrincipal;
 import datos.GestorBD;
+import gui.mainMenu.FrameMenuPrincipal;
 
 public class Main {
     public static void main(String[] args) {

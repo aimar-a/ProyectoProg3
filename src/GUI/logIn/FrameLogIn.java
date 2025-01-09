@@ -1,9 +1,10 @@
-package GUI.logIn;
+package gui.logIn;
 
-import GUI.ColorVariables;
-import GUI.mainMenu.FrameMenuPrincipal;
-import GUI.mainMenu.JuegosDisponibles;
 import datos.GestorBD;
+import gui.ColorVariables;
+import gui.mainMenu.FrameMenuPrincipal;
+import gui.mainMenu.JuegosDisponibles;
+
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -50,7 +51,7 @@ public class FrameLogIn extends JDialog {
         columna += espacio;
 
         JLabel img = new JLabel();
-        ImageIcon iconoLogin = new ImageIcon(getClass().getResource("/img/logIn/foto.png"));
+        ImageIcon iconoLogin = new ImageIcon("resources/img/logIn/foto.png");
         Image scaledImagen = iconoLogin.getImage().getScaledInstance(altoimg, altoimg, Image.SCALE_SMOOTH);
         ImageIcon scaledIcono = new ImageIcon(scaledImagen);
         img.setIcon(scaledIcono);

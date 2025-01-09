@@ -1,8 +1,9 @@
-package GUI.logIn;
+package gui.logIn;
 
-import GUI.ColorVariables;
 import datos.GestorBD;
 import datos.TiposDeDatos;
+import gui.ColorVariables;
+
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,6 +12,7 @@ import java.util.stream.IntStream;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
 //IAG: Modificado (ChatGPT y GitHub Copilot)
 public class FrameRegistro extends JDialog {
 

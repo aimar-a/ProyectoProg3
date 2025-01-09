@@ -1,4 +1,4 @@
-package GUI.mainMenu;
+package gui.mainMenu;
 
 public interface EventSwitchSelected {
 
