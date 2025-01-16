@@ -28,6 +28,7 @@ public class PanelApuestasMinas extends JPanel {
 
         btnApostar.addActionListener(e -> {
             btnApostar.setEnabled(false);
+            spinnerApuesta.setEnabled(false);
             int apuesta = (int) spinnerApuesta.getValue();
             if (apuesta <= 0) {
                 JOptionPane.showMessageDialog(panelMinas, "Ingresa una apuesta válida.",
@@ -39,17 +40,17 @@ public class PanelApuestasMinas extends JPanel {
                 return;
             }
             GestorBD.agregarMovimiento(usuario, -apuesta, AsuntoMovimiento.MINAS_APUESTA);
-            panelMinas.iniciarJuego(apuesta, btnApostar, btnRetirar);
+            panelMinas.iniciarJuego(apuesta, btnApostar, btnRetirar, spinnerApuesta);
         });
 
         if (darkMode) {
-            setBackground(ColorVariables.COLOR_FONDO_DARK);
-            spinnerApuesta.setBackground(ColorVariables.COLOR_ROJO_DARK);
-            spinnerApuesta.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            setBackground(ColorVariables.COLOR_ROJO_DARK);
             btnApostar.setBackground(ColorVariables.COLOR_BOTON_DARK);
             btnApostar.setForeground(ColorVariables.COLOR_BOTON_TEXTO_DARK);
+            btnRetirar.setBackground(ColorVariables.COLOR_BOTON_DARK);
+            btnRetirar.setForeground(ColorVariables.COLOR_BOTON_TEXTO_DARK);
         } else {
-            setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            setBackground(ColorVariables.COLOR_ROJO_LIGHT);
             spinnerApuesta.setBackground(ColorVariables.COLOR_ROJO_LIGHT);
             spinnerApuesta.setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
             btnApostar.setBackground(ColorVariables.COLOR_BOTON_LIGHT);

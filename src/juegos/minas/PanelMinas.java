@@ -26,18 +26,18 @@ public class PanelMinas extends JPanel {
     private final JLabel lblGanancia = new JLabel("Ganancia: 0");
     private JButton btnApostar;
     private JButton btnRetirar;
+    private JSpinner spinnerApuesta;
 
     public PanelMinas(String usuario, boolean darkMode) {
         this.usuario = usuario;
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        gbc.weighty = 5;
         gbc.gridx = 2;
         gbc.gridy = 0;
+        lblGanancia.setFont(new Font("Arial", Font.BOLD, 20));
         add(lblGanancia, gbc);
 
-        gbc.weighty = 1;
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 gbc.gridx = j;
@@ -60,6 +60,42 @@ public class PanelMinas extends JPanel {
             }
         }
 
+        gbc.gridx = 5;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 6;
+        JPanel panelPremios = new JPanel(new GridBagLayout());
+        gbc.insets = new Insets(10, 10, 10, 10);
+        panelPremios.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        panelPremios.setBackground(
+                darkMode ? ColorVariables.COLOR_FONDO_DARK.brighter() : ColorVariables.COLOR_FONDO_LIGHT.darker());
+        add(panelPremios, gbc);
+
+        gbc.gridy = 0;
+        gbc.gridx = 0;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+        JLabel lblPremios = new JLabel("PREMIOS");
+        lblPremios.setForeground(darkMode ? ColorVariables.COLOR_TEXTO_LIGHT : ColorVariables.COLOR_TEXTO_DARK);
+        lblPremios.setFont(new Font("Arial", Font.BOLD, 20));
+        panelPremios.add(lblPremios, gbc);
+        gbc.gridwidth = 1;
+
+        for (int i = 0; i < 4; i++) {
+            gbc.gridy = i + 1;
+            gbc.gridx = 0;
+            ImageIcon icon = new ImageIcon("resources/img/minas/diamond_" + diamantes[i] + ".png");
+            Image scaled = icon.getImage().getScaledInstance(icon.getIconWidth() / 2, icon.getIconHeight() / 2,
+                    Image.SCALE_SMOOTH);
+            icon = new ImageIcon(scaled);
+            panelPremios.add(new JLabel(icon), gbc);
+            JLabel lbl = new JLabel("x0." + (i + 1));
+            lbl.setForeground(darkMode ? ColorVariables.COLOR_TEXTO_DARK : ColorVariables.COLOR_TEXTO_LIGHT);
+            lbl.setFont(new Font("Arial", Font.BOLD, 20));
+            gbc.gridx = 1;
+            panelPremios.add(lbl, gbc);
+        }
+
         setUp();
 
         if (darkMode) {
@@ -71,9 +107,10 @@ public class PanelMinas extends JPanel {
         }
     }
 
-    public final void iniciarJuego(int apuesta, JButton btnApostar, JButton btnRetirar) {
+    public final void iniciarJuego(int apuesta, JButton btnApostar, JButton btnRetirar, JSpinner spinnerApuesta) {
         this.btnApostar = btnApostar;
         this.btnRetirar = btnRetirar;
+        this.spinnerApuesta = spinnerApuesta;
         this.apuesta = apuesta;
         this.ganancia = 0;
 
@@ -127,6 +164,7 @@ public class PanelMinas extends JPanel {
         }
         setUp();
         btnApostar.setEnabled(true);
+        spinnerApuesta.setEnabled(true);
     }
 
     private void setUp() {
