@@ -1,12 +1,11 @@
 package gui.perfil;
 
+import gui.ColorVariables;
+import gui.mainMenu.FrameMenuPrincipal;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-
-import gui.ColorVariables;
-import gui.mainMenu.FrameMenuPrincipal;
 
 // IAG: Modificado (ChatGPT y GitHub Copilot)
 public class FramePerfil extends JDialog {
@@ -89,9 +88,9 @@ public class FramePerfil extends JDialog {
         add(panelSuperior, BorderLayout.NORTH);
 
         if (darkMode) {
-            panelSuperior.setBackground(ColorVariables.COLOR_FONDO_DARK);
+            panelSuperior.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
         } else {
-            panelSuperior.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            panelSuperior.setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
         }
     }
 

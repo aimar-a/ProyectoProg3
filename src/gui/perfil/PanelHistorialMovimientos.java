@@ -1,13 +1,19 @@
 package gui.perfil;
 
-import datos.GestorBD;
+import db.GestorBD;
 import gui.ColorVariables;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
 import java.util.List;
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,17 +47,17 @@ public class PanelHistorialMovimientos extends JPanel {
 
     private void applyColorScheme(boolean darkMode, JScrollPane scrollPane) {
         if (darkMode) {
-            setBackground(ColorVariables.COLOR_FONDO_DARK);
-            table.setBackground(ColorVariables.COLOR_FONDO_DARK);
-            table.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
+            table.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
+            table.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
             table.setGridColor(Color.GRAY);
-            scrollPane.getViewport().setBackground(ColorVariables.COLOR_FONDO_DARK);
+            scrollPane.getViewport().setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
         } else {
-            setBackground(ColorVariables.COLOR_FONDO_LIGHT);
-            table.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
-            table.setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
+            setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
+            table.setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
+            table.setForeground(ColorVariables.COLOR_TEXTO_LIGHT.getColor());
             table.setGridColor(Color.LIGHT_GRAY);
-            scrollPane.getViewport().setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            scrollPane.getViewport().setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
         }
     }
 
@@ -80,7 +86,8 @@ public class PanelHistorialMovimientos extends JPanel {
                 boolean hasFocus, int row, int column) {
             JLabel cell = new JLabel(value.toString());
             cell.setFont(new Font("Arial", Font.PLAIN, 16));
-            cell.setForeground(darkMode ? ColorVariables.COLOR_TEXTO_DARK : ColorVariables.COLOR_TEXTO_LIGHT);
+            cell.setForeground(darkMode ? ColorVariables.COLOR_TEXTO_DARK.getColor()
+                    : ColorVariables.COLOR_TEXTO_LIGHT.getColor());
 
             switch (column) {
                 case 0:

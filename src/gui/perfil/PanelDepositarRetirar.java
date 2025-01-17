@@ -1,8 +1,8 @@
 package gui.perfil;
 
-import datos.AsuntoMovimiento;
-import datos.GestorBD;
-import datos.TipoDeDato;
+import db.GestorBD;
+import domain.datos.AsuntoMovimiento;
+import domain.datos.TipoDeDato;
 import gui.ColorVariables;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -51,15 +51,15 @@ public class PanelDepositarRetirar extends JPanel {
 
         // Define color variables
         if (darkMode) {
-            backgroundColor = ColorVariables.COLOR_FONDO_DARK;
-            foregroundColor = ColorVariables.COLOR_TEXTO_DARK;
-            buttonColor = ColorVariables.COLOR_BOTON_DARK;
-            buttonTextColor = ColorVariables.COLOR_BOTON_TEXTO_DARK;
+            backgroundColor = ColorVariables.COLOR_FONDO_DARK.getColor();
+            foregroundColor = ColorVariables.COLOR_TEXTO_DARK.getColor();
+            buttonColor = ColorVariables.COLOR_BOTON_DARK.getColor();
+            buttonTextColor = ColorVariables.COLOR_BOTON_TEXTO_DARK.getColor();
         } else {
-            backgroundColor = ColorVariables.COLOR_FONDO_LIGHT;
-            foregroundColor = ColorVariables.COLOR_TEXTO_LIGHT;
-            buttonColor = ColorVariables.COLOR_BOTON_LIGHT;
-            buttonTextColor = ColorVariables.COLOR_BOTON_TEXTO_LIGHT;
+            backgroundColor = ColorVariables.COLOR_FONDO_LIGHT.getColor();
+            foregroundColor = ColorVariables.COLOR_TEXTO_LIGHT.getColor();
+            buttonColor = ColorVariables.COLOR_BOTON_LIGHT.getColor();
+            buttonTextColor = ColorVariables.COLOR_BOTON_TEXTO_LIGHT.getColor();
         }
 
         setBackground(backgroundColor);

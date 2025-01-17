@@ -1,6 +1,6 @@
 package gui.perfil;
 
-import datos.TipoDeDato;
+import domain.datos.TipoDeDato;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;

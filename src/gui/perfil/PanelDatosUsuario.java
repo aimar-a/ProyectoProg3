@@ -1,13 +1,26 @@
 package gui.perfil;
 
-import datos.GestorBD;
-import datos.TipoDeDato;
+import db.GestorBD;
+import domain.datos.TipoDeDato;
 import gui.ColorVariables;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -142,21 +155,21 @@ public class PanelDatosUsuario extends JPanel {
     }
 
     private void applyDarkMode(JPanel panelCentral, JPanel panelOpciones, JButton btnEditar, JButton btnGuardar) {
-        setBackground(ColorVariables.COLOR_FONDO_DARK);
-        panelCentral.setBackground(ColorVariables.COLOR_FONDO_DARK);
-        panelOpciones.setBackground(ColorVariables.COLOR_FONDO_DARK);
-        btnEditar.setBackground(ColorVariables.COLOR_BOTON_DARK);
-        btnEditar.setForeground(ColorVariables.COLOR_TEXTO_DARK);
-        btnGuardar.setBackground(ColorVariables.COLOR_BOTON_DARK);
-        btnGuardar.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+        setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
+        panelCentral.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
+        panelOpciones.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
+        btnEditar.setBackground(ColorVariables.COLOR_BOTON_DARK.getColor());
+        btnEditar.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
+        btnGuardar.setBackground(ColorVariables.COLOR_BOTON_DARK.getColor());
+        btnGuardar.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
 
-        setLabelColors(panelCentral, ColorVariables.COLOR_TEXTO_DARK);
+        setLabelColors(panelCentral, ColorVariables.COLOR_TEXTO_DARK.getColor());
     }
 
     private void applyLightMode(JPanel panelCentral, JPanel panelOpciones) {
-        setBackground(ColorVariables.COLOR_FONDO_LIGHT);
-        panelCentral.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
-        panelOpciones.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+        setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
+        panelCentral.setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
+        panelOpciones.setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
     }
 
     private void setLabelColors(Container container, Color color) {

@@ -1,9 +1,17 @@
 package gui.perfil;
 
-import datos.GestorBD;
+import db.GestorBD;
 import gui.ColorVariables;
-import java.awt.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 // IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelCambiarContrasena extends JPanel {
@@ -66,24 +74,24 @@ public class PanelCambiarContrasena extends JPanel {
         add(panelSur, BorderLayout.SOUTH);
 
         if (darkMode) {
-            setBackground(ColorVariables.COLOR_FONDO_DARK);
-            panelCentro.setBackground(ColorVariables.COLOR_FONDO_DARK);
-            panelSur.setBackground(ColorVariables.COLOR_FONDO_DARK);
-            lblContrasenaAntigua.setForeground(ColorVariables.COLOR_TEXTO_DARK);
-            lblContrasenaNueva.setForeground(ColorVariables.COLOR_TEXTO_DARK);
-            lblConfirmarContrasena.setForeground(ColorVariables.COLOR_TEXTO_DARK);
-            txtContrasenaAntigua.setBackground(ColorVariables.COLOR_FONDO_DARK);
-            txtContrasenaAntigua.setForeground(ColorVariables.COLOR_TEXTO_DARK);
-            txtContrasenaNueva.setBackground(ColorVariables.COLOR_FONDO_DARK);
-            txtContrasenaNueva.setForeground(ColorVariables.COLOR_TEXTO_DARK);
-            txtConfirmarContrasena.setBackground(ColorVariables.COLOR_FONDO_DARK);
-            txtConfirmarContrasena.setForeground(ColorVariables.COLOR_TEXTO_DARK);
-            btnCambiar.setBackground(ColorVariables.COLOR_BOTON_DARK);
-            btnCambiar.setForeground(ColorVariables.COLOR_TEXTO_DARK);
+            setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
+            panelCentro.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
+            panelSur.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
+            lblContrasenaAntigua.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
+            lblContrasenaNueva.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
+            lblConfirmarContrasena.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
+            txtContrasenaAntigua.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
+            txtContrasenaAntigua.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
+            txtContrasenaNueva.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
+            txtContrasenaNueva.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
+            txtConfirmarContrasena.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
+            txtConfirmarContrasena.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
+            btnCambiar.setBackground(ColorVariables.COLOR_BOTON_DARK.getColor());
+            btnCambiar.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
         } else {
-            setBackground(ColorVariables.COLOR_FONDO_LIGHT);
-            panelCentro.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
-            panelSur.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
+            setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
+            panelCentro.setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
+            panelSur.setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
         }
     }
 

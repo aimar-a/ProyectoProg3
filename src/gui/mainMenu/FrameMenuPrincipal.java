@@ -1,18 +1,31 @@
 package gui.mainMenu;
 
-import datos.GestorBD;
+import db.GestorBD;
 import gui.ColorVariables;
-import gui.logIn.FrameLogIn;
+import gui.juegos.blackjack.FrameBlackjack;
+import gui.juegos.caballos.FrameCaballos;
+import gui.juegos.dinoRun.FrameDino;
+import gui.juegos.minas.FrameMinas;
+import gui.juegos.ruleta.FrameRuleta;
+import gui.juegos.slots.FrameSlots;
+import gui.logIn.DialogLogIn;
 import gui.perfil.FramePerfil;
-import juegos.blackjack.FrameBlackjack;
-import juegos.caballos.FrameCaballos;
-import juegos.dinoRun.FrameDino;
-import juegos.minas.FrameMinas;
-import juegos.ruleta.FrameRuleta;
-import juegos.slots.FrameSlots;
-
-import java.awt.*;
-import javax.swing.*;
+import io.ConfigProperties;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 // IAG: Modificado (ChatGPT y GitHub Copilot)
 public class FrameMenuPrincipal extends JFrame {
@@ -36,10 +49,14 @@ public class FrameMenuPrincipal extends JFrame {
     public FrameMenuPrincipal() {
         // Configuración inicial del JFrame
         setTitle("Menú Principal");
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int frameWidth = (int) (screenSize.width * 0.6);
-        int frameHeight = (int) (screenSize.height * 0.8);
-        setSize(frameWidth, frameHeight);
+        if (ConfigProperties.isUiFullScreen()) {
+            setExtendedState(JFrame.MAXIMIZED_BOTH);
+        } else {
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            int frameWidth = (int) (screenSize.width * 0.6);
+            int frameHeight = (int) (screenSize.height * 0.8);
+            setSize(frameWidth, frameHeight);
+        }
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -47,11 +64,11 @@ public class FrameMenuPrincipal extends JFrame {
         usuario = null;
         botonPerfil = new JButton();
 
-        // Configuración de la barra superior
-        configurarBarraAlta();
-
         // Configuración del panel central con opciones de juego
         JPanel panelCentral = configurarPanelCentral();
+
+        // Configuración de la barra superior
+        configurarBarraAlta();
 
         labelSaldo.setVisible(false);
         botonPerfil.setVisible(false);
@@ -86,7 +103,7 @@ public class FrameMenuPrincipal extends JFrame {
         botonLogIn.addActionListener(e -> {
             if (!loginAbierto) {
                 loginAbierto = true;
-                new FrameLogIn(FrameMenuPrincipal.this, null, darkMode).setVisible(true);
+                new DialogLogIn(FrameMenuPrincipal.this, null, darkMode).setVisible(true);
             }
         });
 
@@ -120,38 +137,40 @@ public class FrameMenuPrincipal extends JFrame {
                 }
             }
         });
+        toggleDarkMode.setSelected(ConfigProperties.isUiDarkMode());
         panelIzquierdaBarraAlta.add(toggleDarkMode, BorderLayout.WEST);
         panelIzquierdaBarraAlta.add(new JLabel("Modo oscuro"));
+        toggleDarkMode.repaint();
 
         configurarBotonPerfil();
     }
 
     private void enableDarkMode() {
         darkMode = true;
-        panelSeleccion.setBackground(ColorVariables.COLOR_FONDO_DARK);
-        labelBienvenida.setForeground(ColorVariables.COLOR_TEXTO_DARK);
-        panelCentral.setBackground(ColorVariables.COLOR_FONDO_DARK);
-        barraAlta.setBackground(ColorVariables.COLOR_ROJO_DARK);
-        panelDerechaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_DARK);
-        panelIzquierdaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_DARK);
-        titulo.setForeground(ColorVariables.COLOR_TEXTO_DARK);
-        UIManager.put("OptionPane.background", ColorVariables.COLOR_FONDO_DARK);
-        UIManager.put("Panel.background", ColorVariables.COLOR_FONDO_DARK);
-        UIManager.put("OptionPane.messageForeground", ColorVariables.COLOR_TEXTO_DARK);
+        panelSeleccion.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
+        labelBienvenida.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
+        panelCentral.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
+        barraAlta.setBackground(ColorVariables.COLOR_ROJO_DARK.getColor());
+        panelDerechaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_DARK.getColor());
+        panelIzquierdaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_DARK.getColor());
+        titulo.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
+        UIManager.put("OptionPane.background", ColorVariables.COLOR_FONDO_DARK.getColor());
+        UIManager.put("Panel.background", ColorVariables.COLOR_FONDO_DARK.getColor());
+        UIManager.put("OptionPane.messageForeground", ColorVariables.COLOR_TEXTO_DARK.getColor());
     }
 
     private void disableDarkMode() {
         darkMode = false;
-        panelSeleccion.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
-        labelBienvenida.setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
-        panelCentral.setBackground(ColorVariables.COLOR_FONDO_LIGHT);
-        barraAlta.setBackground(ColorVariables.COLOR_ROJO_LIGHT);
-        panelDerechaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_LIGHT);
-        panelIzquierdaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_LIGHT);
-        titulo.setForeground(ColorVariables.COLOR_TEXTO_LIGHT);
-        UIManager.put("OptionPane.background", ColorVariables.COLOR_FONDO_LIGHT);
-        UIManager.put("Panel.background", ColorVariables.COLOR_FONDO_LIGHT);
-        UIManager.put("OptionPane.messageForeground", ColorVariables.COLOR_TEXTO_LIGHT);
+        panelSeleccion.setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
+        labelBienvenida.setForeground(ColorVariables.COLOR_TEXTO_LIGHT.getColor());
+        panelCentral.setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
+        barraAlta.setBackground(ColorVariables.COLOR_ROJO_LIGHT.getColor());
+        panelDerechaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_LIGHT.getColor());
+        panelIzquierdaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_LIGHT.getColor());
+        titulo.setForeground(ColorVariables.COLOR_TEXTO_LIGHT.getColor());
+        UIManager.put("OptionPane.background", ColorVariables.COLOR_FONDO_LIGHT.getColor());
+        UIManager.put("Panel.background", ColorVariables.COLOR_FONDO_LIGHT.getColor());
+        UIManager.put("OptionPane.messageForeground", ColorVariables.COLOR_TEXTO_LIGHT.getColor());
     }
 
     private JPanel configurarPanelCentral() {
@@ -225,7 +244,7 @@ public class FrameMenuPrincipal extends JFrame {
         } else {
             if (!loginAbierto) {
                 loginAbierto = true;
-                new FrameLogIn(FrameMenuPrincipal.this, juegoObjetivo, darkMode).setVisible(true);
+                new DialogLogIn(FrameMenuPrincipal.this, juegoObjetivo, darkMode).setVisible(true);
             }
         }
     }
