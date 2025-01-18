@@ -1,37 +1,35 @@
 package gui.juegos.dinoRun;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.Timer;
+import javax.swing.*;
 
 import gui.ColorVariables;
 
-// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelDino extends JPanel {
+    // Constantes
+    private static final double INITIAL_MULTIPLIER = 1.01;
+    private static final double MAX_MULTIPLIER = 10.0;
+    private static final int TIMER_DELAY = 500; // Milisegundos
+    private static final int ANIMATION_DELAY = 100; // Milisegundos
+
+    // Componentes
     private JLabel multiplierLabel;
     private JLabel dinoLabel;
     private JProgressBar progressBar;
-    private Timer timer;
-    private double multiplier = 1.01; // Inicia en 1.01
-    private boolean isRunning = false;
-    private final double MAX_MULTIPLIER = 10.0; // Límite del multiplicador
-    private Random random = new Random();
-    private ImageIcon[] dinoFrames; // Arreglo de imágenes del dinosaurio
-    private int currentFrame = 0; // Índice del cuadro actual para la animación
-    private Thread animationThread; // Hilo para manejar la animación
 
+    private Timer timer;
+    private double multiplier = INITIAL_MULTIPLIER;
+    private boolean isRunning = false;
+
+    private Random random = new Random();
+    private ImageIcon[] dinoFrames;
+    private int currentFrame = 0;
+    private Thread animationThread;
+
+    // Listener de fin de juego
     public interface GameEndListener {
         void onGameEnd(boolean cashedOut);
     }
@@ -43,75 +41,72 @@ public class PanelDino extends JPanel {
     }
 
     public PanelDino(boolean darkMode) {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Diseño vertical
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        initComponents(darkMode);
+        initTimer();
+    }
+
+    private void initComponents(boolean darkMode) {
+        // Configuración de paneles
         JPanel animationPanel = new JPanel();
         animationPanel.setLayout(new BoxLayout(animationPanel, BoxLayout.Y_AXIS));
-        // Cargar imágenes para la animación del dinosaurio
-        loadDinoFrames();
-
-        // Panel principal para la disposición general
         JPanel panel = new JPanel(new BorderLayout());
 
+        // Etiqueta del multiplicador
         multiplierLabel = new JLabel("Multiplicador: x1.00", SwingConstants.CENTER);
+        multiplierLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // Etiqueta del dinosaurio
         dinoLabel = new JLabel("", SwingConstants.CENTER);
-        dinoLabel.setPreferredSize(new Dimension(1300, 300)); // Tamaño preferido
-        dinoLabel.setIcon(dinoFrames[0]); // Establecer el primer cuadro
+        dinoLabel.setPreferredSize(new Dimension(1300, 300));
+        loadDinoFrames();
+        dinoLabel.setIcon(dinoFrames[0]);
         dinoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        // Barra de progreso horizontal de 0 a 100
 
+        // Barra de progreso
         progressBar = new JProgressBar(0, 100);
-        progressBar.setStringPainted(true); // Mostrar el texto del progreso
+        progressBar.setStringPainted(true);
         progressBar.setString("x1.01");
-        progressBar.setMaximumSize(new Dimension(400, 30)); // Tamaño fijo
-        progressBar.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrado horizontalmente
+        progressBar.setMaximumSize(new Dimension(400, 30));
+        progressBar.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        // Añadir componentes
         animationPanel.add(dinoLabel);
         animationPanel.add(progressBar);
-
-        // Crear un panel para centrar la barra de progreso
-
-        // Añadir los componentes al panel principal
         panel.add(multiplierLabel, BorderLayout.NORTH);
-
         panel.add(animationPanel, BorderLayout.CENTER);
-
-        // Agregar el panel principal al frame
         add(panel);
 
-        // Configurar el temporizador para simular el aumento del multiplicador
-        timer = new Timer(500, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (isRunning) {
-                    double increment = 0.1 + (random.nextDouble() * 0.1); // Incremento entre 0.1 y 0.2
-                    multiplier += increment; // Aumentar el multiplicador
+        // Configurar modo oscuro o claro
+        setBackground(darkMode ? ColorVariables.COLOR_FONDO_DARK.getColor() : ColorVariables.COLOR_FONDO_LIGHT.getColor());
+        panel.setBackground(getBackground());
+        animationPanel.setBackground(getBackground());
+    }
 
-                    if (multiplier > MAX_MULTIPLIER) {
-                        multiplier = MAX_MULTIPLIER;
-                    }
-
-                    multiplierLabel.setText(String.format("Multiplicador: x%.2f", multiplier));
-                    int progressValue = (int) mapMultiplierToProgress(multiplier);
-                    progressBar.setValue(progressValue);
-                    progressBar.setString(String.format("x%.2f", multiplier));
-
-                    if (random.nextDouble() < (0.05 + (multiplier / MAX_MULTIPLIER) * 0.1)) {
-                        endGame(false);
-                    }
+    private void initTimer() {
+        timer = new Timer(TIMER_DELAY, e -> {
+            if (isRunning) {
+                multiplier = calculateMultiplier(multiplier, 1);
+                if (multiplier > MAX_MULTIPLIER) {
+                    multiplier = MAX_MULTIPLIER;
                 }
+                updateUIElements();
+                checkCrash();
             }
         });
+    }
 
-        if (darkMode) {
-            setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
-            setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
-            panel.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
-            animationPanel.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
-        } else {
-            setForeground(ColorVariables.COLOR_TEXTO_LIGHT.getColor());
-            setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
-            panel.setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
-            animationPanel.setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
+    private void updateUIElements() {
+        multiplierLabel.setText(String.format("Multiplicador: x%.2f", multiplier));
+        int progressValue = (int) mapMultiplierToProgress(multiplier);
+        progressBar.setValue(progressValue);
+        progressBar.setString(String.format("x%.2f", multiplier));
+    }
+
+    private void checkCrash() {
+        double crashChance = 0.05 + (multiplier / MAX_MULTIPLIER) * 0.1;
+        if (random.nextDouble() < crashChance) {
+            endGame(false);
         }
     }
 
@@ -128,7 +123,7 @@ public class PanelDino extends JPanel {
                 try {
                     currentFrame = (currentFrame + 1) % dinoFrames.length;
                     SwingUtilities.invokeLater(() -> dinoLabel.setIcon(dinoFrames[currentFrame]));
-                    Thread.sleep(100);
+                    Thread.sleep(ANIMATION_DELAY);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
@@ -138,27 +133,38 @@ public class PanelDino extends JPanel {
     }
 
     private void stopAnimation() {
+        isRunning = false;
         if (animationThread != null && animationThread.isAlive()) {
-            isRunning = false;
             animationThread.interrupt();
-
         }
     }
 
     private double mapMultiplierToProgress(double multiplier) {
-        return (multiplier - 1.01) / (MAX_MULTIPLIER - 1.01) * 100;
+        return (multiplier - INITIAL_MULTIPLIER) / (MAX_MULTIPLIER - INITIAL_MULTIPLIER) * 100;
+    }
+
+    private double calculateMultiplier(double currentMultiplier, int steps) {
+        if (steps <= 0) {
+            return currentMultiplier;
+        }
+        double increment = 0.1 + random.nextDouble() * 0.1;
+        return calculateMultiplier(currentMultiplier + increment, steps - 1);
     }
 
     public void startGame() {
         if (!isRunning) {
             isRunning = true;
-            multiplier = 1.01;
-            multiplierLabel.setText("Multiplicador: x1.00");
-            progressBar.setValue(0);
-            progressBar.setString("x1.00");
+            multiplier = INITIAL_MULTIPLIER;
+            updateUIElements();
             timer.start();
             startAnimation();
         }
+    }
+
+    public int cashOut() {
+        if (!isRunning) return 0;
+        endGame(true);
+        return (int) (apuesta * multiplier);
     }
 
     private int apuesta = 0;
@@ -167,29 +173,16 @@ public class PanelDino extends JPanel {
         this.apuesta = apuesta;
     }
 
-    public int cashOut() {
-        if (!isRunning)
-            return 0; // Si el juego no está corriendo, no hay ganancias
-
-        endGame(true); // Termina el juego
-        int ganancia = (int) (apuesta * multiplier);
-        apuesta = 0; // Reinicia la apuesta
-        return ganancia;
-    }
-
     private void endGame(boolean cashedOut) {
-        isRunning = false;
-        timer.stop();
         stopAnimation();
+        timer.stop();
 
-        // Notificar al listener que el juego terminó
         if (gameEndListener != null) {
             gameEndListener.onGameEnd(cashedOut);
         }
 
-        // Mensaje al usuario
         String message = cashedOut
-                ? "¡Cobraste con éxito! Multiplicador: x" + String.format("%.2f", multiplier) + " sobre tu apuesta."
+                ? String.format("¡Cobraste con éxito! Multiplicador: x%.2f", multiplier)
                 : "¡El dinosaurio se estrelló! Perdiste tu apuesta.";
         JOptionPane.showMessageDialog(this, message);
     }

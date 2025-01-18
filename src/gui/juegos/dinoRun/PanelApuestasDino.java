@@ -99,7 +99,7 @@ public class PanelApuestasDino extends JPanel {
             if (ganancia > 0) {
                 GestorBD.agregarMovimiento(usuario, ganancia, AsuntoMovimiento.DINO_PREMIO);
                 JOptionPane.showMessageDialog(dinoPlay,
-                        "¡Has ganado " + ganancia + " monedas!", "¡Enhorabuena!",
+                        "¡Has ganado " + ganancia + " fichas!", "¡Enhorabuena!",
                         JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(dinoPlay, "¡Juego terminado!", "Fin del juego",
