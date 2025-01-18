@@ -302,3 +302,81 @@ ene 18, 2025 3:37:51 P. M. db.GestorBD actualizarSaldo
 INFO: Saldo actualizado para el usuario aimi: 4210
 ene 18, 2025 3:37:51 P. M. db.GestorBD agregarMovimiento
 INFO: Movimiento agregado para el usuario aimi: 20 fichas, asunto: blackjack:premio
+Jan 18, 2025 4:49:53 PM db.GestorBD init
+INFO: Driver cargado.
+Jan 18, 2025 4:50:38 PM db.GestorBD init
+INFO: Driver cargado.
+Jan 18, 2025 4:50:56 PM db.GestorBD init
+INFO: Driver cargado.
+Jan 18, 2025 4:55:20 PM db.GestorBD init
+INFO: Driver cargado.
+Jan 18, 2025 4:55:26 PM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 4:55:27 PM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4210
+Jan 18, 2025 4:55:27 PM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4210
+Jan 18, 2025 5:37:39 PM db.GestorBD init
+INFO: Driver cargado.
+Jan 18, 2025 5:37:44 PM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 5:37:44 PM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4210
+Jan 18, 2025 5:37:44 PM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4210
+Jan 18, 2025 5:39:27 PM db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: aimi
+Jan 18, 2025 5:41:23 PM db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: aimi
+Jan 18, 2025 5:47:17 PM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4210
+Jan 18, 2025 5:47:23 PM db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: aimi
+Jan 18, 2025 5:47:24 PM db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: aimi
+Jan 18, 2025 5:47:27 PM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4210
+Jan 18, 2025 5:47:27 PM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4210
+Jan 18, 2025 5:47:27 PM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 4210
+Jan 18, 2025 5:47:27 PM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: 0 fichas, asunto: ruleta:premio
+Jan 18, 2025 5:47:44 PM db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: aimi
+Jan 18, 2025 5:47:45 PM db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: aimi
+Jan 18, 2025 5:51:17 PM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4210
+Jan 18, 2025 5:51:17 PM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4210
+Jan 18, 2025 5:51:17 PM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3210
+Jan 18, 2025 5:51:17 PM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -1000 fichas, asunto: retiro:paypal
+Jan 18, 2025 5:51:22 PM db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: aimi
+Jan 18, 2025 5:51:23 PM db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: aimi
+Jan 18, 2025 5:55:13 PM db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: aimi
+Jan 18, 2025 5:55:15 PM db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: aimi
+Jan 18, 2025 5:58:01 PM db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: aimi
+Jan 18, 2025 5:58:03 PM db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: aimi
+Jan 18, 2025 5:58:07 PM db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: aimi
+Jan 18, 2025 5:58:09 PM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3210
+Jan 18, 2025 5:58:14 PM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3210
+Jan 18, 2025 5:58:21 PM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3210
+Jan 18, 2025 5:58:30 PM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3210
+Jan 18, 2025 5:58:39 PM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3210
+Jan 18, 2025 5:58:43 PM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3210

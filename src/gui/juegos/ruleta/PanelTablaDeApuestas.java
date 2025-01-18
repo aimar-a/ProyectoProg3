@@ -196,7 +196,6 @@ public class PanelTablaDeApuestas extends JPanel {
             }).start();
         });
         add(btn, gbc);
-
     }
 
     protected void setApuestasPermitidas(boolean b) {
