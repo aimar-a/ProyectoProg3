@@ -3,6 +3,7 @@ package db;
 import domain.datos.AsuntoMovimiento;
 import io.ConfigProperties;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,16 +19,46 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 import javax.swing.JLabel;
 
-// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class GestorBD {
-    private static String DB_URL;
+    private static final String DB_URL = ConfigProperties.getDbUrl();
+    private static final String DB_DRIVER = ConfigProperties.getDbDriver();
+    private static final String DB_DIR = ConfigProperties.getDbDir();
     private static JLabel lblMainMenu;
     private static JLabel lblGameMenu;
 
+    private static final Logger logger = Logger.getLogger(GestorBD.class.getName());
+
+    static {
+        try {
+            // Create log directory if it doesn't exist
+            File logDir = new File("log");
+            if (!logDir.exists()) {
+                logDir.mkdirs();
+            }
+
+            // Configure logger to write to a file
+            FileHandler fileHandler = new FileHandler("log/gestorBD.log", true);
+            fileHandler.setFormatter(new SimpleFormatter());
+            logger.addHandler(fileHandler);
+            logger.setLevel(Level.ALL);
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "Error configuring logger", e);
+        }
+    }
+
     public static void init() {
-        DB_URL = ConfigProperties.getDbUrl();
+        try {
+            Class.forName(DB_DRIVER);
+            logger.info("Driver cargado.");
+        } catch (ClassNotFoundException e) {
+            logger.log(Level.SEVERE, "Error al cargar el driver.", e);
+        }
         if (ConfigProperties.isDbCreate()) {
             borrarBD();
             crearTablas();
@@ -36,15 +67,17 @@ public class GestorBD {
             crearTablas();
         }
         if (ConfigProperties.isDbLoadFromCSV()) {
+            limpiarTablas();
             cargarDatosDeCSV();
         }
     }
 
     public static void borrarBD() {
         try {
-            Files.deleteIfExists(Paths.get(DB_URL));
+            Files.deleteIfExists(Paths.get(DB_DIR));
+            logger.info("Base de datos borrada.");
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error al borrar la base de datos.", e);
         }
     }
 
@@ -58,10 +91,29 @@ public class GestorBD {
                     stmt.execute(borrarUsuario);
                     stmt.execute(borrarHistorialMovimientos);
                     stmt.execute(borrarAsunto);
+                    logger.info("Tablas borradas.");
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error al borrar las tablas.", e);
+        }
+    }
+
+    public static void limpiarTablas() {
+        try (Connection conn = DriverManager.getConnection(DB_URL)) {
+            if (conn != null) {
+                String limpiarUsuario = "DELETE FROM usuario;";
+                String limpiarHistorialMovimientos = "DELETE FROM historial_movimientos;";
+                String limpiarAsunto = "DELETE FROM asunto;";
+                try (Statement stmt = conn.createStatement()) {
+                    stmt.execute(limpiarUsuario);
+                    stmt.execute(limpiarHistorialMovimientos);
+                    stmt.execute(limpiarAsunto);
+                    logger.info("Tablas limpiadas.");
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "Error al limpiar las tablas.", e);
         }
     }
 
@@ -113,25 +165,34 @@ public class GestorBD {
                     stmt.execute(crearUsuario);
                     stmt.execute(crearHistorialMovimientos);
                     stmt.execute(crearAsunto);
+                    logger.info("Tablas creadas.");
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error al crear las tablas.", e);
         }
     }
 
-    private static boolean leerConfig(String rutaConfig) throws IOException {
+    private static boolean leerConfig(String rutaConfig) {
         try (BufferedReader br = new BufferedReader(new FileReader(rutaConfig))) {
             return Boolean.parseBoolean(br.readLine().trim());
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "Error al leer la configuración.", e);
+            return false;
         }
     }
 
     private static void cargarDatosDeCSV() {
         try (Connection conn = DriverManager.getConnection(DB_URL)) {
             Map<String, Integer> saldos = leerCartera(ConfigProperties.getDbDirCsvBalancesCSV());
+            logger.info("Saldos leídos.");
             Map<String, String> contrasenas = leerUsuarioContra(ConfigProperties.getDbDirPasswordsCSV());
+            logger.info("Contraseñas leídas.");
+            System.out.println(ConfigProperties.getDbDirUsersDataCSV());
             List<String[]> datosUsuario = leerCSV(ConfigProperties.getDbDirUsersDataCSV());
+            logger.info("Datos de usuario leídos.");
             List<String[]> historialMovimientos = leerCSV(ConfigProperties.getDbDirCsvTransactionsCSV());
+            logger.info("Historial de movimientos leído.");
 
             // Insertar usuarios
             String insertarUsuario = """
@@ -152,8 +213,9 @@ public class GestorBD {
                     }
                     ps.executeUpdate();
                 }
+                logger.info("Usuarios insertados.");
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.log(Level.SEVERE, "Error al insertar usuarios.", e);
             }
 
             // Insertar asuntos
@@ -166,8 +228,9 @@ public class GestorBD {
                     ps.setString(1, asunto.getNombre());
                     ps.executeUpdate();
                 }
+                logger.info("Asuntos insertados.");
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.log(Level.SEVERE, "Error al insertar asuntos.", e);
             }
 
             // Insertar historial de movimientos
@@ -187,39 +250,50 @@ public class GestorBD {
                     ps.setInt(6, Integer.parseInt(fila[5]));
                     ps.executeUpdate();
                 }
+                logger.info("Historial de movimientos insertado.");
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.log(Level.SEVERE, "Error al insertar historial de movimientos.", e);
             }
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Error al cargar datos de CSV.", e);
         }
     }
 
-    private static Map<String, Integer> leerCartera(String ruta) throws IOException {
+    private static Map<String, Integer> leerCartera(String ruta) {
         Map<String, Integer> saldos = new HashMap<>();
-        List<String[]> filas = leerCSV(ruta);
-        for (String[] fila : filas) {
-            saldos.put(fila[0], Integer.parseInt(fila[1]));
+        try {
+            List<String[]> filas = leerCSV(ruta);
+            for (String[] fila : filas) {
+                saldos.put(fila[0], Integer.parseInt(fila[1]));
+            }
+        } catch (NumberFormatException e) {
+            logger.log(Level.SEVERE, "Error al leer cartera.", e);
         }
         return saldos;
     }
 
-    private static Map<String, String> leerUsuarioContra(String ruta) throws IOException {
+    private static Map<String, String> leerUsuarioContra(String ruta) {
         Map<String, String> contrasenas = new HashMap<>();
-        List<String[]> filas = leerCSV(ruta);
-        for (String[] fila : filas) {
-            contrasenas.put(fila[0], fila[1]);
+        try {
+            List<String[]> filas = leerCSV(ruta);
+            for (String[] fila : filas) {
+                contrasenas.put(fila[0], fila[1]);
+            }
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Error al leer usuario y contraseñas.", e);
         }
         return contrasenas;
     }
 
-    private static List<String[]> leerCSV(String ruta) throws IOException {
+    private static List<String[]> leerCSV(String ruta) {
         List<String[]> filas = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 filas.add(linea.split(","));
             }
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "Error al leer CSV.", e);
         }
         return filas;
     }
@@ -243,9 +317,10 @@ public class GestorBD {
                             rs.getString("saldo_final")
                     });
                 }
+                logger.info("Historial obtenido para el usuario: " + usuario);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error al obtener historial.", e);
         }
         return historial;
     }
@@ -256,9 +331,13 @@ public class GestorBD {
                 PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, nuevaContrasena);
             ps.setString(2, usuario);
-            return ps.executeUpdate() > 0;
+            boolean result = ps.executeUpdate() > 0;
+            if (result) {
+                logger.info("Contraseña cambiada para el usuario: " + usuario);
+            }
+            return result;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error al cambiar contraseña.", e);
         }
         return false;
     }
@@ -270,11 +349,12 @@ public class GestorBD {
             ps.setString(1, usuario);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
+                    logger.info("Contraseña obtenida para el usuario: " + usuario);
                     return rs.getString("contrasena");
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error al obtener contraseña.", e);
         }
         return null;
     }
@@ -292,9 +372,13 @@ public class GestorBD {
                 ps.setString(i + 1, nuevosDatos[i]);
             }
             ps.setString(nuevosDatos.length + 1, usuario);
-            return ps.executeUpdate() > 0;
+            boolean result = ps.executeUpdate() > 0;
+            if (result) {
+                logger.info("Datos cambiados para el usuario: " + usuario);
+            }
+            return result;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error al cambiar datos.", e);
         }
         return false;
     }
@@ -306,6 +390,7 @@ public class GestorBD {
             ps.setString(1, usuario);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
+                    logger.info("Datos obtenidos para el usuario: " + usuario);
                     return new String[] {
                             rs.getString("nombre"), rs.getString("apellidos"), rs.getString("dni"),
                             rs.getString("mail"), rs.getString("prefijo"), rs.getString("telefono"),
@@ -316,7 +401,7 @@ public class GestorBD {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error al obtener datos.", e);
         }
         return null;
     }
@@ -339,9 +424,10 @@ public class GestorBD {
             Random r = new Random();
             int cantidad = r.nextInt(999) + 1;
             agregarMovimiento(usuario, cantidad, AsuntoMovimiento.BIENVENIDA);
+            logger.info("Usuario agregado: " + usuario);
             return cantidad;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error al agregar usuario.", e);
         }
         return 0;
     }
@@ -352,10 +438,12 @@ public class GestorBD {
                 PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, usuario);
             try (ResultSet rs = ps.executeQuery()) {
-                return rs.next();
+                boolean exists = rs.next();
+                logger.info("Usuario " + usuario + " existe: " + exists);
+                return exists;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error al verificar si el usuario existe.", e);
         }
         return false;
     }
@@ -367,11 +455,13 @@ public class GestorBD {
             ps.setString(1, usuario);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getInt("fichas");
+                    int saldo = rs.getInt("fichas");
+                    logger.info("Saldo obtenido para el usuario " + usuario + ": " + saldo);
+                    return saldo;
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error al obtener saldo.", e);
         }
         return 0;
     }
@@ -384,16 +474,18 @@ public class GestorBD {
             ps.setString(2, usuario);
             if (ps.executeUpdate() > 0) {
                 updateLabels(cantidad);
+                logger.info("Saldo actualizado para el usuario " + usuario + ": " + cantidad);
                 return true;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error al actualizar saldo.", e);
         }
         return false;
     }
 
     public static boolean agregarMovimiento(String usuario, int cantidad, AsuntoMovimiento asunto) {
         if (-cantidad > obtenerSaldo(usuario)) {
+            logger.warning("Saldo insuficiente para el usuario " + usuario);
             return false;
         }
         if (!actualizarSaldo(usuario, obtenerSaldo(usuario) + cantidad)) {
@@ -409,9 +501,14 @@ public class GestorBD {
             ps.setInt(2, cantidad);
             ps.setInt(3, asunto.ordinal() + 1);
             ps.setString(4, usuario);
-            return ps.executeUpdate() > 0;
+            boolean result = ps.executeUpdate() > 0;
+            if (result) {
+                logger.info("Movimiento agregado para el usuario " + usuario + ": " + cantidad + " fichas, asunto: "
+                        + asunto.getNombre());
+            }
+            return result;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error al agregar movimiento.", e);
         }
         return false;
     }
@@ -432,5 +529,4 @@ public class GestorBD {
             lblGameMenu.setText("Saldo: " + nuevoSaldo + " fichas  ");
         }
     }
-
 }

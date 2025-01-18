@@ -17,7 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-// IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: ChatGPT y GitHub Copilot
+//ADAPTADO: Ordenar y limpiar código, anadir funcionalidades y autocompeltado
 public class DialogLogIn extends JDialog {
 
     private static final long serialVersionUID = 1L;

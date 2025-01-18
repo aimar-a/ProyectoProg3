@@ -12,7 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-//IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: ChatGPT y GitHub Copilot
+//ADAPTADO: Ordenar y limpiar código, anadir funcionalidades y autocompeltado
 public class PanelApuestasCaballos extends JPanel {
     private static final long serialVersionUID = 1L;
 

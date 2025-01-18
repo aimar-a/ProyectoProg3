@@ -4,13 +4,16 @@ import db.GestorBD;
 import gui.ColorVariables;
 import gui.mainMenu.FrameMenuPrincipal;
 import java.awt.BorderLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-//IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: GitHub Copilot
+//ADAPTADO: Anadir funcionalidades y autocompeltado
 public class TopBar extends JPanel {
 
     private static final long serialVersionUID = 1L;
@@ -40,5 +43,18 @@ public class TopBar extends JPanel {
             setBackground(ColorVariables.COLOR_VERDE_LIGHT.getColor());
             lblTitle.setForeground(ColorVariables.COLOR_TEXTO_LIGHT.getColor());
         }
+
+        // Add KeyListener to handle Esc key press
+        frame.setFocusable(true);
+        frame.requestFocus();
+        frame.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    frameMenuPrincipal.setVisible(true);
+                    frame.dispose();
+                }
+            }
+        });
     }
 }

@@ -1,5 +1,8 @@
+//FUENTE-EXTERNA
 // Código inspirado por el tutorial "Code Black Jack in Java" de [Kenny Yip Coding] en YouTube.
 // URL: https://www.youtube.com/watch?v=GMdgjaDdOjI 
+// ADAPTADO: Se ha modificado el código original para adaptarlo a las necesidades del proyecto y anadir funcionalidades adicionales.
+
 package gui.juegos.blackjack;
 
 import domain.blackjack.Carta;
@@ -21,7 +24,8 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-// IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: GitHub Copilot
+//ADAPTADO: Autocompeltado
 public class PanelBlackjack extends JPanel {
     private JButton botonPlantarse;
     private Mano manoCrupier;

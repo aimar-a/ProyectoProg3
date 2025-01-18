@@ -6,7 +6,8 @@ import domain.datos.AsuntoMovimiento;
 import domain.slots.Premios;
 import javax.swing.JOptionPane;
 
-//IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: ChatGPT y GitHub Copilot
+//ADAPTADO: Ordenar y limpiar código, anadir funcionalidades y autocompeltado
 public class LogicaSlots {
     private final PanelSlots panelSlots;
     private final PanelApuestasSlots panelApuestas;

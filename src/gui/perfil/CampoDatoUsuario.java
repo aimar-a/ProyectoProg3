@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class CampoDatoUsuario {
     private static final Font FORMAT_INFO_FONT = new Font("Arial", Font.ITALIC, 10);
 

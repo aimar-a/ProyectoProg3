@@ -6,14 +6,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-// IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: ChatGPT y GitHub Copilot
+//ADAPTADO: Se ha modificado el código original para adaptarlo a las necesidades del proyecto y añadir funcionalidades adicionales.
 public class Premios {
     private List<List<Integer>> combinaciones = new ArrayList<>();
     private List<Integer> premios = new ArrayList<>();
     private List<String> imagenes = new ArrayList<>();
 
     public Premios() {
-        try (BufferedReader br = new BufferedReader(new FileReader("src/juegos/slots/ListaPremios.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("resources/csv/ListaPremios.csv"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");

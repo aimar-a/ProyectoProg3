@@ -18,6 +18,10 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,7 +31,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
-// IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: ChatGPT y GitHub Copilot
+//ADAPTADO: Ordenar y limpiar código, anadir funcionalidades y autocompeltado
 public class FrameMenuPrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
     public boolean logeado;
@@ -65,7 +70,7 @@ public class FrameMenuPrincipal extends JFrame {
         botonPerfil = new JButton();
 
         // Configuración del panel central con opciones de juego
-        JPanel panelCentral = configurarPanelCentral();
+        configurarPanelCentral();
 
         // Configuración de la barra superior
         configurarBarraAlta();
@@ -74,6 +79,42 @@ public class FrameMenuPrincipal extends JFrame {
         botonPerfil.setVisible(false);
         panelDerechaBarraAlta.add(labelSaldo);
         panelDerechaBarraAlta.add(botonPerfil);
+
+        this.setFocusable(true);
+        this.requestFocusInWindow();
+        this.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_C) {
+                    abrirVentana(JuegosDisponibles.CABALLOS);
+                } else if (e.getKeyCode() == KeyEvent.VK_R) {
+                    abrirVentana(JuegosDisponibles.RULETA);
+                } else if (e.getKeyCode() == KeyEvent.VK_S) {
+                    abrirVentana(JuegosDisponibles.SLOTS);
+                } else if (e.getKeyCode() == KeyEvent.VK_B) {
+                    abrirVentana(JuegosDisponibles.BLACKJACK);
+                } else if (e.getKeyCode() == KeyEvent.VK_M) {
+                    abrirVentana(JuegosDisponibles.MINAS);
+                } else if (e.getKeyCode() == KeyEvent.VK_D) {
+                    abrirVentana(JuegosDisponibles.DINOSAURIO);
+                } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    if (logeado) {
+                        int opcion = JOptionPane.showConfirmDialog(FrameMenuPrincipal.this, "¿Deseas cerrar sesión?",
+                                "Cerrar Sesión", JOptionPane.YES_NO_OPTION);
+                        if (opcion == JOptionPane.YES_OPTION) {
+                            loginAbierto = false;
+                            cerrarSesion();
+                        }
+                    } else {
+                        int opcion = JOptionPane.showConfirmDialog(FrameMenuPrincipal.this, "¿Estas seguro?", "Salir",
+                                JOptionPane.YES_NO_OPTION);
+                        if (opcion == JOptionPane.YES_OPTION) {
+                            System.exit(0);
+                        }
+                    }
+                }
+            }
+        });
 
         // Añadir paneles al JFrame
         add(panelCentral, BorderLayout.CENTER);
@@ -173,14 +214,14 @@ public class FrameMenuPrincipal extends JFrame {
         UIManager.put("OptionPane.messageForeground", ColorVariables.COLOR_TEXTO_LIGHT.getColor());
     }
 
-    private JPanel configurarPanelCentral() {
-        panelCentral = new JPanel(new BorderLayout());
+    private void configurarPanelCentral() {
+        this.panelCentral = new JPanel(new BorderLayout());
 
         labelBienvenida = new JLabel("Bienvenido al Menú Principal, ¿A qué desea jugar?", SwingConstants.CENTER);
         int labelWidth = getWidth() / 10;
         int labelHeight = getHeight() / 40;
         labelBienvenida.setPreferredSize(new Dimension(labelWidth, labelHeight));
-        panelCentral.add(labelBienvenida, BorderLayout.NORTH);
+        this.panelCentral.add(labelBienvenida, BorderLayout.NORTH);
 
         panelSeleccion = new JPanel(new FlowLayout(FlowLayout.CENTER, getWidth() / 25, getHeight() / 40));
 
@@ -191,8 +232,7 @@ public class FrameMenuPrincipal extends JFrame {
         configurarBotonJuego(panelSeleccion, JuegosDisponibles.MINAS);
         configurarBotonJuego(panelSeleccion, JuegosDisponibles.DINOSAURIO);
 
-        panelCentral.add(panelSeleccion, BorderLayout.CENTER);
-        return panelCentral;
+        this.panelCentral.add(panelSeleccion, BorderLayout.CENTER);
     }
 
     private void configurarBotonJuego(JPanel panel, JuegosDisponibles juegoElegido) {

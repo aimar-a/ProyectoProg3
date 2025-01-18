@@ -1,0 +1,1195 @@
+Jan 18, 2025 2:06:06 AM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 2:06:06 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1925
+Jan 18, 2025 2:06:06 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1925
+Jan 18, 2025 2:06:18 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1925
+Jan 18, 2025 2:06:18 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1925
+Jan 18, 2025 2:06:18 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1925
+Jan 18, 2025 2:06:18 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1915
+Jan 18, 2025 2:06:18 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: caballos:apuesta
+Jan 18, 2025 2:06:36 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1915
+Jan 18, 2025 2:06:40 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1915
+Jan 18, 2025 2:06:40 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1915
+Jan 18, 2025 2:06:41 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1905
+Jan 18, 2025 2:06:41 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:06:53 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1905
+Jan 18, 2025 2:06:53 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1905
+Jan 18, 2025 2:06:54 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1895
+Jan 18, 2025 2:06:54 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:07:02 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1895
+Jan 18, 2025 2:07:02 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1895
+Jan 18, 2025 2:07:02 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1885
+Jan 18, 2025 2:07:03 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:07:10 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1885
+Jan 18, 2025 2:07:10 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1885
+Jan 18, 2025 2:07:10 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1875
+Jan 18, 2025 2:07:10 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:07:14 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1875
+Jan 18, 2025 2:07:14 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1875
+Jan 18, 2025 2:07:14 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1865
+Jan 18, 2025 2:07:14 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:07:18 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1865
+Jan 18, 2025 2:07:18 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1865
+Jan 18, 2025 2:07:18 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1855
+Jan 18, 2025 2:07:19 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:07:25 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1855
+Jan 18, 2025 2:07:25 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1855
+Jan 18, 2025 2:07:26 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1845
+Jan 18, 2025 2:07:26 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:07:29 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1845
+Jan 18, 2025 2:07:29 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1845
+Jan 18, 2025 2:07:29 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1835
+Jan 18, 2025 2:07:29 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:07:31 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1835
+Jan 18, 2025 2:07:31 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1835
+Jan 18, 2025 2:07:31 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1825
+Jan 18, 2025 2:07:32 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:07:34 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1825
+Jan 18, 2025 2:07:34 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1825
+Jan 18, 2025 2:07:34 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1815
+Jan 18, 2025 2:07:35 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:07:37 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1815
+Jan 18, 2025 2:07:37 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1815
+Jan 18, 2025 2:07:37 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1805
+Jan 18, 2025 2:07:37 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:07:40 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1805
+Jan 18, 2025 2:07:40 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1805
+Jan 18, 2025 2:07:40 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1795
+Jan 18, 2025 2:07:40 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:07:43 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1795
+Jan 18, 2025 2:07:43 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1795
+Jan 18, 2025 2:07:43 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1785
+Jan 18, 2025 2:07:44 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:07:46 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1785
+Jan 18, 2025 2:07:46 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1785
+Jan 18, 2025 2:07:46 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1775
+Jan 18, 2025 2:07:46 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:07:48 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1775
+Jan 18, 2025 2:07:48 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1775
+Jan 18, 2025 2:07:49 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1765
+Jan 18, 2025 2:07:49 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:07:52 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1765
+Jan 18, 2025 2:07:52 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1765
+Jan 18, 2025 2:07:52 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1755
+Jan 18, 2025 2:07:52 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:07:56 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1755
+Jan 18, 2025 2:07:56 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1755
+Jan 18, 2025 2:07:56 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1745
+Jan 18, 2025 2:07:56 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:08:01 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1745
+Jan 18, 2025 2:08:01 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1745
+Jan 18, 2025 2:08:02 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1735
+Jan 18, 2025 2:08:02 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:10:55 AM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 2:10:55 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1735
+Jan 18, 2025 2:10:55 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1735
+Jan 18, 2025 2:10:58 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1735
+Jan 18, 2025 2:10:58 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1735
+Jan 18, 2025 2:10:59 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1725
+Jan 18, 2025 2:10:59 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:11:05 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1725
+Jan 18, 2025 2:11:05 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1725
+Jan 18, 2025 2:11:05 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1715
+Jan 18, 2025 2:11:05 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:11:11 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1715
+Jan 18, 2025 2:11:11 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1715
+Jan 18, 2025 2:11:11 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1727
+Jan 18, 2025 2:11:12 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: 12 fichas, asunto: minas:premio
+Jan 18, 2025 2:11:12 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1727
+Jan 18, 2025 2:11:12 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1727
+Jan 18, 2025 2:11:13 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1717
+Jan 18, 2025 2:11:13 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:11:17 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1717
+Jan 18, 2025 2:11:17 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1717
+Jan 18, 2025 2:11:17 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1707
+Jan 18, 2025 2:11:17 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:11:27 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1707
+Jan 18, 2025 2:11:27 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1707
+Jan 18, 2025 2:11:28 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1726
+Jan 18, 2025 2:11:28 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: 19 fichas, asunto: minas:premio
+Jan 18, 2025 2:11:29 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1726
+Jan 18, 2025 2:11:29 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1726
+Jan 18, 2025 2:11:29 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1716
+Jan 18, 2025 2:11:29 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:11:33 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1716
+Jan 18, 2025 2:11:33 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1716
+Jan 18, 2025 2:11:33 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1706
+Jan 18, 2025 2:11:34 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:11:36 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1706
+Jan 18, 2025 2:11:36 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1706
+Jan 18, 2025 2:11:36 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1696
+Jan 18, 2025 2:11:36 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:11:42 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1696
+Jan 18, 2025 2:11:42 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1696
+Jan 18, 2025 2:11:42 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 1686
+Jan 18, 2025 2:11:43 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: minas:apuesta
+Jan 18, 2025 2:46:04 AM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 2:46:04 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 2:46:04 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 2:46:11 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 2:46:16 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 2:47:34 AM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 2:47:34 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 2:47:34 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 2:48:13 AM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 2:48:13 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 2:48:13 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 2:48:46 AM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 2:48:46 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 2:48:46 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 2:57:08 AM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 2:57:08 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 2:57:10 AM db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: aimi
+Jan 18, 2025 2:57:11 AM db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: aimi
+Jan 18, 2025 2:58:30 AM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 2:58:30 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 2:58:31 AM db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: aimi
+Jan 18, 2025 2:58:32 AM db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: aimi
+Jan 18, 2025 3:00:14 AM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 3:00:14 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 3:00:15 AM db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: aimi
+Jan 18, 2025 3:00:16 AM db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: aimi
+Jan 18, 2025 3:08:06 AM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 3:08:06 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 3:08:07 AM db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: aimi
+Jan 18, 2025 3:08:08 AM db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: aimi
+Jan 18, 2025 3:09:36 AM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 3:09:37 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 3:09:38 AM db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: aimi
+Jan 18, 2025 3:09:38 AM db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: aimi
+Jan 18, 2025 3:16:33 AM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 3:16:33 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 3:16:34 AM db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: aimi
+Jan 18, 2025 3:16:35 AM db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: aimi
+Jan 18, 2025 3:51:57 AM db.GestorBD usuarioExiste
+INFO: Usuario a existe: false
+Jan 18, 2025 3:51:57 AM db.GestorBD usuarioExiste
+INFO: Usuario ao existe: false
+Jan 18, 2025 3:51:57 AM db.GestorBD usuarioExiste
+INFO: Usuario aoe existe: false
+Jan 18, 2025 3:51:57 AM db.GestorBD usuarioExiste
+INFO: Usuario aoeu existe: false
+Jan 18, 2025 3:52:12 AM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 3:52:13 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 3:52:14 AM db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: aimi
+Jan 18, 2025 3:52:36 AM db.GestorBD cambiarDatos
+INFO: Datos cambiados para el usuario: aimi
+Jan 18, 2025 4:04:15 AM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 4:04:16 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 1686
+Jan 18, 2025 4:04:19 AM db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: aimi
+Jan 18, 2025 4:04:20 AM db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: aimi
+Jan 18, 2025 4:06:39 AM db.GestorBD borrarBD
+INFO: Base de datos borrada.
+Jan 18, 2025 4:06:39 AM db.GestorBD crearTablas
+INFO: Tablas creadas.
+Jan 18, 2025 4:10:36 AM db.GestorBD borrarBD
+INFO: Base de datos borrada.
+Jan 18, 2025 4:10:37 AM db.GestorBD crearTablas
+INFO: Tablas creadas.
+Jan 18, 2025 4:10:37 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al cargar datos de CSV.
+java.lang.NullPointerException
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:144)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:106)
+	at java.base/java.io.FileReader.<init>(FileReader.java:60)
+	at db.GestorBD.leerCSV(GestorBD.java:259)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:163)
+	at db.GestorBD.init(GestorBD.java:63)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:11:50 AM db.GestorBD borrarBD
+INFO: Base de datos borrada.
+Jan 18, 2025 4:11:50 AM db.GestorBD crearTablas
+INFO: Tablas creadas.
+Jan 18, 2025 4:11:50 AM db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+Jan 18, 2025 4:11:50 AM db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+Jan 18, 2025 4:11:50 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al cargar datos de CSV.
+java.lang.NullPointerException
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:144)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:106)
+	at java.base/java.io.FileReader.<init>(FileReader.java:60)
+	at db.GestorBD.leerCSV(GestorBD.java:263)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:165)
+	at db.GestorBD.init(GestorBD.java:63)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:12:58 AM db.GestorBD borrarBD
+INFO: Base de datos borrada.
+Jan 18, 2025 4:12:58 AM db.GestorBD crearTablas
+INFO: Tablas creadas.
+Jan 18, 2025 4:12:58 AM db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+Jan 18, 2025 4:12:58 AM db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+Jan 18, 2025 4:12:58 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al cargar datos de CSV.
+java.lang.NullPointerException
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:144)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:106)
+	at java.base/java.io.FileReader.<init>(FileReader.java:60)
+	at db.GestorBD.leerCSV(GestorBD.java:264)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:165)
+	at db.GestorBD.init(GestorBD.java:63)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:13:23 AM db.GestorBD borrarBD
+INFO: Base de datos borrada.
+Jan 18, 2025 4:13:23 AM db.GestorBD crearTablas
+INFO: Tablas creadas.
+Jan 18, 2025 4:13:23 AM db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+Jan 18, 2025 4:13:23 AM db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+Jan 18, 2025 4:13:23 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al cargar datos de CSV.
+java.lang.NullPointerException
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:144)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:106)
+	at java.base/java.io.FileReader.<init>(FileReader.java:60)
+	at db.GestorBD.leerCSV(GestorBD.java:264)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:166)
+	at db.GestorBD.init(GestorBD.java:63)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:13:52 AM db.GestorBD borrarBD
+INFO: Base de datos borrada.
+Jan 18, 2025 4:13:52 AM db.GestorBD crearTablas
+INFO: Tablas creadas.
+Jan 18, 2025 4:13:52 AM db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+Jan 18, 2025 4:13:52 AM db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+Jan 18, 2025 4:13:52 AM db.GestorBD cargarDatosDeCSV
+INFO: Datos de usuario leídos.
+Jan 18, 2025 4:13:52 AM db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos leído.
+Jan 18, 2025 4:13:52 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar usuarios.
+org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY] A PRIMARY KEY constraint failed (UNIQUE constraint failed: usuario.usuario)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:985)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:188)
+	at db.GestorBD.init(GestorBD.java:63)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:13:59 AM db.GestorBD cargarDatosDeCSV
+INFO: Asuntos insertados.
+Jan 18, 2025 4:14:09 AM db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos insertado.
+Jan 18, 2025 4:15:43 AM db.GestorBD borrarBD
+INFO: Base de datos borrada.
+Jan 18, 2025 4:15:43 AM db.GestorBD crearTablas
+INFO: Tablas creadas.
+Jan 18, 2025 4:15:43 AM db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+Jan 18, 2025 4:15:43 AM db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+Jan 18, 2025 4:15:43 AM db.GestorBD cargarDatosDeCSV
+INFO: Datos de usuario leídos.
+Jan 18, 2025 4:15:43 AM db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos leído.
+Jan 18, 2025 4:15:43 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar usuarios.
+org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY] A PRIMARY KEY constraint failed (UNIQUE constraint failed: usuario.usuario)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:985)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:188)
+	at db.GestorBD.init(GestorBD.java:63)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:15:51 AM db.GestorBD cargarDatosDeCSV
+INFO: Asuntos insertados.
+Jan 18, 2025 4:15:59 AM db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos insertado.
+Jan 18, 2025 4:16:46 AM db.GestorBD borrarTablas
+INFO: Tablas borradas.
+Jan 18, 2025 4:16:47 AM db.GestorBD crearTablas
+INFO: Tablas creadas.
+Jan 18, 2025 4:16:47 AM db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+Jan 18, 2025 4:16:47 AM db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+Jan 18, 2025 4:16:47 AM db.GestorBD cargarDatosDeCSV
+INFO: Datos de usuario leídos.
+Jan 18, 2025 4:16:47 AM db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos leído.
+Jan 18, 2025 4:16:49 AM db.GestorBD cargarDatosDeCSV
+INFO: Usuarios insertados.
+Jan 18, 2025 4:16:57 AM db.GestorBD cargarDatosDeCSV
+INFO: Asuntos insertados.
+Jan 18, 2025 4:17:05 AM db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos insertado.
+Jan 18, 2025 4:17:20 AM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 4:17:21 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4200
+Jan 18, 2025 4:17:21 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4200
+Jan 18, 2025 4:17:53 AM db.GestorBD borrarTablas
+INFO: Tablas borradas.
+Jan 18, 2025 4:17:54 AM db.GestorBD crearTablas
+INFO: Tablas creadas.
+Jan 18, 2025 4:17:54 AM db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+Jan 18, 2025 4:17:54 AM db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+Jan 18, 2025 4:17:54 AM db.GestorBD cargarDatosDeCSV
+INFO: Datos de usuario leídos.
+Jan 18, 2025 4:17:54 AM db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos leído.
+Jan 18, 2025 4:17:56 AM db.GestorBD cargarDatosDeCSV
+INFO: Usuarios insertados.
+Jan 18, 2025 4:18:03 AM db.GestorBD cargarDatosDeCSV
+INFO: Asuntos insertados.
+Jan 18, 2025 4:18:12 AM db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos insertado.
+Jan 18, 2025 4:18:19 AM db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+Jan 18, 2025 4:18:20 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4200
+Jan 18, 2025 4:18:20 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4200
+Jan 18, 2025 4:18:25 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4200
+Jan 18, 2025 4:18:25 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4200
+Jan 18, 2025 4:18:25 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4200
+Jan 18, 2025 4:18:25 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 4190
+Jan 18, 2025 4:18:25 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: slots:apuesta
+Jan 18, 2025 4:18:30 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4190
+Jan 18, 2025 4:18:30 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4190
+Jan 18, 2025 4:18:30 AM db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4190
+Jan 18, 2025 4:18:31 AM db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 4180
+Jan 18, 2025 4:18:31 AM db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -10 fichas, asunto: slots:apuesta
+Jan 18, 2025 4:22:23 AM db.GestorBD borrarBD
+INFO: Base de datos borrada.
+Jan 18, 2025 4:22:23 AM db.GestorBD crearTablas
+INFO: Tablas creadas.
+Jan 18, 2025 4:22:23 AM db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+Jan 18, 2025 4:22:23 AM db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+Jan 18, 2025 4:22:23 AM db.GestorBD cargarDatosDeCSV
+INFO: Datos de usuario leídos.
+Jan 18, 2025 4:22:23 AM db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos leído.
+Jan 18, 2025 4:22:23 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar usuarios.
+org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY] A PRIMARY KEY constraint failed (UNIQUE constraint failed: usuario.usuario)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:985)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:189)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:22:25 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar asuntos.
+org.sqlite.SQLiteException: [SQLITE_IOERR_FSYNC] I/O error in the VFS layer while trying to flush previously written content (disk I/O error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:988)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:204)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:22:28 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar historial de movimientos.
+org.sqlite.SQLiteException: [SQLITE_IOERR_FSYNC] I/O error in the VFS layer while trying to flush previously written content (disk I/O error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:988)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:226)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:22:46 AM db.GestorBD borrarBD
+INFO: Base de datos borrada.
+Jan 18, 2025 4:22:46 AM db.GestorBD crearTablas
+INFO: Tablas creadas.
+Jan 18, 2025 4:22:46 AM db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+Jan 18, 2025 4:22:46 AM db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+Jan 18, 2025 4:22:46 AM db.GestorBD cargarDatosDeCSV
+INFO: Datos de usuario leídos.
+Jan 18, 2025 4:22:46 AM db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos leído.
+Jan 18, 2025 4:22:46 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar usuarios.
+org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY] A PRIMARY KEY constraint failed (UNIQUE constraint failed: usuario.usuario)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:985)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:189)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:22:48 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar asuntos.
+org.sqlite.SQLiteException: [SQLITE_IOERR_FSYNC] I/O error in the VFS layer while trying to flush previously written content (disk I/O error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:988)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:204)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:22:51 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar historial de movimientos.
+org.sqlite.SQLiteException: [SQLITE_IOERR_FSYNC] I/O error in the VFS layer while trying to flush previously written content (disk I/O error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:988)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:226)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:23:05 AM db.GestorBD borrarBD
+INFO: Base de datos borrada.
+Jan 18, 2025 4:23:05 AM db.GestorBD crearTablas
+INFO: Tablas creadas.
+Jan 18, 2025 4:23:05 AM db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+Jan 18, 2025 4:23:05 AM db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+Jan 18, 2025 4:23:05 AM db.GestorBD cargarDatosDeCSV
+INFO: Datos de usuario leídos.
+Jan 18, 2025 4:23:05 AM db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos leído.
+Jan 18, 2025 4:23:05 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar usuarios.
+org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY] A PRIMARY KEY constraint failed (UNIQUE constraint failed: usuario.usuario)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:985)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:189)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:23:07 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar asuntos.
+org.sqlite.SQLiteException: [SQLITE_IOERR_FSYNC] I/O error in the VFS layer while trying to flush previously written content (disk I/O error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:988)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:204)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:23:10 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar historial de movimientos.
+org.sqlite.SQLiteException: [SQLITE_IOERR_FSYNC] I/O error in the VFS layer while trying to flush previously written content (disk I/O error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:988)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:226)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:23:33 AM db.GestorBD borrarTablas
+SEVERE: Error al borrar las tablas.
+org.sqlite.SQLiteException: [SQLITE_IOERR_FSYNC] I/O error in the VFS layer while trying to flush previously written content (disk I/O error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:988)
+	at org.sqlite.core.CoreStatement.exec(CoreStatement.java:91)
+	at org.sqlite.jdbc3.JDBC3Statement.lambda$execute$0(JDBC3Statement.java:56)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3Statement.execute(JDBC3Statement.java:44)
+	at db.GestorBD.borrarTablas(GestorBD.java:84)
+	at db.GestorBD.init(GestorBD.java:60)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:23:33 AM db.GestorBD crearTablas
+INFO: Tablas creadas.
+Jan 18, 2025 4:23:33 AM db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+Jan 18, 2025 4:23:33 AM db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+Jan 18, 2025 4:23:33 AM db.GestorBD cargarDatosDeCSV
+INFO: Datos de usuario leídos.
+Jan 18, 2025 4:23:33 AM db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos leído.
+Jan 18, 2025 4:23:33 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar usuarios.
+org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY] A PRIMARY KEY constraint failed (UNIQUE constraint failed: usuario.usuario)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:985)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:189)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:23:35 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar asuntos.
+org.sqlite.SQLiteException: [SQLITE_IOERR_FSYNC] I/O error in the VFS layer while trying to flush previously written content (disk I/O error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:988)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:204)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:24:00 AM db.GestorBD borrarTablas
+SEVERE: Error al borrar las tablas.
+org.sqlite.SQLiteException: [SQLITE_IOERR_FSYNC] I/O error in the VFS layer while trying to flush previously written content (disk I/O error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:988)
+	at org.sqlite.core.CoreStatement.exec(CoreStatement.java:91)
+	at org.sqlite.jdbc3.JDBC3Statement.lambda$execute$0(JDBC3Statement.java:56)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3Statement.execute(JDBC3Statement.java:44)
+	at db.GestorBD.borrarTablas(GestorBD.java:84)
+	at db.GestorBD.init(GestorBD.java:60)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:24:00 AM db.GestorBD crearTablas
+INFO: Tablas creadas.
+Jan 18, 2025 4:24:00 AM db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+Jan 18, 2025 4:24:00 AM db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+Jan 18, 2025 4:24:00 AM db.GestorBD cargarDatosDeCSV
+INFO: Datos de usuario leídos.
+Jan 18, 2025 4:24:00 AM db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos leído.
+Jan 18, 2025 4:24:00 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar usuarios.
+org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY] A PRIMARY KEY constraint failed (UNIQUE constraint failed: usuario.usuario)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:985)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:189)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:24:05 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar asuntos.
+org.sqlite.SQLiteException: [SQLITE_IOERR_FSYNC] I/O error in the VFS layer while trying to flush previously written content (disk I/O error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:988)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:204)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:24:07 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar historial de movimientos.
+org.sqlite.SQLiteException: [SQLITE_IOERR_FSYNC] I/O error in the VFS layer while trying to flush previously written content (disk I/O error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:988)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:226)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:25:06 AM db.GestorBD borrarBD
+INFO: Base de datos borrada.
+Jan 18, 2025 4:25:09 AM db.GestorBD crearTablas
+SEVERE: Error al crear las tablas.
+org.sqlite.SQLiteException: [SQLITE_IOERR_FSYNC] I/O error in the VFS layer while trying to flush previously written content (disk I/O error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:988)
+	at org.sqlite.core.CoreStatement.exec(CoreStatement.java:91)
+	at org.sqlite.jdbc3.JDBC3Statement.lambda$execute$0(JDBC3Statement.java:56)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3Statement.execute(JDBC3Statement.java:44)
+	at db.GestorBD.crearTablas(GestorBD.java:140)
+	at db.GestorBD.init(GestorBD.java:58)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:25:09 AM db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+Jan 18, 2025 4:25:09 AM db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+Jan 18, 2025 4:25:09 AM db.GestorBD cargarDatosDeCSV
+INFO: Datos de usuario leídos.
+Jan 18, 2025 4:25:09 AM db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos leído.
+Jan 18, 2025 4:25:09 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar usuarios.
+org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (no such table: usuario)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:135)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:225)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:205)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:180)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:25:09 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar asuntos.
+org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (no such table: asunto)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:135)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:225)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:205)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:201)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:25:09 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar historial de movimientos.
+org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (no such table: historial_movimientos)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:135)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:225)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:205)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:217)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:26:34 AM db.GestorBD borrarBD
+INFO: Base de datos borrada.
+Jan 18, 2025 4:26:37 AM db.GestorBD crearTablas
+SEVERE: Error al crear las tablas.
+org.sqlite.SQLiteException: [SQLITE_IOERR_FSYNC] I/O error in the VFS layer while trying to flush previously written content (disk I/O error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:988)
+	at org.sqlite.core.CoreStatement.exec(CoreStatement.java:91)
+	at org.sqlite.jdbc3.JDBC3Statement.lambda$execute$0(JDBC3Statement.java:56)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3Statement.execute(JDBC3Statement.java:44)
+	at db.GestorBD.crearTablas(GestorBD.java:140)
+	at db.GestorBD.init(GestorBD.java:58)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:26:37 AM db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+Jan 18, 2025 4:26:37 AM db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+Jan 18, 2025 4:26:37 AM db.GestorBD cargarDatosDeCSV
+INFO: Datos de usuario leídos.
+Jan 18, 2025 4:26:37 AM db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos leído.
+Jan 18, 2025 4:26:37 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar usuarios.
+org.sqlite.SQLiteException: [SQLITE_NOTADB] File opened that is not a database file (file is not a database)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:135)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:225)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:205)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:180)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:26:37 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar asuntos.
+org.sqlite.SQLiteException: [SQLITE_NOTADB] File opened that is not a database file (file is not a database)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:135)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:225)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:205)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:201)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:26:37 AM db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar historial de movimientos.
+org.sqlite.SQLiteException: [SQLITE_NOTADB] File opened that is not a database file (file is not a database)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:135)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:225)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:205)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:217)
+	at db.GestorBD.init(GestorBD.java:64)
+	at main.Main.main(Main.java:10)
+
+Jan 18, 2025 4:26:53 AM db.GestorBD borrarBD
+INFO: Base de datos borrada.
+Jan 18, 2025 4:26:53 AM db.GestorBD crearTablas
+SEVERE: Error al crear las tablas.
+org.sqlite.SQLiteException: [SQLITE_NOTADB] File opened that is not a database file (file is not a database)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:135)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.jdbc3.JDBC3Statement.lambda$execute$0(JDBC3Statement.java:55)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3Statement.execute(JDBC3Statement.java:44)
+	at db.GestorBD.crearTablas(GestorBD.java:140)
+	at db.GestorBD.init(GestorBD.java:58)
+	at main.Main.main(Main.java:10)
+
+ene 18, 2025 1:27:47 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 18, 2025 1:27:47 P. M. db.GestorBD borrarBD
+INFO: Base de datos borrada.
+ene 18, 2025 1:27:48 P. M. db.GestorBD crearTablas
+INFO: Tablas creadas.
+ene 18, 2025 1:27:48 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+ene 18, 2025 1:27:48 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+ene 18, 2025 1:27:48 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Datos de usuario leídos.
+ene 18, 2025 1:27:48 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos leído.
+ene 18, 2025 1:27:48 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Usuarios insertados.
+ene 18, 2025 1:27:48 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Asuntos insertados.
+ene 18, 2025 1:27:48 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos insertado.
+ene 18, 2025 1:28:01 P. M. db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+ene 18, 2025 1:28:01 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4200
+ene 18, 2025 1:28:01 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 4200
+ene 18, 2025 1:28:09 P. M. db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: aimi
+ene 18, 2025 1:28:10 P. M. db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: aimi
+ene 18, 2025 1:34:06 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 18, 2025 1:34:06 P. M. db.GestorBD borrarBD
+INFO: Base de datos borrada.
+ene 18, 2025 1:34:06 P. M. db.GestorBD crearTablas
+INFO: Tablas creadas.
+ene 18, 2025 1:34:06 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+ene 18, 2025 1:34:06 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+ene 18, 2025 1:34:06 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Datos de usuario leídos.
+ene 18, 2025 1:34:06 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos leído.
+ene 18, 2025 1:34:06 P. M. db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar usuarios.
+org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY] A PRIMARY KEY constraint failed (UNIQUE constraint failed: usuario.usuario)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:985)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:196)
+	at db.GestorBD.init(GestorBD.java:71)
+	at main.Main.main(Main.java:10)
+
+ene 18, 2025 1:34:06 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Asuntos insertados.
+ene 18, 2025 1:34:06 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos insertado.
+ene 18, 2025 1:34:50 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 18, 2025 1:34:50 P. M. db.GestorBD borrarBD
+INFO: Base de datos borrada.
+ene 18, 2025 1:34:50 P. M. db.GestorBD crearTablas
+INFO: Tablas creadas.
+ene 18, 2025 1:35:24 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 18, 2025 1:35:24 P. M. db.GestorBD borrarBD
+INFO: Base de datos borrada.
+ene 18, 2025 1:35:24 P. M. db.GestorBD crearTablas
+INFO: Tablas creadas.
+ene 18, 2025 1:36:30 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 18, 2025 1:36:30 P. M. db.GestorBD borrarBD
+INFO: Base de datos borrada.
+ene 18, 2025 1:36:30 P. M. db.GestorBD crearTablas
+SEVERE: Error al crear las tablas.
+java.sql.SQLException: path to 'db/casino.db': 'C:\Users\HIegu\OneDrive - Universidad de Deusto\program\Java2\casino\ProyectoProg3\db' does not exist
+	at org.sqlite.SQLiteConnection.open(SQLiteConnection.java:261)
+	at org.sqlite.SQLiteConnection.<init>(SQLiteConnection.java:67)
+	at org.sqlite.jdbc3.JDBC3Connection.<init>(JDBC3Connection.java:28)
+	at org.sqlite.jdbc4.JDBC4Connection.<init>(JDBC4Connection.java:19)
+	at org.sqlite.JDBC.createConnection(JDBC.java:106)
+	at org.sqlite.JDBC.connect(JDBC.java:79)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:683)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:253)
+	at db.GestorBD.crearTablas(GestorBD.java:103)
+	at db.GestorBD.init(GestorBD.java:65)
+	at main.Main.main(Main.java:10)
+
+ene 18, 2025 1:36:55 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 18, 2025 1:36:55 P. M. db.GestorBD borrarBD
+INFO: Base de datos borrada.
+ene 18, 2025 1:36:55 P. M. db.GestorBD crearTablas
+INFO: Tablas creadas.
+ene 18, 2025 1:37:31 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 18, 2025 1:37:31 P. M. db.GestorBD borrarTablas
+INFO: Tablas borradas.
+ene 18, 2025 1:37:31 P. M. db.GestorBD crearTablas
+INFO: Tablas creadas.
+ene 18, 2025 1:37:46 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 18, 2025 1:37:46 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+ene 18, 2025 1:37:46 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+ene 18, 2025 1:37:46 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Datos de usuario leídos.
+ene 18, 2025 1:37:46 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos leído.
+ene 18, 2025 1:37:46 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Usuarios insertados.
+ene 18, 2025 1:37:46 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Asuntos insertados.
+ene 18, 2025 1:37:47 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos insertado.
+ene 18, 2025 1:52:58 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 18, 2025 1:52:59 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+ene 18, 2025 1:52:59 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+ene 18, 2025 1:52:59 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Datos de usuario leídos.
+ene 18, 2025 1:52:59 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos leído.
+ene 18, 2025 1:52:59 P. M. db.GestorBD cargarDatosDeCSV
+SEVERE: Error al insertar usuarios.
+org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY] A PRIMARY KEY constraint failed (UNIQUE constraint failed: usuario.usuario)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.execute(DB.java:985)
+	at org.sqlite.core.DB.executeUpdate(DB.java:1054)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.lambda$executeLargeUpdate$2(JDBC3PreparedStatement.java:129)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:458)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeLargeUpdate(JDBC3PreparedStatement.java:124)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.executeUpdate(JDBC3PreparedStatement.java:105)
+	at db.GestorBD.cargarDatosDeCSV(GestorBD.java:196)
+	at db.GestorBD.init(GestorBD.java:71)
+	at main.Main.main(Main.java:10)
+
+ene 18, 2025 1:53:02 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Asuntos insertados.
+ene 18, 2025 1:55:12 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 18, 2025 1:55:12 P. M. db.GestorBD limpiarTablas
+INFO: Tablas limpiadas.
+ene 18, 2025 1:55:13 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Saldos leídos.
+ene 18, 2025 1:55:13 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Contraseñas leídas.
+ene 18, 2025 1:55:13 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Datos de usuario leídos.
+ene 18, 2025 1:55:13 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos leído.
+ene 18, 2025 1:55:14 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Usuarios insertados.
+ene 18, 2025 1:55:18 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Asuntos insertados.
+ene 18, 2025 1:55:23 P. M. db.GestorBD cargarDatosDeCSV
+INFO: Historial de movimientos insertado.

@@ -1,6 +1,10 @@
+//FUENTE-EXTERNA
 // Código inspirado por el tutorial "Code Black Jack in Java" de [Kenny Yip Coding] en YouTube.
 // URL: https://www.youtube.com/watch?v=GMdgjaDdOjI 
+// ADAPTADO: Se ha modificado el código original para adaptarlo a las necesidades del proyecto y anadir funcionalidades adicionales.
 
+//IAG: GitHub Copilot
+//ADAPTADO: Autocompeltado
 package gui.juegos.blackjack;
 
 import db.GestorBD;
@@ -8,7 +12,6 @@ import domain.blackjack.Carta;
 import domain.blackjack.Mano;
 import domain.blackjack.Mazo;
 import domain.datos.AsuntoMovimiento;
-
 import javax.swing.JOptionPane;
 
 // IAG: Modificado (ChatGPT y GitHub Copilot)

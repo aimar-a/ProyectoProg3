@@ -6,18 +6,24 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
-//IAG: Modificado (ChatGPT y GitHub Copilot)
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelHistorialMovimientos extends JPanel {
 
     private final JTable table;
@@ -37,12 +43,86 @@ public class PanelHistorialMovimientos extends JPanel {
         table.setRowHeight(40);
         table.setDefaultRenderer(Object.class, new CustomTableCellRenderer(darkMode));
 
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(tableModel);
+        sorter.setComparator(0, (String o1, String o2) -> o2.compareTo(o1)); // Custom comparator for "Fecha" column
+        sorter.setComparator(1, (String o1, String o2) -> o2.compareTo(o1)); // Custom comparator for "Hora" column
+        sorter.setComparator(2, (String o1, String o2) -> Integer.compare(Integer.parseInt(o2), Integer.parseInt(o1))); // Custom
+                                                                                                                        // comparator
+                                                                                                                        // for
+                                                                                                                        // "Modificación"
+                                                                                                                        // column
+        sorter.setComparator(3, (String o1, String o2) -> {
+            String[] tipos = { "slots", "caballo", "blackjack", "ruleta", "dino", "minas", "deposito", "retiro",
+                    "bienvenida" };
+            int index1 = 0, index2 = 0;
+            for (int i = 0; i < tipos.length; i++) {
+                if (o1.contains(tipos[i])) {
+                    index1 = i;
+                }
+                if (o2.contains(tipos[i])) {
+                    index2 = i;
+                }
+            }
+            return Integer.compare(index1, index2);
+        }); // Custom comparator for "Tipo" column
+        sorter.setComparator(4, (String o1, String o2) -> {
+            String[] acciones = { "premio", "apuesta", "empate", "retirar_ap", "deposito", "retiro", "bienvenida" };
+            int index1 = 0, index2 = 0;
+            for (int i = 0; i < acciones.length; i++) {
+                if (o1.contains(acciones[i])) {
+                    index1 = i;
+                }
+                if (o2.contains(acciones[i])) {
+                    index2 = i;
+                }
+            }
+            return Integer.compare(index1, index2);
+        }); // Custom comparator for "Accion" column
+        sorter.setComparator(5, (Integer o1, Integer o2) -> o2.compareTo(o1)); // Custom comparator for "Saldo Final"
+                                                                               // column
+        table.setRowSorter(sorter);
+
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane);
 
         applyColorScheme(darkMode, scrollPane);
 
         cargarHistorialMovimientos(usuario);
+
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = table.rowAtPoint(e.getPoint());
+                if (row >= 0) {
+                    int modelRow = table.convertRowIndexToModel(row);
+                    String fecha = (String) tableModel.getValueAt(modelRow, 0);
+                    String hora = (String) tableModel.getValueAt(modelRow, 1);
+                    String modificacion = (String) tableModel.getValueAt(modelRow, 2);
+                    String accion = (String) tableModel.getValueAt(modelRow, 4);
+                    int saldoFinal = (int) tableModel.getValueAt(modelRow, 5);
+
+                    JOptionPane.showMessageDialog(null,
+                            "Fecha: " + fecha + "\n" +
+                                    "Hora: " + hora + "\n" +
+                                    "Modificación: " + modificacion + "\n" +
+                                    "Acción: " + accion.replace(":", ", ") + "\n" +
+                                    "Saldo Final: " + saldoFinal,
+                            "Detalles del Movimiento",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+
+        table.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                int row = table.rowAtPoint(e.getPoint());
+                table.clearSelection();
+                if (row >= 0) {
+                    table.addRowSelectionInterval(row, row);
+                }
+            }
+        });
     }
 
     private void applyColorScheme(boolean darkMode, JScrollPane scrollPane) {
@@ -63,6 +143,14 @@ public class PanelHistorialMovimientos extends JPanel {
 
     private void cargarHistorialMovimientos(String usuario) {
         List<String[]> historial = GestorBD.obtenerHistorial(usuario);
+
+        // Ordenar la lista de movimientos por fecha y hora (más recientes primero)
+        Collections.sort(historial, (String[] o1, String[] o2) -> {
+            String fechaHora1 = o1[0] + " " + o1[1];
+            String fechaHora2 = o2[0] + " " + o2[1];
+            return fechaHora2.compareTo(fechaHora1); // Orden descendente
+        });
+
         for (String[] data : historial) {
             String fecha = data[0];
             String hora = data[1];
@@ -88,6 +176,13 @@ public class PanelHistorialMovimientos extends JPanel {
             cell.setFont(new Font("Arial", Font.PLAIN, 16));
             cell.setForeground(darkMode ? ColorVariables.COLOR_TEXTO_DARK.getColor()
                     : ColorVariables.COLOR_TEXTO_LIGHT.getColor());
+
+            if (isSelected) {
+                cell.setBackground(darkMode ? Color.DARK_GRAY : Color.LIGHT_GRAY);
+                cell.setOpaque(true);
+            } else {
+                cell.setOpaque(false);
+            }
 
             switch (column) {
                 case 0:

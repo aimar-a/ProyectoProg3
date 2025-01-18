@@ -1,4 +1,6 @@
-// URL: https://github.com/DJ-Raven/java-swing-switch-button/tree/main 
+//FUENTE-EXTERNA
+// URL: https://github.com/DJ-Raven/java-swing-switch-button/tree/main
+// ADAPTADO
 package gui.mainMenu;
 
 import java.awt.AlphaComposite;
@@ -18,8 +20,9 @@ import java.util.List;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
+//IAG: ChatGPT y GitHub Copilot
+//ADAPTADO: Anadir funcionalidades y autocompeltado
 public class SwitchButton extends Component {
-    // IAG: Modificado (ChatGPT y GitHub Copilot)
     public boolean isSelected() {
         return selected;
     }

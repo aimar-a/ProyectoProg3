@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelDepositarRetirar extends JPanel {
     private static final Font FORMAT_INFO_FONT = new Font("Arial", Font.ITALIC, 10);
     private static final Font FORMAT_LABEL_FONT = new Font("Arial", Font.PLAIN, 16);

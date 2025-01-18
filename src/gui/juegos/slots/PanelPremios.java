@@ -15,7 +15,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-// IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: GitHub Copilot
+//ADAPTADO: Anadir funcionalidades y autocompeltado
 public class PanelPremios extends JPanel {
     public PanelPremios() {
         super(new GridBagLayout());
@@ -61,7 +62,7 @@ public class PanelPremios extends JPanel {
             }
         });
 
-        try (BufferedReader br = new BufferedReader(new FileReader("src/juegos/slots/ListaPremios.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("resources/csv/ListaPremios.csv"))) {
             String line;
             DefaultTableModel model = (DefaultTableModel) tablaPremios.getModel();
             while ((line = br.readLine()) != null) {

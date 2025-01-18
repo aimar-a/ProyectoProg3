@@ -1,13 +1,21 @@
 package gui.juegos.dinoRun;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Random;
-import javax.swing.*;
-
 import gui.ColorVariables;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.util.Random;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
+// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelDino extends JPanel {
     // Constantes
     private static final double INITIAL_MULTIPLIER = 1.01;
@@ -78,7 +86,8 @@ public class PanelDino extends JPanel {
         add(panel);
 
         // Configurar modo oscuro o claro
-        setBackground(darkMode ? ColorVariables.COLOR_FONDO_DARK.getColor() : ColorVariables.COLOR_FONDO_LIGHT.getColor());
+        setBackground(
+                darkMode ? ColorVariables.COLOR_FONDO_DARK.getColor() : ColorVariables.COLOR_FONDO_LIGHT.getColor());
         panel.setBackground(getBackground());
         animationPanel.setBackground(getBackground());
     }
@@ -162,7 +171,8 @@ public class PanelDino extends JPanel {
     }
 
     public int cashOut() {
-        if (!isRunning) return 0;
+        if (!isRunning)
+            return 0;
         endGame(true);
         return (int) (apuesta * multiplier);
     }

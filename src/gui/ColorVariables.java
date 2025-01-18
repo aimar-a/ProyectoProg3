@@ -2,6 +2,9 @@ package gui;
 
 import java.awt.Color;
 
+//IAG: GitHub Copilot
+//ADAPTADO: Autocompeltado y pasar de una clase a un enum
+
 public enum ColorVariables {
     COLOR_FONDO_DARK(new Color(50, 50, 50)),
     COLOR_FONDO_LIGHT(Color.WHITE),

@@ -14,7 +14,8 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-// IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: ChatGPT y GitHub Copilot
+//SIN-CAMBIOS: Ordenar y mejorar el código original.
 public enum TipoDeDato {
     USUARIO,
     SALDO,
@@ -63,174 +64,238 @@ public enum TipoDeDato {
         }
         switch (tipo) {
             case USUARIO:
-                if (GestorBD.usuarioExiste(valor)) {
-                    return "El usuario ya existe.";
-                }
-                if (!valor.matches("^[a-zA-Z0-9._-]{3,20}$")) {
-                    return "El usuario debe tener entre 3 y 20 caracteres alfanuméricos.";
-                }
-                break;
-
+                return validarUsuario(valor);
             case SALDO:
-                try {
-                    double saldo = Double.parseDouble(valor);
-                    if (saldo < 0) {
-                        return "El saldo debe ser mayor o igual a 0.";
-                    }
-                } catch (NumberFormatException e) {
-                    return "El saldo debe ser un número válido.";
-                }
-                break;
-
+                return validarSaldo(valor);
             case CANTIDAD:
-                try {
-                    Double.parseDouble(valor); // Positivo o negativo permitido
-                } catch (NumberFormatException e) {
-                    return "La cantidad debe ser un número válido.";
-                }
-                break;
-
+                return validarCantidad(valor);
             case FECHA:
             case FECHA_INSCRIPCION:
-                if (!esFechaValida(valor)) {
-                    return "La fecha no tiene un formato válido (dd-MM-yyyy).";
-                }
-                break;
-
+                return validarFecha(valor);
             case HORA:
-                if (!valor.matches("^([01]?\\d|2[0-3]):[0-5]\\d:[0-5]\\d$")) {
-                    return "La hora no tiene un formato válido (HH:mm:ss).";
-                }
-                break;
-
+                return validarHora(valor);
             case FECHA_DE_NACIMIENTO:
-                if (!esFechaValida(valor)) {
-                    return "La fecha de nacimiento no tiene un formato válido (dd-MM-yyyy).";
-                }
-                LocalDate fechaNacimiento = LocalDate.parse(valor, DATE_FORMATTER);
-                if (Period.between(fechaNacimiento, LocalDate.now()).getYears() < 18) {
-                    return "El usuario debe ser mayor de edad.";
-                }
-                break;
-
+                return validarFechaNacimiento(valor);
             case MAIL:
-                if (!valor.matches("^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
-                    return "El correo electrónico no tiene un formato válido.";
-                }
-                break;
-
+                return validarMail(valor);
             case TELEFONO:
-                if (!valor.matches("^\\+?\\d{9,15}$")) {
-                    return "El teléfono debe contener entre 9 y 15 dígitos.";
-                }
-                break;
-
+                return validarTelefono(valor);
             case DNI:
-                if (!valor.matches("^\\d{8}[A-Za-z]$")) {
-                    return "El DNI debe contener 8 dígitos seguidos de una letra.";
-                }
-                break;
-
+                return validarDNI(valor);
             case CONTRASENA:
-                if (valor.length() < 8) {
-                    return "La contraseña debe tener al menos 8 caracteres.";
-                }
-                break;
-
+                return validarContrasena(valor);
             case NOMBRE:
             case APELLIDOS:
-                if (!valor.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$")) {
-                    return "El nombre o apellido contiene caracteres no permitidos.";
-                }
-                break;
-
+                return validarNombreApellido(valor);
             case PROVINCIA:
             case CIUDAD:
             case CALLE:
-                if (!valor.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$")) {
-                    return "El nombre de la " + tipo.name().toLowerCase() + " no es válido.";
-                }
-                break;
-
+                return validarNombreLugar(valor, tipo);
             case NUMERO:
-                if (!valor.matches("^\\d+$")) {
-                    return "El número de la calle no es válido.";
-                }
-                break;
-
+                return validarNumero(valor);
             case TITULAR_TARJETA:
-                if (!valor.matches("^[a-zA-Z ]+$")) {
-                    return "El titular de la tarjeta no es válido.";
-                }
-                break;
-
+                return validarTitularTarjeta(valor);
             case NUMERO_TARJETA:
-                if (!valor.matches("^\\d{16}$")) {
-                    return "El número de la tarjeta debe tener 16 dígitos.";
-                }
-                break;
-
+                return validarNumeroTarjeta(valor);
             case FECHA_TARJETA:
-                if (!valor.contains("/") || valor.split("/").length != 2) {
-                    return "La fecha de la tarjeta debe tener el formato MM/AA.";
-                }
-                String fecha = 1 + "-" + valor.split("/")[0] + "-20" + valor.split("/")[1];
-                if (!esFechaValida(fecha)) {
-                    return "La fecha de la tarjeta no es una fecha válida.";
-                }
-                if (LocalDate.parse(fecha, DATE_FORMATTER).isBefore(LocalDate.now())) {
-                    return "La tarjeta no puede estar caducada.";
-                }
-                break;
-
+                return validarFechaTarjeta(valor);
             case CVV_TARJETA:
-                if (!valor.matches("^\\d{3}$")) {
-                    return "El CVV de la tarjeta debe tener 3 dígitos.";
-                }
-                break;
-
+                return validarCVVTarjeta(valor);
             case NUMERO_CUENTA:
-                if (!valor.matches("[A-Za-z]{2}\\d{26}")) {
-                    return "El número de cuenta debe tener 2 letras seguidas de 26 dígitos.";
-                }
-                break;
-
+                return validarNumeroCuenta(valor);
             case TITULAR_TRANSFERENCIA:
-                if (!valor.matches("^[a-zA-Z ]+$")) {
-                    return "El titular de la transferencia no es válido.";
-                }
-                break;
-
+                return validarTitularTransferencia(valor);
             case CONCEPTO_TRANSFERENCIA:
-                if (!valor.matches("^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]+$")) {
-                    return "El concepto de la transferencia contiene caracteres no permitidos.";
-                }
-                break;
-
+                return validarConceptoTransferencia(valor);
             case BANCO_TRANSFERENCIA:
-                if (!valor.matches("^[a-zA-Z ]+$")) {
-                    return "El banco de la transferencia no es valido.";
-                }
-                break;
-
+                return validarBancoTransferencia(valor);
             case CANTIDAD_DEPOSITO:
-                try {
-                    double cantidad = Double.parseDouble(valor);
-                    if (cantidad < 0) {
-                        return "La cantidad debe ser mayor o igual a 0.";
-                    }
-                } catch (NumberFormatException e) {
-                    return "La cantidad debe ser un número válido.";
-                }
-                break;
-
+                return validarCantidadDeposito(valor);
             case CORREO_PAYPAL:
                 return validarDato(MAIL, valor);
-
             default:
-                break;
+                return null;
         }
-        return null; // Si es válido, devolvemos null
+    }
+
+    private static String validarUsuario(String valor) {
+        if (GestorBD.usuarioExiste(valor)) {
+            return "El usuario ya existe.";
+        }
+        if (!valor.matches("^[a-zA-Z0-9._-]{3,20}$")) {
+            return "El usuario debe tener entre 3 y 20 caracteres alfanuméricos.";
+        }
+        return null;
+    }
+
+    private static String validarSaldo(String valor) {
+        try {
+            double saldo = Double.parseDouble(valor);
+            if (saldo < 0) {
+                return "El saldo debe ser mayor o igual a 0.";
+            }
+        } catch (NumberFormatException e) {
+            return "El saldo debe ser un número válido.";
+        }
+        return null;
+    }
+
+    private static String validarCantidad(String valor) {
+        try {
+            Double.parseDouble(valor);
+        } catch (NumberFormatException e) {
+            return "La cantidad debe ser un número válido.";
+        }
+        return null;
+    }
+
+    private static String validarFecha(String valor) {
+        if (!esFechaValida(valor)) {
+            return "La fecha no tiene un formato válido (dd-MM-yyyy).";
+        }
+        return null;
+    }
+
+    private static String validarHora(String valor) {
+        if (!valor.matches("^([01]?\\d|2[0-3]):[0-5]\\d:[0-5]\\d$")) {
+            return "La hora no tiene un formato válido (HH:mm:ss).";
+        }
+        return null;
+    }
+
+    private static String validarFechaNacimiento(String valor) {
+        if (!esFechaValida(valor)) {
+            return "La fecha de nacimiento no tiene un formato válido (dd-MM-yyyy).";
+        }
+        LocalDate fechaNacimiento = LocalDate.parse(valor, DATE_FORMATTER);
+        if (Period.between(fechaNacimiento, LocalDate.now()).getYears() < 18) {
+            return "El usuario debe ser mayor de edad.";
+        }
+        return null;
+    }
+
+    private static String validarMail(String valor) {
+        if (!valor.matches("^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+            return "El correo electrónico no tiene un formato válido.";
+        }
+        return null;
+    }
+
+    private static String validarTelefono(String valor) {
+        if (!valor.matches("^\\+?\\d{9,15}$")) {
+            return "El teléfono debe contener entre 9 y 15 dígitos.";
+        }
+        return null;
+    }
+
+    private static String validarDNI(String valor) {
+        if (!valor.matches("^\\d{8}[A-Za-z]$")) {
+            return "El DNI debe contener 8 dígitos seguidos de una letra.";
+        }
+        return null;
+    }
+
+    private static String validarContrasena(String valor) {
+        if (valor.length() < 8) {
+            return "La contraseña debe tener al menos 8 caracteres.";
+        }
+        return null;
+    }
+
+    private static String validarNombreApellido(String valor) {
+        if (!valor.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$")) {
+            return "El nombre o apellido contiene caracteres no permitidos.";
+        }
+        return null;
+    }
+
+    private static String validarNombreLugar(String valor, TipoDeDato tipo) {
+        if (!valor.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$")) {
+            return "El nombre de la " + tipo.name().toLowerCase() + " no es válido.";
+        }
+        return null;
+    }
+
+    private static String validarNumero(String valor) {
+        if (!valor.matches("^\\d+$")) {
+            return "El número de la calle no es válido.";
+        }
+        return null;
+    }
+
+    private static String validarTitularTarjeta(String valor) {
+        if (!valor.matches("^[a-zA-Z ]+$")) {
+            return "El titular de la tarjeta no es válido.";
+        }
+        return null;
+    }
+
+    private static String validarNumeroTarjeta(String valor) {
+        if (!valor.matches("^\\d{16}$")) {
+            return "El número de la tarjeta debe tener 16 dígitos.";
+        }
+        return null;
+    }
+
+    private static String validarFechaTarjeta(String valor) {
+        if (!valor.contains("/") || valor.split("/").length != 2) {
+            return "La fecha de la tarjeta debe tener el formato MM/AA.";
+        }
+        String fecha = 1 + "-" + valor.split("/")[0] + "-20" + valor.split("/")[1];
+        if (!esFechaValida(fecha)) {
+            return "La fecha de la tarjeta no es una fecha válida.";
+        }
+        if (LocalDate.parse(fecha, DATE_FORMATTER).isBefore(LocalDate.now())) {
+            return "La tarjeta no puede estar caducada.";
+        }
+        return null;
+    }
+
+    private static String validarCVVTarjeta(String valor) {
+        if (!valor.matches("^\\d{3}$")) {
+            return "El CVV de la tarjeta debe tener 3 dígitos.";
+        }
+        return null;
+    }
+
+    private static String validarNumeroCuenta(String valor) {
+        if (!valor.matches("[A-Za-z]{2}\\d{26}")) {
+            return "El número de cuenta debe tener 2 letras seguidas de 26 dígitos.";
+        }
+        return null;
+    }
+
+    private static String validarTitularTransferencia(String valor) {
+        if (!valor.matches("^[a-zA-Z ]+$")) {
+            return "El titular de la transferencia no es válido.";
+        }
+        return null;
+    }
+
+    private static String validarConceptoTransferencia(String valor) {
+        if (!valor.matches("^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]+$")) {
+            return "El concepto de la transferencia contiene caracteres no permitidos.";
+        }
+        return null;
+    }
+
+    private static String validarBancoTransferencia(String valor) {
+        if (!valor.matches("^[a-zA-Z ]+$")) {
+            return "El banco de la transferencia no es valido.";
+        }
+        return null;
+    }
+
+    private static String validarCantidadDeposito(String valor) {
+        try {
+            double cantidad = Double.parseDouble(valor);
+            if (cantidad < 0) {
+                return "La cantidad debe ser mayor o igual a 0.";
+            }
+        } catch (NumberFormatException e) {
+            return "La cantidad debe ser un número válido.";
+        }
+        return null;
     }
 
     public static String[] validarCampos(TipoDeDato[] tipos, JTextField[] campos) {

@@ -7,7 +7,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
-//IAG: Modificado (ChatGPT y GitHub Copilot)
 public abstract class BaseGamesFrame extends JFrame {
 
     private static final long serialVersionUID = 1L;

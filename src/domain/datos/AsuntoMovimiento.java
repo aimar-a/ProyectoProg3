@@ -1,6 +1,7 @@
 package domain.datos;
 
-// IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: ChatGPT y GitHub Copilot
+//ADAPTADO: Se ha modificado el código original para adaptarlo a las necesidades del proyecto y añadir funcionalidades adicionales.
 public enum AsuntoMovimiento {
     BIENVENIDA("bienvenida"),
     DEPOSITO_TARJETA("deposito:tarjeta"),
