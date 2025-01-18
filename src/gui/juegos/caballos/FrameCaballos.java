@@ -7,13 +7,13 @@ import java.awt.BorderLayout;
 //IAG: Modificado (ChatGPT y GitHub Copilot)
 public class FrameCaballos extends BaseGamesFrame {
 
-    public FrameCaballos(FrameMenuPrincipal frameMenuPrincipal, String usuario, boolean darkMode) {
-        super("Carreras de caballos", frameMenuPrincipal, darkMode);
+    public FrameCaballos(FrameMenuPrincipal frameMenuPrincipal) {
+        super("Carreras de caballos", frameMenuPrincipal);
 
         PanelCaballos carreraCaballos = new PanelCaballos();
         add(carreraCaballos, BorderLayout.CENTER);
 
-        PanelApuestasCaballos apuestasCaballos = new PanelApuestasCaballos(usuario, darkMode);
+        PanelApuestasCaballos apuestasCaballos = new PanelApuestasCaballos();
         add(apuestasCaballos, BorderLayout.SOUTH);
 
         carreraCaballos.setPanelApuestasCaballos(apuestasCaballos);

@@ -1,6 +1,7 @@
 package gui.juegos.ruleta;
 
 import gui.ColorVariables;
+import io.ConfigProperties;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -26,10 +27,11 @@ public class PanelRuleta extends JPanel {
     private static final int NUMEROS_EN_CADA_LADO = 18;
     private int numeroPremiado = -1;
 
-    public PanelRuleta(boolean darkMode) {
+    public PanelRuleta() {
         setLayout(new BorderLayout());
         setBackground(
-                darkMode ? ColorVariables.COLOR_FONDO_DARK.getColor() : ColorVariables.COLOR_FONDO_LIGHT.getColor());
+                ConfigProperties.isUiDarkMode() ? ColorVariables.COLOR_FONDO_DARK.getColor()
+                        : ColorVariables.COLOR_FONDO_LIGHT.getColor());
 
         // Numbers panel
         numbersPanel = new JPanel();
@@ -54,7 +56,7 @@ public class PanelRuleta extends JPanel {
         // Result label
         resultLabel = new JLabel("\u25B2", SwingConstants.CENTER); // Triangle as indicator
         resultLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        resultLabel.setForeground(darkMode ? Color.WHITE : Color.BLACK);
+        resultLabel.setForeground(ConfigProperties.isUiDarkMode() ? Color.WHITE : Color.BLACK);
 
         // Add components to panel
         add(numbersPanel, BorderLayout.CENTER);

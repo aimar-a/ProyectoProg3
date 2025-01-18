@@ -1,6 +1,8 @@
 package gui.mainMenu;
 
 import db.GestorBD;
+import domain.JuegosDisponibles;
+import domain.UsuarioActual;
 import gui.ColorVariables;
 import gui.juegos.blackjack.FrameBlackjack;
 import gui.juegos.caballos.FrameCaballos;
@@ -20,8 +22,6 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -35,8 +35,6 @@ import javax.swing.UIManager;
 //ADAPTADO: Ordenar y limpiar código, anadir funcionalidades y autocompeltado
 public class FrameMenuPrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
-    public boolean logeado;
-    private String usuario;
     private JLabel labelBienvenida;
     private JLabel labelSaldo = new JLabel();
     private JButton botonLogIn;
@@ -46,7 +44,6 @@ public class FrameMenuPrincipal extends JFrame {
     public boolean loginAbierto;
     private JPanel panelDerechaBarraAlta;
     private JPanel panelIzquierdaBarraAlta;
-    private boolean darkMode;
     private JPanel panelSeleccion;
     private JPanel panelCentral;
     private JLabel titulo;
@@ -54,10 +51,14 @@ public class FrameMenuPrincipal extends JFrame {
     public FrameMenuPrincipal() {
         // Configuración inicial del JFrame
         setTitle("Menú Principal");
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         if (ConfigProperties.isUiFullScreen()) {
-            setExtendedState(JFrame.MAXIMIZED_BOTH);
+            int frameWidth = screenSize.width;
+            int frameHeight = screenSize.height;
+            setSize(frameWidth, frameHeight);
+            setResizable(false);
+            setUndecorated(true);
         } else {
-            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
             int frameWidth = (int) (screenSize.width * 0.6);
             int frameHeight = (int) (screenSize.height * 0.8);
             setSize(frameWidth, frameHeight);
@@ -65,8 +66,6 @@ public class FrameMenuPrincipal extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        logeado = false;
-        usuario = null;
         botonPerfil = new JButton();
 
         // Configuración del panel central con opciones de juego
@@ -98,7 +97,7 @@ public class FrameMenuPrincipal extends JFrame {
                 } else if (e.getKeyCode() == KeyEvent.VK_D) {
                     abrirVentana(JuegosDisponibles.DINOSAURIO);
                 } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    if (logeado) {
+                    if (UsuarioActual.isLogged()) {
                         int opcion = JOptionPane.showConfirmDialog(FrameMenuPrincipal.this, "¿Deseas cerrar sesión?",
                                 "Cerrar Sesión", JOptionPane.YES_NO_OPTION);
                         if (opcion == JOptionPane.YES_OPTION) {
@@ -144,14 +143,14 @@ public class FrameMenuPrincipal extends JFrame {
         botonLogIn.addActionListener(e -> {
             if (!loginAbierto) {
                 loginAbierto = true;
-                new DialogLogIn(FrameMenuPrincipal.this, null, darkMode).setVisible(true);
+                new DialogLogIn(FrameMenuPrincipal.this, null).setVisible(true);
             }
         });
 
         botonSalir = new JButton("Salir");
         panelIzquierdaBarraAlta.add(botonSalir, BorderLayout.WEST);
         botonSalir.addActionListener(e -> {
-            if (logeado) {
+            if (UsuarioActual.isLogged()) {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Deseas cerrar sesión?", "Cerrar Sesión",
                         JOptionPane.YES_NO_OPTION);
                 if (opcion == JOptionPane.YES_OPTION) {
@@ -187,7 +186,7 @@ public class FrameMenuPrincipal extends JFrame {
     }
 
     private void enableDarkMode() {
-        darkMode = true;
+        ConfigProperties.setUiDarkMode(true);
         panelSeleccion.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
         labelBienvenida.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
         panelCentral.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
@@ -201,7 +200,7 @@ public class FrameMenuPrincipal extends JFrame {
     }
 
     private void disableDarkMode() {
-        darkMode = false;
+        ConfigProperties.setUiDarkMode(false);
         panelSeleccion.setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
         labelBienvenida.setForeground(ColorVariables.COLOR_TEXTO_LIGHT.getColor());
         panelCentral.setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
@@ -217,7 +216,8 @@ public class FrameMenuPrincipal extends JFrame {
     private void configurarPanelCentral() {
         this.panelCentral = new JPanel(new BorderLayout());
 
-        labelBienvenida = new JLabel("Bienvenido al Menú Principal, ¿A qué desea jugar?", SwingConstants.CENTER);
+        labelBienvenida = new JLabel("Te damos la bienvenida al Menú Principal, ¿A qué desea jugar?",
+                SwingConstants.CENTER);
         int labelWidth = getWidth() / 10;
         int labelHeight = getHeight() / 40;
         labelBienvenida.setPreferredSize(new Dimension(labelWidth, labelHeight));
@@ -264,19 +264,25 @@ public class FrameMenuPrincipal extends JFrame {
         botonPerfil.setIcon(scaledIconPerfil);
         botonPerfil.setHorizontalTextPosition(SwingConstants.RIGHT);
         botonPerfil.setHorizontalAlignment(SwingConstants.LEFT);
-        botonPerfil.addActionListener(e -> new FramePerfil(this, darkMode).setVisible(true));
+        botonPerfil.addActionListener(e -> new FramePerfil(this).setVisible(true));
     }
 
     public void abrirVentana(JuegosDisponibles juegoObjetivo) {
-        if (logeado) {
+        if (UsuarioActual.isLogged()) {
             this.setVisible(false);
             switch (juegoObjetivo) {
-                case JuegosDisponibles.CABALLOS -> new FrameCaballos(this, usuario, darkMode).setVisible(true);
-                case JuegosDisponibles.RULETA -> new FrameRuleta(this, usuario, darkMode).setVisible(true);
-                case JuegosDisponibles.SLOTS -> new FrameSlots(this, usuario, darkMode).setVisible(true);
-                case JuegosDisponibles.BLACKJACK -> new FrameBlackjack(this, usuario, darkMode).setVisible(true);
-                case JuegosDisponibles.MINAS -> new FrameMinas(this, usuario, darkMode).setVisible(true);
-                case JuegosDisponibles.DINOSAURIO -> new FrameDino(this, usuario, darkMode).setVisible(true);
+                case JuegosDisponibles.CABALLOS ->
+                    new FrameCaballos(this).setVisible(true);
+                case JuegosDisponibles.RULETA ->
+                    new FrameRuleta(this).setVisible(true);
+                case JuegosDisponibles.SLOTS ->
+                    new FrameSlots(this).setVisible(true);
+                case JuegosDisponibles.BLACKJACK ->
+                    new FrameBlackjack(this).setVisible(true);
+                case JuegosDisponibles.MINAS ->
+                    new FrameMinas(this).setVisible(true);
+                case JuegosDisponibles.DINOSAURIO ->
+                    new FrameDino(this).setVisible(true);
                 default -> {
                     JOptionPane.showMessageDialog(this, "Juego no disponible", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -284,46 +290,36 @@ public class FrameMenuPrincipal extends JFrame {
         } else {
             if (!loginAbierto) {
                 loginAbierto = true;
-                new DialogLogIn(FrameMenuPrincipal.this, juegoObjetivo, darkMode).setVisible(true);
+                new DialogLogIn(FrameMenuPrincipal.this, juegoObjetivo).setVisible(true);
             }
         }
     }
 
     private void cerrarSesion() {
-        labelBienvenida.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
-        botonLogIn.setEnabled(true);
-        logeado = false;
-        usuario = null;
+        UsuarioActual.logout();
         actualizarEstado();
     }
 
     public void actualizarEstado() {
-        if (logeado) {
-            labelBienvenida.setText("¡Bienvenido " + usuario + "! Ya estás logueado.");
+        if (UsuarioActual.isLogged()) {
+            labelBienvenida
+                    .setText("Te damos la bienvenida " + UsuarioActual.getUsuarioActual() + "! Ya estás logueado.");
             botonLogIn.setVisible(false);
             botonPerfil.setVisible(true);
             labelSaldo.setVisible(true);
-            botonPerfil.setText(" " + usuario);
-            labelSaldo.setText("Saldo: " + GestorBD.obtenerSaldo(usuario) + " fichas  ");
+            botonPerfil.setText(" " + UsuarioActual.getUsuarioActual());
+            labelSaldo.setText("Saldo: " + GestorBD.obtenerSaldo(UsuarioActual.getUsuarioActual()) + " fichas  ");
             labelSaldo.setFont(labelSaldo.getFont().deriveFont(15.0f));
             labelSaldo.setForeground(Color.WHITE);
             GestorBD.setLblMainMenu(labelSaldo);
             botonSalir.setText("Cerrar Sesión");
         } else {
-            labelBienvenida.setText("Bienvenido al Menú Principal, ¿A qué desea jugar?");
+            labelBienvenida.setText("Te damos la bienvenida al Menú Principal, ¿A qué desea jugar?");
             botonPerfil.setVisible(false);
             botonLogIn.setVisible(true);
             labelSaldo.setVisible(false);
             labelSaldo.setText("");
             botonSalir.setText("Salir");
         }
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
     }
 }

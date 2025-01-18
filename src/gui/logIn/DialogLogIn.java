@@ -1,9 +1,11 @@
 package gui.logIn;
 
 import db.GestorBD;
+import domain.JuegosDisponibles;
+import domain.UsuarioActual;
 import gui.ColorVariables;
 import gui.mainMenu.FrameMenuPrincipal;
-import gui.mainMenu.JuegosDisponibles;
+import io.ConfigProperties;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -29,7 +31,7 @@ public class DialogLogIn extends JDialog {
     private final FrameMenuPrincipal menuPrincipal;
     private final JuegosDisponibles juegoObjetivo;
 
-    public DialogLogIn(FrameMenuPrincipal menuPrinc, JuegosDisponibles juegoObjetivo, boolean darkMode) {
+    public DialogLogIn(FrameMenuPrincipal menuPrinc, JuegosDisponibles juegoObjetivo) {
         super(menuPrinc, "Login - 007Games", true); // Hacemos el JDialog modal
         this.menuPrincipal = menuPrinc;
         this.juegoObjetivo = juegoObjetivo;
@@ -101,7 +103,7 @@ public class DialogLogIn extends JDialog {
         });
 
         botonRegistro.addActionListener((ActionEvent e) -> {
-            new DialogRegistro(this, darkMode).setVisible(true);
+            new DialogRegistro(this).setVisible(true);
         });
 
         usuarioField.addActionListener((ActionEvent e) -> {
@@ -119,7 +121,7 @@ public class DialogLogIn extends JDialog {
             }
         });
 
-        if (darkMode) {
+        if (ConfigProperties.isUiDarkMode()) {
             panel.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
             usuarioLabel.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
             passwordLabel.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
@@ -152,8 +154,7 @@ public class DialogLogIn extends JDialog {
 
         if (password.equals(GestorBD.obtenerContrasena(usuario))) {
             JOptionPane.showMessageDialog(this, "Login exitoso.");
-            menuPrincipal.logeado = true; // Cambia el estado a true en MenuPrincipal
-            menuPrincipal.setUsuario(usuario); // Guarda el usuario en MenuPrincipal
+            UsuarioActual.setUsuarioActual(usuario); // Establece el usuario actual
             menuPrincipal.actualizarEstado(); // Llama al método para actualizar la interfaz
 
             dispose(); // Cierra la ventana de login

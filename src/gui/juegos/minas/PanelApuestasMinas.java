@@ -1,8 +1,10 @@
 package gui.juegos.minas;
 
 import db.GestorBD;
+import domain.UsuarioActual;
 import domain.datos.AsuntoMovimiento;
 import gui.ColorVariables;
+import io.ConfigProperties;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,7 +21,7 @@ public class PanelApuestasMinas extends JPanel {
     private final JButton btnApostar = new JButton("Apostar");
     private final JButton btnRetirar = new JButton("Retirar");
 
-    public PanelApuestasMinas(String usuario, PanelMinas panelMinas, boolean darkMode) {
+    public PanelApuestasMinas(PanelMinas panelMinas) {
         add(new JLabel("Apuesta: "));
         add(spinnerApuesta);
         add(btnApostar);
@@ -40,11 +42,11 @@ public class PanelApuestasMinas extends JPanel {
                         "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            GestorBD.agregarMovimiento(usuario, -apuesta, AsuntoMovimiento.MINAS_APUESTA);
+            GestorBD.agregarMovimiento(UsuarioActual.getUsuarioActual(), -apuesta, AsuntoMovimiento.MINAS_APUESTA);
             panelMinas.iniciarJuego(apuesta, btnApostar, btnRetirar, spinnerApuesta);
         });
 
-        if (darkMode) {
+        if (ConfigProperties.isUiDarkMode()) {
             setBackground(ColorVariables.COLOR_ROJO_DARK.getColor());
             btnApostar.setBackground(ColorVariables.COLOR_BOTON_DARK.getColor());
             btnApostar.setForeground(ColorVariables.COLOR_BOTON_TEXTO_DARK.getColor());

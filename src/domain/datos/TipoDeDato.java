@@ -58,64 +58,38 @@ public enum TipoDeDato {
             .appendValue(ChronoField.YEAR, 4)
             .toFormatter();
 
+    private static final String REGEX_LETTERS_SPACES = "^[a-zA-Z ]+$";
+
     public static String validarDato(TipoDeDato tipo, String valor) {
         if (valor == null || valor.isEmpty()) {
             return "El campo no puede estar vacío.";
         }
-        switch (tipo) {
-            case USUARIO:
-                return validarUsuario(valor);
-            case SALDO:
-                return validarSaldo(valor);
-            case CANTIDAD:
-                return validarCantidad(valor);
-            case FECHA:
-            case FECHA_INSCRIPCION:
-                return validarFecha(valor);
-            case HORA:
-                return validarHora(valor);
-            case FECHA_DE_NACIMIENTO:
-                return validarFechaNacimiento(valor);
-            case MAIL:
-                return validarMail(valor);
-            case TELEFONO:
-                return validarTelefono(valor);
-            case DNI:
-                return validarDNI(valor);
-            case CONTRASENA:
-                return validarContrasena(valor);
-            case NOMBRE:
-            case APELLIDOS:
-                return validarNombreApellido(valor);
-            case PROVINCIA:
-            case CIUDAD:
-            case CALLE:
-                return validarNombreLugar(valor, tipo);
-            case NUMERO:
-                return validarNumero(valor);
-            case TITULAR_TARJETA:
-                return validarTitularTarjeta(valor);
-            case NUMERO_TARJETA:
-                return validarNumeroTarjeta(valor);
-            case FECHA_TARJETA:
-                return validarFechaTarjeta(valor);
-            case CVV_TARJETA:
-                return validarCVVTarjeta(valor);
-            case NUMERO_CUENTA:
-                return validarNumeroCuenta(valor);
-            case TITULAR_TRANSFERENCIA:
-                return validarTitularTransferencia(valor);
-            case CONCEPTO_TRANSFERENCIA:
-                return validarConceptoTransferencia(valor);
-            case BANCO_TRANSFERENCIA:
-                return validarBancoTransferencia(valor);
-            case CANTIDAD_DEPOSITO:
-                return validarCantidadDeposito(valor);
-            case CORREO_PAYPAL:
-                return validarDato(MAIL, valor);
-            default:
-                return null;
-        }
+        return switch (tipo) {
+            case USUARIO -> validarUsuario(valor);
+            case SALDO -> validarSaldo(valor);
+            case CANTIDAD -> validarCantidad(valor);
+            case FECHA, FECHA_INSCRIPCION -> validarFecha(valor);
+            case HORA -> validarHora(valor);
+            case FECHA_DE_NACIMIENTO -> validarFechaNacimiento(valor);
+            case MAIL -> validarMail(valor);
+            case TELEFONO -> validarTelefono(valor);
+            case DNI -> validarDNI(valor);
+            case CONTRASENA -> validarContrasena(valor);
+            case NOMBRE, APELLIDOS -> validarNombreApellido(valor);
+            case PROVINCIA, CIUDAD, CALLE -> validarNombreLugar(valor, tipo);
+            case NUMERO -> validarNumero(valor);
+            case TITULAR_TARJETA -> validarTitularTarjeta(valor);
+            case NUMERO_TARJETA -> validarNumeroTarjeta(valor);
+            case FECHA_TARJETA -> validarFechaTarjeta(valor);
+            case CVV_TARJETA -> validarCVVTarjeta(valor);
+            case NUMERO_CUENTA -> validarNumeroCuenta(valor);
+            case TITULAR_TRANSFERENCIA -> validarTitularTransferencia(valor);
+            case CONCEPTO_TRANSFERENCIA -> validarConceptoTransferencia(valor);
+            case BANCO_TRANSFERENCIA -> validarBancoTransferencia(valor);
+            case CANTIDAD_DEPOSITO -> validarCantidadDeposito(valor);
+            case CORREO_PAYPAL -> validarDato(MAIL, valor);
+            default -> null;
+        };
     }
 
     private static String validarUsuario(String valor) {
@@ -142,7 +116,7 @@ public enum TipoDeDato {
 
     private static String validarCantidad(String valor) {
         try {
-            Double.parseDouble(valor);
+            Double.valueOf(valor);
         } catch (NumberFormatException e) {
             return "La cantidad debe ser un número válido.";
         }
@@ -224,7 +198,7 @@ public enum TipoDeDato {
     }
 
     private static String validarTitularTarjeta(String valor) {
-        if (!valor.matches("^[a-zA-Z ]+$")) {
+        if (!valor.matches(REGEX_LETTERS_SPACES)) {
             return "El titular de la tarjeta no es válido.";
         }
         return null;
@@ -266,7 +240,7 @@ public enum TipoDeDato {
     }
 
     private static String validarTitularTransferencia(String valor) {
-        if (!valor.matches("^[a-zA-Z ]+$")) {
+        if (!valor.matches(REGEX_LETTERS_SPACES)) {
             return "El titular de la transferencia no es válido.";
         }
         return null;
@@ -280,7 +254,7 @@ public enum TipoDeDato {
     }
 
     private static String validarBancoTransferencia(String valor) {
-        if (!valor.matches("^[a-zA-Z ]+$")) {
+        if (!valor.matches(REGEX_LETTERS_SPACES)) {
             return "El banco de la transferencia no es valido.";
         }
         return null;
@@ -316,8 +290,11 @@ public enum TipoDeDato {
             return comprobarDireccion(calle, numero, info);
         }
         if (tipo == FECHA_DE_NACIMIENTO) {
+            @SuppressWarnings("unchecked")
             JComboBox<String> dia = (JComboBox<String>) componentes[0];
+            @SuppressWarnings("unchecked")
             JComboBox<String> mes = (JComboBox<String>) componentes[1];
+            @SuppressWarnings("unchecked")
             JComboBox<String> ano = (JComboBox<String>) componentes[2];
             return comprobarFechaNacCombos(dia, mes, ano, info);
         }

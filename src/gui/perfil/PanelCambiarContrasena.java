@@ -1,7 +1,9 @@
 package gui.perfil;
 
 import db.GestorBD;
+import domain.UsuarioActual;
 import gui.ColorVariables;
+import io.ConfigProperties;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -20,7 +22,7 @@ public class PanelCambiarContrasena extends JPanel {
     private final JPasswordField txtConfirmarContrasena;
     private final JButton btnCambiar;
 
-    public PanelCambiarContrasena(String usuario, boolean darkMode) {
+    public PanelCambiarContrasena() {
         setLayout(new BorderLayout()); // Configurar el layout en BorderLayout
 
         // Panel central con GridBagLayout
@@ -69,11 +71,11 @@ public class PanelCambiarContrasena extends JPanel {
         JPanel panelSur = new JPanel();
         btnCambiar = new JButton("Cambiar Contraseña");
         btnCambiar.setFont(new Font("Arial", Font.PLAIN, 18));
-        btnCambiar.addActionListener(e -> cambiarContrasena(usuario));
+        btnCambiar.addActionListener(e -> cambiarContrasena(UsuarioActual.getUsuarioActual()));
         panelSur.add(btnCambiar);
         add(panelSur, BorderLayout.SOUTH);
 
-        if (darkMode) {
+        if (ConfigProperties.isUiDarkMode()) {
             setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
             panelCentro.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
             panelSur.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());

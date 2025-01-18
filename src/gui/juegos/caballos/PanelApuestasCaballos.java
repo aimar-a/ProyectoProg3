@@ -1,8 +1,10 @@
 package gui.juegos.caballos;
 
 import db.GestorBD;
+import domain.UsuarioActual;
 import domain.datos.AsuntoMovimiento;
 import gui.ColorVariables;
+import io.ConfigProperties;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -24,9 +26,9 @@ public class PanelApuestasCaballos extends JPanel {
     private final JSpinner spinnerApuesta;
     private final JButton botonIniciarCarrera;
 
-    public PanelApuestasCaballos(String usuario, boolean darkMode) {
+    public PanelApuestasCaballos() {
         setBackground(Color.RED);
-        this.usuario = usuario;
+        this.usuario = UsuarioActual.getUsuarioActual();
         // Etiqueta y ComboBox para seleccionar caballo
         add(new JLabel("Caballo:"));
         comboBoxCaballoSeleccionado = new JComboBox<>(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8 });
@@ -68,8 +70,8 @@ public class PanelApuestasCaballos extends JPanel {
         });
 
         // Personalizar el panel
-        setBackground(
-                darkMode ? ColorVariables.COLOR_ROJO_DARK.getColor() : ColorVariables.COLOR_ROJO_LIGHT.getColor());
+        setBackground(ConfigProperties.isUiDarkMode() ? ColorVariables.COLOR_ROJO_DARK.getColor()
+                : ColorVariables.COLOR_ROJO_LIGHT.getColor());
     }
 
     protected void setPanelCaballos(PanelCaballos panelCaballos) {

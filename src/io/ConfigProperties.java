@@ -1,31 +1,23 @@
 package io;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-//IAG: ChatGPT y GitHub Copilot
-//ADAPTADO: Se ha modificado el código original para adaptarlo a las necesidades del proyecto y añadir funcionalidades adicionales.
+//IAG: GitHub Copilot
+//ADAPTADO: Autocompeltado
 public class ConfigProperties {
+    private static final Properties interfaceProperties = new Properties();
+    private static final Properties databaseProperties = new Properties();
+
     private static final String INTERFACE_PROPERTIES_FILE = "conf/interface.properties";
     private static final String DATABASE_PROPERTIES_FILE = "conf/database.properties";
     private static final Logger logger = Logger.getLogger(ConfigProperties.class.getName());
-
-    private static boolean dbCreate;
-    private static String dbUrl;
-    private static String dbDir;
-    private static String dbDriver;
-    private static boolean dbReCreateTables;
-    private static boolean dbLoadFromCSV;
-    private static String dbDirCsvBalancesCSV;
-    private static String dbDirCsvTransactionsCSV;
-    private static String dbDirPasswordsCSV;
-    private static String dbDirUsersDataCSV;
-
-    private static boolean uiDarkMode;
-    private static boolean uiFullScreen;
 
     static {
         try {
@@ -33,89 +25,73 @@ public class ConfigProperties {
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
             logger.setLevel(Level.ALL);
-        } catch (java.io.IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static void init() {
-        Properties interfaceProperties = new Properties();
-        Properties databaseProperties = new Properties();
-
         try {
-            interfaceProperties.load(new java.io.FileInputStream(INTERFACE_PROPERTIES_FILE));
-            databaseProperties.load(new java.io.FileInputStream(DATABASE_PROPERTIES_FILE));
-        } catch (java.io.IOException e) {
+            interfaceProperties.load(new FileInputStream(INTERFACE_PROPERTIES_FILE));
+            databaseProperties.load(new FileInputStream(DATABASE_PROPERTIES_FILE));
+        } catch (IOException e) {
             logger.log(Level.SEVERE, "Error loading properties files", e);
         }
-
-        dbCreate = Boolean.parseBoolean(databaseProperties.getProperty("db.create"));
-        dbUrl = resolveVariables(databaseProperties.getProperty("db.url"), databaseProperties);
-        dbDir = databaseProperties.getProperty("db.dir");
-        dbDriver = databaseProperties.getProperty("db.driver");
-        dbReCreateTables = Boolean.parseBoolean(databaseProperties.getProperty("db.reCreateTables"));
-        dbLoadFromCSV = Boolean.parseBoolean(databaseProperties.getProperty("db.loadFromCSV"));
-        dbDirCsvBalancesCSV = databaseProperties.getProperty("db.dir.csv.balances");
-        dbDirCsvTransactionsCSV = databaseProperties.getProperty("db.dir.csv.transactions");
-        dbDirPasswordsCSV = databaseProperties.getProperty("db.dir.csv.passwords");
-        dbDirUsersDataCSV = databaseProperties.getProperty("db.dir.csv.userData");
-
-        uiDarkMode = Boolean.parseBoolean(interfaceProperties.getProperty("ui.darkMode"));
-        uiFullScreen = Boolean.parseBoolean(interfaceProperties.getProperty("ui.fullScreen"));
 
         logger.log(Level.INFO, "Configuration properties loaded successfully");
     }
 
     public static boolean isDbCreate() {
-        return dbCreate;
+        return Boolean.parseBoolean(databaseProperties.getProperty("db.create"));
     }
 
     public static boolean isDbReCreateTables() {
-        return dbReCreateTables;
+        return Boolean.parseBoolean(databaseProperties.getProperty("db.reCreateTables"));
     }
 
     public static boolean isDbLoadFromCSV() {
-        return dbLoadFromCSV;
+        return Boolean.parseBoolean(databaseProperties.getProperty("db.loadFromCSV"));
     }
 
     public static String getDbDirCsvBalancesCSV() {
-        return dbDirCsvBalancesCSV;
+        return databaseProperties.getProperty("db.dir.csv.balances");
     }
 
     public static String getDbDirCsvTransactionsCSV() {
-        return dbDirCsvTransactionsCSV;
+        return databaseProperties.getProperty("db.dir.csv.transactions");
     }
 
     public static String getDbDirPasswordsCSV() {
-        return dbDirPasswordsCSV;
+        return databaseProperties.getProperty("db.dir.csv.passwords");
     }
 
     public static String getDbDirUsersDataCSV() {
-        return dbDirUsersDataCSV;
+        return databaseProperties.getProperty("db.dir.csv.userData");
     }
 
     public static boolean isUiDarkMode() {
-        return uiDarkMode;
+        return Boolean.parseBoolean(interfaceProperties.getProperty("ui.darkMode"));
     }
 
     public static boolean isUiFullScreen() {
-        return uiFullScreen;
+        return Boolean.parseBoolean(interfaceProperties.getProperty("ui.fullScreen"));
     }
 
     public static String getDbUrl() {
-        return dbUrl;
+        return resolveVariables(databaseProperties.getProperty("db.url"), databaseProperties);
     }
 
     public static String getDbDir() {
-        return dbDir;
+        return databaseProperties.getProperty("db.dir");
     }
 
     public static String getDbDriver() {
-        return dbDriver;
+        return databaseProperties.getProperty("db.driver");
     }
 
     public static void setUiDarkMode(boolean uiDarkMode) {
-        ConfigProperties.uiDarkMode = uiDarkMode;
+        interfaceProperties.setProperty("ui.darkMode", String.valueOf(uiDarkMode));
+        saveInterfaceProperties();
     }
 
     private static String resolveVariables(String value, Properties properties) {
@@ -124,5 +100,21 @@ public class ConfigProperties {
             result = result.replace("${" + key + "}", properties.getProperty(key));
         }
         return result;
+    }
+
+    private static void saveInterfaceProperties() {
+        try {
+            interfaceProperties.store(new FileOutputStream(INTERFACE_PROPERTIES_FILE), null);
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "Error saving interface properties", e);
+        }
+    }
+
+    private static void saveDatabaseProperties() {
+        try {
+            databaseProperties.store(new FileOutputStream(DATABASE_PROPERTIES_FILE), null);
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "Error saving database properties", e);
+        }
     }
 }

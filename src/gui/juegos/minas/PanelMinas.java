@@ -2,8 +2,10 @@
 package gui.juegos.minas;
 
 import db.GestorBD;
+import domain.UsuarioActual;
 import domain.datos.AsuntoMovimiento;
 import gui.ColorVariables;
+import io.ConfigProperties;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -42,8 +44,8 @@ public class PanelMinas extends JPanel {
     private JButton btnRetirar;
     private JSpinner spinnerApuesta;
 
-    public PanelMinas(String usuario, boolean darkMode) {
-        this.usuario = usuario;
+    public PanelMinas() {
+        this.usuario = UsuarioActual.getUsuarioActual();
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -82,7 +84,7 @@ public class PanelMinas extends JPanel {
         gbc.insets = new Insets(10, 10, 10, 10);
         panelPremios.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         panelPremios.setBackground(
-                darkMode ? ColorVariables.COLOR_FONDO_DARK.getColor().brighter()
+                ConfigProperties.isUiDarkMode() ? ColorVariables.COLOR_FONDO_DARK.getColor().brighter()
                         : ColorVariables.COLOR_FONDO_LIGHT.getColor().darker());
         add(panelPremios, gbc);
 
@@ -92,7 +94,8 @@ public class PanelMinas extends JPanel {
         gbc.gridheight = 1;
         JLabel lblPremios = new JLabel("PREMIOS");
         lblPremios.setForeground(
-                darkMode ? ColorVariables.COLOR_TEXTO_LIGHT.getColor() : ColorVariables.COLOR_TEXTO_DARK.getColor());
+                ConfigProperties.isUiDarkMode() ? ColorVariables.COLOR_TEXTO_LIGHT.getColor()
+                        : ColorVariables.COLOR_TEXTO_DARK.getColor());
         lblPremios.setFont(new Font("Arial", Font.BOLD, 20));
         panelPremios.add(lblPremios, gbc);
         gbc.gridwidth = 1;
@@ -106,7 +109,7 @@ public class PanelMinas extends JPanel {
             icon = new ImageIcon(scaled);
             panelPremios.add(new JLabel(icon), gbc);
             JLabel lbl = new JLabel("x0." + (i + 1));
-            lbl.setForeground(darkMode ? ColorVariables.COLOR_TEXTO_DARK.getColor()
+            lbl.setForeground(ConfigProperties.isUiDarkMode() ? ColorVariables.COLOR_TEXTO_DARK.getColor()
                     : ColorVariables.COLOR_TEXTO_LIGHT.getColor());
             lbl.setFont(new Font("Arial", Font.BOLD, 20));
             gbc.gridx = 1;
@@ -115,7 +118,7 @@ public class PanelMinas extends JPanel {
 
         setUp();
 
-        if (darkMode) {
+        if (ConfigProperties.isUiDarkMode()) {
             setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
             lblGanancia.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
         } else {

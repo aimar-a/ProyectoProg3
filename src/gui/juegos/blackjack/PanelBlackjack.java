@@ -8,6 +8,7 @@ package gui.juegos.blackjack;
 import domain.blackjack.Carta;
 import domain.blackjack.Mano;
 import domain.blackjack.Mazo;
+import io.ConfigProperties;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -30,7 +31,7 @@ public class PanelBlackjack extends JPanel {
     private JButton botonPlantarse;
     private Mano manoCrupier;
     private Mano manoJugador;
-    private JPanel panelSuperiorDerecha;
+    private final JPanel panelSuperiorDerecha;
 
     private JLabel labelProbabilidadPedirGanar;
     private JLabel labelProbabilidadPedirEmpatar;
@@ -40,7 +41,7 @@ public class PanelBlackjack extends JPanel {
     private JLabel labelProbabilidadPlantarsePerder;
     private JButton botonCalcularProbabilidades = new JButton("Calcular");
 
-    public PanelBlackjack(boolean darkMode) {
+    public PanelBlackjack() {
         setBackground(new Color(53, 101, 77));
         setLayout(new BorderLayout()); // Asegúrate de que el panel principal usa BorderLayout.
 
@@ -52,7 +53,7 @@ public class PanelBlackjack extends JPanel {
         // Crear y configurar el panel superior derecha
         panelSuperiorDerecha = new JPanel();
         panelSuperiorDerecha.setLayout(new BoxLayout(panelSuperiorDerecha, BoxLayout.Y_AXIS));
-        if (darkMode) {
+        if (ConfigProperties.isUiDarkMode()) {
             panelSuperiorDerecha.setBackground(new Color(0, 0, 0, 50));
         } else {
             panelSuperiorDerecha.setBackground(new Color(255, 255, 255, 50));
@@ -98,39 +99,37 @@ public class PanelBlackjack extends JPanel {
         add(contenedorDerecha, BorderLayout.EAST);
 
         // Agregar un oyente al botón de calcular probabilidades
-        botonCalcularProbabilidades.addActionListener(e -> {
-            new Thread(() -> {
-                SwingUtilities.invokeLater(() -> {
-                    botonCalcularProbabilidades.setEnabled(false);
-                    botonCalcularProbabilidades.setText("Calculando...");
-                });
-                Mazo mazo = new Mazo();
-                mazo.quitarCartas(manoCrupier.getCartas());
-                mazo.quitarCartas(manoJugador.getCartas());
-                final double[] probabilidadesPedir = calcularProbabilidades(true, manoCrupier, manoJugador,
-                        mazo);
-                SwingUtilities.invokeLater(() -> {
-                    labelProbabilidadPedirGanar
-                            .setText("Ganar: " + String.format("%.2f", probabilidadesPedir[0] * 100) + "%");
-                    labelProbabilidadPedirEmpatar
-                            .setText("Empatar: " + String.format("%.2f", probabilidadesPedir[1] * 100) + "%");
-                    labelProbabilidadPedirPerder
-                            .setText("Perder: " + String.format("%.2f", probabilidadesPedir[2] * 100) + "%");
-                });
-                final double[] probabilidadesPlantarse = calcularProbabilidades(false, manoCrupier, manoJugador,
-                        mazo);
-                SwingUtilities.invokeLater(() -> {
-                    labelProbabilidadPlantarseGanar
-                            .setText("Ganar: " + String.format("%.2f", probabilidadesPlantarse[0] * 100) + "%");
-                    labelProbabilidadPlantarseEmpatar
-                            .setText("Empatar: " + String.format("%.2f", probabilidadesPlantarse[1] * 100) + "%");
-                    labelProbabilidadPlantarsePerder
-                            .setText("Perder: " + String.format("%.2f", probabilidadesPlantarse[2] * 100) + "%");
-                    botonCalcularProbabilidades.setEnabled(true);
-                    botonCalcularProbabilidades.setText("Calcular");
-                });
-            }).start();
-        });
+        botonCalcularProbabilidades.addActionListener(e -> new Thread(() -> {
+            SwingUtilities.invokeLater(() -> {
+                botonCalcularProbabilidades.setEnabled(false);
+                botonCalcularProbabilidades.setText("Calculando...");
+            });
+            Mazo mazo = new Mazo();
+            mazo.quitarCartas(manoCrupier.getCartas());
+            mazo.quitarCartas(manoJugador.getCartas());
+            final double[] probabilidadesPedir = calcularProbabilidades(true, manoCrupier, manoJugador,
+                    mazo);
+            SwingUtilities.invokeLater(() -> {
+                labelProbabilidadPedirGanar
+                        .setText("Ganar: " + String.format("%.2f", probabilidadesPedir[0] * 100) + "%");
+                labelProbabilidadPedirEmpatar
+                        .setText("Empatar: " + String.format("%.2f", probabilidadesPedir[1] * 100) + "%");
+                labelProbabilidadPedirPerder
+                        .setText("Perder: " + String.format("%.2f", probabilidadesPedir[2] * 100) + "%");
+            });
+            final double[] probabilidadesPlantarse = calcularProbabilidades(false, manoCrupier, manoJugador,
+                    mazo);
+            SwingUtilities.invokeLater(() -> {
+                labelProbabilidadPlantarseGanar
+                        .setText("Ganar: " + String.format("%.2f", probabilidadesPlantarse[0] * 100) + "%");
+                labelProbabilidadPlantarseEmpatar
+                        .setText("Empatar: " + String.format("%.2f", probabilidadesPlantarse[1] * 100) + "%");
+                labelProbabilidadPlantarsePerder
+                        .setText("Perder: " + String.format("%.2f", probabilidadesPlantarse[2] * 100) + "%");
+                botonCalcularProbabilidades.setEnabled(true);
+                botonCalcularProbabilidades.setText("Calcular");
+            });
+        }).start());
     }
 
     // Método que se llama para actualizar los datos y repintar el panel
@@ -184,6 +183,7 @@ public class PanelBlackjack extends JPanel {
                         nuevoAnchoCarta, nuevoAltoCarta, null);
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -249,25 +249,27 @@ public class PanelBlackjack extends JPanel {
             double[] probabilidad) {
         int mazoSize = mazo.size();
         for (Carta carta : mazo.getCartas()) {
-            if (manoCrupierRec.size() == 1 && ((manoCrupierRec.get(0).getValor() == 10 && carta.getValor() == 1) ||
-                    (manoCrupierRec.get(0).getValor() == 1 && carta.getValor() == 10))) {
+            boolean isBlackjack = manoCrupierRec.size() == 1 &&
+                    ((manoCrupierRec.get(0).getValor() == 10 && carta.getValor() == 1) ||
+                            (manoCrupierRec.get(0).getValor() == 1 && carta.getValor() == 10));
+            if (isBlackjack) {
                 mazoSize--;
-                continue;
-            }
-            Mano nuevaManoCrupier = new Mano(manoCrupierRec);
-            nuevaManoCrupier.agregarCarta(carta);
-            Mazo nuevoMazo = new Mazo(mazo);
-            nuevoMazo.quitarCarta(carta);
+            } else {
+                Mano nuevaManoCrupier = new Mano(manoCrupierRec);
+                nuevaManoCrupier.agregarCarta(carta);
+                Mazo nuevoMazo = new Mazo(mazo);
+                nuevoMazo.quitarCarta(carta);
 
-            if (nuevaManoCrupier.getSuma() > 21) {
-                probabilidad[0]++;
-                continue;
+                if (nuevaManoCrupier.getSuma() > 21) {
+                    probabilidad[0]++;
+                } else {
+                    double[] probabilidadFor = calcularProbabilidades(false, nuevaManoCrupier, manoJugadorRec,
+                            nuevoMazo);
+                    probabilidad[0] += probabilidadFor[0];
+                    probabilidad[1] += probabilidadFor[1];
+                    probabilidad[2] += probabilidadFor[2];
+                }
             }
-
-            double[] probabilidadFor = calcularProbabilidades(false, nuevaManoCrupier, manoJugadorRec, nuevoMazo);
-            probabilidad[0] += probabilidadFor[0];
-            probabilidad[1] += probabilidadFor[1];
-            probabilidad[2] += probabilidadFor[2];
         }
         probabilidad[0] /= mazoSize;
         probabilidad[1] /= mazoSize;

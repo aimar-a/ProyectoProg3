@@ -11,3 +11,6 @@ bin/
 
 # Base de datos
 resources/db/
+
+# Logs
+log/

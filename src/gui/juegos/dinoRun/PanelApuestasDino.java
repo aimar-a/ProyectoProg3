@@ -1,8 +1,10 @@
 package gui.juegos.dinoRun;
 
 import db.GestorBD;
+import domain.UsuarioActual;
 import domain.datos.AsuntoMovimiento;
 import gui.ColorVariables;
+import io.ConfigProperties;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,10 +25,11 @@ public class PanelApuestasDino extends JPanel {
     private final JButton cashOutButton;
     private final PanelDino dinoPlay;
 
-    public PanelApuestasDino(String usuario, PanelDino dinoPlay, boolean darkMode) {
+    public PanelApuestasDino(PanelDino dinoPlay) {
         setBackground(
-                darkMode ? ColorVariables.COLOR_ROJO_DARK.getColor() : ColorVariables.COLOR_ROJO_LIGHT.getColor());
-        this.usuario = usuario;
+                ConfigProperties.isUiDarkMode() ? ColorVariables.COLOR_ROJO_DARK.getColor()
+                        : ColorVariables.COLOR_ROJO_LIGHT.getColor());
+        this.usuario = UsuarioActual.getUsuarioActual();
         this.dinoPlay = dinoPlay;
 
         setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
@@ -50,7 +53,7 @@ public class PanelApuestasDino extends JPanel {
             SwingUtilities.invokeLater(this::resetButtons);
         });
 
-        if (darkMode) {
+        if (ConfigProperties.isUiDarkMode()) {
             setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
             setBackground(ColorVariables.COLOR_ROJO_DARK.getColor());
         } else {

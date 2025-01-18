@@ -6,13 +6,13 @@ import java.awt.BorderLayout;
 
 public class FrameDino extends BaseGamesFrame {
 
-    public FrameDino(FrameMenuPrincipal frameMenuPrincipal, String usuario, boolean darkMode) {
-        super("DinoRun", frameMenuPrincipal, darkMode);
+    public FrameDino(FrameMenuPrincipal frameMenuPrincipal) {
+        super("DinoRun", frameMenuPrincipal);
 
-        PanelDino dinoPlay = new PanelDino(darkMode);
+        PanelDino dinoPlay = new PanelDino();
         add(dinoPlay, BorderLayout.CENTER);
 
-        PanelApuestasDino apuestasDino = new PanelApuestasDino(usuario, dinoPlay, darkMode);
+        PanelApuestasDino apuestasDino = new PanelApuestasDino(dinoPlay);
         add(apuestasDino, BorderLayout.SOUTH);
     }
 }

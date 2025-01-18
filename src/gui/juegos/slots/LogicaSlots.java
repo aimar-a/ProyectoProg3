@@ -2,6 +2,7 @@
 package gui.juegos.slots;
 
 import db.GestorBD;
+import domain.UsuarioActual;
 import domain.datos.AsuntoMovimiento;
 import domain.slots.Premios;
 import javax.swing.JOptionPane;
@@ -16,10 +17,10 @@ public class LogicaSlots {
     private Premios premios = new Premios();
     private String usuario;
 
-    public LogicaSlots(PanelSlots panelSlots, PanelApuestasSlots panelApuestas, String usuario) {
+    public LogicaSlots(PanelSlots panelSlots, PanelApuestasSlots panelApuestas) {
         this.panelSlots = panelSlots;
         this.panelApuestas = panelApuestas;
-        this.usuario = usuario;
+        this.usuario = UsuarioActual.getUsuarioActual();
 
         panelApuestas.botonGirar.addActionListener(e -> realizarTirada());
         panelSlots.girarRuletas();

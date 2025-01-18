@@ -1,7 +1,9 @@
 package gui.perfil;
 
 import db.GestorBD;
+import domain.UsuarioActual;
 import gui.ColorVariables;
+import io.ConfigProperties;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -36,12 +38,12 @@ public class PanelHistorialMovimientos extends JPanel {
         }
     };
 
-    public PanelHistorialMovimientos(String usuario, boolean darkMode) {
+    public PanelHistorialMovimientos() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         table = new JTable(tableModel);
         table.setRowHeight(40);
-        table.setDefaultRenderer(Object.class, new CustomTableCellRenderer(darkMode));
+        table.setDefaultRenderer(Object.class, new CustomTableCellRenderer(ConfigProperties.isUiDarkMode()));
 
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(tableModel);
         sorter.setComparator(0, (String o1, String o2) -> o2.compareTo(o1)); // Custom comparator for "Fecha" column
@@ -85,9 +87,9 @@ public class PanelHistorialMovimientos extends JPanel {
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane);
 
-        applyColorScheme(darkMode, scrollPane);
+        applyColorScheme(ConfigProperties.isUiDarkMode(), scrollPane);
 
-        cargarHistorialMovimientos(usuario);
+        cargarHistorialMovimientos(UsuarioActual.getUsuarioActual());
 
         table.addMouseListener(new MouseAdapter() {
             @Override

@@ -1,8 +1,10 @@
 package gui.juegos.ruleta;
 
 import db.GestorBD;
+import domain.UsuarioActual;
 import domain.datos.AsuntoMovimiento;
 import gui.ColorVariables;
+import io.ConfigProperties;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -32,10 +34,10 @@ public class PanelTablaDeApuestas extends JPanel {
     private final String usuario;
     private JLabel lblInfo;
 
-    public PanelTablaDeApuestas(PanelRuleta ruleta, String usuario, boolean darkMode) {
-        this.usuario = usuario;
+    public PanelTablaDeApuestas(PanelRuleta ruleta) {
+        this.usuario = UsuarioActual.getUsuarioActual();
         this.ruleta = ruleta;
-        this.darkMode = darkMode;
+        this.darkMode = ConfigProperties.isUiDarkMode();
         setLayout(new GridBagLayout());
         setBackground(
                 darkMode ? ColorVariables.COLOR_FONDO_DARK.getColor() : ColorVariables.COLOR_FONDO_LIGHT.getColor());

@@ -6,6 +6,7 @@
 package gui.juegos.blackjack;
 
 import gui.ColorVariables;
+import io.ConfigProperties;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -25,7 +26,7 @@ public class PanelApuestasBlackjack extends JPanel {
                                                                                                     // Incremento: 1
     protected final JCheckBox checkAutomatico = new JCheckBox("Auto");
 
-    public PanelApuestasBlackjack(boolean darkMode) {
+    public PanelApuestasBlackjack() {
         setLayout(new FlowLayout());
 
         // Deshabilitar botones hasta que comience la partida
@@ -43,7 +44,7 @@ public class PanelApuestasBlackjack extends JPanel {
         add(botonPedir);
         add(botonPlantarse);
 
-        if (darkMode) {
+        if (ConfigProperties.isUiDarkMode()) {
             setBackground(ColorVariables.COLOR_ROJO_DARK.getColor());
             setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
         } else {

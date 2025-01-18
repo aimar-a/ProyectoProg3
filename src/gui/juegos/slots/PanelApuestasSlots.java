@@ -1,6 +1,7 @@
 package gui.juegos.slots;
 
 import gui.ColorVariables;
+import io.ConfigProperties;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,7 +15,7 @@ public class PanelApuestasSlots extends JPanel {
     protected JSpinner spinnerApuesta;
     protected JButton botonGirar;
 
-    public PanelApuestasSlots(boolean darkMode) {
+    public PanelApuestasSlots() {
         // Etiqueta para la apuesta
         add(new JLabel("Apuesta: "));
 
@@ -27,7 +28,7 @@ public class PanelApuestasSlots extends JPanel {
         botonGirar = new JButton("Girar");
         add(botonGirar);
 
-        if (darkMode) {
+        if (ConfigProperties.isUiDarkMode()) {
             setBackground(ColorVariables.COLOR_ROJO_DARK.getColor());
         } else {
             setBackground(ColorVariables.COLOR_ROJO_LIGHT.getColor());

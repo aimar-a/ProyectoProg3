@@ -1,8 +1,10 @@
 package gui.juegos;
 
 import db.GestorBD;
+import domain.UsuarioActual;
 import gui.ColorVariables;
 import gui.mainMenu.FrameMenuPrincipal;
+import io.ConfigProperties;
 import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -18,7 +20,7 @@ public class TopBar extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
-    public TopBar(String title, JFrame frame, FrameMenuPrincipal frameMenuPrincipal, boolean darkMode) {
+    public TopBar(String title, JFrame frame, FrameMenuPrincipal frameMenuPrincipal) {
         setLayout(new BorderLayout());
         JLabel lblTitle = new JLabel(title, SwingConstants.CENTER);
         lblTitle.setFont(lblTitle.getFont().deriveFont(20.0f));
@@ -28,15 +30,16 @@ public class TopBar extends JPanel {
         add(btnSalir, BorderLayout.WEST);
         btnSalir.addActionListener(e -> {
             frameMenuPrincipal.setVisible(true);
+            frameMenuPrincipal.requestFocus();
             frame.dispose();
         });
         JLabel lblSaldo = new JLabel(
-                "Saldo: " + GestorBD.obtenerSaldo(frameMenuPrincipal.getUsuario()) + " fichas  ");
+                "Saldo: " + GestorBD.obtenerSaldo(UsuarioActual.getUsuarioActual()) + " fichas  ");
         lblSaldo.setFont(lblSaldo.getFont().deriveFont(15.0f));
         add(lblSaldo, BorderLayout.EAST);
         GestorBD.setLblGameMenu(lblSaldo);
 
-        if (darkMode) {
+        if (ConfigProperties.isUiDarkMode()) {
             setBackground(ColorVariables.COLOR_VERDE_DARK.getColor());
             lblTitle.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
         } else {
@@ -52,6 +55,7 @@ public class TopBar extends JPanel {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     frameMenuPrincipal.setVisible(true);
+                    frameMenuPrincipal.requestFocus();
                     frame.dispose();
                 }
             }

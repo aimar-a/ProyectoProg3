@@ -1,6 +1,7 @@
 package gui.juegos.dinoRun;
 
 import gui.ColorVariables;
+import io.ConfigProperties;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -48,13 +49,13 @@ public class PanelDino extends JPanel {
         this.gameEndListener = listener;
     }
 
-    public PanelDino(boolean darkMode) {
+    public PanelDino() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        initComponents(darkMode);
+        initComponents();
         initTimer();
     }
 
-    private void initComponents(boolean darkMode) {
+    private void initComponents() {
         // Configuración de paneles
         JPanel animationPanel = new JPanel();
         animationPanel.setLayout(new BoxLayout(animationPanel, BoxLayout.Y_AXIS));
@@ -86,8 +87,8 @@ public class PanelDino extends JPanel {
         add(panel);
 
         // Configurar modo oscuro o claro
-        setBackground(
-                darkMode ? ColorVariables.COLOR_FONDO_DARK.getColor() : ColorVariables.COLOR_FONDO_LIGHT.getColor());
+        setBackground(ConfigProperties.isUiDarkMode() ? ColorVariables.COLOR_FONDO_DARK.getColor()
+                : ColorVariables.COLOR_FONDO_LIGHT.getColor());
         panel.setBackground(getBackground());
         animationPanel.setBackground(getBackground());
     }

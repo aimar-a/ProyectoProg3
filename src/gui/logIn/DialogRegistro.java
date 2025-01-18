@@ -2,8 +2,9 @@ package gui.logIn;
 
 import db.GestorBD;
 import domain.datos.TipoDeDato;
+import domain.perfil.CampoDatoUsuario;
 import gui.ColorVariables;
-import gui.perfil.CampoDatoUsuario;
+import io.ConfigProperties;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -31,12 +32,12 @@ public class DialogRegistro extends JDialog {
     private static final long serialVersionUID = 1L;
     private static final Font FORMAT_INFO_FONT = new Font("Arial", Font.ITALIC, 10);
 
-    public DialogRegistro(DialogLogIn parent, boolean darkMode) {
+    public DialogRegistro(DialogLogIn parent) {
         super(parent, "Registrar Usuario", true);
-        initComponents(parent, darkMode);
+        initComponents(parent);
     }
 
-    private void initComponents(DialogLogIn parent, boolean darkMode) {
+    private void initComponents(DialogLogIn parent) {
         JTextField txtUsuario = new JTextField();
         txtUsuario.setColumns(20);
         JTextField txtNombre = new JTextField();
@@ -123,7 +124,7 @@ public class DialogRegistro extends JDialog {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(parent);
 
-        if (darkMode) {
+        if (ConfigProperties.isUiDarkMode()) {
             panelPrincipal.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
             panelCentral.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
             map.values().stream().forEach(campoDato -> {

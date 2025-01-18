@@ -8,6 +8,7 @@
 package gui.juegos.blackjack;
 
 import db.GestorBD;
+import domain.UsuarioActual;
 import domain.blackjack.Carta;
 import domain.blackjack.Mano;
 import domain.blackjack.Mazo;
@@ -24,12 +25,12 @@ public class LogicaBlackjack {
     private final PanelBlackjack panelBlackjack;
 
     private int apuesta;
-    private String usuario;
+    private final String usuario;
 
-    public LogicaBlackjack(PanelBlackjack panelBlackjack, PanelApuestasBlackjack panelApuestas, String usuario) {
+    public LogicaBlackjack(PanelBlackjack panelBlackjack, PanelApuestasBlackjack panelApuestas) {
         this.panelBlackjack = panelBlackjack;
         this.panelApuestas = panelApuestas;
-        this.usuario = usuario;
+        this.usuario = UsuarioActual.getUsuarioActual();
 
         panelApuestas.botonIniciar.addActionListener(e -> iniciarJuego());
         panelApuestas.botonPedir.addActionListener(e -> agregarCartaJugador());

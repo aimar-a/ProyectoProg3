@@ -1,8 +1,11 @@
 package gui.perfil;
 
 import db.GestorBD;
+import domain.UsuarioActual;
 import domain.datos.TipoDeDato;
+import domain.perfil.CampoDatoUsuario;
 import gui.ColorVariables;
+import io.ConfigProperties;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -28,8 +31,8 @@ import javax.swing.event.DocumentListener;
 public class PanelDatosUsuario extends JPanel {
     private static final long serialVersionUID = 1L;
 
-    public PanelDatosUsuario(String usuario, boolean darkMode) {
-        String[] datosUsuario = GestorBD.obtenerDatos(usuario);
+    public PanelDatosUsuario() {
+        String[] datosUsuario = GestorBD.obtenerDatos(UsuarioActual.getUsuarioActual());
         setLayout(new BorderLayout());
 
         JPanel panelCentral = new JPanel(new GridBagLayout());
@@ -38,7 +41,7 @@ public class PanelDatosUsuario extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         add(panelCentral, BorderLayout.CENTER);
 
-        JTextField txtUsuario = createTextField(usuario, false);
+        JTextField txtUsuario = createTextField(UsuarioActual.getUsuarioActual(), false);
 
         JTextField txtNombre = createTextField(datosUsuario[0], false);
         JTextField txtApellidos = createTextField(datosUsuario[1], false);
@@ -132,7 +135,7 @@ public class PanelDatosUsuario extends JPanel {
                     TipoDeDato.formatFecha(comboDiaNac.getSelectedItem(), comboMesNac.getSelectedItem(),
                             comboAnoNac.getSelectedItem())
             };
-            if (GestorBD.cambiarDatos(usuario, datosNuevos)) {
+            if (GestorBD.cambiarDatos(UsuarioActual.getUsuarioActual(), datosNuevos)) {
                 JOptionPane.showMessageDialog(this, "Datos actualizados correctamente", "Información",
                         JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -148,7 +151,7 @@ public class PanelDatosUsuario extends JPanel {
         panelOpciones.add(btnGuardar);
         add(panelOpciones, BorderLayout.SOUTH);
 
-        if (darkMode) {
+        if (ConfigProperties.isUiDarkMode()) {
             applyDarkMode(panelCentral, panelOpciones, btnEditar, btnGuardar);
         } else {
             applyLightMode(panelCentral, panelOpciones);

@@ -1,7 +1,9 @@
 package gui.perfil;
 
+import domain.UsuarioActual;
 import gui.ColorVariables;
 import gui.mainMenu.FrameMenuPrincipal;
+import io.ConfigProperties;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -20,10 +22,10 @@ public class FramePerfil extends JDialog {
 
     private boolean darkMode;
 
-    public FramePerfil(FrameMenuPrincipal parent, boolean darkMode) {
+    public FramePerfil(FrameMenuPrincipal parent) {
         super(parent, "Perfil del Usuario", true);
-        this.usuario = parent.getUsuario();
-        this.darkMode = darkMode;
+        this.usuario = UsuarioActual.getUsuarioActual();
+        this.darkMode = ConfigProperties.isUiDarkMode();
 
         setSize((int) (getToolkit().getScreenSize().width * 0.4), (int) (getToolkit().getScreenSize().height * 0.8));
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -33,14 +35,14 @@ public class FramePerfil extends JDialog {
         inicializarPanelSuperior();
 
         // Establecer el panel inicial
-        panelCentralPerfil = new PanelDatosUsuario(usuario, darkMode);
+        panelCentralPerfil = new PanelDatosUsuario();
         add(panelCentralPerfil, BorderLayout.CENTER);
     }
 
     private void inicializarPanelSuperior() {
         btnPerfil.setEnabled(false);
         btnPerfil.addActionListener(e -> {
-            cambiarPanel(new PanelDatosUsuario(usuario, darkMode));
+            cambiarPanel(new PanelDatosUsuario());
             btnPerfil.setEnabled(false);
             btnDespositarRetirar.setEnabled(true);
             btnHistorialMovimientos.setEnabled(true);
@@ -48,7 +50,7 @@ public class FramePerfil extends JDialog {
         });
 
         btnDespositarRetirar.addActionListener(e -> {
-            cambiarPanel(new PanelDepositarRetirar(usuario, darkMode));
+            cambiarPanel(new PanelDepositarRetirar());
             btnPerfil.setEnabled(true);
             btnDespositarRetirar.setEnabled(false);
             btnHistorialMovimientos.setEnabled(true);
@@ -56,7 +58,7 @@ public class FramePerfil extends JDialog {
         });
 
         btnHistorialMovimientos.addActionListener(e -> {
-            cambiarPanel(new PanelHistorialMovimientos(usuario, darkMode));
+            cambiarPanel(new PanelHistorialMovimientos());
             btnPerfil.setEnabled(true);
             btnDespositarRetirar.setEnabled(true);
             btnHistorialMovimientos.setEnabled(false);
@@ -64,7 +66,7 @@ public class FramePerfil extends JDialog {
         });
 
         btnCambiarContraseña.addActionListener(e -> {
-            cambiarPanel(new PanelCambiarContrasena(usuario, darkMode));
+            cambiarPanel(new PanelCambiarContrasena());
             btnPerfil.setEnabled(true);
             btnDespositarRetirar.setEnabled(true);
             btnHistorialMovimientos.setEnabled(true);

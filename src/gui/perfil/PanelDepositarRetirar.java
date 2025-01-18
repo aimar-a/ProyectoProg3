@@ -1,9 +1,11 @@
 package gui.perfil;
 
 import db.GestorBD;
+import domain.UsuarioActual;
 import domain.datos.AsuntoMovimiento;
 import domain.datos.TipoDeDato;
 import gui.ColorVariables;
+import io.ConfigProperties;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -46,12 +48,12 @@ public class PanelDepositarRetirar extends JPanel {
     private final Color buttonColor;
     private final Color buttonTextColor;
 
-    public PanelDepositarRetirar(String usuario, boolean darkMode) {
-        this.usuario = usuario;
+    public PanelDepositarRetirar() {
+        this.usuario = UsuarioActual.getUsuarioActual();
         setLayout(new BorderLayout());
 
         // Define color variables
-        if (darkMode) {
+        if (ConfigProperties.isUiDarkMode()) {
             backgroundColor = ColorVariables.COLOR_FONDO_DARK.getColor();
             foregroundColor = ColorVariables.COLOR_TEXTO_DARK.getColor();
             buttonColor = ColorVariables.COLOR_BOTON_DARK.getColor();

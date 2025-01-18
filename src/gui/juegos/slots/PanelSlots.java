@@ -1,6 +1,7 @@
 package gui.juegos.slots;
 
 import gui.ColorVariables;
+import io.ConfigProperties;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,7 +25,7 @@ public class PanelSlots extends JPanel {
     private int[][] numsImg = new int[3][3];
     private JLabel labelRecompensa;
 
-    public PanelSlots(boolean darkMode) {
+    public PanelSlots() {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -58,12 +59,12 @@ public class PanelSlots extends JPanel {
             slotsGbc.gridy = fila;
             slotsGbc.gridwidth = 3;
             slotsGbc.fill = GridBagConstraints.HORIZONTAL;
-            HorizontalLinePanel linePanel = new HorizontalLinePanel(darkMode);
+            HorizontalLinePanel linePanel = new HorizontalLinePanel(ConfigProperties.isUiDarkMode());
             slotsPanel.add(linePanel, slotsGbc);
         }
 
         // Adding diagonal lines
-        DiagonalLinesPanel diagonalLinesPanel = new DiagonalLinesPanel(darkMode);
+        DiagonalLinesPanel diagonalLinesPanel = new DiagonalLinesPanel(ConfigProperties.isUiDarkMode());
         slotsGbc.gridx = 0;
         slotsGbc.gridy = 0;
         slotsGbc.gridwidth = 3;
@@ -91,7 +92,7 @@ public class PanelSlots extends JPanel {
         gbc.insets = new Insets(10, 10, 10, 10);
         add(new PanelPremios(), gbc);
 
-        if (darkMode) {
+        if (ConfigProperties.isUiDarkMode()) {
             setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
             labelRecompensa.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
         } else {
