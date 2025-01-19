@@ -147,43 +147,43 @@ public class PanelBlackjack extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        try {
-            // Obtener las dimensiones del panel
-            int panelAncho = getWidth();
-            int panelAlto = getHeight();
+        // Obtener las dimensiones del panel
+        int panelAncho = getWidth();
+        int panelAlto = getHeight();
 
-            // Ajustar los tamaños de las cartas manteniendo la relación de aspecto
-            int nuevoAnchoCarta = (int) (panelAncho * 0.1); // El ancho será un 10% del panel
-            int nuevoAltoCarta = (int) (nuevoAnchoCarta * 1.4); // Mantener la relación de aspecto 110x154
+        // Ajustar los tamaños de las cartas manteniendo la relación de aspecto
+        int nuevoAnchoCarta = (int) (panelAncho * 0.1); // El ancho será un 10% del panel
+        int nuevoAltoCarta = (int) (nuevoAnchoCarta * 1.4); // Mantener la relación de aspecto 110x154
 
-            g.setFont(new Font("Arial", Font.BOLD, 16));
-            g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.BOLD, 16));
+        g.setColor(Color.WHITE);
 
-            // Mostrar la suma del crupier
-            String textoSumaCrupier = botonPlantarse.isEnabled() ? "?" : String.valueOf(manoCrupier.getSuma());
-            g.drawString("Crupier: " + textoSumaCrupier, 20, 30);
+        if (this.manoCrupier == null || this.manoJugador == null) {
+            return;
+        }
 
-            // Mostrar la suma del jugador
-            g.drawString("Jugador: " + this.manoJugador.getSuma(), 20, panelAlto - 20);
+        // Mostrar la suma del crupier
+        String textoSumaCrupier = botonPlantarse.isEnabled() ? "?" : String.valueOf(manoCrupier.getSuma());
+        g.drawString("Crupier: " + textoSumaCrupier, 20, 30);
 
-            // Dibujar las cartas del crupier
-            for (int i = 0; i < this.manoCrupier.size(); i++) {
-                Image imagenCarta = new ImageIcon(this.manoCrupier.get(i).getRutaImagen()).getImage();
-                g.drawImage(imagenCarta, 20 + (nuevoAnchoCarta + 5) * i, 40, nuevoAnchoCarta, nuevoAltoCarta, null);
-            }
-            if (this.manoCrupier.size() == 1) {
-                Image imagenCartaOculta = new ImageIcon("resources/img/juegos/blackjack/cartas/BACK.png").getImage();
-                g.drawImage(imagenCartaOculta, nuevoAnchoCarta + 25, 40, nuevoAnchoCarta, nuevoAltoCarta, null);
-            }
+        // Mostrar la suma del jugador
+        g.drawString("Jugador: " + this.manoJugador.getSuma(), 20, panelAlto - 20);
 
-            // Dibujar las cartas del jugador
-            for (int i = 0; i < this.manoJugador.size(); i++) {
-                Image imagenCarta = new ImageIcon(this.manoJugador.get(i).getRutaImagen()).getImage();
-                g.drawImage(imagenCarta, 20 + (nuevoAnchoCarta + 5) * i, panelAlto - nuevoAltoCarta - 40,
-                        nuevoAnchoCarta, nuevoAltoCarta, null);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        // Dibujar las cartas del crupier
+        for (int i = 0; i < this.manoCrupier.size(); i++) {
+            Image imagenCarta = new ImageIcon(this.manoCrupier.get(i).getRutaImagen()).getImage();
+            g.drawImage(imagenCarta, 20 + (nuevoAnchoCarta + 5) * i, 40, nuevoAnchoCarta, nuevoAltoCarta, null);
+        }
+        if (this.manoCrupier.size() == 1) {
+            Image imagenCartaOculta = new ImageIcon("resources/img/juegos/blackjack/cartas/BACK.png").getImage();
+            g.drawImage(imagenCartaOculta, nuevoAnchoCarta + 25, 40, nuevoAnchoCarta, nuevoAltoCarta, null);
+        }
+
+        // Dibujar las cartas del jugador
+        for (int i = 0; i < this.manoJugador.size(); i++) {
+            Image imagenCarta = new ImageIcon(this.manoJugador.get(i).getRutaImagen()).getImage();
+            g.drawImage(imagenCarta, 20 + (nuevoAnchoCarta + 5) * i, panelAlto - nuevoAltoCarta - 40,
+                    nuevoAnchoCarta, nuevoAltoCarta, null);
         }
     }
 

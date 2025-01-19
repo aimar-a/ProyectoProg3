@@ -23,57 +23,51 @@ import javax.swing.Timer;
 //IAG: ChatGPT y GitHub Copilot
 //ADAPTADO: Anadir funcionalidades y autocompeltado
 public class SwitchButton extends Component {
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-        timer.start();
-        runEvent();
-    }
-
     private Timer timer;
     private float location;
     private boolean selected;
     private boolean mouseOver;
-    private float speed = 1f;
+    private static final float SPEED = 1f;
     private List<EventSwitchSelected> events;
 
     public SwitchButton() {
+        initialize();
+    }
+
+    private void initialize() {
         setBackground(new Color(0, 174, 255));
         setPreferredSize(new Dimension(50, 25));
         setForeground(Color.WHITE);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         events = new ArrayList<>();
         location = 2;
-        timer = new Timer(0, new ActionListener() {
+        timer = createTimer();
+        addMouseListener(createMouseAdapter());
+    }
+
+    private Timer createTimer() {
+        return new Timer(0, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                if (isSelected()) {
-                    int endLocation = getWidth() - getHeight() + 2;
-                    if (location < endLocation) {
-                        location += speed;
-                        repaint();
-                    } else {
-                        timer.stop();
-                        location = endLocation;
-                        repaint();
-                    }
-                } else {
-                    int endLocation = 2;
-                    if (location > endLocation) {
-                        location -= speed;
-                        repaint();
-                    } else {
-                        timer.stop();
-                        location = endLocation;
-                        repaint();
-                    }
-                }
+                updateLocation();
             }
         });
-        addMouseListener(new MouseAdapter() {
+    }
+
+    private void updateLocation() {
+        int endLocation = isSelected() ? getWidth() - getHeight() + 2 : 2;
+        if ((isSelected() && location < endLocation) || (!isSelected() && location > endLocation)) {
+            location += isSelected() ? SPEED : -SPEED;
+            repaint();
+        } else {
+            timer.stop();
+            location = endLocation;
+            repaint();
+        }
+    }
+
+    private MouseAdapter createMouseAdapter() {
+        return new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent me) {
                 mouseOver = true;
@@ -86,15 +80,21 @@ public class SwitchButton extends Component {
 
             @Override
             public void mouseReleased(MouseEvent me) {
-                if (SwingUtilities.isLeftMouseButton(me)) {
-                    if (mouseOver) {
-                        selected = !selected;
-                        timer.start();
-                        runEvent();
-                    }
+                if (SwingUtilities.isLeftMouseButton(me) && mouseOver) {
+                    setSelected(!selected);
                 }
             }
-        });
+        };
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+        timer.start();
+        runEvent();
     }
 
     @Override
@@ -120,13 +120,7 @@ public class SwitchButton extends Component {
     private float getAlpha() {
         float width = getWidth() - getHeight();
         float alpha = (location - 2) / width;
-        if (alpha < 0) {
-            alpha = 0;
-        }
-        if (alpha > 1) {
-            alpha = 1;
-        }
-        return alpha;
+        return Math.clamp(alpha, 0, 1);
     }
 
     private void runEvent() {
