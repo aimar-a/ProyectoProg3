@@ -854,3 +854,25 @@ ene 19, 2025 1:39:04 P. M. db.GestorBD actualizarSaldo
 INFO: Saldo actualizado para el usuario aimi: 3267
 ene 19, 2025 1:39:04 P. M. db.GestorBD agregarMovimiento
 INFO: Movimiento agregado para el usuario aimi: 200 fichas, asunto: ruleta:premio
+ene 19, 2025 1:42:11 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 19, 2025 1:43:15 P. M. db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: test
+ene 19, 2025 1:43:16 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 1000
+ene 19, 2025 1:43:25 P. M. db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+ene 19, 2025 1:43:25 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3267
+ene 19, 2025 1:44:32 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 19, 2025 1:50:05 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 19, 2025 1:50:17 P. M. db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+ene 19, 2025 1:50:17 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3267
+ene 19, 2025 1:50:18 P. M. db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: aimi
+ene 19, 2025 1:50:20 P. M. db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: aimi

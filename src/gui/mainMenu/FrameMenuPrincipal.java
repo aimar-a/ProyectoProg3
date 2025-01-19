@@ -49,27 +49,75 @@ public class FrameMenuPrincipal extends JFrame {
     private JLabel titulo;
 
     public FrameMenuPrincipal() {
-        configurarFrame();
-        botonPerfil = new JButton();
-        configurarPanelCentral();
-        configurarBarraAlta();
-        configurarEventosTeclado();
-        add(panelCentral, BorderLayout.CENTER);
-        add(barraAlta, BorderLayout.NORTH);
-    }
-
-    private void configurarFrame() {
+        // Configuración inicial del JFrame
         setTitle("Menú Principal");
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         if (ConfigProperties.isUiFullScreen()) {
-            setSize(screenSize.width, screenSize.height);
+            int frameWidth = screenSize.width;
+            int frameHeight = screenSize.height;
+            setSize(frameWidth, frameHeight);
             setResizable(false);
             setUndecorated(true);
         } else {
-            setSize((int) (screenSize.width * 0.6), (int) (screenSize.height * 0.8));
+            int frameWidth = (int) (screenSize.width * 0.6);
+            int frameHeight = (int) (screenSize.height * 0.8);
+            setSize(frameWidth, frameHeight);
         }
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+
+        botonPerfil = new JButton();
+
+        // Configuración del panel central con opciones de juego
+        configurarPanelCentral();
+
+        // Configuración de la barra superior
+        configurarBarraAlta();
+
+        labelSaldo.setVisible(false);
+        botonPerfil.setVisible(false);
+        panelDerechaBarraAlta.add(labelSaldo);
+        panelDerechaBarraAlta.add(botonPerfil);
+
+        this.setFocusable(true);
+        this.requestFocusInWindow();
+        this.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_C) {
+                    abrirVentana(JuegosDisponibles.CABALLOS);
+                } else if (e.getKeyCode() == KeyEvent.VK_R) {
+                    abrirVentana(JuegosDisponibles.RULETA);
+                } else if (e.getKeyCode() == KeyEvent.VK_S) {
+                    abrirVentana(JuegosDisponibles.SLOTS);
+                } else if (e.getKeyCode() == KeyEvent.VK_B) {
+                    abrirVentana(JuegosDisponibles.BLACKJACK);
+                } else if (e.getKeyCode() == KeyEvent.VK_M) {
+                    abrirVentana(JuegosDisponibles.MINAS);
+                } else if (e.getKeyCode() == KeyEvent.VK_D) {
+                    abrirVentana(JuegosDisponibles.DINOSAURIO);
+                } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    if (UsuarioActual.isLogged()) {
+                        int opcion = JOptionPane.showConfirmDialog(FrameMenuPrincipal.this, "¿Deseas cerrar sesión?",
+                                "Cerrar Sesión", JOptionPane.YES_NO_OPTION);
+                        if (opcion == JOptionPane.YES_OPTION) {
+                            loginAbierto = false;
+                            cerrarSesion();
+                        }
+                    } else {
+                        int opcion = JOptionPane.showConfirmDialog(FrameMenuPrincipal.this, "¿Estas seguro?", "Salir",
+                                JOptionPane.YES_NO_OPTION);
+                        if (opcion == JOptionPane.YES_OPTION) {
+                            System.exit(0);
+                        }
+                    }
+                }
+            }
+        });
+
+        // Añadir paneles al JFrame
+        add(panelCentral, BorderLayout.CENTER);
+        add(barraAlta, BorderLayout.NORTH);
     }
 
     private void configurarBarraAlta() {
@@ -90,11 +138,6 @@ public class FrameMenuPrincipal extends JFrame {
         panelIzquierdaBarraAlta.setPreferredSize(new Dimension(getWidth() / 3, 35));
         barraAlta.add(panelIzquierdaBarraAlta, BorderLayout.WEST);
 
-        configurarBotonesBarraAlta();
-        configurarBotonPerfil();
-    }
-
-    private void configurarBotonesBarraAlta() {
         botonLogIn = new JButton("LogIn/Reg");
         panelDerechaBarraAlta.add(botonLogIn, BorderLayout.EAST);
         botonLogIn.addActionListener(e -> {
@@ -124,32 +167,73 @@ public class FrameMenuPrincipal extends JFrame {
         });
 
         SwitchButton toggleDarkMode = new SwitchButton();
-        toggleDarkMode.setSize(new Dimension(50, 25));
-        toggleDarkMode.addEventSelected((boolean selected) -> {
-            if (selected)
-                enableDarkMode();
-            else
-                disableDarkMode();
+        toggleDarkMode.setSize(new Dimension(50, 30));
+        toggleDarkMode.addEventSelected(new EventSwitchSelected() {
+            @Override
+            public void onSelected(boolean selected) {
+                if (selected) {
+                    enableDarkMode();
+                } else {
+                    disableDarkMode();
+                }
+            }
         });
         toggleDarkMode.setSelected(ConfigProperties.isUiDarkMode());
         panelIzquierdaBarraAlta.add(toggleDarkMode, BorderLayout.WEST);
         panelIzquierdaBarraAlta.add(new JLabel("Modo oscuro"));
         toggleDarkMode.repaint();
+
+        configurarBotonPerfil();
+    }
+
+    private void enableDarkMode() {
+        ConfigProperties.setUiDarkMode(true);
+        panelSeleccion.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
+        labelBienvenida.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
+        panelCentral.setBackground(ColorVariables.COLOR_FONDO_DARK.getColor());
+        barraAlta.setBackground(ColorVariables.COLOR_ROJO_DARK.getColor());
+        panelDerechaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_DARK.getColor());
+        panelIzquierdaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_DARK.getColor());
+        titulo.setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
+        UIManager.put("OptionPane.background", ColorVariables.COLOR_FONDO_DARK.getColor());
+        UIManager.put("Panel.background", ColorVariables.COLOR_FONDO_DARK.getColor());
+        UIManager.put("OptionPane.messageForeground", ColorVariables.COLOR_TEXTO_DARK.getColor());
+    }
+
+    private void disableDarkMode() {
+        ConfigProperties.setUiDarkMode(false);
+        panelSeleccion.setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
+        labelBienvenida.setForeground(ColorVariables.COLOR_TEXTO_LIGHT.getColor());
+        panelCentral.setBackground(ColorVariables.COLOR_FONDO_LIGHT.getColor());
+        barraAlta.setBackground(ColorVariables.COLOR_ROJO_LIGHT.getColor());
+        panelDerechaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_LIGHT.getColor());
+        panelIzquierdaBarraAlta.setBackground(ColorVariables.COLOR_ROJO_LIGHT.getColor());
+        titulo.setForeground(ColorVariables.COLOR_TEXTO_LIGHT.getColor());
+        UIManager.put("OptionPane.background", ColorVariables.COLOR_FONDO_LIGHT.getColor());
+        UIManager.put("Panel.background", ColorVariables.COLOR_FONDO_LIGHT.getColor());
+        UIManager.put("OptionPane.messageForeground", ColorVariables.COLOR_TEXTO_LIGHT.getColor());
     }
 
     private void configurarPanelCentral() {
-        panelCentral = new JPanel(new BorderLayout());
+        this.panelCentral = new JPanel(new BorderLayout());
 
         labelBienvenida = new JLabel("Te damos la bienvenida al Menú Principal, ¿A qué desea jugar?",
                 SwingConstants.CENTER);
-        labelBienvenida.setPreferredSize(new Dimension(getWidth() / 10, getHeight() / 40));
-        panelCentral.add(labelBienvenida, BorderLayout.NORTH);
+        int labelWidth = getWidth() / 10;
+        int labelHeight = getHeight() / 40;
+        labelBienvenida.setPreferredSize(new Dimension(labelWidth, labelHeight));
+        this.panelCentral.add(labelBienvenida, BorderLayout.NORTH);
 
         panelSeleccion = new JPanel(new FlowLayout(FlowLayout.CENTER, getWidth() / 25, getHeight() / 40));
-        for (JuegosDisponibles juego : JuegosDisponibles.values()) {
-            configurarBotonJuego(panelSeleccion, juego);
-        }
-        panelCentral.add(panelSeleccion, BorderLayout.CENTER);
+
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.CABALLOS);
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.RULETA);
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.SLOTS);
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.BLACKJACK);
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.MINAS);
+        configurarBotonJuego(panelSeleccion, JuegosDisponibles.DINOSAURIO);
+
+        this.panelCentral.add(panelSeleccion, BorderLayout.CENTER);
     }
 
     private void configurarBotonJuego(JPanel panel, JuegosDisponibles juegoElegido) {
@@ -184,57 +268,25 @@ public class FrameMenuPrincipal extends JFrame {
         botonPerfil.addActionListener(e -> new FramePerfil(this).setVisible(true));
     }
 
-    private void configurarEventosTeclado() {
-        this.setFocusable(true);
-        this.requestFocusInWindow();
-        this.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                switch (e.getKeyCode()) {
-                    case KeyEvent.VK_C -> abrirVentana(JuegosDisponibles.CABALLOS);
-                    case KeyEvent.VK_R -> abrirVentana(JuegosDisponibles.RULETA);
-                    case KeyEvent.VK_S -> abrirVentana(JuegosDisponibles.SLOTS);
-                    case KeyEvent.VK_B -> abrirVentana(JuegosDisponibles.BLACKJACK);
-                    case KeyEvent.VK_M -> abrirVentana(JuegosDisponibles.MINAS);
-                    case KeyEvent.VK_D -> abrirVentana(JuegosDisponibles.DINOSAURIO);
-                    case KeyEvent.VK_ESCAPE -> manejarEscape();
-                    default -> {
-                        // Do nothing
-                    }
-                }
-            }
-        });
-    }
-
-    private void manejarEscape() {
-        if (UsuarioActual.isLogged()) {
-            int opcion = JOptionPane.showConfirmDialog(FrameMenuPrincipal.this, "¿Deseas cerrar sesión?",
-                    "Cerrar Sesión", JOptionPane.YES_NO_OPTION);
-            if (opcion == JOptionPane.YES_OPTION) {
-                loginAbierto = false;
-                cerrarSesion();
-            }
-        } else {
-            int opcion = JOptionPane.showConfirmDialog(FrameMenuPrincipal.this, "¿Estas seguro?", "Salir",
-                    JOptionPane.YES_NO_OPTION);
-            if (opcion == JOptionPane.YES_OPTION) {
-                System.exit(0);
-            }
-        }
-    }
-
     public void abrirVentana(JuegosDisponibles juegoObjetivo) {
         if (UsuarioActual.isLogged()) {
             this.setVisible(false);
             switch (juegoObjetivo) {
-                case CABALLOS -> new FrameCaballos(this).setVisible(true);
-                case RULETA -> new FrameRuleta(this).setVisible(true);
-                case SLOTS -> new FrameSlots(this).setVisible(true);
-                case BLACKJACK -> new FrameBlackjack(this).setVisible(true);
-                case MINAS -> new FrameMinas(this).setVisible(true);
-                case DINOSAURIO -> new FrameDino(this).setVisible(true);
-                default ->
+                case JuegosDisponibles.CABALLOS ->
+                    new FrameCaballos(this).setVisible(true);
+                case JuegosDisponibles.RULETA ->
+                    new FrameRuleta(this).setVisible(true);
+                case JuegosDisponibles.SLOTS ->
+                    new FrameSlots(this).setVisible(true);
+                case JuegosDisponibles.BLACKJACK ->
+                    new FrameBlackjack(this).setVisible(true);
+                case JuegosDisponibles.MINAS ->
+                    new FrameMinas(this).setVisible(true);
+                case JuegosDisponibles.DINOSAURIO ->
+                    new FrameDino(this).setVisible(true);
+                default -> {
                     JOptionPane.showMessageDialog(this, "Juego no disponible", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         } else {
             if (!loginAbierto) {
@@ -270,30 +322,5 @@ public class FrameMenuPrincipal extends JFrame {
             labelSaldo.setText("");
             botonSalir.setText("Salir");
         }
-    }
-
-    private void enableDarkMode() {
-        ConfigProperties.setUiDarkMode(true);
-        actualizarColores(ColorVariables.COLOR_FONDO_DARK.getColor(), ColorVariables.COLOR_TEXTO_DARK.getColor(),
-                ColorVariables.COLOR_ROJO_DARK.getColor());
-    }
-
-    private void disableDarkMode() {
-        ConfigProperties.setUiDarkMode(false);
-        actualizarColores(ColorVariables.COLOR_FONDO_LIGHT.getColor(), ColorVariables.COLOR_TEXTO_LIGHT.getColor(),
-                ColorVariables.COLOR_ROJO_LIGHT.getColor());
-    }
-
-    private void actualizarColores(Color fondo, Color texto, Color rojo) {
-        panelSeleccion.setBackground(fondo);
-        labelBienvenida.setForeground(texto);
-        panelCentral.setBackground(fondo);
-        barraAlta.setBackground(rojo);
-        panelDerechaBarraAlta.setBackground(rojo);
-        panelIzquierdaBarraAlta.setBackground(rojo);
-        titulo.setForeground(texto);
-        UIManager.put("OptionPane.background", fondo);
-        UIManager.put("Panel.background", fondo);
-        UIManager.put("OptionPane.messageForeground", texto);
     }
 }
