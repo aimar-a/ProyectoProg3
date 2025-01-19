@@ -25,7 +25,6 @@ public class PanelRuleta extends JPanel {
     private final JPanel numbersPanel;
     private int currentIndex = 0;
     private static final int NUMEROS_EN_CADA_LADO = 18;
-    private int numeroPremiado = -1;
 
     public PanelRuleta() {
         setLayout(new BorderLayout());
@@ -63,7 +62,7 @@ public class PanelRuleta extends JPanel {
         add(resultLabel, BorderLayout.SOUTH);
     }
 
-    public void spinRoulette() {
+    public void spinRoulette(PanelTablaDeApuestas panelTablaDeApuestas) {
         Random random = new Random();
         double slower = random.nextDouble(0.2) + 1.1;
         new Thread(() -> {
@@ -88,19 +87,7 @@ public class PanelRuleta extends JPanel {
                     e.printStackTrace();
                 }
             }
-            numeroPremiado = numbers[currentIndex];
+            panelTablaDeApuestas.premiarNumero(numbers[currentIndex]);
         }).start();
-    }
-
-    public int getResult() {
-        return numbers[currentIndex];
-    }
-
-    protected void setNumeroPremiado(int numeroPremiado) {
-        this.numeroPremiado = numeroPremiado;
-    }
-
-    protected int getNumeroPremiado() {
-        return numeroPremiado;
     }
 }

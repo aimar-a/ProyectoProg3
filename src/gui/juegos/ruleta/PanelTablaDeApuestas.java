@@ -33,6 +33,7 @@ public class PanelTablaDeApuestas extends JPanel {
     private final PanelRuleta ruleta;
     private final String usuario;
     private JLabel lblInfo;
+    private JButton botonGirar;
 
     public PanelTablaDeApuestas(PanelRuleta ruleta) {
         this.usuario = UsuarioActual.getUsuarioActual();
@@ -167,35 +168,27 @@ public class PanelTablaDeApuestas extends JPanel {
 
         gbc.gridx = 11;
         gbc.gridwidth = 2;
-        JButton btn = new JButton("Girar");
-        btn.setBackground(Color.MAGENTA);
-        btn.setForeground(Color.WHITE);
-        btn.addActionListener(l -> {
-            btn.setEnabled(false);
+        botonGirar = new JButton("Girar");
+        botonGirar.setBackground(Color.MAGENTA);
+        botonGirar.setForeground(Color.WHITE);
+        botonGirar.addActionListener(l -> {
+            botonGirar.setEnabled(false);
             setApuestasPermitidas(false);
             lblInfo.setText("No va más!");
-            this.ruleta.setNumeroPremiado(-1);
-            this.ruleta.spinRoulette();
-            new Thread(() -> {
-                while (this.ruleta.getNumeroPremiado() == -1) {
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                int premio = premio(this.ruleta.getNumeroPremiado());
-                GestorBD.agregarMovimiento(usuario, premio, AsuntoMovimiento.RULETA_PREMIO);
-                JOptionPane.showMessageDialog(this,
-                        "Número premiado: " + this.ruleta.getNumeroPremiado() + "\nPremio: " + premio);
-                setApuestasPermitidas(true);
-                lblInfo.setText("Ultimo premio: " + this.ruleta.getNumeroPremiado());
-                this.ruleta.setNumeroPremiado(-1);
-                limpiarApuestas();
-                btn.setEnabled(true);
-            }).start();
+            this.ruleta.spinRoulette(this);
         });
-        add(btn, gbc);
+        add(botonGirar, gbc);
+    }
+
+    protected void premiarNumero(int n) {
+        int premio = premio(n);
+        GestorBD.agregarMovimiento(usuario, premio, AsuntoMovimiento.RULETA_PREMIO);
+        JOptionPane.showMessageDialog(this,
+                "Número premiado: " + n + "\nPremio: " + premio);
+        setApuestasPermitidas(true);
+        lblInfo.setText("Ultimo premio: " + n);
+        limpiarApuestas();
+        botonGirar.setEnabled(true);
     }
 
     protected void setApuestasPermitidas(boolean b) {

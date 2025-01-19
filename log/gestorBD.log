@@ -694,3 +694,163 @@ ene 19, 2025 1:25:49 P. M. db.GestorBD init
 INFO: Driver cargado.
 ene 19, 2025 1:26:03 P. M. db.GestorBD init
 INFO: Driver cargado.
+ene 19, 2025 1:37:45 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 19, 2025 1:37:52 P. M. db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+ene 19, 2025 1:37:52 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3155
+ene 19, 2025 1:37:52 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3155
+ene 19, 2025 1:37:55 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3155
+ene 19, 2025 1:37:55 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3155
+ene 19, 2025 1:37:56 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3150
+ene 19, 2025 1:37:56 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: ruleta:apuesta
+ene 19, 2025 1:37:56 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3150
+ene 19, 2025 1:37:56 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3150
+ene 19, 2025 1:37:56 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3145
+ene 19, 2025 1:37:56 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: ruleta:apuesta
+ene 19, 2025 1:37:57 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3145
+ene 19, 2025 1:37:57 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3145
+ene 19, 2025 1:37:57 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3140
+ene 19, 2025 1:37:57 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: ruleta:apuesta
+ene 19, 2025 1:37:57 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3140
+ene 19, 2025 1:37:57 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3140
+ene 19, 2025 1:37:58 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3135
+ene 19, 2025 1:37:58 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: ruleta:apuesta
+ene 19, 2025 1:37:59 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3135
+ene 19, 2025 1:37:59 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3135
+ene 19, 2025 1:37:59 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3130
+ene 19, 2025 1:37:59 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: ruleta:apuesta
+ene 19, 2025 1:38:00 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3130
+ene 19, 2025 1:38:00 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3130
+ene 19, 2025 1:38:02 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3125
+ene 19, 2025 1:38:02 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: ruleta:apuesta
+ene 19, 2025 1:38:06 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3125
+ene 19, 2025 1:38:06 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3125
+ene 19, 2025 1:38:07 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3124
+ene 19, 2025 1:38:08 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -1 fichas, asunto: ruleta:apuesta
+ene 19, 2025 1:38:09 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3124
+ene 19, 2025 1:38:09 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3124
+ene 19, 2025 1:38:09 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3123
+ene 19, 2025 1:38:09 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -1 fichas, asunto: ruleta:apuesta
+ene 19, 2025 1:38:13 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3123
+ene 19, 2025 1:38:13 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3123
+ene 19, 2025 1:38:13 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3122
+ene 19, 2025 1:38:13 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -1 fichas, asunto: ruleta:apuesta
+ene 19, 2025 1:38:14 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3122
+ene 19, 2025 1:38:14 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3122
+ene 19, 2025 1:38:14 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3121
+ene 19, 2025 1:38:14 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -1 fichas, asunto: ruleta:apuesta
+ene 19, 2025 1:38:16 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3121
+ene 19, 2025 1:38:16 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3121
+ene 19, 2025 1:38:16 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3120
+ene 19, 2025 1:38:17 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -1 fichas, asunto: ruleta:apuesta
+ene 19, 2025 1:38:18 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3120
+ene 19, 2025 1:38:18 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3120
+ene 19, 2025 1:38:18 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3119
+ene 19, 2025 1:38:18 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -1 fichas, asunto: ruleta:apuesta
+ene 19, 2025 1:38:19 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3119
+ene 19, 2025 1:38:19 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3119
+ene 19, 2025 1:38:20 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3118
+ene 19, 2025 1:38:20 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -1 fichas, asunto: ruleta:apuesta
+ene 19, 2025 1:38:21 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3118
+ene 19, 2025 1:38:21 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3118
+ene 19, 2025 1:38:21 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3117
+ene 19, 2025 1:38:21 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -1 fichas, asunto: ruleta:apuesta
+ene 19, 2025 1:38:24 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3117
+ene 19, 2025 1:38:24 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3117
+ene 19, 2025 1:38:24 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3067
+ene 19, 2025 1:38:24 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -50 fichas, asunto: ruleta:apuesta
+ene 19, 2025 1:38:37 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3067
+ene 19, 2025 1:38:37 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3067
+ene 19, 2025 1:38:37 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3167
+ene 19, 2025 1:38:38 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: 100 fichas, asunto: ruleta:premio
+ene 19, 2025 1:38:53 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3167
+ene 19, 2025 1:38:53 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3167
+ene 19, 2025 1:38:53 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3117
+ene 19, 2025 1:38:54 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -50 fichas, asunto: ruleta:apuesta
+ene 19, 2025 1:38:54 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3117
+ene 19, 2025 1:38:54 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3117
+ene 19, 2025 1:38:55 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3067
+ene 19, 2025 1:38:55 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -50 fichas, asunto: ruleta:apuesta
+ene 19, 2025 1:39:04 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3067
+ene 19, 2025 1:39:04 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 3067
+ene 19, 2025 1:39:04 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 3267
+ene 19, 2025 1:39:04 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: 200 fichas, asunto: ruleta:premio
