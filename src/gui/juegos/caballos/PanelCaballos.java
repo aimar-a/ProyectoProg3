@@ -27,11 +27,13 @@ public class PanelCaballos extends JPanel {
     private final JPanel[] panelCalles;
 
     private int caballoSeleccionado = 0;
-    private float apuesta = 0;
+    @SuppressWarnings("unused")
+	private float apuesta = 0;
 
     private PanelApuestasCaballos panelApuestasCaballos;
 
-    public PanelCaballos() {
+    @SuppressWarnings("serial")
+	public PanelCaballos() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Configura layout vertical
         caballoImagen = new Image[NUM_CABALLOS];
         frameCaballo = new int[NUM_CABALLOS];

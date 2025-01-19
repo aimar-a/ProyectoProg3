@@ -19,7 +19,8 @@ import javax.swing.SwingUtilities;
 // IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelApuestasDino extends JPanel {
 
-    private final String usuario; // Usuario para identificar en la base de datos
+    private static final long serialVersionUID = 1L;
+	private final String usuario; // Usuario para identificar en la base de datos
     private final JSpinner apuestaSpinner; // Cambiado a JSpinner
     private final JButton startButton;
     private final JButton cashOutButton;

@@ -18,7 +18,8 @@ import javax.swing.Timer;
 
 // IAG: Modificado (ChatGPT y GitHub Copilot)
 public class PanelDino extends JPanel {
-    // Constantes
+    private static final long serialVersionUID = 1L;
+	// Constantes
     private static final double INITIAL_MULTIPLIER = 1.01;
     private static final double MAX_MULTIPLIER = 10.0;
     private static final int TIMER_DELAY = 500; // Milisegundos

@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 // IAG: Modificado (ChatGPT y GitHub Copilot)
+@SuppressWarnings("serial")
 public class PanelHistorialMovimientos extends JPanel {
 
     private final JTable table;

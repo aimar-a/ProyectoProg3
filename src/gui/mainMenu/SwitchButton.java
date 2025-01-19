@@ -23,7 +23,8 @@ import javax.swing.Timer;
 //IAG: ChatGPT y GitHub Copilot
 //ADAPTADO: Anadir funcionalidades y autocompeltado
 public class SwitchButton extends Component {
-    private Timer timer;
+	private static final long serialVersionUID = 1L;
+	private Timer timer;
     private float location;
     private boolean selected;
     private boolean mouseOver;

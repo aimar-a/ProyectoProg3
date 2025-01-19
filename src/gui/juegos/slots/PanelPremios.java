@@ -18,7 +18,9 @@ import javax.swing.table.DefaultTableModel;
 //IAG: GitHub Copilot
 //ADAPTADO: Anadir funcionalidades y autocompeltado
 public class PanelPremios extends JPanel {
-    public PanelPremios() {
+	private static final long serialVersionUID = 1L;
+
+	public PanelPremios() {
         super(new GridBagLayout());
         this.setOpaque(true);
         this.setBackground(Color.ORANGE);

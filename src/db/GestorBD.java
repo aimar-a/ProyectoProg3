@@ -173,7 +173,8 @@ public class GestorBD {
         }
     }
 
-    private static boolean leerConfig(String rutaConfig) {
+    @SuppressWarnings("unused")
+	private static boolean leerConfig(String rutaConfig) {
         try (BufferedReader br = new BufferedReader(new FileReader(rutaConfig))) {
             return Boolean.parseBoolean(br.readLine().trim());
         } catch (IOException e) {

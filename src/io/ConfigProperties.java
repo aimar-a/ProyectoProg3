@@ -110,7 +110,8 @@ public class ConfigProperties {
         }
     }
 
-    private static void saveDatabaseProperties() {
+    @SuppressWarnings("unused")
+	private static void saveDatabaseProperties() {
         try {
             databaseProperties.store(new FileOutputStream(DATABASE_PROPERTIES_FILE), null);
         } catch (IOException e) {

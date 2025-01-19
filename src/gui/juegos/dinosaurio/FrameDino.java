@@ -7,7 +7,9 @@ import javax.swing.SwingUtilities;
 
 public class FrameDino extends BaseGamesFrame {
 
-    public FrameDino(FrameMenuPrincipal frameMenuPrincipal) {
+    private static final long serialVersionUID = 1L;
+
+	public FrameDino(FrameMenuPrincipal frameMenuPrincipal) {
         super("DinoRun", frameMenuPrincipal);
 
         SwingUtilities.invokeLater(() -> {

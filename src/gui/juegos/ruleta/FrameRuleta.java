@@ -8,6 +8,8 @@ import javax.swing.SwingUtilities;
 
 public class FrameRuleta extends BaseGamesFrame {
 
+	private static final long serialVersionUID = 1L;
+
 	public FrameRuleta(FrameMenuPrincipal frameMenuPrincipal) {
 		super("Ruleta", frameMenuPrincipal);
 

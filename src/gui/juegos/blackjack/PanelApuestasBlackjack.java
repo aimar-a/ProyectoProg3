@@ -19,7 +19,8 @@ import javax.swing.SwingUtilities;
 //IAG: GitHub Copilot
 //ADAPTADO: Autocompeltado
 public class PanelApuestasBlackjack extends JPanel {
-    protected final JButton botonIniciar = new JButton("Iniciar Partida");
+   	private static final long serialVersionUID = 1L;
+	protected final JButton botonIniciar = new JButton("Iniciar Partida");
     protected final JButton botonPedir = new JButton("Pedir");
     protected final JButton botonPlantarse = new JButton("Plantarse");
     protected final JSpinner spinnerApuesta = new JSpinner(new SpinnerNumberModel(0, 0, 10000, 1));
