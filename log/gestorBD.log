@@ -3096,3 +3096,13 @@ ene 19, 2025 7:43:07 P. M. db.GestorBD init
 INFO: Driver cargado.
 ene 19, 2025 7:43:07 P. M. db.GestorBD obtenerHistorial
 INFO: Historial obtenido para el usuario: test
+ene 19, 2025 7:45:16 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 19, 2025 7:48:14 P. M. db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: test
+ene 19, 2025 7:48:14 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 600
+ene 19, 2025 7:48:15 P. M. db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: test
+ene 19, 2025 7:48:17 P. M. db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: test
