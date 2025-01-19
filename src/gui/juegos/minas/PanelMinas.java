@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 //IAG: ChatGPT y GitHub Copilot
 //ADAPTADO: Ordenar y limpiar código, anadir funcionalidades y autocompeltado
@@ -71,7 +72,7 @@ public class PanelMinas extends JPanel {
                 final int x = i;
                 final int y = j;
                 botones[i][j].addActionListener(e -> {
-                    pulsarBoton(x, y);
+                    SwingUtilities.invokeLater(() -> pulsarBoton(x, y));
                 });
             }
         }
@@ -150,7 +151,7 @@ public class PanelMinas extends JPanel {
         botones[i][j].setEnabled(false);
         if (minas[i][j]) {
             botones[i][j].setDisabledIcon(new ImageIcon("resources/img/juegos/minas/bomb.png"));
-            finalizarJuego(false);
+            SwingUtilities.invokeLater(() -> finalizarJuego(false));
         } else {
             String diamante = diamantes[rand.nextInt(diamantes.length)];
             botones[i][j]

@@ -87,7 +87,7 @@ public class PanelRuleta extends JPanel {
                     e.printStackTrace();
                 }
             }
-            panelTablaDeApuestas.premiarNumero(numbers[currentIndex]);
+            SwingUtilities.invokeLater(() -> panelTablaDeApuestas.premiarNumero(numbers[currentIndex]));
         }).start();
     }
 }

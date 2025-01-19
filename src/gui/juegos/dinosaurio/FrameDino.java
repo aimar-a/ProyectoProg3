@@ -3,16 +3,19 @@ package gui.juegos.dinosaurio;
 import gui.juegos.BaseGamesFrame;
 import gui.mainMenu.FrameMenuPrincipal;
 import java.awt.BorderLayout;
+import javax.swing.SwingUtilities;
 
 public class FrameDino extends BaseGamesFrame {
 
     public FrameDino(FrameMenuPrincipal frameMenuPrincipal) {
         super("DinoRun", frameMenuPrincipal);
 
-        PanelDino dinoPlay = new PanelDino();
-        add(dinoPlay, BorderLayout.CENTER);
+        SwingUtilities.invokeLater(() -> {
+            PanelDino dinoPlay = new PanelDino();
+            add(dinoPlay, BorderLayout.CENTER);
 
-        PanelApuestasDino apuestasDino = new PanelApuestasDino(dinoPlay);
-        add(apuestasDino, BorderLayout.SOUTH);
+            PanelApuestasDino apuestasDino = new PanelApuestasDino(dinoPlay);
+            add(apuestasDino, BorderLayout.SOUTH);
+        });
     }
 }

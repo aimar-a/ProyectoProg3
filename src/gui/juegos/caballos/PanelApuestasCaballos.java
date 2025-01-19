@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingUtilities;
 
 //IAG: ChatGPT y GitHub Copilot
 //ADAPTADO: Ordenar y limpiar código, anadir funcionalidades y autocompeltado
@@ -36,9 +37,7 @@ public class PanelApuestasCaballos extends JPanel {
 
         // Etiqueta y Spinner para seleccionar apuesta
         add(new JLabel("Apuesta:"));
-        spinnerApuesta = new JSpinner(new SpinnerNumberModel(0, 0, 10000, 1)); // Valor mínimo 0, máximo 10000,
-                                                                               // incremento de 1
-                                                                               // incremento de 1
+        spinnerApuesta = new JSpinner(new SpinnerNumberModel(0, 0, 10000, 1));
         add(spinnerApuesta);
 
         botonIniciarCarrera = new JButton("Iniciar carrera");
@@ -46,27 +45,30 @@ public class PanelApuestasCaballos extends JPanel {
 
         // Acción del botón
         botonIniciarCarrera.addActionListener(e -> {
-            boolean caballoSeleccionado = comboBoxCaballoSeleccionado.getSelectedItem() != null;
-            boolean apuestaValida = (int) spinnerApuesta.getValue() > 0;
-            if (caballoSeleccionado && apuestaValida) {
-                if (GestorBD.obtenerSaldo(usuario) < (int) spinnerApuesta.getValue()) {
-                    // Si el usuario no tiene saldo suficiente, mostrar mensaje de error
-                    JOptionPane.showMessageDialog(panelCaballos, "Saldo insuficiente", "Error",
+            SwingUtilities.invokeLater(() -> {
+                boolean caballoSeleccionado = comboBoxCaballoSeleccionado.getSelectedItem() != null;
+                boolean apuestaValida = (int) spinnerApuesta.getValue() > 0;
+                if (caballoSeleccionado && apuestaValida) {
+                    if (GestorBD.obtenerSaldo(usuario) < (int) spinnerApuesta.getValue()) {
+                        // Si el usuario no tiene saldo suficiente, mostrar mensaje de error
+                        JOptionPane.showMessageDialog(panelCaballos, "Saldo insuficiente", "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    GestorBD.agregarMovimiento(usuario, -(int) spinnerApuesta.getValue(),
+                            AsuntoMovimiento.CABALLOS_APUESTA);
+                    botonIniciarCarrera.setEnabled(false);
+                    spinnerApuesta.setEnabled(false);
+                    comboBoxCaballoSeleccionado.setEnabled(false);
+                    apuesta = (int) spinnerApuesta.getValue();
+                    panelCaballos.iniciarCarrera((int) comboBoxCaballoSeleccionado.getSelectedItem());
+                } else {
+                    // Si no se ha seleccionado caballo o la apuesta es 0, mostrar mensaje de error
+                    JOptionPane.showMessageDialog(panelCaballos, "Por favor, selecciona un caballo y una apuesta",
+                            "Error",
                             JOptionPane.ERROR_MESSAGE);
-                    return;
                 }
-                GestorBD.agregarMovimiento(usuario, -(int) spinnerApuesta.getValue(),
-                        AsuntoMovimiento.CABALLOS_APUESTA);
-                botonIniciarCarrera.setEnabled(false);
-                spinnerApuesta.setEnabled(false);
-                comboBoxCaballoSeleccionado.setEnabled(false);
-                apuesta = (int) spinnerApuesta.getValue();
-                panelCaballos.iniciarCarrera((int) comboBoxCaballoSeleccionado.getSelectedItem());
-            } else {
-                // Si no se ha seleccionado caballo o la apuesta es 0, mostrar mensaje de error
-                JOptionPane.showMessageDialog(panelCaballos, "Por favor, selecciona un caballo y una apuesta", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            }
+            });
         });
 
         // Personalizar el panel
@@ -93,8 +95,10 @@ public class PanelApuestasCaballos extends JPanel {
     }
 
     protected void reiniciarJuego() {
-        spinnerApuesta.setEnabled(true);
-        comboBoxCaballoSeleccionado.setEnabled(true);
-        botonIniciarCarrera.setEnabled(true);
+        SwingUtilities.invokeLater(() -> {
+            spinnerApuesta.setEnabled(true);
+            comboBoxCaballoSeleccionado.setEnabled(true);
+            botonIniciarCarrera.setEnabled(true);
+        });
     }
 }

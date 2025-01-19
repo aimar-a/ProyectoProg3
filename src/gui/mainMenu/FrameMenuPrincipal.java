@@ -29,6 +29,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 //IAG: ChatGPT y GitHub Copilot
@@ -49,75 +50,78 @@ public class FrameMenuPrincipal extends JFrame {
     private JLabel titulo;
 
     public FrameMenuPrincipal() {
-        // Configuración inicial del JFrame
-        setTitle("Menú Principal");
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        if (ConfigProperties.isUiFullScreen()) {
-            int frameWidth = screenSize.width;
-            int frameHeight = screenSize.height;
-            setSize(frameWidth, frameHeight);
-            setResizable(false);
-            setUndecorated(true);
-        } else {
-            int frameWidth = (int) (screenSize.width * 0.6);
-            int frameHeight = (int) (screenSize.height * 0.8);
-            setSize(frameWidth, frameHeight);
-        }
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-
         botonPerfil = new JButton();
+        SwingUtilities.invokeLater(() -> {
+            // Configuración inicial del JFrame
+            setTitle("Menú Principal");
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            if (ConfigProperties.isUiFullScreen()) {
+                int frameWidth = screenSize.width;
+                int frameHeight = screenSize.height;
+                setSize(frameWidth, frameHeight);
+                setResizable(false);
+                setUndecorated(true);
+            } else {
+                int frameWidth = (int) (screenSize.width * 0.6);
+                int frameHeight = (int) (screenSize.height * 0.8);
+                setSize(frameWidth, frameHeight);
+            }
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setLocationRelativeTo(null);
 
-        // Configuración del panel central con opciones de juego
-        configurarPanelCentral();
+            // Configuración del panel central con opciones de juego
+            configurarPanelCentral();
 
-        // Configuración de la barra superior
-        configurarBarraAlta();
+            // Configuración de la barra superior
+            configurarBarraAlta();
 
-        labelSaldo.setVisible(false);
-        botonPerfil.setVisible(false);
-        panelDerechaBarraAlta.add(labelSaldo);
-        panelDerechaBarraAlta.add(botonPerfil);
+            labelSaldo.setVisible(false);
+            botonPerfil.setVisible(false);
+            panelDerechaBarraAlta.add(labelSaldo);
+            panelDerechaBarraAlta.add(botonPerfil);
 
-        this.setFocusable(true);
-        this.requestFocusInWindow();
-        this.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_C) {
-                    abrirVentana(JuegosDisponibles.CABALLOS);
-                } else if (e.getKeyCode() == KeyEvent.VK_R) {
-                    abrirVentana(JuegosDisponibles.RULETA);
-                } else if (e.getKeyCode() == KeyEvent.VK_S) {
-                    abrirVentana(JuegosDisponibles.SLOTS);
-                } else if (e.getKeyCode() == KeyEvent.VK_B) {
-                    abrirVentana(JuegosDisponibles.BLACKJACK);
-                } else if (e.getKeyCode() == KeyEvent.VK_M) {
-                    abrirVentana(JuegosDisponibles.MINAS);
-                } else if (e.getKeyCode() == KeyEvent.VK_D) {
-                    abrirVentana(JuegosDisponibles.DINOSAURIO);
-                } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    if (UsuarioActual.isLogged()) {
-                        int opcion = JOptionPane.showConfirmDialog(FrameMenuPrincipal.this, "¿Deseas cerrar sesión?",
-                                "Cerrar Sesión", JOptionPane.YES_NO_OPTION);
-                        if (opcion == JOptionPane.YES_OPTION) {
-                            loginAbierto = false;
-                            cerrarSesion();
-                        }
-                    } else {
-                        int opcion = JOptionPane.showConfirmDialog(FrameMenuPrincipal.this, "¿Estas seguro?", "Salir",
-                                JOptionPane.YES_NO_OPTION);
-                        if (opcion == JOptionPane.YES_OPTION) {
-                            System.exit(0);
+            this.setFocusable(true);
+            this.requestFocusInWindow();
+            this.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    if (e.getKeyCode() == KeyEvent.VK_C) {
+                        abrirVentana(JuegosDisponibles.CABALLOS);
+                    } else if (e.getKeyCode() == KeyEvent.VK_R) {
+                        abrirVentana(JuegosDisponibles.RULETA);
+                    } else if (e.getKeyCode() == KeyEvent.VK_S) {
+                        abrirVentana(JuegosDisponibles.SLOTS);
+                    } else if (e.getKeyCode() == KeyEvent.VK_B) {
+                        abrirVentana(JuegosDisponibles.BLACKJACK);
+                    } else if (e.getKeyCode() == KeyEvent.VK_M) {
+                        abrirVentana(JuegosDisponibles.MINAS);
+                    } else if (e.getKeyCode() == KeyEvent.VK_D) {
+                        abrirVentana(JuegosDisponibles.DINOSAURIO);
+                    } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        if (UsuarioActual.isLogged()) {
+                            int opcion = JOptionPane.showConfirmDialog(FrameMenuPrincipal.this,
+                                    "¿Deseas cerrar sesión?",
+                                    "Cerrar Sesión", JOptionPane.YES_NO_OPTION);
+                            if (opcion == JOptionPane.YES_OPTION) {
+                                loginAbierto = false;
+                                cerrarSesion();
+                            }
+                        } else {
+                            int opcion = JOptionPane.showConfirmDialog(FrameMenuPrincipal.this, "¿Estas seguro?",
+                                    "Salir",
+                                    JOptionPane.YES_NO_OPTION);
+                            if (opcion == JOptionPane.YES_OPTION) {
+                                System.exit(0);
+                            }
                         }
                     }
                 }
-            }
-        });
+            });
 
-        // Añadir paneles al JFrame
-        add(panelCentral, BorderLayout.CENTER);
-        add(barraAlta, BorderLayout.NORTH);
+            // Añadir paneles al JFrame
+            add(panelCentral, BorderLayout.CENTER);
+            add(barraAlta, BorderLayout.NORTH);
+        });
     }
 
     private void configurarBarraAlta() {
@@ -167,7 +171,7 @@ public class FrameMenuPrincipal extends JFrame {
         });
 
         SwitchButton toggleDarkMode = new SwitchButton();
-        toggleDarkMode.setSize(new Dimension(50, 30));
+        toggleDarkMode.setSize(new Dimension(45, 20));
         toggleDarkMode.addEventSelected(new EventSwitchSelected() {
             @Override
             public void onSelected(boolean selected) {
@@ -244,7 +248,9 @@ public class FrameMenuPrincipal extends JFrame {
         Image scaledImage = icono.getImage().getScaledInstance(botonWidth, botonHeight, Image.SCALE_SMOOTH);
         ImageIcon scaledIcono = new ImageIcon(scaledImage);
 
-        JButton botonJuego = new JButton(juegoElegido.name(), scaledIcono);
+        JButton botonJuego = new JButton(
+                juegoElegido.name().substring(0, 1).toUpperCase() + juegoElegido.name().substring(1).toLowerCase(),
+                scaledIcono);
         botonJuego.setPreferredSize(new Dimension(botonWidth, botonHeight));
         botonJuego.setHorizontalTextPosition(SwingConstants.CENTER);
         botonJuego.setVerticalTextPosition(SwingConstants.CENTER);

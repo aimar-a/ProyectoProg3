@@ -63,53 +63,59 @@ public class PanelApuestasDino extends JPanel {
     }
 
     private void resetButtons() {
-        startButton.setEnabled(true);
-        cashOutButton.setEnabled(false);
-        apuestaSpinner.setEnabled(true);
+        SwingUtilities.invokeLater(() -> {
+            startButton.setEnabled(true);
+            cashOutButton.setEnabled(false);
+            apuestaSpinner.setEnabled(true);
+        });
     }
 
     private class StartButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            int apuesta = (int) apuestaSpinner.getValue();
-            if (apuesta <= 0) {
-                JOptionPane.showMessageDialog(dinoPlay, "Ingresa una apuesta válida.",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+            SwingUtilities.invokeLater(() -> {
+                int apuesta = (int) apuestaSpinner.getValue();
+                if (apuesta <= 0) {
+                    JOptionPane.showMessageDialog(dinoPlay, "Ingresa una apuesta válida.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 
-            if (GestorBD.obtenerSaldo(usuario) < apuesta) {
-                JOptionPane.showMessageDialog(dinoPlay, "Saldo insuficiente.",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+                if (GestorBD.obtenerSaldo(usuario) < apuesta) {
+                    JOptionPane.showMessageDialog(dinoPlay, "Saldo insuficiente.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 
-            // Deduce la apuesta del saldo
-            GestorBD.agregarMovimiento(usuario, -apuesta, AsuntoMovimiento.DINO_APUESTA);
-            dinoPlay.setApuesta(apuesta); // Pasar apuesta a PanelDino
-            dinoPlay.startGame();
+                // Deduce la apuesta del saldo
+                GestorBD.agregarMovimiento(usuario, -apuesta, AsuntoMovimiento.DINO_APUESTA);
+                dinoPlay.setApuesta(apuesta); // Pasar apuesta a PanelDino
+                dinoPlay.startGame();
 
-            startButton.setEnabled(false);
-            cashOutButton.setEnabled(true);
-            apuestaSpinner.setEnabled(false);
+                startButton.setEnabled(false);
+                cashOutButton.setEnabled(true);
+                apuestaSpinner.setEnabled(false);
+            });
         }
     }
 
     private class CashOutButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            int ganancia = dinoPlay.cashOut();
-            if (ganancia > 0) {
-                GestorBD.agregarMovimiento(usuario, ganancia, AsuntoMovimiento.DINO_PREMIO);
-                JOptionPane.showMessageDialog(dinoPlay,
-                        "¡Has ganado " + ganancia + " fichas!", "¡Enhorabuena!",
-                        JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(dinoPlay, "¡Juego terminado!", "Fin del juego",
-                        JOptionPane.INFORMATION_MESSAGE);
-            }
+            SwingUtilities.invokeLater(() -> {
+                int ganancia = dinoPlay.cashOut();
+                if (ganancia > 0) {
+                    GestorBD.agregarMovimiento(usuario, ganancia, AsuntoMovimiento.DINO_PREMIO);
+                    JOptionPane.showMessageDialog(dinoPlay,
+                            "¡Has ganado " + ganancia + " fichas!", "¡Enhorabuena!",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(dinoPlay, "¡Juego terminado!", "Fin del juego",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
 
-            resetButtons();
+                resetButtons();
+            });
         }
     }
 }

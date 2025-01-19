@@ -7,6 +7,7 @@ package gui.juegos.blackjack;
 import gui.juegos.BaseGamesFrame;
 import gui.mainMenu.FrameMenuPrincipal;
 import java.awt.BorderLayout;
+import javax.swing.SwingUtilities;
 
 public class FrameBlackjack extends BaseGamesFrame {
     private final PanelBlackjack panelBlackjack;
@@ -19,7 +20,9 @@ public class FrameBlackjack extends BaseGamesFrame {
         panelApuestas = new PanelApuestasBlackjack();
         new LogicaBlackjack(panelBlackjack, panelApuestas);
 
-        add(panelBlackjack, BorderLayout.CENTER);
-        add(panelApuestas, BorderLayout.SOUTH);
+        SwingUtilities.invokeLater(() -> {
+            add(panelBlackjack, BorderLayout.CENTER);
+            add(panelApuestas, BorderLayout.SOUTH);
+        });
     }
 }

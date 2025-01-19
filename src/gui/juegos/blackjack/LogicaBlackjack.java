@@ -14,8 +14,8 @@ import domain.blackjack.Mano;
 import domain.blackjack.Mazo;
 import domain.datos.AsuntoMovimiento;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
-// IAG: Modificado (ChatGPT y GitHub Copilot)
 public class LogicaBlackjack {
     private final PanelApuestasBlackjack panelApuestas;
     private Mazo mazo;
@@ -33,8 +33,14 @@ public class LogicaBlackjack {
         this.usuario = UsuarioActual.getUsuarioActual();
 
         panelApuestas.botonIniciar.addActionListener(e -> iniciarJuego());
-        panelApuestas.botonPedir.addActionListener(e -> agregarCartaJugador());
-        panelApuestas.botonPlantarse.addActionListener(e -> plantarseJugador());
+        panelApuestas.botonPedir.addActionListener(e -> {
+            panelBlackjack.romperCalculoProbabilidades();
+            agregarCartaJugador();
+        });
+        panelApuestas.botonPlantarse.addActionListener(e -> {
+            panelBlackjack.romperCalculoProbabilidades();
+            plantarseJugador();
+        });
 
     }
 
@@ -71,7 +77,8 @@ public class LogicaBlackjack {
         GestorBD.agregarMovimiento(usuario, -this.apuesta, AsuntoMovimiento.BLACKJACK_APUESTA);
 
         // Dibujar estado inicial
-        panelBlackjack.dibujar(manoCrupier, manoJugador, panelApuestas.botonPlantarse);
+        SwingUtilities
+                .invokeLater(() -> panelBlackjack.dibujar(manoCrupier, manoJugador, panelApuestas.botonPlantarse));
 
         if (manoJugador.getSuma() == 21 && manoCrupier.getSuma() + cartaOculta.getValor() == 21) {
             finalizarJuego(3);
@@ -89,8 +96,8 @@ public class LogicaBlackjack {
 
         // Mostrar la carta oculta del crupier
         manoCrupier.agregarCarta(cartaOculta);
-        panelBlackjack.dibujar(manoCrupier, manoJugador,
-                panelApuestas.botonPlantarse);
+        SwingUtilities
+                .invokeLater(() -> panelBlackjack.dibujar(manoCrupier, manoJugador, panelApuestas.botonPlantarse));
 
         // Crear un Timer para agregar cartas con un intervalo de 1 segundo
         new Thread(() -> {
@@ -99,8 +106,8 @@ public class LogicaBlackjack {
                         || (manoCrupier.getSuma() == 17 && manoCrupier.getCuentaAses() > 0)) {
                     Thread.sleep(1000);
                     agregarCartaCrupier();
-                    panelBlackjack.dibujar(manoCrupier, manoJugador,
-                            panelApuestas.botonPlantarse);
+                    SwingUtilities.invokeLater(
+                            () -> panelBlackjack.dibujar(manoCrupier, manoJugador, panelApuestas.botonPlantarse));
                 }
                 finalizarJuego();
             } catch (InterruptedException e) {
@@ -123,8 +130,8 @@ public class LogicaBlackjack {
         if (resultado == 1 || resultado == 2 || resultado == 3) {
             // Mostrar la carta oculta del crupier
             manoCrupier.agregarCarta(cartaOculta);
-            panelBlackjack.dibujar(manoCrupier, manoJugador,
-                    panelApuestas.botonPlantarse);
+            SwingUtilities
+                    .invokeLater(() -> panelBlackjack.dibujar(manoCrupier, manoJugador, panelApuestas.botonPlantarse));
         }
 
         if (resultado == 3) {
@@ -177,8 +184,8 @@ public class LogicaBlackjack {
         Carta carta = mazo.robarCarta();
         manoJugador.agregarCarta(carta);
 
-        panelBlackjack.dibujar(manoCrupier, manoJugador,
-                panelApuestas.botonPlantarse);
+        SwingUtilities
+                .invokeLater(() -> panelBlackjack.dibujar(manoCrupier, manoJugador, panelApuestas.botonPlantarse));
         if (manoJugador.getSuma() > 21) {
             finalizarJuego();
         }

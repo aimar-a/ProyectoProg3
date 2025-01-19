@@ -30,22 +30,22 @@ public class PanelApuestasMinas extends JPanel {
         add(btnRetirar);
 
         btnApostar.addActionListener(e -> {
-        	btnApostar.setEnabled(false);
-        	spinnerApuesta.setEnabled(false);
-        	int apuesta = (int) spinnerApuesta.getValue();
-        	if (apuesta <= 0) {
-        	    JOptionPane.showMessageDialog(panelMinas, "Ingresa una apuesta válida.",
-        	            "Error", JOptionPane.ERROR_MESSAGE);
-        	    btnApostar.setEnabled(true);
-        	    spinnerApuesta.setEnabled(true);
-        	    return;
-        	} else if (apuesta < 10) {
-        	    JOptionPane.showMessageDialog(panelMinas, "La apuesta mínima de este juego es de 10.",
-        	            "Error", JOptionPane.ERROR_MESSAGE);
-        	    btnApostar.setEnabled(true);
-        	    spinnerApuesta.setEnabled(true);
-        	    return;
-        	}
+            btnApostar.setEnabled(false);
+            spinnerApuesta.setEnabled(false);
+            int apuesta = (int) spinnerApuesta.getValue();
+            if (apuesta <= 0) {
+                JOptionPane.showMessageDialog(panelMinas, "Ingresa una apuesta válida.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                btnApostar.setEnabled(true);
+                spinnerApuesta.setEnabled(true);
+                return;
+            } else if (apuesta < 10) {
+                JOptionPane.showMessageDialog(panelMinas, "La apuesta mínima de este juego es de 10.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                btnApostar.setEnabled(true);
+                spinnerApuesta.setEnabled(true);
+                return;
+            }
 
             GestorBD.agregarMovimiento(UsuarioActual.getUsuarioActual(), -apuesta, AsuntoMovimiento.MINAS_APUESTA);
             panelMinas.iniciarJuego(apuesta, btnApostar, btnRetirar, spinnerApuesta);

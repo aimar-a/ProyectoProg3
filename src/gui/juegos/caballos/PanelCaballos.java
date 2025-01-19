@@ -9,6 +9,7 @@ import java.util.Random;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 //IAG: ChatGPT y GitHub Copilot
 //ADAPTADO: Ordenar y limpiar código, anadir funcionalidades y autocompeltado
@@ -79,35 +80,37 @@ public class PanelCaballos extends JPanel {
             while (carreraEnCurso) {
                 try {
                     Thread.sleep(50);
-                    for (int i = 0; i < NUM_CABALLOS; i++) {
-                        Random random = new Random();
-                        int sumaPosicion = random.nextInt(6) + 3;
-                        posiciones[i] += sumaPosicion;
+                    SwingUtilities.invokeLater(() -> {
+                        for (int i = 0; i < NUM_CABALLOS; i++) {
+                            Random random = new Random();
+                            int sumaPosicion = random.nextInt(6) + 3;
+                            posiciones[i] += sumaPosicion;
 
-                        if (frameCaballo[i] == 8) {
-                            frameCaballo[i] = 1;
-                        }
-                        caballoImagen[i] = new ImageIcon(
-                                "resources/img/juegos/caballos/animacion/" + (i % 2 == 1 ? "negro" : "normal")
-                                        + "/caballo"
-                                        + (frameCaballo[i]++) + ".png")
-                                .getImage();
-
-                        // Verifica si algún caballo ha cruzado la meta y asegura que solo el primero
-                        // sea el ganador
-                        if (posiciones[i] >= META - 135 && carreraEnCurso) {
-                            carreraEnCurso = false; // Detener la carrera
-                            ganador = i; // Establecer el ganador
-                            if (ganador + 1 == caballoSeleccionado) {
-                                panelApuestasCaballos.mostrarGanador(true, i + 1);
-                            } else {
-                                panelApuestasCaballos.mostrarGanador(false, i + 1);
+                            if (frameCaballo[i] == 8) {
+                                frameCaballo[i] = 1;
                             }
-                            reiniciarJuego();
-                            break;
+                            caballoImagen[i] = new ImageIcon(
+                                    "resources/img/juegos/caballos/animacion/" + (i % 2 == 1 ? "negro" : "normal")
+                                            + "/caballo"
+                                            + (frameCaballo[i]++) + ".png")
+                                    .getImage();
+
+                            // Verifica si algún caballo ha cruzado la meta y asegura que solo el primero
+                            // sea el ganador
+                            if (posiciones[i] >= META - 135 && carreraEnCurso) {
+                                carreraEnCurso = false; // Detener la carrera
+                                ganador = i; // Establecer el ganador
+                                if (ganador + 1 == caballoSeleccionado) {
+                                    panelApuestasCaballos.mostrarGanador(true, i + 1);
+                                } else {
+                                    panelApuestasCaballos.mostrarGanador(false, i + 1);
+                                }
+                                reiniciarJuego();
+                                break;
+                            }
                         }
-                    }
-                    repaint();
+                        repaint();
+                    });
                 } catch (InterruptedException e) {
                 }
             }
@@ -135,8 +138,10 @@ public class PanelCaballos extends JPanel {
         for (int i = 0; i < NUM_CABALLOS; i++) {
             posiciones[i] = 0;
         }
-        repaint(); // Refresca la interfaz
-        panelApuestasCaballos.reiniciarJuego();
+        SwingUtilities.invokeLater(() -> {
+            repaint(); // Refresca la interfaz
+            panelApuestasCaballos.reiniciarJuego();
+        });
     }
 
     @Override

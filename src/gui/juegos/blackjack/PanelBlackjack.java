@@ -32,6 +32,8 @@ public class PanelBlackjack extends JPanel {
     private Mano manoCrupier;
     private Mano manoJugador;
     private final JPanel panelSuperiorDerecha;
+    private Thread hiloCalculoProbabilidades;
+    private boolean pararHiloCalculoProbabilidades = false;
 
     private JLabel labelProbabilidadPedirGanar;
     private JLabel labelProbabilidadPedirEmpatar;
@@ -99,37 +101,38 @@ public class PanelBlackjack extends JPanel {
         add(contenedorDerecha, BorderLayout.EAST);
 
         // Agregar un oyente al botón de calcular probabilidades
-        botonCalcularProbabilidades.addActionListener(e -> new Thread(() -> {
-            SwingUtilities.invokeLater(() -> {
-                botonCalcularProbabilidades.setEnabled(false);
-                botonCalcularProbabilidades.setText("Calculando...");
+        botonCalcularProbabilidades.addActionListener(e -> {
+            hiloCalculoProbabilidades = new Thread(() -> {
+                SwingUtilities.invokeLater(() -> {
+                    botonCalcularProbabilidades.setEnabled(false);
+                    botonCalcularProbabilidades.setText("Calculando...");
+                });
+                Mazo mazo = new Mazo();
+                mazo.quitarCartas(manoCrupier.getCartas());
+                mazo.quitarCartas(manoJugador.getCartas());
+                final double[] probabilidadesPedir = calcularProbabilidades(true, manoCrupier, manoJugador, mazo);
+                SwingUtilities.invokeLater(() -> {
+                    labelProbabilidadPedirGanar
+                            .setText("Ganar: " + String.format("%.2f", probabilidadesPedir[0] * 100) + "%");
+                    labelProbabilidadPedirEmpatar
+                            .setText("Empatar: " + String.format("%.2f", probabilidadesPedir[1] * 100) + "%");
+                    labelProbabilidadPedirPerder
+                            .setText("Perder: " + String.format("%.2f", probabilidadesPedir[2] * 100) + "%");
+                });
+                final double[] probabilidadesPlantarse = calcularProbabilidades(false, manoCrupier, manoJugador, mazo);
+                SwingUtilities.invokeLater(() -> {
+                    labelProbabilidadPlantarseGanar
+                            .setText("Ganar: " + String.format("%.2f", probabilidadesPlantarse[0] * 100) + "%");
+                    labelProbabilidadPlantarseEmpatar
+                            .setText("Empatar: " + String.format("%.2f", probabilidadesPlantarse[1] * 100) + "%");
+                    labelProbabilidadPlantarsePerder
+                            .setText("Perder: " + String.format("%.2f", probabilidadesPlantarse[2] * 100) + "%");
+                    botonCalcularProbabilidades.setEnabled(true);
+                    botonCalcularProbabilidades.setText("Calcular");
+                });
             });
-            Mazo mazo = new Mazo();
-            mazo.quitarCartas(manoCrupier.getCartas());
-            mazo.quitarCartas(manoJugador.getCartas());
-            final double[] probabilidadesPedir = calcularProbabilidades(true, manoCrupier, manoJugador,
-                    mazo);
-            SwingUtilities.invokeLater(() -> {
-                labelProbabilidadPedirGanar
-                        .setText("Ganar: " + String.format("%.2f", probabilidadesPedir[0] * 100) + "%");
-                labelProbabilidadPedirEmpatar
-                        .setText("Empatar: " + String.format("%.2f", probabilidadesPedir[1] * 100) + "%");
-                labelProbabilidadPedirPerder
-                        .setText("Perder: " + String.format("%.2f", probabilidadesPedir[2] * 100) + "%");
-            });
-            final double[] probabilidadesPlantarse = calcularProbabilidades(false, manoCrupier, manoJugador,
-                    mazo);
-            SwingUtilities.invokeLater(() -> {
-                labelProbabilidadPlantarseGanar
-                        .setText("Ganar: " + String.format("%.2f", probabilidadesPlantarse[0] * 100) + "%");
-                labelProbabilidadPlantarseEmpatar
-                        .setText("Empatar: " + String.format("%.2f", probabilidadesPlantarse[1] * 100) + "%");
-                labelProbabilidadPlantarsePerder
-                        .setText("Perder: " + String.format("%.2f", probabilidadesPlantarse[2] * 100) + "%");
-                botonCalcularProbabilidades.setEnabled(true);
-                botonCalcularProbabilidades.setText("Calcular");
-            });
-        }).start());
+            hiloCalculoProbabilidades.start();
+        });
     }
 
     // Método que se llama para actualizar los datos y repintar el panel
@@ -139,9 +142,17 @@ public class PanelBlackjack extends JPanel {
         this.manoJugador = manoJugador;
         this.botonPlantarse = botonPlantarse;
 
-        botonCalcularProbabilidades.setEnabled(botonPlantarse.isEnabled());
+        SwingUtilities.invokeLater(() -> botonCalcularProbabilidades.setEnabled(botonPlantarse.isEnabled()));
 
         repaint();
+    }
+
+    protected void romperCalculoProbabilidades() {
+        if (hiloCalculoProbabilidades != null) {
+            pararHiloCalculoProbabilidades = true;
+            hiloCalculoProbabilidades.interrupt();
+        }
+        botonCalcularProbabilidades.setText("Calcular");
     }
 
     @Override

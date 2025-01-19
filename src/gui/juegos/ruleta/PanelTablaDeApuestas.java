@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 //IAG: ChatGPT y GitHub Copilot
 //ADAPTADO: Ordenar y limpiar código, anadir funcionalidades y autocompeltado
@@ -175,20 +176,24 @@ public class PanelTablaDeApuestas extends JPanel {
             botonGirar.setEnabled(false);
             setApuestasPermitidas(false);
             lblInfo.setText("No va más!");
-            this.ruleta.spinRoulette(this);
+            SwingUtilities.invokeLater(() -> this.ruleta.spinRoulette(this));
         });
         add(botonGirar, gbc);
     }
 
     protected void premiarNumero(int n) {
-        int premio = premio(n);
-        GestorBD.agregarMovimiento(usuario, premio, AsuntoMovimiento.RULETA_PREMIO);
-        JOptionPane.showMessageDialog(this,
-                "Número premiado: " + n + "\nPremio: " + premio);
-        setApuestasPermitidas(true);
-        lblInfo.setText("Ultimo premio: " + n);
-        limpiarApuestas();
-        botonGirar.setEnabled(true);
+        SwingUtilities.invokeLater(() -> {
+            int premio = premio(n);
+            if (premio > 0) {
+                GestorBD.agregarMovimiento(usuario, premio, AsuntoMovimiento.RULETA_PREMIO);
+            }
+            JOptionPane.showMessageDialog(this,
+                    "Número premiado: " + n + "\nPremio: " + premio);
+            setApuestasPermitidas(true);
+            lblInfo.setText("Ultimo premio: " + n);
+            limpiarApuestas();
+            botonGirar.setEnabled(true);
+        });
     }
 
     protected void setApuestasPermitidas(boolean b) {

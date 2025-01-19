@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingUtilities;
 
 //IAG: GitHub Copilot
 //ADAPTADO: Autocompeltado
@@ -21,36 +22,36 @@ public class PanelApuestasBlackjack extends JPanel {
     protected final JButton botonIniciar = new JButton("Iniciar Partida");
     protected final JButton botonPedir = new JButton("Pedir");
     protected final JButton botonPlantarse = new JButton("Plantarse");
-    protected final JSpinner spinnerApuesta = new JSpinner(new SpinnerNumberModel(0, 0, 10000, 1)); // Mín: 0, Máx:
-                                                                                                    // 10000,
-                                                                                                    // Incremento: 1
+    protected final JSpinner spinnerApuesta = new JSpinner(new SpinnerNumberModel(0, 0, 10000, 1));
     protected final JCheckBox checkAutomatico = new JCheckBox("Auto");
 
     public PanelApuestasBlackjack() {
-        setLayout(new FlowLayout());
+        SwingUtilities.invokeLater(() -> {
+            setLayout(new FlowLayout());
 
-        // Deshabilitar botones hasta que comience la partida
-        botonPedir.setEnabled(false);
-        botonPlantarse.setEnabled(false);
+            // Deshabilitar botones hasta que comience la partida
+            botonPedir.setEnabled(false);
+            botonPlantarse.setEnabled(false);
 
-        // Etiqueta y Spinner para la apuesta
-        add(new JLabel("Apuesta: "));
-        add(spinnerApuesta);
+            // Etiqueta y Spinner para la apuesta
+            add(new JLabel("Apuesta: "));
+            add(spinnerApuesta);
 
-        // Agregar botones y elementos adicionales
-        add(botonIniciar);
-        add(checkAutomatico);
-        add(new JLabel(" | "));
-        add(botonPedir);
-        add(botonPlantarse);
+            // Agregar botones y elementos adicionales
+            add(botonIniciar);
+            add(checkAutomatico);
+            add(new JLabel(" | "));
+            add(botonPedir);
+            add(botonPlantarse);
 
-        if (ConfigProperties.isUiDarkMode()) {
-            setBackground(ColorVariables.COLOR_ROJO_DARK.getColor());
-            setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
-        } else {
-            setBackground(ColorVariables.COLOR_ROJO_LIGHT.getColor());
-            setForeground(ColorVariables.COLOR_TEXTO_LIGHT.getColor());
-        }
+            if (ConfigProperties.isUiDarkMode()) {
+                setBackground(ColorVariables.COLOR_ROJO_DARK.getColor());
+                setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());
+            } else {
+                setBackground(ColorVariables.COLOR_ROJO_LIGHT.getColor());
+                setForeground(ColorVariables.COLOR_TEXTO_LIGHT.getColor());
+            }
+        });
     }
 
     // Obtener la cantidad apostada

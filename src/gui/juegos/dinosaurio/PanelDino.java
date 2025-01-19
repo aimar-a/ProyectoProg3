@@ -100,7 +100,7 @@ public class PanelDino extends JPanel {
                 if (multiplier > MAX_MULTIPLIER) {
                     multiplier = MAX_MULTIPLIER;
                 }
-                updateUIElements();
+                SwingUtilities.invokeLater(this::updateUIElements);
                 checkCrash();
             }
         });
@@ -116,7 +116,7 @@ public class PanelDino extends JPanel {
     private void checkCrash() {
         double crashChance = 0.05 + (multiplier / MAX_MULTIPLIER) * 0.1;
         if (random.nextDouble() < crashChance) {
-            endGame(false);
+            SwingUtilities.invokeLater(() -> endGame(false));
         }
     }
 
@@ -165,7 +165,7 @@ public class PanelDino extends JPanel {
         if (!isRunning) {
             isRunning = true;
             multiplier = INITIAL_MULTIPLIER;
-            updateUIElements();
+            SwingUtilities.invokeLater(this::updateUIElements);
             timer.start();
             startAnimation();
         }
