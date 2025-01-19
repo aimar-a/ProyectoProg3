@@ -27,7 +27,8 @@ import javax.swing.SwingUtilities;
 //IAG: GitHub Copilot
 //ADAPTADO: Anadir funcionalidades y autocompeltado
 public class PanelMinas extends JPanel {
-    private final JButton[][] botones = new JButton[5][5]; // Matriz de botones
+	private static final long serialVersionUID = 1L;
+	private final JButton[][] botones = new JButton[5][5]; // Matriz de botones
     private final boolean[][] minas = new boolean[][] {
             { false, false, false, false, false },
             { false, false, false, false, false },

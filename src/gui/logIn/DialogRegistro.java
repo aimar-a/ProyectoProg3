@@ -30,7 +30,8 @@ import javax.swing.event.DocumentListener;
 public class DialogRegistro extends JDialog {
 
     private static final long serialVersionUID = 1L;
-    private static final Font FORMAT_INFO_FONT = new Font("Arial", Font.ITALIC, 10);
+    @SuppressWarnings("unused")
+	private static final Font FORMAT_INFO_FONT = new Font("Arial", Font.ITALIC, 10);
 
     public DialogRegistro(DialogLogIn parent) {
         super(parent, "Registrar Usuario", true);

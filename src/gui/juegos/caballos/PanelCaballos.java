@@ -30,6 +30,7 @@ public class PanelCaballos extends JPanel {
 
     private PanelApuestasCaballos panelApuestasCaballos;
 
+    @SuppressWarnings("serial")
     public PanelCaballos() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Configura layout vertical
         caballoImagen = new Image[NUM_CABALLOS];

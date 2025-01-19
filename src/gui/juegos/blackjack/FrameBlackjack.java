@@ -12,6 +12,7 @@ import javax.swing.SwingUtilities;
 
 //IAG: GitHub Copilot
 //ADAPTADO: Autocompeltado
+@SuppressWarnings("serial")
 public class FrameBlackjack extends BaseGamesFrame {
     private final PanelBlackjack panelBlackjack;
     private final PanelApuestasBlackjack panelApuestas;

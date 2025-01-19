@@ -10,6 +10,8 @@ import javax.swing.SwingUtilities;
 //ADAPTADO: Autocompeltado
 public class FrameRuleta extends BaseGamesFrame {
 
+	private static final long serialVersionUID = 1L;
+
 	public FrameRuleta(FrameMenuPrincipal frameMenuPrincipal) {
 		super("Ruleta", frameMenuPrincipal);
 

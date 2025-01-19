@@ -16,7 +16,8 @@ import javax.swing.SwingUtilities;
 //IAG: ChatGPT y GitHub Copilot
 //ADAPTADO: Ordenar y limpiar código, anadir funcionalidades y autocompeltado
 public class PanelRuleta extends JPanel {
-    private final int[] numbers = {
+	private static final long serialVersionUID = 1L;
+	private final int[] numbers = {
             0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5,
             24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26
     };

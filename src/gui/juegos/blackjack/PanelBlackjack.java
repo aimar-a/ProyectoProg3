@@ -28,12 +28,15 @@ import javax.swing.SwingUtilities;
 //IAG: GitHub Copilot
 //ADAPTADO: Anadir funcionalidades y autocompeltado
 public class PanelBlackjack extends JPanel {
-    private JButton botonPlantarse;
+  
+	private static final long serialVersionUID = 1L;
+	private JButton botonPlantarse;
     private Mano manoCrupier;
     private Mano manoJugador;
     private final JPanel panelSuperiorDerecha;
     private Thread hiloCalculoProbabilidades;
-    private boolean pararHiloCalculoProbabilidades = false;
+    @SuppressWarnings("unused")
+	private boolean pararHiloCalculoProbabilidades = false;
 
     private JLabel labelProbabilidadPedirGanar;
     private JLabel labelProbabilidadPedirEmpatar;

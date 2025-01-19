@@ -9,7 +9,9 @@ import javax.swing.SwingUtilities;
 //ADAPTADO: Autocompeltado
 public class FrameCaballos extends BaseGamesFrame {
 
-    public FrameCaballos(FrameMenuPrincipal frameMenuPrincipal) {
+	private static final long serialVersionUID = -8690598750646963543L;
+
+	public FrameCaballos(FrameMenuPrincipal frameMenuPrincipal) {
         super("Carreras de caballos", frameMenuPrincipal);
 
         SwingUtilities.invokeLater(() -> {
