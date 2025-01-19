@@ -110,6 +110,7 @@ public class PanelBlackjack extends JPanel {
                 Mazo mazo = new Mazo();
                 mazo.quitarCartas(manoCrupier.getCartas());
                 mazo.quitarCartas(manoJugador.getCartas());
+
                 final double[] probabilidadesPedir = calcularProbabilidades(true, manoCrupier, manoJugador, mazo);
                 SwingUtilities.invokeLater(() -> {
                     labelProbabilidadPedirGanar
@@ -119,6 +120,7 @@ public class PanelBlackjack extends JPanel {
                     labelProbabilidadPedirPerder
                             .setText("Perder: " + String.format("%.2f", probabilidadesPedir[2] * 100) + "%");
                 });
+
                 final double[] probabilidadesPlantarse = calcularProbabilidades(false, manoCrupier, manoJugador, mazo);
                 SwingUtilities.invokeLater(() -> {
                     labelProbabilidadPlantarseGanar
@@ -127,6 +129,7 @@ public class PanelBlackjack extends JPanel {
                             .setText("Empatar: " + String.format("%.2f", probabilidadesPlantarse[1] * 100) + "%");
                     labelProbabilidadPlantarsePerder
                             .setText("Perder: " + String.format("%.2f", probabilidadesPlantarse[2] * 100) + "%");
+
                     botonCalcularProbabilidades.setEnabled(true);
                     botonCalcularProbabilidades.setText("Calcular");
                 });

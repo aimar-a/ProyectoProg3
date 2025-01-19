@@ -31,6 +31,14 @@ public class Mano {
         }
     }
 
+    public void quitarCarta() {
+        Carta carta = cartas.remove(cartas.size() - 1);
+        suma -= carta.getValor();
+        if (carta.esAs()) {
+            cuentaAses--;
+        }
+    }
+
     public int getSuma() {
         while (suma > 21 && cuentaAses > 0) {
             suma -= 10;

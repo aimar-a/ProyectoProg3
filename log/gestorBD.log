@@ -2552,3 +2552,547 @@ ene 19, 2025 5:09:32 P. M. db.GestorBD actualizarSaldo
 INFO: Saldo actualizado para el usuario aimi: 6776
 ene 19, 2025 5:09:32 P. M. db.GestorBD agregarMovimiento
 INFO: Movimiento agregado para el usuario aimi: -2 fichas, asunto: slots:apuesta
+ene 19, 2025 6:20:16 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 19, 2025 6:20:21 P. M. db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+ene 19, 2025 6:20:21 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6776
+ene 19, 2025 6:20:21 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6776
+ene 19, 2025 6:20:33 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6776
+ene 19, 2025 6:20:38 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 19, 2025 6:20:42 P. M. db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+ene 19, 2025 6:20:42 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6776
+ene 19, 2025 6:20:42 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6776
+ene 19, 2025 6:20:45 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6776
+ene 19, 2025 6:20:45 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6776
+ene 19, 2025 6:20:45 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6776
+ene 19, 2025 6:20:45 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6773
+ene 19, 2025 6:20:46 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -3 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:22:04 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6773
+ene 19, 2025 6:22:06 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6773
+ene 19, 2025 6:22:06 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6773
+ene 19, 2025 6:22:06 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6773
+ene 19, 2025 6:22:07 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6769
+ene 19, 2025 6:22:07 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -4 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:22:11 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6769
+ene 19, 2025 6:22:11 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6769
+ene 19, 2025 6:22:11 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6769
+ene 19, 2025 6:22:11 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6765
+ene 19, 2025 6:22:12 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -4 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:22:18 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6765
+ene 19, 2025 6:22:18 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6765
+ene 19, 2025 6:22:18 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6765
+ene 19, 2025 6:22:18 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6761
+ene 19, 2025 6:22:18 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -4 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:28:38 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 19, 2025 6:28:44 P. M. db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+ene 19, 2025 6:28:45 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6761
+ene 19, 2025 6:28:45 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6761
+ene 19, 2025 6:28:48 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6761
+ene 19, 2025 6:28:48 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6761
+ene 19, 2025 6:28:48 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6761
+ene 19, 2025 6:28:48 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6759
+ene 19, 2025 6:28:48 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -2 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:28:51 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6759
+ene 19, 2025 6:28:51 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6759
+ene 19, 2025 6:28:51 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6759
+ene 19, 2025 6:28:52 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6757
+ene 19, 2025 6:28:52 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -2 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:31:49 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 19, 2025 6:31:55 P. M. db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: aimi
+ene 19, 2025 6:31:55 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6757
+ene 19, 2025 6:31:55 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6757
+ene 19, 2025 6:31:58 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6757
+ene 19, 2025 6:31:58 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6757
+ene 19, 2025 6:31:58 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6757
+ene 19, 2025 6:31:59 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6752
+ene 19, 2025 6:31:59 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:32:20 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6752
+ene 19, 2025 6:32:20 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6752
+ene 19, 2025 6:32:20 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6762
+ene 19, 2025 6:32:20 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: 10 fichas, asunto: blackjack:premio
+ene 19, 2025 6:32:25 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6762
+ene 19, 2025 6:32:25 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6762
+ene 19, 2025 6:32:25 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6762
+ene 19, 2025 6:32:26 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6757
+ene 19, 2025 6:32:27 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:32:32 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6757
+ene 19, 2025 6:32:32 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6757
+ene 19, 2025 6:32:32 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6757
+ene 19, 2025 6:32:32 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6752
+ene 19, 2025 6:32:32 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:32:36 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6752
+ene 19, 2025 6:32:36 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6752
+ene 19, 2025 6:32:36 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6752
+ene 19, 2025 6:32:36 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6747
+ene 19, 2025 6:32:36 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:32:39 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6747
+ene 19, 2025 6:32:39 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6747
+ene 19, 2025 6:32:39 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6747
+ene 19, 2025 6:32:39 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6742
+ene 19, 2025 6:32:39 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:32:42 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6742
+ene 19, 2025 6:32:42 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6742
+ene 19, 2025 6:32:42 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6742
+ene 19, 2025 6:32:42 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6737
+ene 19, 2025 6:32:42 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:32:45 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6737
+ene 19, 2025 6:32:45 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6737
+ene 19, 2025 6:32:45 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6737
+ene 19, 2025 6:32:45 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6732
+ene 19, 2025 6:32:45 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:32:48 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6732
+ene 19, 2025 6:32:48 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6732
+ene 19, 2025 6:32:48 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6732
+ene 19, 2025 6:32:48 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6727
+ene 19, 2025 6:32:48 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:32:51 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6727
+ene 19, 2025 6:32:51 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6727
+ene 19, 2025 6:32:51 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6727
+ene 19, 2025 6:32:51 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6722
+ene 19, 2025 6:32:51 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:32:54 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6722
+ene 19, 2025 6:32:54 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6722
+ene 19, 2025 6:32:54 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6722
+ene 19, 2025 6:32:55 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6717
+ene 19, 2025 6:32:55 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:32:57 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6717
+ene 19, 2025 6:32:57 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6717
+ene 19, 2025 6:32:57 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6717
+ene 19, 2025 6:32:58 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6712
+ene 19, 2025 6:32:58 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:32:59 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6712
+ene 19, 2025 6:32:59 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6712
+ene 19, 2025 6:32:59 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6712
+ene 19, 2025 6:33:00 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6707
+ene 19, 2025 6:33:00 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:33:01 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6707
+ene 19, 2025 6:33:01 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6707
+ene 19, 2025 6:33:01 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6707
+ene 19, 2025 6:33:01 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6702
+ene 19, 2025 6:33:01 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -5 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:33:09 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6702
+ene 19, 2025 6:33:14 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6702
+ene 19, 2025 6:33:14 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6702
+ene 19, 2025 6:33:14 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6702
+ene 19, 2025 6:33:15 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6696
+ene 19, 2025 6:33:15 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -6 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:33:33 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6696
+ene 19, 2025 6:33:33 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6696
+ene 19, 2025 6:33:33 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6696
+ene 19, 2025 6:33:33 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6690
+ene 19, 2025 6:33:33 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -6 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:33:35 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6690
+ene 19, 2025 6:33:35 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6690
+ene 19, 2025 6:33:35 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6690
+ene 19, 2025 6:33:35 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6684
+ene 19, 2025 6:33:35 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -6 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:33:36 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6684
+ene 19, 2025 6:33:36 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6684
+ene 19, 2025 6:33:36 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6684
+ene 19, 2025 6:33:37 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6678
+ene 19, 2025 6:33:37 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -6 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:33:38 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6678
+ene 19, 2025 6:33:38 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6678
+ene 19, 2025 6:33:38 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6678
+ene 19, 2025 6:33:38 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6672
+ene 19, 2025 6:33:38 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -6 fichas, asunto: blackjack:apuesta
+ene 19, 2025 6:33:40 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6672
+ene 19, 2025 6:33:40 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6672
+ene 19, 2025 6:33:40 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario aimi: 6672
+ene 19, 2025 6:33:40 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario aimi: 6666
+ene 19, 2025 6:33:40 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario aimi: -6 fichas, asunto: blackjack:apuesta
+ene 19, 2025 7:23:54 P. M. db.GestorBD obtenerContrasena
+INFO: Contraseña obtenida para el usuario: test
+ene 19, 2025 7:23:55 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 1000
+ene 19, 2025 7:23:56 P. M. db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: test
+ene 19, 2025 7:23:57 P. M. db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: test
+ene 19, 2025 7:24:00 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 1000
+ene 19, 2025 7:24:07 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 1000
+ene 19, 2025 7:24:07 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 1000
+ene 19, 2025 7:24:07 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 1000
+ene 19, 2025 7:24:08 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 890
+ene 19, 2025 7:24:08 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -110 fichas, asunto: caballos:apuesta
+ene 19, 2025 7:24:35 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 890
+ene 19, 2025 7:24:35 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 890
+ene 19, 2025 7:24:35 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 890
+ene 19, 2025 7:24:35 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 800
+ene 19, 2025 7:24:36 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -90 fichas, asunto: caballos:apuesta
+ene 19, 2025 7:24:53 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 800
+ene 19, 2025 7:24:57 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 800
+ene 19, 2025 7:24:57 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 800
+ene 19, 2025 7:24:57 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 775
+ene 19, 2025 7:24:58 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -25 fichas, asunto: ruleta:apuesta
+ene 19, 2025 7:25:01 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 775
+ene 19, 2025 7:25:01 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 775
+ene 19, 2025 7:25:01 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 750
+ene 19, 2025 7:25:01 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -25 fichas, asunto: ruleta:apuesta
+ene 19, 2025 7:25:07 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 750
+ene 19, 2025 7:25:07 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 750
+ene 19, 2025 7:25:07 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 725
+ene 19, 2025 7:25:07 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -25 fichas, asunto: ruleta:apuesta
+ene 19, 2025 7:25:20 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 725
+ene 19, 2025 7:25:20 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 725
+ene 19, 2025 7:25:20 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 700
+ene 19, 2025 7:25:20 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -25 fichas, asunto: ruleta:apuesta
+ene 19, 2025 7:25:27 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 700
+ene 19, 2025 7:25:27 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 700
+ene 19, 2025 7:25:27 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 675
+ene 19, 2025 7:25:27 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -25 fichas, asunto: ruleta:apuesta
+ene 19, 2025 7:25:43 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 675
+ene 19, 2025 7:25:43 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 675
+ene 19, 2025 7:25:43 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 650
+ene 19, 2025 7:25:43 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -25 fichas, asunto: ruleta:apuesta
+ene 19, 2025 7:25:43 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 650
+ene 19, 2025 7:25:43 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 650
+ene 19, 2025 7:25:43 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 625
+ene 19, 2025 7:25:44 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -25 fichas, asunto: ruleta:apuesta
+ene 19, 2025 7:25:51 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 625
+ene 19, 2025 7:25:51 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 625
+ene 19, 2025 7:25:51 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 675
+ene 19, 2025 7:25:52 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: 50 fichas, asunto: ruleta:premio
+ene 19, 2025 7:25:55 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 675
+ene 19, 2025 7:26:03 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 675
+ene 19, 2025 7:26:03 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 675
+ene 19, 2025 7:26:03 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 675
+ene 19, 2025 7:26:03 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 655
+ene 19, 2025 7:26:04 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -20 fichas, asunto: slots:apuesta
+ene 19, 2025 7:26:07 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 655
+ene 19, 2025 7:26:07 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 655
+ene 19, 2025 7:26:07 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 655
+ene 19, 2025 7:26:07 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 635
+ene 19, 2025 7:26:07 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -20 fichas, asunto: slots:apuesta
+ene 19, 2025 7:26:13 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 635
+ene 19, 2025 7:26:15 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 635
+ene 19, 2025 7:26:15 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 635
+ene 19, 2025 7:26:15 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 635
+ene 19, 2025 7:26:16 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 630
+ene 19, 2025 7:26:16 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -5 fichas, asunto: blackjack:apuesta
+ene 19, 2025 7:26:21 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 630
+ene 19, 2025 7:26:21 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 630
+ene 19, 2025 7:26:21 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 635
+ene 19, 2025 7:26:21 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: 5 fichas, asunto: blackjack:empate
+ene 19, 2025 7:26:56 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 635
+ene 19, 2025 7:26:56 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 635
+ene 19, 2025 7:26:56 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 635
+ene 19, 2025 7:26:56 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 625
+ene 19, 2025 7:26:56 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -10 fichas, asunto: blackjack:apuesta
+ene 19, 2025 7:27:01 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 625
+ene 19, 2025 7:27:01 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 625
+ene 19, 2025 7:27:03 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 645
+ene 19, 2025 7:27:03 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: 20 fichas, asunto: blackjack:premio
+ene 19, 2025 7:27:11 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 645
+ene 19, 2025 7:27:19 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 645
+ene 19, 2025 7:27:19 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 645
+ene 19, 2025 7:27:19 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 545
+ene 19, 2025 7:27:19 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -100 fichas, asunto: minas:apuesta
+ene 19, 2025 7:27:25 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 545
+ene 19, 2025 7:27:25 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 545
+ene 19, 2025 7:27:25 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 635
+ene 19, 2025 7:27:25 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: 90 fichas, asunto: minas:premio
+ene 19, 2025 7:27:26 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 635
+ene 19, 2025 7:27:26 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 635
+ene 19, 2025 7:27:26 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 535
+ene 19, 2025 7:27:27 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -100 fichas, asunto: minas:apuesta
+ene 19, 2025 7:27:36 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 535
+ene 19, 2025 7:27:36 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 535
+ene 19, 2025 7:27:37 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 705
+ene 19, 2025 7:27:37 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: 170 fichas, asunto: minas:premio
+ene 19, 2025 7:27:38 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 705
+ene 19, 2025 7:27:38 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 705
+ene 19, 2025 7:27:38 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 605
+ene 19, 2025 7:27:38 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -100 fichas, asunto: minas:apuesta
+ene 19, 2025 7:27:42 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 605
+ene 19, 2025 7:27:47 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 605
+ene 19, 2025 7:27:47 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 605
+ene 19, 2025 7:27:47 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 605
+ene 19, 2025 7:27:47 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 595
+ene 19, 2025 7:27:47 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -10 fichas, asunto: dino:apuesta
+ene 19, 2025 7:27:52 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 595
+ene 19, 2025 7:27:52 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 595
+ene 19, 2025 7:27:52 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 595
+ene 19, 2025 7:27:52 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 585
+ene 19, 2025 7:27:52 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: -10 fichas, asunto: dino:apuesta
+ene 19, 2025 7:27:56 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 585
+ene 19, 2025 7:27:56 P. M. db.GestorBD obtenerSaldo
+INFO: Saldo obtenido para el usuario test: 585
+ene 19, 2025 7:27:56 P. M. db.GestorBD actualizarSaldo
+INFO: Saldo actualizado para el usuario test: 600
+ene 19, 2025 7:27:56 P. M. db.GestorBD agregarMovimiento
+INFO: Movimiento agregado para el usuario test: 15 fichas, asunto: dino:premio
+ene 19, 2025 7:28:02 P. M. db.GestorBD obtenerDatos
+INFO: Datos obtenidos para el usuario: test
+ene 19, 2025 7:28:03 P. M. db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: test
+ene 19, 2025 7:41:48 P. M. db.GestorBD obtenerHistorial
+SEVERE: Error al obtener historial.
+java.sql.SQLException: The url cannot be null
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:666)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:253)
+	at db.GestorBD.obtenerHistorial(GestorBD.java:309)
+	at Duty.main(Duty.java:9)
+
+ene 19, 2025 7:42:06 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 19, 2025 7:42:07 P. M. db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: test
+ene 19, 2025 7:43:07 P. M. db.GestorBD init
+INFO: Driver cargado.
+ene 19, 2025 7:43:07 P. M. db.GestorBD obtenerHistorial
+INFO: Historial obtenido para el usuario: test
