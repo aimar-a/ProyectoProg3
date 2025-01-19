@@ -41,7 +41,7 @@ public class PanelCaballos extends JPanel {
             posiciones[i] = 0;
             Random random = new Random();
             caballoImagen[i] = new ImageIcon(
-                    "resources/img/caballos/" + (i % 2 == 1 ? "negro" : "normal") + "/caballo8.png")
+                    "resources/img/juegos/caballos/animacion/" + (i % 2 == 1 ? "negro" : "normal") + "/caballo8.png")
                     .getImage();
             frameCaballo[i] = random.nextInt(7) + 1;
 
@@ -51,7 +51,7 @@ public class PanelCaballos extends JPanel {
                 @Override
                 protected void paintComponent(Graphics g) {
                     super.paintComponent(g);
-                    Image metaImagen = new ImageIcon("resources/img/caballos/meta.png").getImage();
+                    Image metaImagen = new ImageIcon("resources/img/juegos/caballos/meta.png").getImage();
                     int newHeight = getHeight();
                     int newWidth = (int) (156.0 / 313.0 * newHeight);
                     g.setColor(Color.WHITE);
@@ -88,7 +88,8 @@ public class PanelCaballos extends JPanel {
                             frameCaballo[i] = 1;
                         }
                         caballoImagen[i] = new ImageIcon(
-                                "resources/img/caballos/" + (i % 2 == 1 ? "negro" : "normal") + "/caballo"
+                                "resources/img/juegos/caballos/animacion/" + (i % 2 == 1 ? "negro" : "normal")
+                                        + "/caballo"
                                         + (frameCaballo[i]++) + ".png")
                                 .getImage();
 

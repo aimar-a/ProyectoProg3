@@ -6,7 +6,7 @@ import domain.UsuarioActual;
 import gui.ColorVariables;
 import gui.juegos.blackjack.FrameBlackjack;
 import gui.juegos.caballos.FrameCaballos;
-import gui.juegos.dinoRun.FrameDino;
+import gui.juegos.dinosaurio.FrameDino;
 import gui.juegos.minas.FrameMinas;
 import gui.juegos.ruleta.FrameRuleta;
 import gui.juegos.slots.FrameSlots;
@@ -239,11 +239,11 @@ public class FrameMenuPrincipal extends JFrame {
         int botonWidth = (int) (getWidth() / (getWidth() > 1.5 * getHeight() ? 3.5 : 2.5));
         int botonHeight = (int) (getHeight() / (getWidth() > 1.5 * getHeight() ? 2.5 : 4));
 
-        ImageIcon icono = new ImageIcon("resources/img/mainMenu/" + juegoElegido.getNombre() + ".png");
+        ImageIcon icono = new ImageIcon("resources/img/juegos/" + juegoElegido.name().toLowerCase() + "/portada.png");
         Image scaledImage = icono.getImage().getScaledInstance(botonWidth, botonHeight, Image.SCALE_SMOOTH);
         ImageIcon scaledIcono = new ImageIcon(scaledImage);
 
-        JButton botonJuego = new JButton(juegoElegido.getNombre(), scaledIcono);
+        JButton botonJuego = new JButton(juegoElegido.name(), scaledIcono);
         botonJuego.setPreferredSize(new Dimension(botonWidth, botonHeight));
         botonJuego.setHorizontalTextPosition(SwingConstants.CENTER);
         botonJuego.setVerticalTextPosition(SwingConstants.CENTER);
@@ -257,7 +257,7 @@ public class FrameMenuPrincipal extends JFrame {
     private void configurarBotonPerfil() {
         int iconSize = 16;
 
-        ImageIcon iconoPerfil = new ImageIcon("resources/img/mainMenu/iconoPerfil.png");
+        ImageIcon iconoPerfil = new ImageIcon("resources/img/perfil/icono.png");
         Image scaledImagePerfil = iconoPerfil.getImage().getScaledInstance(iconSize, iconSize, Image.SCALE_SMOOTH);
         ImageIcon scaledIconPerfil = new ImageIcon(scaledImagePerfil);
 

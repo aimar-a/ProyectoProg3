@@ -117,7 +117,7 @@ public class PanelSlots extends JPanel {
             n = 21;
         }
         numsImg[columna][0] = n;
-        ImageIcon icono = new ImageIcon("resources/img/slots/slot" + n + ".png");
+        ImageIcon icono = new ImageIcon("resources/img/juegos/slots/simbolos/slot" + n + ".png");
         Image scaledImage = icono.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         ImageIcon scaledIcono = new ImageIcon(scaledImage);
         labelsSlots[columna][0].setIcon(scaledIcono);
@@ -131,7 +131,7 @@ public class PanelSlots extends JPanel {
                 if (n == 10 && (col != 2)) {
                     n = 0;
                 }
-                ImageIcon icono = new ImageIcon("resources/img/slots/slot" + n + ".png");
+                ImageIcon icono = new ImageIcon("resources/img/juegos/slots/simbolos/slot" + n + ".png");
                 Image scaledImage = icono.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
                 ImageIcon scaledIcono = new ImageIcon(scaledImage);
                 labelsSlots[col][fil].setIcon(scaledIcono);

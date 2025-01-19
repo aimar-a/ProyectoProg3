@@ -148,7 +148,7 @@ public class PanelTablaDeApuestas extends JPanel {
         String[] fichas = { "ficha_1", "ficha_5", "ficha_25", "ficha_50", "ficha_100", "borra" };
         for (int i = 4; i < 10; i++) {
             gbc.gridx = i;
-            ImageIcon icon = new ImageIcon("resources/img/ruleta/" + fichas[i - 4] + ".png");
+            ImageIcon icon = new ImageIcon("resources/img/juegos/ruleta/apuestas/" + fichas[i - 4] + ".png");
             Image img = icon.getImage();
             Image scaledImg = img.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
             JButton btn = new JButton(new ImageIcon(scaledImg));

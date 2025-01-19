@@ -50,7 +50,7 @@ public class PanelPremios extends JPanel {
                 JLabel c = new JLabel("");
                 c.setBackground(row % 2 == 0 ? Color.ORANGE : Color.YELLOW);
                 if (column == 0 || column == 1 || column == 2) {
-                    ImageIcon icon = new ImageIcon("resources/img/slots/slot" + value + ".png");
+                    ImageIcon icon = new ImageIcon("resources/img/juegos/slots/simbolos/slot" + value + ".png");
                     Image scaledImage = icon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
                     c.setIcon(new ImageIcon(scaledImage));
                     c.setHorizontalAlignment(JLabel.CENTER);

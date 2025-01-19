@@ -285,42 +285,42 @@ public class PanelHistorialMovimientos extends JPanel {
 
         private ImageIcon getIconForType(String value) {
             if (value.contains("slots")) {
-                return new ImageIcon("resources/img/perfil/slot.png");
+                return new ImageIcon("resources/img/perfil/movimientos/slot.png");
             } else if (value.contains("caballo")) {
-                return new ImageIcon("resources/img/perfil/caballo.png");
+                return new ImageIcon("resources/img/perfil/movimientos/caballo.png");
             } else if (value.contains("blackjack")) {
-                return new ImageIcon("resources/img/perfil/blackjack.png");
+                return new ImageIcon("resources/img/perfil/movimientos/blackjack.png");
             } else if (value.contains("ruleta")) {
-                return new ImageIcon("resources/img/perfil/ruleta.png");
+                return new ImageIcon("resources/img/perfil/movimientos/ruleta.png");
             } else if (value.contains("dino")) {
-                return new ImageIcon("resources/img/perfil/dino.png");
+                return new ImageIcon("resources/img/perfil/movimientos/dino.png");
             } else if (value.contains("minas")) {
-                return new ImageIcon("resources/img/perfil/minas.png");
+                return new ImageIcon("resources/img/perfil/movimientos/minas.png");
             } else if (value.contains("deposito")) {
-                return new ImageIcon("resources/img/perfil/deposito.png");
+                return new ImageIcon("resources/img/perfil/movimientos/deposito.png");
             } else if (value.contains("retiro")) {
-                return new ImageIcon("resources/img/perfil/retiro.png");
+                return new ImageIcon("resources/img/perfil/movimientos/retiro.png");
             } else if (value.contains("bienvenida")) {
-                return new ImageIcon("resources/img/perfil/bienvenida.png");
+                return new ImageIcon("resources/img/perfil/movimientos/bienvenida.png");
             }
             return null;
         }
 
         private ImageIcon getIconForAction(String value) {
             if (value.contains("premio")) {
-                return new ImageIcon("resources/img/perfil/premio.png");
+                return new ImageIcon("resources/img/perfil/movimientos/premio.png");
             } else if (value.contains("apuesta")) {
-                return new ImageIcon("resources/img/perfil/apuesta.png");
+                return new ImageIcon("resources/img/perfil/movimientos/apuesta.png");
             } else if (value.contains("empate")) {
-                return new ImageIcon("resources/img/perfil/empate.png");
+                return new ImageIcon("resources/img/perfil/movimientos/empate.png");
             } else if (value.contains("retirar_ap")) {
-                return new ImageIcon("resources/img/perfil/cancelar.png");
+                return new ImageIcon("resources/img/perfil/movimientos/cancelar.png");
             } else if (value.contains("deposito")) {
-                return new ImageIcon("resources/img/perfil/deposito.png");
+                return new ImageIcon("resources/img/perfil/movimientos/deposito.png");
             } else if (value.contains("retiro")) {
-                return new ImageIcon("resources/img/perfil/retiro.png");
+                return new ImageIcon("resources/img/perfil/movimientos/retiro.png");
             } else if (value.contains("bienvenida")) {
-                return new ImageIcon("resources/img/perfil/bienvenida.png");
+                return new ImageIcon("resources/img/perfil/movimientos/bienvenida.png");
             }
             return null;
         }

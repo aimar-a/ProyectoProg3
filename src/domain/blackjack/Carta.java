@@ -37,7 +37,7 @@ public class Carta {
     }
 
     public String getRutaImagen() {
-        return "resources/img/blackjack/" + toString() + ".png";
+        return "resources/img/juegos/blackjack/cartas/" + toString() + ".png";
     }
 
     @Override

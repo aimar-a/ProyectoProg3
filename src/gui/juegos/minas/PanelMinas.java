@@ -103,7 +103,7 @@ public class PanelMinas extends JPanel {
         for (int i = 0; i < 4; i++) {
             gbc.gridy = i + 1;
             gbc.gridx = 0;
-            ImageIcon icon = new ImageIcon("resources/img/minas/diamond_" + diamantes[i] + ".png");
+            ImageIcon icon = new ImageIcon("resources/img/juegos/minas/premios/diamond_" + diamantes[i] + ".png");
             Image scaled = icon.getImage().getScaledInstance(icon.getIconWidth() / 2, icon.getIconHeight() / 2,
                     Image.SCALE_SMOOTH);
             icon = new ImageIcon(scaled);
@@ -149,11 +149,12 @@ public class PanelMinas extends JPanel {
     private void pulsarBoton(int i, int j) {
         botones[i][j].setEnabled(false);
         if (minas[i][j]) {
-            botones[i][j].setDisabledIcon(new ImageIcon("resources/img/minas/bomb.png"));
+            botones[i][j].setDisabledIcon(new ImageIcon("resources/img/juegos/minas/bomb.png"));
             finalizarJuego(false);
         } else {
             String diamante = diamantes[rand.nextInt(diamantes.length)];
-            botones[i][j].setDisabledIcon(new ImageIcon("resources/img/minas/diamond_" + diamante + ".png"));
+            botones[i][j]
+                    .setDisabledIcon(new ImageIcon("resources/img/juegos/minas/premios/diamond_" + diamante + ".png"));
             int win;
             switch (diamante) {
                 case "blue" -> win = (int) (this.apuesta * 0.1);
@@ -197,8 +198,8 @@ public class PanelMinas extends JPanel {
         for (JButton[] fila : botones) {
             for (JButton boton : fila) {
                 int random = rand.nextInt(3) + 1;
-                boton.setIcon(new ImageIcon("resources/img/minas/box" + random + ".png"));
-                boton.setDisabledIcon(new ImageIcon("resources/img/minas/box" + random + ".png"));
+                boton.setIcon(new ImageIcon("resources/img/juegos/minas/cajas/box" + random + ".png"));
+                boton.setDisabledIcon(new ImageIcon("resources/img/juegos/minas/cajas/box" + random + ".png"));
             }
         }
     }

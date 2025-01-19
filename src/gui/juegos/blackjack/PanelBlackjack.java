@@ -172,7 +172,7 @@ public class PanelBlackjack extends JPanel {
                 g.drawImage(imagenCarta, 20 + (nuevoAnchoCarta + 5) * i, 40, nuevoAnchoCarta, nuevoAltoCarta, null);
             }
             if (this.manoCrupier.size() == 1) {
-                Image imagenCartaOculta = new ImageIcon("resources/img/Blackjack/BACK.png").getImage();
+                Image imagenCartaOculta = new ImageIcon("resources/img/juegos/blackjack/cartas/BACK.png").getImage();
                 g.drawImage(imagenCartaOculta, nuevoAnchoCarta + 25, 40, nuevoAnchoCarta, nuevoAltoCarta, null);
             }
 
