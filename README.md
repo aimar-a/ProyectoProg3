@@ -107,7 +107,7 @@ El archivo `database.properties` gestiona las configuraciones relacionadas con l
 # Configuración para crear una nueva base de datos y cargar datos desde archivos CSV
 
 db.create=true
-db.reCreateTables=true
+db.reCreateTables=false
 db.loadFromCSV=true
 ```
 
