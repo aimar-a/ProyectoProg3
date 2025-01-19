@@ -4,7 +4,13 @@
 
 **007 Casino** es una aplicación de casino virtual desarrollada en Java, diseñada para brindar una experiencia inmersiva y variada en el ámbito de los juegos de azar. La plataforma ofrece seis juegos populares: carreras de caballos, ruleta, máquinas tragamonedas (slots), blackjack, un juego de minas y un juego de dinosaurios.
 
+
 Los usuarios deben registrarse en la plataforma y autenticarse mediante un sistema seguro para disfrutar plenamente de las funciones de este casino virtual. Este proyecto combina entretenimiento con una sólida aplicación de conceptos de desarrollo en Java.
+
+
+
+
+
 
 ### Características
 
@@ -25,9 +31,21 @@ Los usuarios deben registrarse en la plataforma y autenticarse mediante un siste
     -   Consulta detallada del historial de movimientos, asegurando transparencia en las transacciones.
     -   Posibilidad de cambiar la contraseña de acceso.
 
+
+
+
+
+
+
+
 ### Requisitos
 
 -   **Java Development Kit**: jdk-21.0.4.7-hotspot o superior.
+
+
+
+
+
 
 ### Instalación y Ejecución
 
@@ -39,11 +57,35 @@ Los usuarios deben registrarse en la plataforma y autenticarse mediante un siste
     java src/main/Main
     ```
 
+
+
+
+
 ## Inicializacion de la base de datos
 
 1. Abrir el archivo conf/database.properties
 2. Cambiar db.create de false a true.
-3. En database.properties
+3. En database.properties encontramos (aparte de una variable que indica si crear la base de datos) la URL de la base de datos, el driver,
+una variable por si se quiere volver a crear tablas vacías, 
+los directorios donde se encuentran los csv para 
+inicializar los datos en la base de datos
+y una variable que indica si deseamos borrar los datos de las tablas y cargarlos desde los csv.
+4. Además, en interface.properties se inicializa con el modo oscuro y sin la pantalla 
+completa.
+Esto se puede cambiar cambiando las variables a true o false en función de lo que nos interese.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Estructura del Proyecto
 
@@ -54,6 +96,14 @@ Los usuarios deben registrarse en la plataforma y autenticarse mediante un siste
 -   `doc/` contiene el manual de correción
 -   `resources/` encontramos csv, la base de datos, y la carpetas con imagenes.
 
+
+
+
+
+
+
+
+
 ### Tecnologías Utilizadas
 
 -   **Java**: Lenguaje de programación principal.
@@ -61,11 +111,29 @@ Los usuarios deben registrarse en la plataforma y autenticarse mediante un siste
 -   **IA**: Utilizada para optimizar el proceso de desarrollo.
 -   **SQLite**: Utilización de base de datos
 
+
+
+
+
+
+
+
+
+
+
 ### Autores
 
 -   César Llata Remacha
 -   David Trueba López
 -   Aimar Arriaga Markaida
+
+
+
+
+
+
+
+
 
 ### Notas
 
