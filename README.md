@@ -1,24 +1,36 @@
-
-# 007 Casino
+  # 007 Casino
 
 ### Descripción
-**007 Casino** es una aplicación de casino virtual desarrollada en Java que busca ofrecer a los usuarios una experiencia inmersiva y variada en el mundo de los juegos de azar. La plataforma cuenta con cuatro juegos populares: carreras de caballos, máquinas tragamonedas (slots), blackjack y un juego de dinosaurios.
+**007 Casino** es una aplicación de casino virtual desarrollada en Java, diseñada para brindar una experiencia inmersiva y variada en el ámbito de los juegos de azar. La plataforma ofrece seis juegos populares: carreras de caballos, ruleta, máquinas tragamonedas (slots), blackjack, un juego de minas y un juego de dinosaurios.
 
-Para disfrutar de cualquiera de estos juegos, los usuarios deben registrarse en la plataforma y acceder a su cuenta mediante un sistema de autenticación seguro. Este proyecto ha sido diseñado para proporcionar entretenimiento mientras se refuerzan conceptos de desarrollo en Java.
+Los usuarios deben registrarse en la plataforma y autenticarse mediante un sistema seguro para disfrutar plenamente de las funciones de este casino virtual. Este proyecto combina entretenimiento con una sólida aplicación de conceptos de desarrollo en Java.
+
 
 ### Características
-- **Juegos disponibles**: Carreras de caballos, slots, blackjack y juego de dinosaurio.
-- **Interfaz intuitiva**: Diseñada utilizando Java Swing, la interfaz gráfica proporciona una navegación clara y amigable, apta para todo tipo de usuarios.
-- **Sistema de autenticación**:  A través de un proceso de registro y login, los usuarios pueden proteger sus cuentas y acceder a las funcionalidades completas del casino.
-- **Gestión de perfil**: Permite a los usuarios:
-  - Actualización de datos personales para mantener la información al día.
-  - Depositar o retirar dinero de su cuenta.
-  - Consulta detallada del historial de movimientos, proporcionando transparencia y control sobre las transacciones realizadas.
-  - Cambiar su contraseña. 
-- **Base de datos**: Un sistema de almacenamiento fiable que administra eficientemente la información de los usuarios. Incluye: 
-  - Datos de inicio de sesión para asegurar un acceso seguro.
-  - Registro de información personal y transacciones.
-  - Almacenamiento de saldo, historial de movimientos y preferencias del usuario.
+
+
+- **Base de datos confiable**:
+     - Almacenamiento de datos de inicio de sesión para garantizar seguridad.
+     - Opciones para depositar y retirar fondos.Registro de información personal y transacciones.
+     - Gestión eficiente del saldo, historial de movimientos y preferencias de los usuarios.
+
+ 
+- **Variedad de juegos:** Carreras de caballos, ruleta, slots, blackjack, minas y dinosaurios.
+
+
+- **Interfaz gráfica intuitiva**: Desarrollada con Java Swing, garantiza una navegación clara y accesible para usuarios de cualquier nivel.
+
+
+- **Sistema de autenticación seguro**: A través de un proceso de registro y login ,los usuarios pueden proteger sus cuentas y acceder a las funcionalidades completas del casino.
+
+
+- **Gestión integral de perfil**: 
+	Permite a los usuarios:
+   - Actualización de datos personales para mantener información precisa.
+   - Opciones para depositar y retirar fondos.
+   - Consulta detallada del historial de movimientos, asegurando transparencia en las transacciones.
+   - Posibilidad de cambiar la contraseña de acceso.
+   
 
      
 
@@ -32,6 +44,7 @@ Para disfrutar de cualquiera de estos juegos, los usuarios deben registrarse en 
    ```bash
    javac src/Main.java
    java src/Main
+
    ```
 ## Inicializacion de la base de datos
 1. Abrir el archivo resources/db/crearBD.txt.
@@ -39,7 +52,11 @@ Para disfrutar de cualquiera de estos juegos, los usuarios deben registrarse en 
 
 ### Estructura del Proyecto
 - `src/Main.java`: Punto de entrada del programa.
-- `src/` contiene las clases y paquetes del proyecto que gestionan los juegos, la autenticación, el perfil del usuario y la interfaz gráfica.
+- `src/` contiene las clases y paquetes del proyecto que gestionan los juegos, el gestor de la base de datos, la autenticación, el perfil del usuario y la interfaz gráfica.
+- `conf/` encontramos las propiedades de la interfaz y de la base de datos
+- `lib/` contiene la libreria para interactuar con la base de datos.
+- `resources/` encontramos csv, la base de datos, y la carpetas con imagenes.
+
 
 ### Tecnologías Utilizadas
 - **Java**: Lenguaje de programación principal.
