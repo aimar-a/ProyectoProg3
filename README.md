@@ -41,20 +41,19 @@ Los usuarios deben registrarse en la plataforma y autenticarse mediante un siste
 1. Clona este repositorio o descarga el código fuente.
 2. Asegúrate de tener el JDK en la versión especificada.
 3. Navega al directorio del proyecto y ejecuta el archivo principal:
-   ```bash
-   javac src/Main.java
-   java src/Main
-
+   src/main/Main.java 
    ```
 ## Inicializacion de la base de datos
-1. Abrir el archivo resources/db/crearBD.txt.
-2. Cambiar el txt de false a true.
+1. Abrir el archivo conf/database.properties
+2. Cambiar db.create de false a true.
+3. En database.properties
 
 ### Estructura del Proyecto
-- `src/Main.java`: Punto de entrada del programa.
+- `src/main/Main.java `: Punto de entrada del programa.
 - `src/` contiene las clases y paquetes del proyecto que gestionan los juegos, el gestor de la base de datos, la autenticación, el perfil del usuario y la interfaz gráfica.
 - `conf/` encontramos las propiedades de la interfaz y de la base de datos
 - `lib/` contiene la libreria para interactuar con la base de datos.
+- `doc/` contiene el manual de correción
 - `resources/` encontramos csv, la base de datos, y la carpetas con imagenes.
 
 
@@ -62,6 +61,7 @@ Los usuarios deben registrarse en la plataforma y autenticarse mediante un siste
 - **Java**: Lenguaje de programación principal.
 - **Java Swing**: Biblioteca para la creación de la interfaz gráfica.
 - **IA**: Utilizada para optimizar el proceso de desarrollo.
+- **SQLite**: Utilización de base de datos
 
 ### Autores
 - César Llata Remacha
