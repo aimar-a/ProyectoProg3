@@ -5,6 +5,8 @@ import gui.mainMenu.FrameMenuPrincipal;
 import java.awt.BorderLayout;
 import javax.swing.SwingUtilities;
 
+//IAG: GitHub Copilot
+//ADAPTADO: Autocompeltado
 public class FrameCaballos extends BaseGamesFrame {
 
     public FrameCaballos(FrameMenuPrincipal frameMenuPrincipal) {

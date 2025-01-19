@@ -24,7 +24,7 @@ import javax.swing.SwingUtilities;
 //ADAPTADO: Ordenar y limpiar código, anadir funcionalidades y autocompeltado
 public class PanelTablaDeApuestas extends JPanel {
     private static final long serialVersionUID = 1L;
-    private final int tamanoBoton = 50;
+    private static final int TAMANO_BOTON = 50;
     private final JButton[] botonesFichas = new JButton[6];
     private int fichaSeleccionada = 0;
     private final boolean darkMode;
@@ -49,9 +49,9 @@ public class PanelTablaDeApuestas extends JPanel {
         btn0.setBackground(Color.GREEN);
         btn0.setOpaque(true);
         btn0.setBorderPainted(true);
-        btn0.setPreferredSize(new Dimension(tamanoBoton, tamanoBoton));
-        gbc.ipadx = tamanoBoton;
-        gbc.ipady = tamanoBoton;
+        btn0.setPreferredSize(new Dimension(TAMANO_BOTON, TAMANO_BOTON));
+        gbc.ipadx = TAMANO_BOTON;
+        gbc.ipady = TAMANO_BOTON;
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridheight = 3;
@@ -75,7 +75,7 @@ public class PanelTablaDeApuestas extends JPanel {
             }
             btn.setForeground(Color.WHITE);
             btn.setBorderPainted(true);
-            btn.setPreferredSize(new Dimension(tamanoBoton, tamanoBoton));
+            btn.setPreferredSize(new Dimension(TAMANO_BOTON, TAMANO_BOTON));
             gbc.gridx = 1 + i % 12;
             gbc.gridy = i / 12;
             final int index = i;
@@ -90,7 +90,7 @@ public class PanelTablaDeApuestas extends JPanel {
             btn.setBackground(Color.GRAY);
             btn.setForeground(Color.WHITE);
             btn.setBorderPainted(true);
-            btn.setPreferredSize(new Dimension(tamanoBoton, tamanoBoton));
+            btn.setPreferredSize(new Dimension(TAMANO_BOTON, TAMANO_BOTON));
             gbc.gridy = i;
             final int index = i;
             btn.addActionListener(l -> ponerFicha("L" + (index + 1)));
@@ -107,7 +107,7 @@ public class PanelTablaDeApuestas extends JPanel {
             btn.setBackground(Color.GRAY);
             btn.setForeground(Color.WHITE);
             btn.setBorderPainted(true);
-            btn.setPreferredSize(new Dimension(tamanoBoton, tamanoBoton));
+            btn.setPreferredSize(new Dimension(TAMANO_BOTON, TAMANO_BOTON));
             gbc.gridx = i * 4 - 3;
             final int index = i;
             btn.addActionListener(l -> ponerFicha((index * 12 - 11) + "-" + (index * 12)));
@@ -119,22 +119,22 @@ public class PanelTablaDeApuestas extends JPanel {
         gbc.gridy = 4;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        String[] apuestas = { "Par", "Impar", "Rojo", "Negro", "1-18", "19-36" };
+        String[] apuestasPosibles = { "Par", "Impar", "Rojo", "Negro", "1-18", "19-36" };
         for (int i = 0; i < 6; i++) {
-            JButton btn = new JButton(apuestas[i]);
-            switch (apuestas[i]) {
+            JButton btn = new JButton(apuestasPosibles[i]);
+            switch (apuestasPosibles[i]) {
                 case "Rojo" -> btn.setBackground(Color.RED);
                 case "Negro" -> btn.setBackground(Color.BLACK);
                 default -> btn.setBackground(Color.GRAY);
             }
             btn.setForeground(Color.WHITE);
             btn.setBorderPainted(true);
-            btn.setPreferredSize(new Dimension(tamanoBoton, tamanoBoton));
+            btn.setPreferredSize(new Dimension(TAMANO_BOTON, TAMANO_BOTON));
             gbc.gridx = i * 2 + 1;
             final int index = i;
-            btn.addActionListener(l -> ponerFicha(apuestas[index]));
+            btn.addActionListener(l -> ponerFicha(apuestasPosibles[index]));
             add(btn, gbc);
-            botonesApuestas.put(apuestas[i], btn);
+            botonesApuestas.put(apuestasPosibles[i], btn);
         }
 
         gbc.gridy = 5;
@@ -219,41 +219,28 @@ public class PanelTablaDeApuestas extends JPanel {
         if (!apuestasPermitidas) {
             return;
         }
-        switch (fichaSeleccionada) {
-            case 0:
-                if (GestorBD.agregarMovimiento(usuario, -1, AsuntoMovimiento.RULETA_APUESTA)) {
-                    apuestas.put(apuesta, apuestas.getOrDefault(apuesta, 0) + 1);
-                }
-                break;
-            case 1:
-                if (GestorBD.agregarMovimiento(usuario, -5, AsuntoMovimiento.RULETA_APUESTA)) {
-                    apuestas.put(apuesta, apuestas.getOrDefault(apuesta, 0) + 5);
-                }
-                break;
-            case 2:
-                if (GestorBD.agregarMovimiento(usuario, -25, AsuntoMovimiento.RULETA_APUESTA)) {
-                    apuestas.put(apuesta, apuestas.getOrDefault(apuesta, 0) + 25);
-                }
-                break;
-            case 3:
-                if (GestorBD.agregarMovimiento(usuario, -50, AsuntoMovimiento.RULETA_APUESTA)) {
-                    apuestas.put(apuesta, apuestas.getOrDefault(apuesta, 0) + 50);
-                }
-                break;
-            case 4:
-                if (GestorBD.agregarMovimiento(usuario, -100, AsuntoMovimiento.RULETA_APUESTA)) {
-                    apuestas.put(apuesta, apuestas.getOrDefault(apuesta, 0) + 100);
-                }
-                break;
-            case 5:
-                if (GestorBD.agregarMovimiento(usuario, apuestas.get(apuesta),
-                        AsuntoMovimiento.RULETA_RETIRAR_APUESTA)) {
-                    apuestas.remove(apuesta);
-                }
-                break;
-            default:
-                throw new AssertionError();
+        int cantidad = switch (fichaSeleccionada) {
+            case 0 -> -1;
+            case 1 -> -5;
+            case 2 -> -25;
+            case 3 -> -50;
+            case 4 -> -100;
+            case 5 -> apuestas.getOrDefault(apuesta, 0);
+            default -> throw new AssertionError();
+        };
+        if (fichaSeleccionada == 5) {
+            if (GestorBD.agregarMovimiento(usuario, cantidad, AsuntoMovimiento.RULETA_RETIRAR_APUESTA)) {
+                apuestas.remove(apuesta);
+            }
+        } else {
+            if (GestorBD.agregarMovimiento(usuario, cantidad, AsuntoMovimiento.RULETA_APUESTA)) {
+                apuestas.put(apuesta, apuestas.getOrDefault(apuesta, 0) - cantidad);
+            }
         }
+        actualizarBotonApuesta(apuesta);
+    }
+
+    private void actualizarBotonApuesta(String apuesta) {
         JButton btn = botonesApuestas.get(apuesta);
         if (btn != null) {
             if (apuestas.get(apuesta) == null) {
@@ -274,7 +261,7 @@ public class PanelTablaDeApuestas extends JPanel {
 
     private int premio(int numero) {
         if (apuestasPermitidas) {
-            new AssertionError("No se han cerrado las apuestas");
+            throw new AssertionError("No se han cerrado las apuestas");
         }
         int premio = 0;
         for (String apuesta : apuestas.keySet()) {

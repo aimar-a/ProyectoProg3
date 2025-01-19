@@ -24,7 +24,8 @@ import javax.swing.SwingConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-// IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: ChatGPT y GitHub Copilot
+//ADAPTADO: Ordenar y limpiar código, anadir funcionalidades y autocompeltado
 public class PanelDepositarRetirar extends JPanel {
     private static final Font FORMAT_INFO_FONT = new Font("Arial", Font.ITALIC, 10);
     private static final Font FORMAT_LABEL_FONT = new Font("Arial", Font.PLAIN, 16);
@@ -205,10 +206,11 @@ public class PanelDepositarRetirar extends JPanel {
         addButton(panelPaypal, gbc, botonRetirarPaypal);
 
         addDocumentListener(
-                new JTextField[] { correoPaypal, contrasenaPaypal, cantidadPaypal },
+                new JTextField[] { cantidadPaypal, correoPaypal, contrasenaPaypal },
                 errorLabels,
-                new TipoDeDato[] { TipoDeDato.CORREO_PAYPAL, TipoDeDato.CONTRASENA_PAYPAL,
-                        TipoDeDato.CANTIDAD_DEPOSITO },
+                new TipoDeDato[] {
+                        TipoDeDato.CANTIDAD_DEPOSITO, TipoDeDato.CORREO_PAYPAL, TipoDeDato.CONTRASENA_PAYPAL,
+                },
                 botonDepositarPaypal, botonRetirarPaypal);
 
         return panelPaypal;

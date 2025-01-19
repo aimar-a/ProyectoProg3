@@ -8,6 +8,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
+//IAG: GitHub Copilot
+//ADAPTADO: Autocompeltado
 public abstract class BaseGamesFrame extends JFrame {
 
     private static final long serialVersionUID = 1L;

@@ -33,7 +33,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 //IAG: ChatGPT y GitHub Copilot
-//ADAPTADO: Ordenar y limpiar código, anadir funcionalidades y autocompeltado
+//ADAPTADO: Ordenar y limpiar código, anadir funcionalidades, autocompeltado y generar funciones desde cero
 public class FrameMenuPrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
     private JLabel labelBienvenida;

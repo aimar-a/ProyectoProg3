@@ -2,10 +2,13 @@
 // Código inspirado por el tutorial "Code Black Jack in Java" de [Kenny Yip Coding] en YouTube.
 // URL: https://www.youtube.com/watch?v=GMdgjaDdOjI 
 // ADAPTADO: Se ha modificado el código original para adaptarlo a las necesidades del proyecto y anadir funcionalidades adicionales.
+
 package domain.blackjack;
 
 import java.util.Objects;
 
+//IAG: GitHub Copilot
+//ADAPTADO: Autocompeltado
 public class Carta {
     private final String valor;
     private final String palo;

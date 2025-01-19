@@ -6,12 +6,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-//IAG: ChatGPT y GitHub Copilot
-//ADAPTADO: Se ha modificado el código original para adaptarlo a las necesidades del proyecto y añadir funcionalidades adicionales.
+//IAG: GitHub Copilot
+//ADAPTADO: Autocompeltado
 public class Premios {
     private List<List<Integer>> combinaciones = new ArrayList<>();
-    private List<Integer> premios = new ArrayList<>();
-    private List<String> imagenes = new ArrayList<>();
+    private List<Integer> rewards = new ArrayList<>();
 
     public Premios() {
         try (BufferedReader br = new BufferedReader(new FileReader("resources/csv/ListaPremios.csv"))) {
@@ -22,15 +21,13 @@ public class Premios {
                 int numImg2 = Integer.parseInt(values[1]);
                 int numImg3 = Integer.parseInt(values[2]);
                 int premio = Integer.parseInt(values[3]);
-                String imagen = values[4];
 
                 List<Integer> combinacion = new ArrayList<>();
                 combinacion.add(numImg1);
                 combinacion.add(numImg2);
                 combinacion.add(numImg3);
                 combinaciones.add(combinacion);
-                premios.add(premio);
-                imagenes.add(imagen);
+                rewards.add(premio);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -54,7 +51,7 @@ public class Premios {
         int premio = 0;
         for (int i = 0; i < combinaciones.size(); i++) {
             if (payLines.contains(combinaciones.get(i))) {
-                premio += premios.get(i);
+                premio += rewards.get(i);
             }
         }
         return premio;

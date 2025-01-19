@@ -16,7 +16,8 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
-// IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: ChatGPT y GitHub Copilot
+//ADAPTADO: Anadir funcionalidades, autocompeltado y generar funciones desde cero
 public class PanelDino extends JPanel {
     // Constantes
     private static final double INITIAL_MULTIPLIER = 1.01;
@@ -33,7 +34,7 @@ public class PanelDino extends JPanel {
     private double multiplier = INITIAL_MULTIPLIER;
     private boolean isRunning = false;
 
-    private Random random = new Random();
+    private final Random random = new Random();
     private ImageIcon[] dinoFrames;
     private int currentFrame = 0;
     private Thread animationThread;

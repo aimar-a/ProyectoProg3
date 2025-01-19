@@ -25,7 +25,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-// IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: ChatGPT y GitHub Copilot
+//ADAPTADO: Ordenar y limpiar código, anadir funcionalidades y autocompeltado
 public class PanelHistorialMovimientos extends JPanel {
 
     private final JTable table;

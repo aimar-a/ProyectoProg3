@@ -15,7 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
-// IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: ChatGPT y GitHub Copilot
+//ADAPTADO: Anadir funcionalidades y autocompeltado
 public class PanelCambiarContrasena extends JPanel {
     private final JPasswordField txtContrasenaAntigua;
     private final JPasswordField txtContrasenaNueva;

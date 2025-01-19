@@ -20,7 +20,7 @@ import java.util.List;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
-//IAG: ChatGPT y GitHub Copilot
+//IAG: GitHub Copilot
 //ADAPTADO: Anadir funcionalidades y autocompeltado
 public class SwitchButton extends Component {
     private Timer timer;

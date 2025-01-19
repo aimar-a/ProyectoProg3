@@ -7,10 +7,13 @@ package domain.blackjack;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
+//IAG: GitHub Copilot
+//ADAPTADO: Autocompeltado
 public final class Mazo {
-    private final ArrayList<Carta> cartas = new ArrayList<>();
+    private final List<Carta> cartas = new ArrayList<>();
     private final Random aleatorio = new Random();
 
     public Mazo() {
@@ -41,7 +44,7 @@ public final class Mazo {
         return cartas.isEmpty() ? null : cartas.remove(cartas.size() - 1);
     }
 
-    public ArrayList<Carta> getCartas() {
+    public List<Carta> getCartas() {
         return cartas;
     }
 
@@ -49,7 +52,7 @@ public final class Mazo {
         cartas.remove(carta);
     }
 
-    public void quitarCartas(ArrayList<Carta> cartas) {
+    public void quitarCartas(List<Carta> cartas) {
         cartas.forEach(this::quitarCarta);
     }
 
@@ -59,9 +62,5 @@ public final class Mazo {
 
     public Carta getCarta(int index) {
         return cartas.get(index);
-    }
-
-    public Mazo clone() {
-        return new Mazo(this);
     }
 }

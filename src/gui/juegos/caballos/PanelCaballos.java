@@ -27,7 +27,6 @@ public class PanelCaballos extends JPanel {
     private final JPanel[] panelCalles;
 
     private int caballoSeleccionado = 0;
-    private float apuesta = 0;
 
     private PanelApuestasCaballos panelApuestasCaballos;
 
@@ -100,11 +99,7 @@ public class PanelCaballos extends JPanel {
                             if (posiciones[i] >= META - 135 && carreraEnCurso) {
                                 carreraEnCurso = false; // Detener la carrera
                                 ganador = i; // Establecer el ganador
-                                if (ganador + 1 == caballoSeleccionado) {
-                                    panelApuestasCaballos.mostrarGanador(true, i + 1);
-                                } else {
-                                    panelApuestasCaballos.mostrarGanador(false, i + 1);
-                                }
+                                panelApuestasCaballos.mostrarGanador(ganador + 1 == caballoSeleccionado, i + 1);
                                 reiniciarJuego();
                                 break;
                             }
@@ -112,10 +107,25 @@ public class PanelCaballos extends JPanel {
                         repaint();
                     });
                 } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
                 }
             }
             interrupt();
         }
+
+        // Método para reiniciar el juego
+        private void reiniciarJuego() {
+            ganador = -1;
+            carreraEnCurso = false;
+            for (int i = 0; i < NUM_CABALLOS; i++) {
+                posiciones[i] = 0;
+            }
+            SwingUtilities.invokeLater(() -> {
+                repaint(); // Refresca la interfaz
+                panelApuestasCaballos.reiniciarJuego();
+            });
+        }
+
     }
 
     // Método para iniciar la carrera
@@ -129,19 +139,6 @@ public class PanelCaballos extends JPanel {
             }
             new Hilo().start();
         }
-    }
-
-    // Método para reiniciar el juego
-    private void reiniciarJuego() {
-        ganador = -1;
-        carreraEnCurso = false;
-        for (int i = 0; i < NUM_CABALLOS; i++) {
-            posiciones[i] = 0;
-        }
-        SwingUtilities.invokeLater(() -> {
-            repaint(); // Refresca la interfaz
-            panelApuestasCaballos.reiniciarJuego();
-        });
     }
 
     @Override

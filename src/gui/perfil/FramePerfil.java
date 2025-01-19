@@ -9,7 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
-// IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: ChatGPT y GitHub Copilot
+//ADAPTADO: Ordenar y limpiar código, anadir funcionalidades y autocompeltado
 public class FramePerfil extends JDialog {
     JButton btnPerfil = new JButton("Ver Perfil");
     JButton btnDespositarRetirar = new JButton("Depositar/Retirar");
@@ -96,7 +97,7 @@ public class FramePerfil extends JDialog {
         }
     }
 
-    // IAG: Método para cambiar el panel central
+    // IAG: Método para cambiar el panel central (ChatGPT)
     private void cambiarPanel(JPanel nuevoPanel) {
         remove(panelCentralPerfil); // Eliminar el panel anterior
         panelCentralPerfil = nuevoPanel; // Establecer el nuevo panel

@@ -3,8 +3,6 @@
 // URL: https://www.youtube.com/watch?v=GMdgjaDdOjI 
 // ADAPTADO: Se ha modificado el código original para adaptarlo a las necesidades del proyecto y anadir funcionalidades adicionales.
 
-//IAG: GitHub Copilot
-//ADAPTADO: Autocompeltado
 package gui.juegos.blackjack;
 
 import db.GestorBD;
@@ -16,6 +14,8 @@ import domain.datos.AsuntoMovimiento;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+//IAG: ChatGPT y GitHub Copilot
+//ADAPTADO: Anadir funcionalidades y autocompeltado
 public class LogicaBlackjack {
     private final PanelApuestasBlackjack panelApuestas;
     private Mazo mazo;

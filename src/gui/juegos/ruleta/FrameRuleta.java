@@ -6,6 +6,8 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+//IAG: GitHub Copilot
+//ADAPTADO: Autocompeltado
 public class FrameRuleta extends BaseGamesFrame {
 
 	public FrameRuleta(FrameMenuPrincipal frameMenuPrincipal) {

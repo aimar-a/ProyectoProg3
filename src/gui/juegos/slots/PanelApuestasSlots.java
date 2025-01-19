@@ -21,7 +21,7 @@ public class PanelApuestasSlots extends JPanel {
 
         // Configuración del JSpinner
         spinnerApuesta = new JSpinner(new SpinnerNumberModel(0, 0, 1000, 1)); // Valor inicial 0, mínimo 0, máximo 1000,
-                                                                              // paso 1
+
         add(spinnerApuesta);
 
         // Botón para girar

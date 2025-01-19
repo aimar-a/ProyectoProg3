@@ -24,8 +24,8 @@ import javax.swing.JSpinner;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-//IAG: ChatGPT y GitHub Copilot
-//ADAPTADO: Ordenar y limpiar código, anadir funcionalidades y autocompeltado
+//IAG: GitHub Copilot
+//ADAPTADO: Anadir funcionalidades y autocompeltado
 public class PanelMinas extends JPanel {
     private final JButton[][] botones = new JButton[5][5]; // Matriz de botones
     private final boolean[][] minas = new boolean[][] {
@@ -71,9 +71,7 @@ public class PanelMinas extends JPanel {
                 add(botones[i][j], gbc);
                 final int x = i;
                 final int y = j;
-                botones[i][j].addActionListener(e -> {
-                    SwingUtilities.invokeLater(() -> pulsarBoton(x, y));
-                });
+                botones[i][j].addActionListener(e -> SwingUtilities.invokeLater(() -> pulsarBoton(x, y)));
             }
         }
 
@@ -191,9 +189,9 @@ public class PanelMinas extends JPanel {
 
     private void setUp() {
         lblGanancia.setText("Ganancia: 0");
-        for (int i = 0; i < minas.length; i++) {
-            for (int j = 0; j < minas[i].length; j++) {
-                minas[i][j] = false;
+        for (boolean[] mina : minas) {
+            for (int j = 0; j < mina.length; j++) {
+                mina[j] = false;
             }
         }
         for (JButton[] fila : botones) {

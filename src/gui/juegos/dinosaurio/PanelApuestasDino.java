@@ -16,7 +16,8 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 
-// IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: ChatGPT y GitHub Copilot
+//ADAPTADO: Anadir funcionalidades y autocompeltado
 public class PanelApuestasDino extends JPanel {
 
     private final String usuario; // Usuario para identificar en la base de datos
@@ -49,9 +50,7 @@ public class PanelApuestasDino extends JPanel {
         cashOutButton.addActionListener(new CashOutButtonListener());
 
         // Configurar el listener de fin de juego
-        dinoPlay.setGameEndListener((cashedOut) -> {
-            SwingUtilities.invokeLater(this::resetButtons);
-        });
+        dinoPlay.setGameEndListener(cashedOut -> SwingUtilities.invokeLater(this::resetButtons));
 
         if (ConfigProperties.isUiDarkMode()) {
             setForeground(ColorVariables.COLOR_TEXTO_DARK.getColor());

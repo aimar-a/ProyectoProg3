@@ -26,7 +26,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 //IAG: GitHub Copilot
-//ADAPTADO: Autocompeltado
+//ADAPTADO: Anadir funcionalidades y autocompeltado
 public class PanelBlackjack extends JPanel {
     private JButton botonPlantarse;
     private Mano manoCrupier;

@@ -5,6 +5,8 @@ import gui.mainMenu.FrameMenuPrincipal;
 import java.awt.BorderLayout;
 import javax.swing.SwingUtilities;
 
+//IAG: GitHub Copilot
+//ADAPTADO: Autocompeltado
 public class FrameSlots extends BaseGamesFrame {
 	/**
 	 * 

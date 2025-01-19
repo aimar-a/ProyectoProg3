@@ -5,7 +5,8 @@ import gui.mainMenu.FrameMenuPrincipal;
 import java.awt.BorderLayout;
 import javax.swing.SwingUtilities;
 
-//IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: GitHub Copilot
+//ADAPTADO: Autocompeltado
 public class FrameMinas extends BaseGamesFrame {
     private static final long serialVersionUID = 1L;
 

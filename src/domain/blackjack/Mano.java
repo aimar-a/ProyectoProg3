@@ -7,6 +7,8 @@ package domain.blackjack;
 
 import java.util.ArrayList;
 
+//IAG: GitHub Copilot
+//ADAPTADO: Autocompeltado
 public class Mano {
     private final ArrayList<Carta> cartas = new ArrayList<>();
     private int suma;

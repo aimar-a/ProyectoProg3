@@ -8,7 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-// IAG: Modificado (ChatGPT y GitHub Copilot)
+//IAG: GitHub Copilot
+//ADAPTADO: Anadir funcionalidades y autocompeltado
 public class CampoDatoUsuario {
     private static final Font FORMAT_INFO_FONT = new Font("Arial", Font.ITALIC, 10);
 
@@ -68,9 +69,9 @@ public class CampoDatoUsuario {
             switch (component) {
                 case JTextField jTextField -> jTextField.setEditable(editable && this.editable);
                 case JComboBox<?> jComboBox -> jComboBox.setEnabled(editable && this.editable);
-                default -> {
+                default ->
                     throw new IllegalArgumentException("Tipo de componente no soportado");
-                }
+
             }
         }
     }

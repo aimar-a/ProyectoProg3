@@ -14,7 +14,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-//IAG: ChatGPT y GitHub Copilot
+//IAG: GitHub Copilot
 //SIN-CAMBIOS: Ordenar y mejorar el código original.
 public enum TipoDeDato {
     USUARIO,

@@ -6,7 +6,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.util.Random;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -25,6 +24,7 @@ public class PanelRuleta extends JPanel {
     private final JPanel numbersPanel;
     private int currentIndex = 0;
     private static final int NUMEROS_EN_CADA_LADO = 18;
+    private final Random random = new Random();
 
     public PanelRuleta() {
         setLayout(new BorderLayout());
@@ -34,8 +34,6 @@ public class PanelRuleta extends JPanel {
 
         // Numbers panel
         numbersPanel = new JPanel();
-        numbersPanel.setLayout(new GridLayout(1, numbers.length));
-        Random random = new Random();
         currentIndex = random.nextInt(numbers.length);
         for (int i = -NUMEROS_EN_CADA_LADO; i < NUMEROS_EN_CADA_LADO + 1; i++) {
             int index = (currentIndex + i + numbers.length) % numbers.length;
@@ -63,7 +61,6 @@ public class PanelRuleta extends JPanel {
     }
 
     public void spinRoulette(PanelTablaDeApuestas panelTablaDeApuestas) {
-        Random random = new Random();
         double slower = random.nextDouble(0.2) + 1.1;
         new Thread(() -> {
             for (double wait = 0.2; wait < 800; wait *= slower) {
@@ -83,8 +80,8 @@ public class PanelRuleta extends JPanel {
                             }
                         }
                     });
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt(); // Re-interrupt the thread
                 }
             }
             SwingUtilities.invokeLater(() -> panelTablaDeApuestas.premiarNumero(numbers[currentIndex]));
